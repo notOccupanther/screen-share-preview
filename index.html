@@ -1108,7 +1108,7 @@
     var heroFilm = {
       title: 'All We Imagine as Light',
       year: 2024,
-      backdrop: 'https://image.tmdb.org/t/p/w1280/ilRyazdMJwN3LHZMT9XhUeKRs1.jpg',
+      backdrop: null,
       overview: 'A first-pass issue built around films, criticism, and the cultural conversation around how we watch.'
     };
 
@@ -1117,7 +1117,8 @@
         type: 'Most Talked About',
         title: 'All We Imagine as Light',
         sub: 'Payal Kapadia, 2024 · Cannes Grand Prix winner',
-        poster: 'https://image.tmdb.org/t/p/w185/saHP97rTPS5eLmrLQEcANmKrsFl.jpg',
+        poster: null,
+        tone: 'amber',
         mode: 'sentiment',
         pct: 87,
         note: 'A quiet film with an unusually loud afterlife. The discussion is less about plot than about mood, texture, and tenderness.'
@@ -1126,7 +1127,8 @@
         type: 'Most Divisive',
         title: 'Saltburn',
         sub: 'Emerald Fennell, 2023 · Still polarising 18 months on',
-        poster: 'https://image.tmdb.org/t/p/w185/qjaqgHBMZJqrJuDuwJTNQbmXHOF.jpg',
+        poster: null,
+        tone: 'crimson',
         mode: 'badge',
         badgeClass: 'divisive-badge',
         badgeText: 'Critics 79% · Audiences 52%',
@@ -1136,7 +1138,8 @@
         type: 'Hidden Gem Resurface',
         title: 'A Ghost Story',
         sub: 'David Lowery, 2017 · Back in conversation this week',
-        poster: 'https://image.tmdb.org/t/p/w185/5qAl0HXC6FXtGXJGgfZqNLkm8Fl.jpg',
+        poster: null,
+        tone: 'slate',
         mode: 'badge',
         badgeClass: 'gem-badge',
         badgeText: 'Rediscovered',
@@ -1146,45 +1149,66 @@
 
     var moodData = {
       unsettled: [
-        { title: 'Parasite', year: 2019, director: 'Bong Joon-ho', poster: 'https://image.tmdb.org/t/p/w342/7IiTTgloJzvGI1TAYymCfbfl3vT.jpg', tag: 'The floor gives way slowly' },
-        { title: 'The Zone of Interest', year: 2023, director: 'Jonathan Glazer', poster: 'https://image.tmdb.org/t/p/w342/hUu9zyZmKuTpOUT4MKky6xsV0lI.jpg', tag: 'Horror at a distance' },
-        { title: 'Caché', year: 2005, director: 'Michael Haneke', poster: 'https://image.tmdb.org/t/p/w342/jT04sWGhEDYRUBe8bPmTPGdgNaW.jpg', tag: 'Someone is watching' }
+        { title: 'Parasite', year: 2019, director: 'Bong Joon-ho', poster: 'https://image.tmdb.org/t/p/w342/7IiTTgloJzvGI1TAYymCfbfl3vT.jpg',
+        tone: 'amber', tag: 'The floor gives way slowly' },
+        { title: 'The Zone of Interest', year: 2023, director: 'Jonathan Glazer', poster: null, tone: 'slate', tag: 'Horror at a distance' },
+        { title: 'Caché', year: 2005, director: 'Michael Haneke', poster: null, tone: 'crimson', tag: 'Someone is watching' }
       ],
       devastated: [
-        { title: 'Burning', year: 2018, director: 'Lee Chang-dong', poster: 'https://image.tmdb.org/t/p/w342/7ICEKETsR8Bsb2SBHM8cRlqnZWk.jpg', tag: 'Grief without a name' },
-        { title: 'Manchester by the Sea', year: 2016, director: 'Kenneth Lonergan', poster: 'https://image.tmdb.org/t/p/w342/o0nTRrFRFuZfCLBX8kXUCXFxGi4.jpg', tag: 'Some things do not heal' },
-        { title: 'Portrait of a Lady on Fire', year: 2019, director: 'Céline Sciamma', poster: 'https://image.tmdb.org/t/p/w342/3YFiNGnlNYoMJaEBBTOOl5KPGSA.jpg', tag: 'Remember us looking' }
+        { title: 'Burning', year: 2018, director: 'Lee Chang-dong', poster: null, tone: 'amber', tag: 'Grief without a name' },
+        { title: 'Manchester by the Sea', year: 2016, director: 'Kenneth Lonergan', poster: null, tone: 'slate', tag: 'Some things do not heal' },
+        { title: 'Portrait of a Lady on Fire', year: 2019, director: 'Céline Sciamma', poster: null, tone: 'amber', tag: 'Remember us looking' }
       ],
       rewired: [
-        { title: 'Annihilation', year: 2018, director: 'Alex Garland', poster: 'https://image.tmdb.org/t/p/w342/hFhCnJLBL2F1sUBVOPg0lUuiBFr.jpg', tag: 'Self-destruction by another name' },
-        { title: 'Under the Skin', year: 2013, director: 'Jonathan Glazer', poster: 'https://image.tmdb.org/t/p/w342/5aqzEqRmwjpVv3AqkDifBNhJwi5.jpg', tag: 'What is a body?' },
-        { title: 'Enemy', year: 2013, director: 'Denis Villeneuve', poster: 'https://image.tmdb.org/t/p/w342/nV41DI4liZXSp3sNmhpO2WrZb3O.jpg', tag: 'You are not who you think you are' }
+        { title: 'Annihilation', year: 2018, director: 'Alex Garland', poster: null, tone: 'moss', tag: 'Self-destruction by another name' },
+        { title: 'Under the Skin', year: 2013, director: 'Jonathan Glazer', poster: null, tone: 'slate', tag: 'What is a body?' },
+        { title: 'Enemy', year: 2013, director: 'Denis Villeneuve', poster: null, tone: 'crimson', tag: 'You are not who you think you are' }
       ],
       hopeful: [
-        { title: 'Sorry to Bother You', year: 2018, director: 'Boots Riley', poster: 'https://image.tmdb.org/t/p/w342/qzPB0hxe38iFshG5fDqMobFPUGq.jpg', tag: 'Furious, and still swinging' },
-        { title: 'Beasts of the Southern Wild', year: 2012, director: 'Benh Zeitlin', poster: 'https://image.tmdb.org/t/p/w342/cX56JsRDhT6iHJOFxR8sclZ3SzL.jpg', tag: 'The world is ending. Hold on.' },
-        { title: 'Selma', year: 2014, director: 'Ava DuVernay', poster: 'https://image.tmdb.org/t/p/w342/9A76UGqHJkAH9JXE8dqrCzKbp2H.jpg', tag: 'The march never really ended' }
+        { title: 'Sorry to Bother You', year: 2018, director: 'Boots Riley', poster: null, tone: 'amber', tag: 'Furious, and still swinging' },
+        { title: 'Beasts of the Southern Wild', year: 2012, director: 'Benh Zeitlin', poster: null, tone: 'moss', tag: 'The world is ending. Hold on.' },
+        { title: 'Selma', year: 2014, director: 'Ava DuVernay', poster: null, tone: 'amber', tag: 'The march never really ended' }
       ],
       strange: [
-        { title: 'Holy Motors', year: 2012, director: 'Leos Carax', poster: 'https://image.tmdb.org/t/p/w342/wEapMvHDLYmniJxeD7cXHjJVR9e.jpg', tag: 'Cinema dreaming about itself' },
-        { title: 'The Lobster', year: 2015, director: 'Yorgos Lanthimos', poster: 'https://image.tmdb.org/t/p/w342/4CD4GGxZBa43tNHRb2QkNpAWFEL.jpg', tag: 'Love as compliance' },
-        { title: 'Lost Highway', year: 1997, director: 'David Lynch', poster: 'https://image.tmdb.org/t/p/w342/g8JjA3EXr3BVHkH9gnX4Ll9vHHD.jpg', tag: 'The road doubles back' }
+        { title: 'Holy Motors', year: 2012, director: 'Leos Carax', poster: null, tone: 'crimson', tag: 'Cinema dreaming about itself' },
+        { title: 'The Lobster', year: 2015, director: 'Yorgos Lanthimos', poster: null, tone: 'slate', tag: 'Love as compliance' },
+        { title: 'Lost Highway', year: 1997, director: 'David Lynch', poster: null, tone: 'crimson', tag: 'The road doubles back' }
       ],
       edge: [
-        { title: 'No Country for Old Men', year: 2007, director: 'Coen Brothers', poster: 'https://image.tmdb.org/t/p/w342/6d5XHFiMsKtCMCPMBVp2dKEnfbl.jpg', tag: 'Fate does not negotiate' },
-        { title: 'Uncut Gems', year: 2019, director: 'Safdie Brothers', poster: 'https://image.tmdb.org/t/p/w342/lBuzvMb0MxValuDpxCTFGMUvbqe.jpg', tag: 'Anxiety as cinema' },
-        { title: 'Prisoners', year: 2013, director: 'Denis Villeneuve', poster: 'https://image.tmdb.org/t/p/w342/ho3pl3YCOQIHFdN7DJdWONHhY5q.jpg', tag: 'What would you do?' }
+        { title: 'No Country for Old Men', year: 2007, director: 'Coen Brothers', poster: null, tone: 'amber', tag: 'Fate does not negotiate' },
+        { title: 'Uncut Gems', year: 2019, director: 'Safdie Brothers', poster: null, tone: 'crimson', tag: 'Anxiety as cinema' },
+        { title: 'Prisoners', year: 2013, director: 'Denis Villeneuve', poster: null, tone: 'slate', tag: 'What would you do?' }
       ],
       slowburn: [
-        { title: 'The Turin Horse', year: 2011, director: 'Béla Tarr', poster: 'https://image.tmdb.org/t/p/w342/lj5RBVeVQUf5UMzH4E3FqhGKRVV.jpg', tag: 'Entropy made visible' },
-        { title: 'First Reformed', year: 2017, director: 'Paul Schrader', poster: 'https://image.tmdb.org/t/p/w342/pUEq2xABJ6wlKMFgR25C7TuZh3I.jpg', tag: 'Faith at the breaking point' },
-        { title: 'Certified Copy', year: 2010, director: 'Abbas Kiarostami', poster: 'https://image.tmdb.org/t/p/w342/6Hk8HiIxqhS3X3jKkY1T73pXtk6.jpg', tag: 'Are they strangers or not?' }
+        { title: 'The Turin Horse', year: 2011, director: 'Béla Tarr', poster: null, tone: 'slate', tag: 'Entropy made visible' },
+        { title: 'First Reformed', year: 2017, director: 'Paul Schrader', poster: null, tone: 'moss', tag: 'Faith at the breaking point' },
+        { title: 'Certified Copy', year: 2010, director: 'Abbas Kiarostami', poster: null, tone: 'amber', tag: 'Are they strangers or not?' }
       ]
     };
 
+
+    function placeholderPoster(title, subtitle, tone) {
+      var palette = {
+        amber: ['#2a2114', '#f59e0b'],
+        crimson: ['#231315', '#dc2626'],
+        slate: ['#161923', '#94a3b8'],
+        moss: ['#172018', '#84cc16']
+      };
+      var pair = palette[tone] || palette.amber;
+      var svg = '<svg xmlns="http://www.w3.org/2000/svg" width="342" height="513" viewBox="0 0 342 513">' +
+        '<defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="' + pair[0] + '"/><stop offset="100%" stop-color="#0b0c10"/></linearGradient></defs>' +
+        '<rect width="342" height="513" fill="url(#g)"/>' +
+        '<rect x="20" y="20" width="302" height="473" rx="18" fill="none" stroke="rgba(255,255,255,0.18)"/>' +
+        '<text x="28" y="70" fill="#f3efe6" font-family="Inter,Arial,sans-serif" font-size="18" letter-spacing="3">SCREEN SHARE</text>' +
+        '<text x="28" y="380" fill="#ffffff" font-family="Georgia,serif" font-size="34">' + title.replace(/&/g, '&amp;') + '</text>' +
+        '<text x="28" y="420" fill="#d6d3cb" font-family="Inter,Arial,sans-serif" font-size="18">' + subtitle.replace(/&/g, '&amp;') + '</text>' +
+        '</svg>';
+      return 'data:image/svg+xml;charset=UTF-8,' + encodeURIComponent(svg);
+    }
+
     function renderHero() {
       var backdrop = document.getElementById('heroBackdrop');
-      backdrop.style.backgroundImage = 'url(' + heroFilm.backdrop + ')';
+      backdrop.style.backgroundImage = 'radial-gradient(circle at top, rgba(245,158,11,0.18), transparent 34%), linear-gradient(135deg, rgba(10,10,15,0.96), rgba(24,24,31,0.92))';
       document.getElementById('heroTitle').textContent = heroFilm.title;
       document.getElementById('heroTagline').textContent = heroFilm.overview;
       var meta = document.getElementById('heroFilmMeta');
@@ -1206,7 +1230,7 @@
         var html = '' +
           '<div class="pulse-card-type">' + item.type + '</div>' +
           '<div class="pulse-card-film">' +
-            '<img class="pulse-card-poster" src="' + item.poster + '" alt="' + item.title + '" />' +
+            '<img class="pulse-card-poster" src="' + (item.poster || placeholderPoster(item.title, item.sub, item.tone)) + '" alt="' + item.title + '" />' +
             '<div class="pulse-card-film-info">' +
               '<div class="pulse-card-title">' + item.title + '</div>' +
               '<div class="pulse-card-sub">' + item.sub + '</div>' +
@@ -1235,7 +1259,7 @@
         var card = document.createElement('div');
         card.className = 'film-card';
         card.innerHTML =
-          '<img class="film-card-poster" src="' + film.poster + '" alt="' + film.title + '" />' +
+          '<img class="film-card-poster" src="' + (film.poster || placeholderPoster(film.title, film.director + ' · ' + film.year, film.tone)) + '" alt="' + film.title + '" />' +
           '<div class="film-card-body">' +
             '<div class="film-card-title">' + film.title + '</div>' +
             '<div class="film-card-year">' + film.year + ' · ' + film.director + '</div>' +
