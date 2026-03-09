@@ -1,0 +1,1540 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Screen Share — The Conversation Worth Having</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,700;0,800;1,700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #0a0a0f;
+      --surface: #111118;
+      --surface-2: #18181f;
+      --gold: #f59e0b;
+      --gold-dim: rgba(245, 158, 11, 0.15);
+      --gold-border: rgba(245, 158, 11, 0.25);
+      --crimson: #dc2626;
+      --text: #e8e8ed;
+      --text-muted: #8888a0;
+      --text-dim: #555568;
+      --border: rgba(255,255,255,0.06);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Inter', sans-serif;
+      font-size: 16px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    /* Film grain overlay */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 9999;
+      opacity: 0.025;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E");
+      background-size: 180px 180px;
+      mix-blend-mode: overlay;
+    }
+
+    /* ─── REVEAL (scroll fade) ─── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(18px);
+      transition: opacity 0.55s ease, transform 0.55s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ─── NAV ─── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 2rem;
+      height: 60px;
+      background: rgba(10, 10, 15, 0.85);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: var(--text);
+      letter-spacing: 0.02em;
+      text-decoration: none;
+    }
+    .nav-logo span { color: var(--gold); }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+    .nav-links a {
+      font-size: 0.8rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--gold); }
+
+    /* ─── HERO ─── */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: flex-end;
+      overflow: hidden;
+    }
+
+    .hero-backdrop {
+      position: absolute;
+      inset: 0;
+      background-size: cover;
+      background-position: center 20%;
+      transform: scale(1.03);
+      transition: transform 8s ease-out;
+    }
+    .hero:hover .hero-backdrop { transform: scale(1.0); }
+
+    .hero-vignette {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to bottom,
+        rgba(10,10,15,0.3) 0%,
+        rgba(10,10,15,0.1) 30%,
+        rgba(10,10,15,0.6) 65%,
+        rgba(10,10,15,0.97) 100%
+      );
+    }
+    .hero-vignette-sides {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to right,
+        rgba(10,10,15,0.7) 0%,
+        transparent 40%,
+        transparent 60%,
+        rgba(10,10,15,0.4) 100%
+      );
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      width: 100%;
+      padding: 2.5rem 2.5rem 4rem;
+      max-width: 900px;
+    }
+
+    .hero-eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 1.25rem;
+    }
+    .hero-eyebrow-label {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+    .hero-eyebrow-date {
+      font-size: 0.7rem;
+      font-weight: 400;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+    .hero-eyebrow-dot {
+      width: 3px;
+      height: 3px;
+      border-radius: 50%;
+      background: var(--text-dim);
+    }
+
+    .hero-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.4rem, 6vw, 4.5rem);
+      font-weight: 800;
+      line-height: 1.08;
+      letter-spacing: -0.01em;
+      color: #fff;
+      margin-bottom: 1rem;
+      max-width: 780px;
+    }
+    .hero-tagline {
+      font-size: clamp(0.95rem, 1.8vw, 1.1rem);
+      color: rgba(232,232,237,0.75);
+      max-width: 520px;
+      line-height: 1.65;
+      margin-bottom: 2rem;
+      font-weight: 300;
+    }
+    .hero-meta {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+    .hero-meta-film {
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+    .hero-meta-film span { color: var(--text); }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.75rem 1.75rem;
+      background: var(--gold);
+      color: #0a0a0f;
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.15s;
+    }
+    .btn-primary:hover { background: #fbbf24; transform: translateY(-1px); }
+
+    .btn-ghost {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.75rem 1.75rem;
+      background: transparent;
+      color: var(--text);
+      font-size: 0.82rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border: 1px solid var(--border);
+      cursor: pointer;
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .btn-ghost:hover { border-color: var(--gold); color: var(--gold); }
+
+    .hero-scroll-hint {
+      position: absolute;
+      bottom: 1.5rem;
+      right: 2.5rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.4rem;
+      opacity: 0.4;
+    }
+    .hero-scroll-hint span {
+      font-size: 0.6rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      writing-mode: vertical-rl;
+    }
+    .hero-scroll-line {
+      width: 1px;
+      height: 40px;
+      background: linear-gradient(to bottom, var(--text-muted), transparent);
+    }
+
+    /* ─── SECTION COMMONS ─── */
+    section {
+      padding: 5rem 2.5rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .section-divider {
+      width: 100%;
+      height: 1px;
+      background: linear-gradient(to right, transparent, var(--gold-border), transparent);
+      margin: 0 2.5rem;
+      max-width: 1200px;
+    }
+
+    .section-eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 2.5rem;
+    }
+    .section-eyebrow-icon { font-size: 1rem; }
+    .section-eyebrow-label {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+    .section-eyebrow-desc {
+      font-size: 0.78rem;
+      color: var(--text-dim);
+      font-style: italic;
+    }
+    .section-eyebrow-pipe {
+      color: var(--text-dim);
+      font-size: 0.8rem;
+    }
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.6rem, 3.5vw, 2.4rem);
+      font-weight: 700;
+      line-height: 1.2;
+      color: var(--text);
+      margin-bottom: 1.25rem;
+    }
+
+    /* ─── REWIND ─── */
+    .rewind-card {
+      display: grid;
+      grid-template-columns: 200px 1fr;
+      gap: 3rem;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--gold);
+      padding: 2.5rem;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .rewind-card:hover {
+      border-left-color: var(--gold);
+      border-color: var(--gold-border);
+      transform: translateY(-2px);
+    }
+    .rewind-poster {
+      width: 100%;
+      aspect-ratio: 2/3;
+      object-fit: cover;
+      display: block;
+      filter: saturate(0.85);
+      transition: filter 0.3s;
+    }
+    .rewind-card:hover .rewind-poster { filter: saturate(1); }
+    .rewind-body {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .rewind-year {
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      color: var(--gold);
+      text-transform: uppercase;
+      margin-bottom: 0.5rem;
+    }
+    .rewind-film-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 1.25rem;
+      line-height: 1.15;
+    }
+    .rewind-text {
+      font-size: 1rem;
+      line-height: 1.75;
+      color: rgba(232,232,237,0.8);
+      margin-bottom: 1.25rem;
+      font-weight: 300;
+    }
+
+    .link-arrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.82rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      color: var(--gold);
+      text-decoration: none;
+      text-transform: uppercase;
+      transition: gap 0.2s;
+    }
+    .link-arrow:hover { gap: 0.7rem; }
+
+    /* ─── ARGUMENT ─── */
+    .argument-question {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.3rem, 2.8vw, 1.9rem);
+      font-weight: 700;
+      font-style: italic;
+      line-height: 1.35;
+      color: #fff;
+      margin-bottom: 2.5rem;
+      padding-left: 1.5rem;
+      border-left: 3px solid var(--crimson);
+    }
+    .argument-camps {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+    .argument-camp {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      padding: 1.75rem;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .argument-camp:hover {
+      border-color: rgba(255,255,255,0.12);
+      transform: translateY(-2px);
+    }
+    .argument-camp-label {
+      font-size: 0.65rem;
+      font-weight: 800;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      margin-bottom: 0.9rem;
+      padding: 0.25rem 0.6rem;
+      display: inline-block;
+    }
+    .argument-camp-label.grief { background: rgba(220,38,38,0.15); color: #f87171; }
+    .argument-camp-label.horror { background: rgba(245,158,11,0.12); color: var(--gold); }
+    .argument-camp-text {
+      font-size: 0.95rem;
+      line-height: 1.7;
+      color: rgba(232,232,237,0.75);
+      font-weight: 300;
+    }
+    .argument-cta {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    .argument-voter-count {
+      font-size: 0.78rem;
+      color: var(--text-dim);
+    }
+
+    /* ─── MOOD ─── */
+    .mood-chips-wrapper {
+      overflow-x: auto;
+      margin-bottom: 2.5rem;
+      padding-bottom: 0.5rem;
+      scrollbar-width: none;
+    }
+    .mood-chips-wrapper::-webkit-scrollbar { display: none; }
+    .mood-chips {
+      display: flex;
+      gap: 0.75rem;
+      width: max-content;
+    }
+    .mood-chip {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.55rem 1.1rem;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+      font-size: 0.82rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s;
+      white-space: nowrap;
+      border-radius: 2px;
+      user-select: none;
+    }
+    .mood-chip:hover { border-color: var(--gold-border); color: var(--text); }
+    .mood-chip.active { background: var(--gold-dim); border-color: var(--gold); color: var(--gold); }
+
+    .mood-films {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.25rem;
+      min-height: 340px;
+    }
+
+    /* ─── FILM CARD (mood + pulse) ─── */
+    .film-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      overflow: hidden;
+      cursor: pointer;
+      transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.2s;
+    }
+    .film-card:hover {
+      border-color: var(--gold-border);
+      transform: translateY(-4px);
+      box-shadow: 0 12px 32px rgba(0,0,0,0.5);
+    }
+    .film-card img {
+      transition: filter 0.3s ease;
+      filter: brightness(0.88);
+    }
+    .film-card:hover img { filter: brightness(1); }
+    .film-card-poster {
+      width: 100%;
+      aspect-ratio: 2/3;
+      object-fit: cover;
+      display: block;
+      transition: filter 0.3s, transform 0.4s;
+    }
+    .film-card:hover .film-card-poster { transform: scale(1.02); }
+    .film-card-body { padding: 1rem; }
+    .film-card-title {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 0.25rem;
+    }
+    .film-card-year {
+      font-size: 0.75rem;
+      color: var(--text-dim);
+    }
+    .film-card-mood-tag {
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-top: 0.5rem;
+    }
+
+    /* ─── WEEKLY PULSE ─── */
+    .pulse-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+    .pulse-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      padding: 1.75rem;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .pulse-card:hover {
+      border-color: rgba(255,255,255,0.1);
+      transform: translateY(-2px);
+    }
+    .pulse-card-type {
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--text-dim);
+      margin-bottom: 1rem;
+    }
+    .pulse-card-film {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 1.25rem;
+    }
+    .pulse-card-poster {
+      width: 56px;
+      height: 84px;
+      object-fit: cover;
+      flex-shrink: 0;
+      filter: saturate(0.8);
+    }
+    .pulse-card-film-info {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .pulse-card-title {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 0.3rem;
+      line-height: 1.3;
+    }
+    .pulse-card-sub {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+    .sentiment-bar-wrap { margin-top: 1rem; }
+    .sentiment-bar-label {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.72rem;
+      color: var(--text-dim);
+      margin-bottom: 0.4rem;
+    }
+    .sentiment-bar-label span:last-child { color: #4ade80; }
+    .sentiment-bar-track {
+      height: 4px;
+      background: rgba(255,255,255,0.06);
+      border-radius: 2px;
+      overflow: hidden;
+    }
+    .sentiment-bar-fill {
+      height: 100%;
+      background: linear-gradient(to right, #dc2626, #f59e0b, #4ade80);
+      border-radius: 2px;
+      transition: width 0.6s ease;
+    }
+    .divisive-badge {
+      display: inline-block;
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.2rem 0.55rem;
+      background: rgba(220,38,38,0.12);
+      color: #f87171;
+      margin-top: 0.75rem;
+    }
+    .gem-badge {
+      display: inline-block;
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.2rem 0.55rem;
+      background: var(--gold-dim);
+      color: var(--gold);
+      margin-top: 0.75rem;
+    }
+
+    /* ─── BEHIND THE FRAME ─── */
+    .btf-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      padding: 3rem;
+      display: grid;
+      grid-template-columns: 1fr 280px;
+      gap: 3rem;
+      align-items: center;
+      transition: border-color 0.2s;
+    }
+    .btf-card:hover { border-color: var(--gold-border); }
+    .btf-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.3rem, 2.5vw, 1.85rem);
+      font-weight: 700;
+      line-height: 1.25;
+      color: #fff;
+      margin-bottom: 1.5rem;
+    }
+    .btf-excerpt {
+      font-size: 1rem;
+      line-height: 1.8;
+      color: rgba(232,232,237,0.7);
+      font-weight: 300;
+      font-style: italic;
+      margin-bottom: 2rem;
+      padding-left: 1.25rem;
+      border-left: 2px solid var(--gold-border);
+    }
+    .btf-image {
+      width: 100%;
+      aspect-ratio: 16/10;
+      object-fit: cover;
+      filter: saturate(0.5) brightness(0.8);
+      transition: filter 0.4s;
+    }
+    .btf-card:hover .btf-image { filter: saturate(0.8) brightness(0.9); }
+
+    /* ─── BEHIND THE CURTAIN ─── */
+    .btc-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+    }
+    .btc-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-top: 2px solid var(--crimson);
+      padding: 2rem;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .btc-card:hover {
+      border-color: rgba(220,38,38,0.4);
+      transform: translateY(-2px);
+    }
+    .btc-source {
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--text-dim);
+      margin-bottom: 0.75rem;
+    }
+    .btc-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 1rem;
+      line-height: 1.3;
+    }
+    .btc-editorial {
+      font-size: 0.9rem;
+      line-height: 1.75;
+      color: rgba(232,232,237,0.7);
+      font-weight: 300;
+      margin-bottom: 1.5rem;
+    }
+
+    /* ─── NEWSLETTER ─── */
+    .newsletter-section { padding: 4rem 2.5rem; }
+    .newsletter-card {
+      background: var(--surface);
+      border: 1px solid var(--gold-border);
+      padding: 4rem;
+      text-align: center;
+      max-width: 680px;
+      margin: 0 auto;
+    }
+    .newsletter-eyebrow {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1rem;
+    }
+    .newsletter-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.5rem, 3vw, 2rem);
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 0.75rem;
+      line-height: 1.25;
+    }
+    .newsletter-sub {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      font-style: italic;
+      margin-bottom: 2.5rem;
+    }
+    .newsletter-form {
+      display: flex;
+      gap: 0;
+      max-width: 420px;
+      margin: 0 auto 1.5rem;
+    }
+    .newsletter-input {
+      flex: 1;
+      padding: 0.85rem 1.25rem;
+      background: var(--bg);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-right: none;
+      color: var(--text);
+      font-size: 0.88rem;
+      font-family: 'Inter', sans-serif;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .newsletter-input::placeholder { color: var(--text-dim); }
+    .newsletter-input:focus { border-color: var(--gold-border); }
+    .newsletter-btn {
+      padding: 0.85rem 1.5rem;
+      background: var(--gold);
+      color: #0a0a0f;
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      border: none;
+      cursor: pointer;
+      font-family: 'Inter', sans-serif;
+      transition: background 0.2s;
+    }
+    .newsletter-btn:hover { background: #fbbf24; }
+    .newsletter-note { font-size: 0.75rem; color: var(--text-dim); }
+
+    /* ─── FOOTER ─── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 2rem 2.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .footer-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1rem;
+      font-weight: 800;
+      color: var(--text-muted);
+    }
+    .footer-logo span { color: var(--gold); }
+    .footer-note { font-size: 0.72rem; color: var(--text-dim); }
+
+    /* ─── LOADING STATE ─── */
+    .loading-shimmer {
+      background: linear-gradient(90deg, var(--surface) 25%, var(--surface-2) 50%, var(--surface) 75%);
+      background-size: 200% 100%;
+      animation: shimmer 1.4s infinite;
+      border-radius: 2px;
+    }
+    @keyframes shimmer {
+      0% { background-position: 200% 0; }
+      100% { background-position: -200% 0; }
+    }
+    .pulse-placeholder {
+      height: 84px;
+      width: 56px;
+      flex-shrink: 0;
+    }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 768px) {
+      nav { padding: 0 1.25rem; }
+      .nav-links { display: none; }
+      section { padding: 3.5rem 1.25rem; }
+      .section-divider { margin: 0 1.25rem; }
+      .hero-content { padding: 2rem 1.25rem 3rem; }
+      .rewind-card { grid-template-columns: 1fr; gap: 1.5rem; }
+      .rewind-poster { max-width: 160px; }
+      .argument-camps { grid-template-columns: 1fr; }
+      .mood-films { grid-template-columns: 1fr 1fr; }
+      .pulse-grid { grid-template-columns: 1fr; }
+      .btf-card { grid-template-columns: 1fr; }
+      .btf-image { display: none; }
+      .btc-grid { grid-template-columns: 1fr; }
+      .newsletter-card { padding: 2.5rem 1.5rem; }
+      .newsletter-form { flex-direction: column; }
+      .newsletter-input { border-right: 1px solid rgba(255,255,255,0.1); border-bottom: none; }
+      footer { flex-direction: column; gap: 0.75rem; text-align: center; }
+    }
+    @media (max-width: 480px) {
+      .mood-films { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="#" class="nav-logo">Screen<span>Share</span></a>
+    <ul class="nav-links">
+      <li><a href="#">The Rewind</a></li>
+      <li><a href="#">The Argument</a></li>
+      <li><a href="#">Discover</a></li>
+      <li><a href="#">Craft</a></li>
+      <li><a href="#">Archive</a></li>
+    </ul>
+  </nav>
+
+  <!-- ─── HERO ─── -->
+  <section class="hero" style="padding:0; max-width:none;" id="heroSection">
+    <div class="hero-backdrop" id="heroBackdrop"></div>
+    <div class="hero-vignette"></div>
+    <div class="hero-vignette-sides"></div>
+
+    <div class="hero-content">
+      <div class="hero-eyebrow">
+        <span class="hero-eyebrow-label">This Week on Screen Share</span>
+        <span class="hero-eyebrow-dot"></span>
+        <span class="hero-eyebrow-date" id="heroDate">Week of 7 March 2026</span>
+      </div>
+
+      <h1 class="hero-title" id="heroTitle">Loading this week's film&hellip;</h1>
+      <p class="hero-tagline" id="heroTagline">&nbsp;</p>
+
+      <div class="hero-meta">
+        <span class="hero-meta-film" id="heroFilmMeta">&nbsp;</span>
+      </div>
+
+      <div style="display:flex; gap:1rem; flex-wrap:wrap;">
+        <a href="#" class="btn-primary">Read This Week's Essay &rarr;</a>
+        <a href="#" class="btn-ghost">Browse the Archive</a>
+      </div>
+    </div>
+
+    <div class="hero-scroll-hint">
+      <span>Scroll</span>
+      <div class="hero-scroll-line"></div>
+    </div>
+  </section>
+
+  <!-- ─── THE REWIND ─── -->
+  <div class="section-divider"></div>
+
+  <section>
+    <div class="section-eyebrow reveal">
+      <span class="section-eyebrow-icon">🎞️</span>
+      <span class="section-eyebrow-label">The Rewind</span>
+      <span class="section-eyebrow-pipe">|</span>
+      <span class="section-eyebrow-desc">A film from the archive that speaks to right now</span>
+    </div>
+
+    <div class="rewind-card reveal">
+      <img
+        class="rewind-poster"
+        src="https://image.tmdb.org/t/p/w500/t4bFnMpXHKFZiXlMBFiHFXMFH9J.jpg"
+        alt="Three Days of the Condor"
+        onerror="this.style.background='#1a1a22'; this.removeAttribute('src');"
+      />
+      <div class="rewind-body">
+        <div class="rewind-year">1975 &middot; Sydney Pollack</div>
+        <h2 class="rewind-film-title">Three Days of the Condor</h2>
+        <p class="rewind-text">
+          Robert Redford plays a CIA reader — a man whose entire job is to consume information and
+          notice patterns — who returns from lunch one afternoon to find everyone he works with
+          shot dead. What follows is a film about institutions that murder to protect themselves,
+          and the impossible choice between exposing the truth and surviving it.
+        </p>
+        <p class="rewind-text">
+          There is a particular exhaustion in this moment: the exhaustion of people who still,
+          despite everything, expected better from the systems built to serve them. Pollack made
+          this film in the long shadow of Watergate. It feels, right now, like he made it
+          last Tuesday.
+        </p>
+        <a href="#" class="link-arrow">Why This Film, Why Now &rarr;</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── THE ARGUMENT ─── -->
+  <div class="section-divider"></div>
+
+  <section>
+    <div class="section-eyebrow reveal">
+      <span class="section-eyebrow-icon">💬</span>
+      <span class="section-eyebrow-label">The Argument</span>
+      <span class="section-eyebrow-pipe">|</span>
+      <span class="section-eyebrow-desc">One question. No verdict. You decide.</span>
+    </div>
+
+    <blockquote class="argument-question reveal">
+      &ldquo;Is <em>Hereditary</em> a grief film disguised as horror, or horror disguised as
+      grief — and does the answer change how you experience it?&rdquo;
+    </blockquote>
+
+    <div class="argument-camps reveal">
+      <div class="argument-camp">
+        <span class="argument-camp-label grief">Reading: Grief First</span>
+        <p class="argument-camp-text">
+          The supernatural in <em>Hereditary</em> is grief given physical form — the way loss
+          warps a family until they are strangers to each other, speaking different languages
+          in the same house. Paimon is just the name Annie gives to the thing that has lived
+          inside her since childhood: the inherited wound, the mother who never loved her
+          right, the damage passed down not by choice but by blood. The horror is real. But
+          it's the kind that happens in kitchens and bedrooms and at gravesides, and it doesn't
+          need a demon to justify it.
+        </p>
+      </div>
+      <div class="argument-camp">
+        <span class="argument-camp-label horror">Reading: Horror First</span>
+        <p class="argument-camp-text">
+          Aster constructs an occult conspiracy from the opening frame — the miniature diorama
+          that zooms into the real world, Joan's face at the support group, the cult that was
+          always already there. The grief is the trap, not the point. Read it as a grief film
+          and you'll feel for Annie. Read it as horror and you'll understand she never had a
+          choice, that every decision she thought she made was already made for her — which is,
+          arguably, the far more terrifying film. Sympathy and dread are not the same emotion.
+        </p>
+      </div>
+    </div>
+
+    <div class="argument-cta reveal">
+      <a href="#" class="btn-primary">Join the Argument &rarr;</a>
+      <span class="argument-voter-count">2,847 people weighing in this week</span>
+    </div>
+  </section>
+
+  <!-- ─── MOOD-FIRST DISCOVERY ─── -->
+  <div class="section-divider"></div>
+
+  <section>
+    <div class="section-eyebrow reveal">
+      <span class="section-eyebrow-icon">🎭</span>
+      <span class="section-eyebrow-label">Mood-First Discovery</span>
+      <span class="section-eyebrow-pipe">|</span>
+      <span class="section-eyebrow-desc">Not genre. Emotion.</span>
+    </div>
+
+    <div class="mood-chips-wrapper reveal">
+      <div class="mood-chips" id="moodChips">
+        <button class="mood-chip active" data-mood="unsettled">😶 Unsettled</button>
+        <button class="mood-chip" data-mood="devastated">💔 Quietly Devastated</button>
+        <button class="mood-chip" data-mood="rewired">🤯 Mind Rewired</button>
+        <button class="mood-chip" data-mood="hopeful">😤 Furious but Hopeful</button>
+        <button class="mood-chip" data-mood="strange">🌙 Late Night Strange</button>
+        <button class="mood-chip" data-mood="edge">🔥 Edge of Your Seat</button>
+        <button class="mood-chip" data-mood="slowburn">🧘 Slow Burn</button>
+      </div>
+    </div>
+
+    <div class="mood-films reveal" id="moodFilms">
+      <!-- Populated by JS -->
+    </div>
+  </section>
+
+  <!-- ─── WEEKLY PULSE ─── -->
+  <div class="section-divider"></div>
+
+  <section>
+    <div class="section-eyebrow reveal">
+      <span class="section-eyebrow-icon">📡</span>
+      <span class="section-eyebrow-label">The Weekly Pulse</span>
+      <span class="section-eyebrow-pipe">|</span>
+      <span class="section-eyebrow-desc">What the conversation looked like this week</span>
+    </div>
+
+    <div class="pulse-grid reveal" id="pulseGrid">
+      <!-- Populated by JS -->
+    </div>
+  </section>
+
+  <!-- ─── BEHIND THE FRAME ─── -->
+  <div class="section-divider"></div>
+
+  <section>
+    <div class="section-eyebrow reveal">
+      <span class="section-eyebrow-icon">🎬</span>
+      <span class="section-eyebrow-label">Behind the Frame</span>
+      <span class="section-eyebrow-pipe">|</span>
+      <span class="section-eyebrow-desc">The craft, up close</span>
+    </div>
+
+    <div class="btf-card reveal">
+      <div>
+        <h2 class="btf-title">
+          Why the final ten minutes of<br><em>There Will Be Blood</em> work —
+          and why most films can't do what PTA did
+        </h2>
+        <blockquote class="btf-excerpt">
+          The bowling alley scene works because Paul Thomas Anderson earns his violence the way a
+          novelist earns a death — through two and a half hours of accumulated pressure. Daniel
+          Plainview has not snapped; he has <em>arrived</em>. Every sermon Eli Sunday ever
+          delivered, every handshake Daniel gave while meaning the opposite, every barrel of oil
+          pulled from beneath someone else's land: it all compounds into that single wooden pin
+          swung in a room that used to mean something to both of them. Anderson understood that
+          great cinema doesn't build to a climax. It builds to a revelation. The horror is not
+          that we are shocked. The horror is that we are not. We have been waiting — without
+          knowing we were waiting — and that is what the best films do to you.
+        </blockquote>
+        <a href="#" class="link-arrow">Read the Full Piece &rarr;</a>
+      </div>
+      <img
+        class="btf-image"
+        src="https://image.tmdb.org/t/p/w780/fa0RDkAlCec0STeMNAhPaF89q6i.jpg"
+        alt="There Will Be Blood"
+        onerror="this.style.display='none'"
+      />
+    </div>
+  </section>
+
+  <!-- ─── BEHIND THE CURTAIN ─── -->
+  <div class="section-divider"></div>
+
+  <section>
+    <div class="section-eyebrow reveal">
+      <span class="section-eyebrow-icon">🎬</span>
+      <span class="section-eyebrow-label">Behind the Curtain</span>
+      <span class="section-eyebrow-pipe">|</span>
+      <span class="section-eyebrow-desc">Industry news with conscience</span>
+    </div>
+
+    <div class="btc-grid reveal">
+
+      <div class="btc-card">
+        <div class="btc-source">Hollywood Reporter &middot; March 2026</div>
+        <h3 class="btc-title">Toronto Film Critics Stage Mass Exodus Over Censored Palestine Speech</h3>
+        <p class="btc-editorial">
+          When the Toronto Film Critics Association muted a member's pro-Palestine remarks
+          mid-speech at their awards ceremony, thirty critics walked out. It's a reminder that
+          the politics of whose voice gets amplified — and whose gets cut — don't stop at the
+          cinema door.
+        </p>
+        <a href="https://www.hollywoodreporter.com/movies/movie-news/toronto-film-critics-mass-exodus-pro-palestine-speech-censored-1236522591/" class="link-arrow" target="_blank" rel="noopener">Read the full story &rarr;</a>
+      </div>
+
+      <div class="btc-card">
+        <div class="btc-source">Hollywood Reporter &middot; March 2026</div>
+        <h3 class="btc-title">BBC's Tim Davie Explains BAFTA Broadcast Error After Tourette's Segment</h3>
+        <p class="btc-editorial">
+          The BBC's handling of an unexpected Tourette's outburst during live BAFTA coverage
+          raised questions about broadcaster reflexes — and how institutions respond when
+          reality doesn't follow the script.
+        </p>
+        <a href="https://www.hollywoodreporter.com/news/general-news/bbc-tim-davie-bafta-tourettes-broadcast-error-explanation-1236523513/" class="link-arrow" target="_blank" rel="noopener">Read the full story &rarr;</a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ─── NEWSLETTER ─── -->
+  <div class="section-divider"></div>
+
+  <div class="newsletter-section">
+    <div class="newsletter-card reveal">
+      <div class="newsletter-eyebrow">Every Friday</div>
+      <h2 class="newsletter-title">The weekly digest —<br>one email, worth opening.</h2>
+      <p class="newsletter-sub">&ldquo;No scores. No aggregation. Just the conversation worth having.&rdquo;</p>
+      <div class="newsletter-form">
+        <input class="newsletter-input" type="email" placeholder="your@email.com" />
+        <button class="newsletter-btn">Subscribe</button>
+      </div>
+      <p class="newsletter-note">No noise. Unsubscribe whenever. We mean it.</p>
+    </div>
+  </div>
+
+  <!-- ─── FOOTER ─── -->
+  <footer>
+    <div class="footer-logo">Screen<span>Share</span></div>
+    <div class="footer-note">&copy; 2026 Screen Share &middot; A publication for people who care how they watch</div>
+  </footer>
+
+  <script>
+    var TMDB_KEY = 'eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI3MTI0NzY5MmM0ZDU0M2JkOGM4MGVkMDE5NGFiMzUyMyIsIm5iZiI6MTczODg0MDg0NS4xNDgsInN1YiI6IjY3YWEyZjFkNjExZGNhNzRiMmI2MjQ0MCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.gcXBTUbFxUXFMSHCfEOJSzSZ1W4Kqf8XVs0G57V5YNA';
+    var TMDB_HEADERS = { 'Authorization': 'Bearer ' + TMDB_KEY };
+    var IMG_BACKDROP = 'https://image.tmdb.org/t/p/w1280';
+    var IMG_POSTER = 'https://image.tmdb.org/t/p/w500';
+    var IMG_SMALL = 'https://image.tmdb.org/t/p/w185';
+
+    // Genre ID mapping
+    var GENRE_MOOD = {
+      27: 'unsettled',   // Horror
+      53: 'edge',        // Thriller
+      878: 'rewired',    // Science Fiction
+      18: 'devastated',  // Drama
+      10749: 'devastated', // Romance
+      80: 'edge',        // Crime
+      9648: 'unsettled', // Mystery
+      12: 'hopeful',     // Adventure
+      35: 'strange',     // Comedy
+      14: 'strange',     // Fantasy
+      36: 'slowburn',    // History
+      99: 'slowburn'     // Documentary
+    };
+
+    var MOOD_FALLBACK_TAGS = {
+      unsettled: 'The floor gives way slowly',
+      devastated: 'Grief without a name',
+      rewired: 'The mind rewrites itself',
+      hopeful: 'Furious, and still swinging',
+      strange: 'Cinema dreaming about itself',
+      edge: 'Fate doesn\'t negotiate',
+      slowburn: 'Entropy made visible'
+    };
+
+    // ── State ──────────────────────────────────────────
+    var moodFilmsData = {
+      unsettled: [], devastated: [], rewired: [],
+      hopeful: [], strange: [], edge: [], slowburn: []
+    };
+    var activeMood = 'unsettled';
+
+    // ── Helpers ────────────────────────────────────────
+    function tmdbFetch(url) {
+      return fetch(url, { headers: TMDB_HEADERS }).then(function(r) {
+        if (!r.ok) throw new Error('TMDB ' + r.status);
+        return r.json();
+      });
+    }
+
+    function getYear(dateStr) {
+      return dateStr ? dateStr.slice(0, 4) : '—';
+    }
+
+    function getMoodForFilm(film) {
+      var ids = film.genre_ids || [];
+      for (var i = 0; i < ids.length; i++) {
+        if (GENRE_MOOD[ids[i]]) return GENRE_MOOD[ids[i]];
+      }
+      return null;
+    }
+
+    function posterSrc(path) {
+      return path ? IMG_POSTER + path : 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="200" height="300"%3E%3Crect fill="%23111118" width="200" height="300"/%3E%3C/svg%3E';
+    }
+
+    function smallPosterSrc(path) {
+      return path ? IMG_SMALL + path : 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="56" height="84"%3E%3Crect fill="%23111118" width="56" height="84"/%3E%3C/svg%3E';
+    }
+
+    // ── Render mood films ──────────────────────────────
+    function renderMoodFilms(mood) {
+      activeMood = mood;
+      var films = moodFilmsData[mood];
+      var container = document.getElementById('moodFilms');
+      container.innerHTML = '';
+
+      if (!films || films.length === 0) {
+        var msg = document.createElement('p');
+        msg.style.cssText = 'color:var(--text-dim);font-style:italic;grid-column:1/-1;padding:2rem 0;';
+        msg.textContent = 'Loading films for this mood…';
+        container.appendChild(msg);
+        return;
+      }
+
+      var show = films.slice(0, 3);
+      show.forEach(function(film) {
+        var card = document.createElement('div');
+        card.className = 'film-card';
+
+        var img = document.createElement('img');
+        img.className = 'film-card-poster';
+        img.src = posterSrc(film.poster_path);
+        img.alt = film.title || film.name || '';
+        img.onerror = function() { this.style.background = '#1a1a22'; };
+
+        var body = document.createElement('div');
+        body.className = 'film-card-body';
+
+        var title = document.createElement('div');
+        title.className = 'film-card-title';
+        title.textContent = film.title || film.name || 'Unknown';
+
+        var year = document.createElement('div');
+        year.className = 'film-card-year';
+        year.textContent = getYear(film.release_date);
+
+        var tag = document.createElement('div');
+        tag.className = 'film-card-mood-tag';
+        tag.textContent = MOOD_FALLBACK_TAGS[mood] || '';
+
+        body.appendChild(title);
+        body.appendChild(year);
+        body.appendChild(tag);
+        card.appendChild(img);
+        card.appendChild(body);
+        container.appendChild(card);
+      });
+    }
+
+    // ── Render weekly pulse ────────────────────────────
+    function renderPulse(trendingMovies, hiddenGem) {
+      var grid = document.getElementById('pulseGrid');
+      grid.innerHTML = '';
+
+      // Card 1: Most Talked About
+      var talked = trendingMovies[1] || trendingMovies[0];
+      var card1 = document.createElement('div');
+      card1.className = 'pulse-card';
+
+      var type1 = document.createElement('div');
+      type1.className = 'pulse-card-type';
+      type1.textContent = 'Most Talked About';
+
+      var film1 = document.createElement('div');
+      film1.className = 'pulse-card-film';
+
+      var img1 = document.createElement('img');
+      img1.className = 'pulse-card-poster';
+      img1.src = smallPosterSrc(talked ? talked.poster_path : null);
+      img1.alt = talked ? (talked.title || '') : '';
+
+      var info1 = document.createElement('div');
+      info1.className = 'pulse-card-film-info';
+
+      var t1 = document.createElement('div');
+      t1.className = 'pulse-card-title';
+      t1.textContent = talked ? (talked.title || 'Unknown') : '—';
+
+      var s1 = document.createElement('div');
+      s1.className = 'pulse-card-sub';
+      s1.textContent = talked ? (getYear(talked.release_date) + ' · ' + (talked.vote_average ? talked.vote_average.toFixed(1) + ' avg rating' : '')) : '';
+
+      info1.appendChild(t1);
+      info1.appendChild(s1);
+      film1.appendChild(img1);
+      film1.appendChild(info1);
+
+      var sentWrap = document.createElement('div');
+      sentWrap.className = 'sentiment-bar-wrap';
+
+      var sentLabel = document.createElement('div');
+      sentLabel.className = 'sentiment-bar-label';
+
+      var sentLabelL = document.createElement('span');
+      sentLabelL.textContent = 'Audience sentiment';
+      var pct = talked ? Math.round((talked.vote_average || 7) * 10) : 70;
+      var sentLabelR = document.createElement('span');
+      sentLabelR.textContent = pct + '% positive';
+
+      sentLabel.appendChild(sentLabelL);
+      sentLabel.appendChild(sentLabelR);
+
+      var sentTrack = document.createElement('div');
+      sentTrack.className = 'sentiment-bar-track';
+      var sentFill = document.createElement('div');
+      sentFill.className = 'sentiment-bar-fill';
+      sentFill.style.width = pct + '%';
+      sentTrack.appendChild(sentFill);
+
+      sentWrap.appendChild(sentLabel);
+      sentWrap.appendChild(sentTrack);
+
+      card1.appendChild(type1);
+      card1.appendChild(film1);
+      card1.appendChild(sentWrap);
+      grid.appendChild(card1);
+
+      // Card 2: Most Divisive — third trending with vote_average 5.5-7.0
+      var divisive = null;
+      for (var i = 0; i < trendingMovies.length; i++) {
+        var m = trendingMovies[i];
+        if (i > 1 && m.vote_average >= 5.5 && m.vote_average <= 7.0) {
+          divisive = m;
+          break;
+        }
+      }
+      if (!divisive) divisive = trendingMovies[2] || trendingMovies[0];
+
+      var card2 = document.createElement('div');
+      card2.className = 'pulse-card';
+
+      var type2 = document.createElement('div');
+      type2.className = 'pulse-card-type';
+      type2.textContent = 'Most Divisive';
+
+      var film2 = document.createElement('div');
+      film2.className = 'pulse-card-film';
+
+      var img2 = document.createElement('img');
+      img2.className = 'pulse-card-poster';
+      img2.src = smallPosterSrc(divisive ? divisive.poster_path : null);
+      img2.alt = divisive ? (divisive.title || '') : '';
+
+      var info2 = document.createElement('div');
+      info2.className = 'pulse-card-film-info';
+
+      var t2 = document.createElement('div');
+      t2.className = 'pulse-card-title';
+      t2.textContent = divisive ? (divisive.title || 'Unknown') : '—';
+
+      var s2 = document.createElement('div');
+      s2.className = 'pulse-card-sub';
+      var avgStr = divisive && divisive.vote_average ? divisive.vote_average.toFixed(1) : '—';
+      s2.textContent = divisive ? (getYear(divisive.release_date) + ' · ' + avgStr + ' / 10') : '';
+
+      info2.appendChild(t2);
+      info2.appendChild(s2);
+      film2.appendChild(img2);
+      film2.appendChild(info2);
+
+      var badge2 = document.createElement('span');
+      badge2.className = 'divisive-badge';
+      badge2.textContent = 'Critics vs Audiences — still unsettled';
+
+      var sub2 = document.createElement('p');
+      sub2.className = 'pulse-card-sub';
+      sub2.style.marginTop = '0.75rem';
+      sub2.textContent = 'The conversation is split. Whether that\'s a failure or the point entirely depends on which half you\'re in.';
+
+      card2.appendChild(type2);
+      card2.appendChild(film2);
+      card2.appendChild(badge2);
+      card2.appendChild(sub2);
+      grid.appendChild(card2);
+
+      // Card 3: Hidden Gem
+      var gem = hiddenGem;
+      var card3 = document.createElement('div');
+      card3.className = 'pulse-card';
+
+      var type3 = document.createElement('div');
+      type3.className = 'pulse-card-type';
+      type3.textContent = 'Hidden Gem Resurface';
+
+      var film3 = document.createElement('div');
+      film3.className = 'pulse-card-film';
+
+      var img3 = document.createElement('img');
+      img3.className = 'pulse-card-poster';
+      img3.src = smallPosterSrc(gem ? gem.poster_path : null);
+      img3.alt = gem ? (gem.title || '') : '';
+
+      var info3 = document.createElement('div');
+      info3.className = 'pulse-card-film-info';
+
+      var t3 = document.createElement('div');
+      t3.className = 'pulse-card-title';
+      t3.textContent = gem ? (gem.title || 'Unknown') : '—';
+
+      var s3 = document.createElement('div');
+      s3.className = 'pulse-card-sub';
+      var gemRating = gem && gem.vote_average ? gem.vote_average.toFixed(1) : '—';
+      s3.textContent = gem ? (getYear(gem.release_date) + ' · ' + gemRating + ' · ' + (gem.vote_count ? gem.vote_count.toLocaleString() + ' ratings' : '')) : '';
+
+      info3.appendChild(t3);
+      info3.appendChild(s3);
+      film3.appendChild(img3);
+      film3.appendChild(info3);
+
+      var badge3 = document.createElement('span');
+      badge3.className = 'gem-badge';
+      badge3.textContent = 'Rediscovered';
+
+      var sub3 = document.createElement('p');
+      sub3.className = 'pulse-card-sub';
+      sub3.style.marginTop = '0.75rem';
+      sub3.textContent = 'A film the algorithm buried and word of mouth keeps digging back up. There\'s a reason it keeps finding new audiences.';
+
+      card3.appendChild(type3);
+      card3.appendChild(film3);
+      card3.appendChild(badge3);
+      card3.appendChild(sub3);
+      grid.appendChild(card3);
+    }
+
+    // ── Assign trending films to moods ─────────────────
+    function assignToMoods(films) {
+      var assigned = { unsettled: [], devastated: [], rewired: [], hopeful: [], strange: [], edge: [], slowburn: [] };
+      films.forEach(function(film) {
+        var mood = getMoodForFilm(film);
+        if (mood && assigned[mood].length < 3) {
+          assigned[mood].push(film);
+        }
+      });
+      // Fill any empty moods with overflow films
+      var overflow = films.filter(function(f) {
+        var m = getMoodForFilm(f);
+        return !m;
+      });
+      var moodKeys = Object.keys(assigned);
+      var oi = 0;
+      moodKeys.forEach(function(mk) {
+        while (assigned[mk].length < 3 && oi < overflow.length) {
+          assigned[mk].push(overflow[oi++]);
+        }
+        // Still empty? grab anything
+        if (assigned[mk].length === 0) {
+          for (var j = 0; j < films.length; j++) {
+            if (assigned[mk].indexOf(films[j]) === -1) {
+              assigned[mk].push(films[j]);
+              if (assigned[mk].length === 3) break;
+            }
+          }
+        }
+      });
+      return assigned;
+    }
+
+    // ── Update hero ────────────────────────────────────
+    function updateHero(film) {
+      if (!film) return;
+      var backdrop = document.getElementById('heroBackdrop');
+      if (film.backdrop_path) {
+        backdrop.style.backgroundImage = 'url(' + IMG_BACKDROP + film.backdrop_path + ')';
+      }
+      var title = film.title || film.name || '';
+      var year = getYear(film.release_date);
+
+      document.getElementById('heroTitle').textContent = title;
+      document.getElementById('heroTagline').textContent =
+        film.overview
+          ? (film.overview.length > 180 ? film.overview.slice(0, 177) + '…' : film.overview)
+          : '';
+
+      var meta = document.getElementById('heroFilmMeta');
+      meta.innerHTML = '';
+      var labelSpan = document.createElement('span');
+      labelSpan.textContent = 'Film: ';
+      var filmSpan = document.createElement('span');
+      filmSpan.textContent = title + ' (' + year + ')';
+      meta.appendChild(labelSpan);
+      meta.appendChild(filmSpan);
+    }
+
+    // ── Main data load ─────────────────────────────────
+    Promise.all([
+      tmdbFetch('https://api.themoviedb.org/3/trending/movie/week?language=en-US'),
+      tmdbFetch('https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=4')
+    ]).then(function(results) {
+      var trending = results[0].results || [];
+      var topRated = results[1].results || [];
+
+      // Hero: first trending with backdrop
+      var heroFilm = null;
+      for (var i = 0; i < trending.length; i++) {
+        if (trending[i].backdrop_path) { heroFilm = trending[i]; break; }
+      }
+      updateHero(heroFilm);
+
+      // Hidden gem: top rated, vote_count > 5000, pre-2010
+      var hiddenGem = null;
+      for (var j = 0; j < topRated.length; j++) {
+        var tr = topRated[j];
+        if (tr.vote_count > 5000 && tr.release_date && tr.release_date < '2010-01-01') {
+          hiddenGem = tr;
+          break;
+        }
+      }
+
+      // Pulse grid
+      renderPulse(trending, hiddenGem);
+
+      // Mood: combine trending + top rated for variety
+      var allFilms = trending.concat(topRated);
+      var assigned = assignToMoods(allFilms);
+      moodFilmsData = assigned;
+      renderMoodFilms('unsettled');
+
+    }).catch(function(err) {
+      console.warn('TMDB load failed:', err);
+      // Show graceful fallback in hero
+      document.getElementById('heroTitle').textContent = 'The Conversation Worth Having';
+      document.getElementById('heroTagline').textContent = 'Cinema, culture, and the films that stay with you.';
+      // Fallback pulse
+      document.getElementById('pulseGrid').innerHTML =
+        '<p style="color:var(--text-dim);font-style:italic;grid-column:1/-1;">Unable to load live data. Please check back shortly.</p>';
+    });
+
+    // ── Mood chip interactions ─────────────────────────
+    var chips = document.querySelectorAll('.mood-chip');
+    chips.forEach(function(chip) {
+      chip.addEventListener('click', function() {
+        chips.forEach(function(c) { c.classList.remove('active'); });
+        chip.classList.add('active');
+        renderMoodFilms(chip.getAttribute('data-mood'));
+      });
+    });
+
+    // ── Scroll reveals ─────────────────────────────────
+    var revealObserver = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.reveal').forEach(function(el) {
+      revealObserver.observe(el);
+    });
+
+    // ── Newsletter ─────────────────────────────────────
+    document.querySelector('.newsletter-btn').addEventListener('click', function() {
+      var input = document.querySelector('.newsletter-input');
+      if (input.value && input.value.indexOf('@') !== -1) {
+        input.value = '';
+        input.placeholder = 'You\'re in. See you Friday.';
+        this.textContent = '✓';
+        this.style.background = '#4ade80';
+      }
+    });
+  </script>
+</body>
+</html>
