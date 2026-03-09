@@ -832,13 +832,13 @@
 
   <!-- NAV -->
   <nav>
-    <a href="#" class="nav-logo">Screen<span>Share</span></a>
+    <a href="index.html" class="nav-logo">Screen<span>Share</span></a>
     <ul class="nav-links">
-      <li><a href="#">The Rewind</a></li>
-      <li><a href="#">The Argument</a></li>
-      <li><a href="#">Discover</a></li>
-      <li><a href="#">Craft</a></li>
-      <li><a href="#">Archive</a></li>
+      <li><a href="#rewind">The Rewind</a></li>
+      <li><a href="#argument">The Argument</a></li>
+      <li><a href="#discover">Discover</a></li>
+      <li><a href="#craft">Craft</a></li>
+      <li><a href="archive.html">Archive</a></li>
     </ul>
   </nav>
 
@@ -863,8 +863,8 @@
       </div>
 
       <div style="display:flex; gap:1rem; flex-wrap:wrap;">
-        <a href="#" class="btn-primary">Read This Week's Essay &rarr;</a>
-        <a href="#" class="btn-ghost">Browse the Archive</a>
+        <a href="essay.html" class="btn-primary">Read This Week's Essay &rarr;</a>
+        <a href="archive.html" class="btn-ghost">Browse the Archive</a>
       </div>
     </div>
 
@@ -877,7 +877,7 @@
   <!-- ─── THE REWIND ─── -->
   <div class="section-divider"></div>
 
-  <section>
+  <section id="rewind">
     <div class="section-eyebrow reveal">
       <span class="section-eyebrow-icon">🎞️</span>
       <span class="section-eyebrow-label">The Rewind</span>
@@ -907,7 +907,7 @@
           this film in the long shadow of Watergate. It feels, right now, like he made it
           last Tuesday.
         </p>
-        <a href="#" class="link-arrow">Why This Film, Why Now &rarr;</a>
+        <a href="rewind.html" class="link-arrow">Why This Film, Why Now &rarr;</a>
       </div>
     </div>
   </section>
@@ -915,7 +915,7 @@
   <!-- ─── THE ARGUMENT ─── -->
   <div class="section-divider"></div>
 
-  <section>
+  <section id="argument">
     <div class="section-eyebrow reveal">
       <span class="section-eyebrow-icon">💬</span>
       <span class="section-eyebrow-label">The Argument</span>
@@ -955,7 +955,7 @@
     </div>
 
     <div class="argument-cta reveal">
-      <a href="#" class="btn-primary">Join the Argument &rarr;</a>
+      <a href="argument.html" class="btn-primary">Join the Argument &rarr;</a>
       <span class="argument-voter-count">2,847 people weighing in this week</span>
     </div>
   </section>
@@ -963,7 +963,7 @@
   <!-- ─── MOOD-FIRST DISCOVERY ─── -->
   <div class="section-divider"></div>
 
-  <section>
+  <section id="discover">
     <div class="section-eyebrow reveal">
       <span class="section-eyebrow-icon">🎭</span>
       <span class="section-eyebrow-label">Mood-First Discovery</span>
@@ -1007,7 +1007,7 @@
   <!-- ─── BEHIND THE FRAME ─── -->
   <div class="section-divider"></div>
 
-  <section>
+  <section id="craft">
     <div class="section-eyebrow reveal">
       <span class="section-eyebrow-icon">🎬</span>
       <span class="section-eyebrow-label">Behind the Frame</span>
@@ -1032,7 +1032,7 @@
           that we are shocked. The horror is that we are not. We have been waiting — without
           knowing we were waiting — and that is what the best films do to you.
         </blockquote>
-        <a href="#" class="link-arrow">Read the Full Piece &rarr;</a>
+        <a href="craft.html" class="link-arrow">Read the Full Piece &rarr;</a>
       </div>
       <img
         class="btf-image"
@@ -1105,403 +1105,150 @@
   </footer>
 
   <script>
-    var TMDB_KEY = 'eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI3MTI0NzY5MmM0ZDU0M2JkOGM4MGVkMDE5NGFiMzUyMyIsIm5iZiI6MTczODg0MDg0NS4xNDgsInN1YiI6IjY3YWEyZjFkNjExZGNhNzRiMmI2MjQ0MCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.gcXBTUbFxUXFMSHCfEOJSzSZ1W4Kqf8XVs0G57V5YNA';
-    var TMDB_HEADERS = { 'Authorization': 'Bearer ' + TMDB_KEY };
-    var IMG_BACKDROP = 'https://image.tmdb.org/t/p/w1280';
-    var IMG_POSTER = 'https://image.tmdb.org/t/p/w500';
-    var IMG_SMALL = 'https://image.tmdb.org/t/p/w185';
-
-    // Genre ID mapping
-    var GENRE_MOOD = {
-      27: 'unsettled',   // Horror
-      53: 'edge',        // Thriller
-      878: 'rewired',    // Science Fiction
-      18: 'devastated',  // Drama
-      10749: 'devastated', // Romance
-      80: 'edge',        // Crime
-      9648: 'unsettled', // Mystery
-      12: 'hopeful',     // Adventure
-      35: 'strange',     // Comedy
-      14: 'strange',     // Fantasy
-      36: 'slowburn',    // History
-      99: 'slowburn'     // Documentary
+    var heroFilm = {
+      title: 'All We Imagine as Light',
+      year: 2024,
+      backdrop: 'https://image.tmdb.org/t/p/w1280/ilRyazdMJwN3LHZMT9XhUeKRs1.jpg',
+      overview: 'A first-pass issue built around films, criticism, and the cultural conversation around how we watch.'
     };
 
-    var MOOD_FALLBACK_TAGS = {
-      unsettled: 'The floor gives way slowly',
-      devastated: 'Grief without a name',
-      rewired: 'The mind rewrites itself',
-      hopeful: 'Furious, and still swinging',
-      strange: 'Cinema dreaming about itself',
-      edge: 'Fate doesn\'t negotiate',
-      slowburn: 'Entropy made visible'
+    var pulseData = [
+      {
+        type: 'Most Talked About',
+        title: 'All We Imagine as Light',
+        sub: 'Payal Kapadia, 2024 · Cannes Grand Prix winner',
+        poster: 'https://image.tmdb.org/t/p/w185/saHP97rTPS5eLmrLQEcANmKrsFl.jpg',
+        mode: 'sentiment',
+        pct: 87,
+        note: 'A quiet film with an unusually loud afterlife. The discussion is less about plot than about mood, texture, and tenderness.'
+      },
+      {
+        type: 'Most Divisive',
+        title: 'Saltburn',
+        sub: 'Emerald Fennell, 2023 · Still polarising 18 months on',
+        poster: 'https://image.tmdb.org/t/p/w185/qjaqgHBMZJqrJuDuwJTNQbmXHOF.jpg',
+        mode: 'badge',
+        badgeClass: 'divisive-badge',
+        badgeText: 'Critics 79% · Audiences 52%',
+        note: 'A provocation that still splits the room. The disagreement is the content now.'
+      },
+      {
+        type: 'Hidden Gem Resurface',
+        title: 'A Ghost Story',
+        sub: 'David Lowery, 2017 · Back in conversation this week',
+        poster: 'https://image.tmdb.org/t/p/w185/5qAl0HXC6FXtGXJGgfZqNLkm8Fl.jpg',
+        mode: 'badge',
+        badgeClass: 'gem-badge',
+        badgeText: 'Rediscovered',
+        note: 'Time, grief, legacy. The kind of film that keeps getting rediscovered by people who need it at exactly the right moment.'
+      }
+    ];
+
+    var moodData = {
+      unsettled: [
+        { title: 'Parasite', year: 2019, director: 'Bong Joon-ho', poster: 'https://image.tmdb.org/t/p/w342/7IiTTgloJzvGI1TAYymCfbfl3vT.jpg', tag: 'The floor gives way slowly' },
+        { title: 'The Zone of Interest', year: 2023, director: 'Jonathan Glazer', poster: 'https://image.tmdb.org/t/p/w342/hUu9zyZmKuTpOUT4MKky6xsV0lI.jpg', tag: 'Horror at a distance' },
+        { title: 'Caché', year: 2005, director: 'Michael Haneke', poster: 'https://image.tmdb.org/t/p/w342/jT04sWGhEDYRUBe8bPmTPGdgNaW.jpg', tag: 'Someone is watching' }
+      ],
+      devastated: [
+        { title: 'Burning', year: 2018, director: 'Lee Chang-dong', poster: 'https://image.tmdb.org/t/p/w342/7ICEKETsR8Bsb2SBHM8cRlqnZWk.jpg', tag: 'Grief without a name' },
+        { title: 'Manchester by the Sea', year: 2016, director: 'Kenneth Lonergan', poster: 'https://image.tmdb.org/t/p/w342/o0nTRrFRFuZfCLBX8kXUCXFxGi4.jpg', tag: 'Some things do not heal' },
+        { title: 'Portrait of a Lady on Fire', year: 2019, director: 'Céline Sciamma', poster: 'https://image.tmdb.org/t/p/w342/3YFiNGnlNYoMJaEBBTOOl5KPGSA.jpg', tag: 'Remember us looking' }
+      ],
+      rewired: [
+        { title: 'Annihilation', year: 2018, director: 'Alex Garland', poster: 'https://image.tmdb.org/t/p/w342/hFhCnJLBL2F1sUBVOPg0lUuiBFr.jpg', tag: 'Self-destruction by another name' },
+        { title: 'Under the Skin', year: 2013, director: 'Jonathan Glazer', poster: 'https://image.tmdb.org/t/p/w342/5aqzEqRmwjpVv3AqkDifBNhJwi5.jpg', tag: 'What is a body?' },
+        { title: 'Enemy', year: 2013, director: 'Denis Villeneuve', poster: 'https://image.tmdb.org/t/p/w342/nV41DI4liZXSp3sNmhpO2WrZb3O.jpg', tag: 'You are not who you think you are' }
+      ],
+      hopeful: [
+        { title: 'Sorry to Bother You', year: 2018, director: 'Boots Riley', poster: 'https://image.tmdb.org/t/p/w342/qzPB0hxe38iFshG5fDqMobFPUGq.jpg', tag: 'Furious, and still swinging' },
+        { title: 'Beasts of the Southern Wild', year: 2012, director: 'Benh Zeitlin', poster: 'https://image.tmdb.org/t/p/w342/cX56JsRDhT6iHJOFxR8sclZ3SzL.jpg', tag: 'The world is ending. Hold on.' },
+        { title: 'Selma', year: 2014, director: 'Ava DuVernay', poster: 'https://image.tmdb.org/t/p/w342/9A76UGqHJkAH9JXE8dqrCzKbp2H.jpg', tag: 'The march never really ended' }
+      ],
+      strange: [
+        { title: 'Holy Motors', year: 2012, director: 'Leos Carax', poster: 'https://image.tmdb.org/t/p/w342/wEapMvHDLYmniJxeD7cXHjJVR9e.jpg', tag: 'Cinema dreaming about itself' },
+        { title: 'The Lobster', year: 2015, director: 'Yorgos Lanthimos', poster: 'https://image.tmdb.org/t/p/w342/4CD4GGxZBa43tNHRb2QkNpAWFEL.jpg', tag: 'Love as compliance' },
+        { title: 'Lost Highway', year: 1997, director: 'David Lynch', poster: 'https://image.tmdb.org/t/p/w342/g8JjA3EXr3BVHkH9gnX4Ll9vHHD.jpg', tag: 'The road doubles back' }
+      ],
+      edge: [
+        { title: 'No Country for Old Men', year: 2007, director: 'Coen Brothers', poster: 'https://image.tmdb.org/t/p/w342/6d5XHFiMsKtCMCPMBVp2dKEnfbl.jpg', tag: 'Fate does not negotiate' },
+        { title: 'Uncut Gems', year: 2019, director: 'Safdie Brothers', poster: 'https://image.tmdb.org/t/p/w342/lBuzvMb0MxValuDpxCTFGMUvbqe.jpg', tag: 'Anxiety as cinema' },
+        { title: 'Prisoners', year: 2013, director: 'Denis Villeneuve', poster: 'https://image.tmdb.org/t/p/w342/ho3pl3YCOQIHFdN7DJdWONHhY5q.jpg', tag: 'What would you do?' }
+      ],
+      slowburn: [
+        { title: 'The Turin Horse', year: 2011, director: 'Béla Tarr', poster: 'https://image.tmdb.org/t/p/w342/lj5RBVeVQUf5UMzH4E3FqhGKRVV.jpg', tag: 'Entropy made visible' },
+        { title: 'First Reformed', year: 2017, director: 'Paul Schrader', poster: 'https://image.tmdb.org/t/p/w342/pUEq2xABJ6wlKMFgR25C7TuZh3I.jpg', tag: 'Faith at the breaking point' },
+        { title: 'Certified Copy', year: 2010, director: 'Abbas Kiarostami', poster: 'https://image.tmdb.org/t/p/w342/6Hk8HiIxqhS3X3jKkY1T73pXtk6.jpg', tag: 'Are they strangers or not?' }
+      ]
     };
 
-    // ── State ──────────────────────────────────────────
-    var moodFilmsData = {
-      unsettled: [], devastated: [], rewired: [],
-      hopeful: [], strange: [], edge: [], slowburn: []
-    };
-    var activeMood = 'unsettled';
-
-    // ── Helpers ────────────────────────────────────────
-    function tmdbFetch(url) {
-      return fetch(url, { headers: TMDB_HEADERS }).then(function(r) {
-        if (!r.ok) throw new Error('TMDB ' + r.status);
-        return r.json();
-      });
-    }
-
-    function getYear(dateStr) {
-      return dateStr ? dateStr.slice(0, 4) : '—';
-    }
-
-    function getMoodForFilm(film) {
-      var ids = film.genre_ids || [];
-      for (var i = 0; i < ids.length; i++) {
-        if (GENRE_MOOD[ids[i]]) return GENRE_MOOD[ids[i]];
-      }
-      return null;
-    }
-
-    function posterSrc(path) {
-      return path ? IMG_POSTER + path : 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="200" height="300"%3E%3Crect fill="%23111118" width="200" height="300"/%3E%3C/svg%3E';
-    }
-
-    function smallPosterSrc(path) {
-      return path ? IMG_SMALL + path : 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="56" height="84"%3E%3Crect fill="%23111118" width="56" height="84"/%3E%3C/svg%3E';
-    }
-
-    // ── Render mood films ──────────────────────────────
-    function renderMoodFilms(mood) {
-      activeMood = mood;
-      var films = moodFilmsData[mood];
-      var container = document.getElementById('moodFilms');
-      container.innerHTML = '';
-
-      if (!films || films.length === 0) {
-        var msg = document.createElement('p');
-        msg.style.cssText = 'color:var(--text-dim);font-style:italic;grid-column:1/-1;padding:2rem 0;';
-        msg.textContent = 'Loading films for this mood…';
-        container.appendChild(msg);
-        return;
-      }
-
-      var show = films.slice(0, 3);
-      show.forEach(function(film) {
-        var card = document.createElement('div');
-        card.className = 'film-card';
-
-        var img = document.createElement('img');
-        img.className = 'film-card-poster';
-        img.src = posterSrc(film.poster_path);
-        img.alt = film.title || film.name || '';
-        img.onerror = function() { this.style.background = '#1a1a22'; };
-
-        var body = document.createElement('div');
-        body.className = 'film-card-body';
-
-        var title = document.createElement('div');
-        title.className = 'film-card-title';
-        title.textContent = film.title || film.name || 'Unknown';
-
-        var year = document.createElement('div');
-        year.className = 'film-card-year';
-        year.textContent = getYear(film.release_date);
-
-        var tag = document.createElement('div');
-        tag.className = 'film-card-mood-tag';
-        tag.textContent = MOOD_FALLBACK_TAGS[mood] || '';
-
-        body.appendChild(title);
-        body.appendChild(year);
-        body.appendChild(tag);
-        card.appendChild(img);
-        card.appendChild(body);
-        container.appendChild(card);
-      });
-    }
-
-    // ── Render weekly pulse ────────────────────────────
-    function renderPulse(trendingMovies, hiddenGem) {
-      var grid = document.getElementById('pulseGrid');
-      grid.innerHTML = '';
-
-      // Card 1: Most Talked About
-      var talked = trendingMovies[1] || trendingMovies[0];
-      var card1 = document.createElement('div');
-      card1.className = 'pulse-card';
-
-      var type1 = document.createElement('div');
-      type1.className = 'pulse-card-type';
-      type1.textContent = 'Most Talked About';
-
-      var film1 = document.createElement('div');
-      film1.className = 'pulse-card-film';
-
-      var img1 = document.createElement('img');
-      img1.className = 'pulse-card-poster';
-      img1.src = smallPosterSrc(talked ? talked.poster_path : null);
-      img1.alt = talked ? (talked.title || '') : '';
-
-      var info1 = document.createElement('div');
-      info1.className = 'pulse-card-film-info';
-
-      var t1 = document.createElement('div');
-      t1.className = 'pulse-card-title';
-      t1.textContent = talked ? (talked.title || 'Unknown') : '—';
-
-      var s1 = document.createElement('div');
-      s1.className = 'pulse-card-sub';
-      s1.textContent = talked ? (getYear(talked.release_date) + ' · ' + (talked.vote_average ? talked.vote_average.toFixed(1) + ' avg rating' : '')) : '';
-
-      info1.appendChild(t1);
-      info1.appendChild(s1);
-      film1.appendChild(img1);
-      film1.appendChild(info1);
-
-      var sentWrap = document.createElement('div');
-      sentWrap.className = 'sentiment-bar-wrap';
-
-      var sentLabel = document.createElement('div');
-      sentLabel.className = 'sentiment-bar-label';
-
-      var sentLabelL = document.createElement('span');
-      sentLabelL.textContent = 'Audience sentiment';
-      var pct = talked ? Math.round((talked.vote_average || 7) * 10) : 70;
-      var sentLabelR = document.createElement('span');
-      sentLabelR.textContent = pct + '% positive';
-
-      sentLabel.appendChild(sentLabelL);
-      sentLabel.appendChild(sentLabelR);
-
-      var sentTrack = document.createElement('div');
-      sentTrack.className = 'sentiment-bar-track';
-      var sentFill = document.createElement('div');
-      sentFill.className = 'sentiment-bar-fill';
-      sentFill.style.width = pct + '%';
-      sentTrack.appendChild(sentFill);
-
-      sentWrap.appendChild(sentLabel);
-      sentWrap.appendChild(sentTrack);
-
-      card1.appendChild(type1);
-      card1.appendChild(film1);
-      card1.appendChild(sentWrap);
-      grid.appendChild(card1);
-
-      // Card 2: Most Divisive — third trending with vote_average 5.5-7.0
-      var divisive = null;
-      for (var i = 0; i < trendingMovies.length; i++) {
-        var m = trendingMovies[i];
-        if (i > 1 && m.vote_average >= 5.5 && m.vote_average <= 7.0) {
-          divisive = m;
-          break;
-        }
-      }
-      if (!divisive) divisive = trendingMovies[2] || trendingMovies[0];
-
-      var card2 = document.createElement('div');
-      card2.className = 'pulse-card';
-
-      var type2 = document.createElement('div');
-      type2.className = 'pulse-card-type';
-      type2.textContent = 'Most Divisive';
-
-      var film2 = document.createElement('div');
-      film2.className = 'pulse-card-film';
-
-      var img2 = document.createElement('img');
-      img2.className = 'pulse-card-poster';
-      img2.src = smallPosterSrc(divisive ? divisive.poster_path : null);
-      img2.alt = divisive ? (divisive.title || '') : '';
-
-      var info2 = document.createElement('div');
-      info2.className = 'pulse-card-film-info';
-
-      var t2 = document.createElement('div');
-      t2.className = 'pulse-card-title';
-      t2.textContent = divisive ? (divisive.title || 'Unknown') : '—';
-
-      var s2 = document.createElement('div');
-      s2.className = 'pulse-card-sub';
-      var avgStr = divisive && divisive.vote_average ? divisive.vote_average.toFixed(1) : '—';
-      s2.textContent = divisive ? (getYear(divisive.release_date) + ' · ' + avgStr + ' / 10') : '';
-
-      info2.appendChild(t2);
-      info2.appendChild(s2);
-      film2.appendChild(img2);
-      film2.appendChild(info2);
-
-      var badge2 = document.createElement('span');
-      badge2.className = 'divisive-badge';
-      badge2.textContent = 'Critics vs Audiences — still unsettled';
-
-      var sub2 = document.createElement('p');
-      sub2.className = 'pulse-card-sub';
-      sub2.style.marginTop = '0.75rem';
-      sub2.textContent = 'The conversation is split. Whether that\'s a failure or the point entirely depends on which half you\'re in.';
-
-      card2.appendChild(type2);
-      card2.appendChild(film2);
-      card2.appendChild(badge2);
-      card2.appendChild(sub2);
-      grid.appendChild(card2);
-
-      // Card 3: Hidden Gem
-      var gem = hiddenGem;
-      var card3 = document.createElement('div');
-      card3.className = 'pulse-card';
-
-      var type3 = document.createElement('div');
-      type3.className = 'pulse-card-type';
-      type3.textContent = 'Hidden Gem Resurface';
-
-      var film3 = document.createElement('div');
-      film3.className = 'pulse-card-film';
-
-      var img3 = document.createElement('img');
-      img3.className = 'pulse-card-poster';
-      img3.src = smallPosterSrc(gem ? gem.poster_path : null);
-      img3.alt = gem ? (gem.title || '') : '';
-
-      var info3 = document.createElement('div');
-      info3.className = 'pulse-card-film-info';
-
-      var t3 = document.createElement('div');
-      t3.className = 'pulse-card-title';
-      t3.textContent = gem ? (gem.title || 'Unknown') : '—';
-
-      var s3 = document.createElement('div');
-      s3.className = 'pulse-card-sub';
-      var gemRating = gem && gem.vote_average ? gem.vote_average.toFixed(1) : '—';
-      s3.textContent = gem ? (getYear(gem.release_date) + ' · ' + gemRating + ' · ' + (gem.vote_count ? gem.vote_count.toLocaleString() + ' ratings' : '')) : '';
-
-      info3.appendChild(t3);
-      info3.appendChild(s3);
-      film3.appendChild(img3);
-      film3.appendChild(info3);
-
-      var badge3 = document.createElement('span');
-      badge3.className = 'gem-badge';
-      badge3.textContent = 'Rediscovered';
-
-      var sub3 = document.createElement('p');
-      sub3.className = 'pulse-card-sub';
-      sub3.style.marginTop = '0.75rem';
-      sub3.textContent = 'A film the algorithm buried and word of mouth keeps digging back up. There\'s a reason it keeps finding new audiences.';
-
-      card3.appendChild(type3);
-      card3.appendChild(film3);
-      card3.appendChild(badge3);
-      card3.appendChild(sub3);
-      grid.appendChild(card3);
-    }
-
-    // ── Assign trending films to moods ─────────────────
-    function assignToMoods(films) {
-      var assigned = { unsettled: [], devastated: [], rewired: [], hopeful: [], strange: [], edge: [], slowburn: [] };
-      films.forEach(function(film) {
-        var mood = getMoodForFilm(film);
-        if (mood && assigned[mood].length < 3) {
-          assigned[mood].push(film);
-        }
-      });
-      // Fill any empty moods with overflow films
-      var overflow = films.filter(function(f) {
-        var m = getMoodForFilm(f);
-        return !m;
-      });
-      var moodKeys = Object.keys(assigned);
-      var oi = 0;
-      moodKeys.forEach(function(mk) {
-        while (assigned[mk].length < 3 && oi < overflow.length) {
-          assigned[mk].push(overflow[oi++]);
-        }
-        // Still empty? grab anything
-        if (assigned[mk].length === 0) {
-          for (var j = 0; j < films.length; j++) {
-            if (assigned[mk].indexOf(films[j]) === -1) {
-              assigned[mk].push(films[j]);
-              if (assigned[mk].length === 3) break;
-            }
-          }
-        }
-      });
-      return assigned;
-    }
-
-    // ── Update hero ────────────────────────────────────
-    function updateHero(film) {
-      if (!film) return;
+    function renderHero() {
       var backdrop = document.getElementById('heroBackdrop');
-      if (film.backdrop_path) {
-        backdrop.style.backgroundImage = 'url(' + IMG_BACKDROP + film.backdrop_path + ')';
-      }
-      var title = film.title || film.name || '';
-      var year = getYear(film.release_date);
-
-      document.getElementById('heroTitle').textContent = title;
-      document.getElementById('heroTagline').textContent =
-        film.overview
-          ? (film.overview.length > 180 ? film.overview.slice(0, 177) + '…' : film.overview)
-          : '';
-
+      backdrop.style.backgroundImage = 'url(' + heroFilm.backdrop + ')';
+      document.getElementById('heroTitle').textContent = heroFilm.title;
+      document.getElementById('heroTagline').textContent = heroFilm.overview;
       var meta = document.getElementById('heroFilmMeta');
       meta.innerHTML = '';
       var labelSpan = document.createElement('span');
       labelSpan.textContent = 'Film: ';
       var filmSpan = document.createElement('span');
-      filmSpan.textContent = title + ' (' + year + ')';
+      filmSpan.textContent = heroFilm.title + ' (' + heroFilm.year + ')';
       meta.appendChild(labelSpan);
       meta.appendChild(filmSpan);
     }
 
-    // ── Main data load ─────────────────────────────────
-    Promise.all([
-      tmdbFetch('https://api.themoviedb.org/3/trending/movie/week?language=en-US'),
-      tmdbFetch('https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=4')
-    ]).then(function(results) {
-      var trending = results[0].results || [];
-      var topRated = results[1].results || [];
-
-      // Hero: first trending with backdrop
-      var heroFilm = null;
-      for (var i = 0; i < trending.length; i++) {
-        if (trending[i].backdrop_path) { heroFilm = trending[i]; break; }
-      }
-      updateHero(heroFilm);
-
-      // Hidden gem: top rated, vote_count > 5000, pre-2010
-      var hiddenGem = null;
-      for (var j = 0; j < topRated.length; j++) {
-        var tr = topRated[j];
-        if (tr.vote_count > 5000 && tr.release_date && tr.release_date < '2010-01-01') {
-          hiddenGem = tr;
-          break;
+    function renderPulse() {
+      var grid = document.getElementById('pulseGrid');
+      grid.innerHTML = '';
+      pulseData.forEach(function(item) {
+        var card = document.createElement('div');
+        card.className = 'pulse-card';
+        var html = '' +
+          '<div class="pulse-card-type">' + item.type + '</div>' +
+          '<div class="pulse-card-film">' +
+            '<img class="pulse-card-poster" src="' + item.poster + '" alt="' + item.title + '" />' +
+            '<div class="pulse-card-film-info">' +
+              '<div class="pulse-card-title">' + item.title + '</div>' +
+              '<div class="pulse-card-sub">' + item.sub + '</div>' +
+            '</div>' +
+          '</div>';
+        if (item.mode === 'sentiment') {
+          html += '' +
+            '<div class="sentiment-bar-wrap">' +
+              '<div class="sentiment-bar-label"><span>Audience sentiment</span><span>' + item.pct + '% positive</span></div>' +
+              '<div class="sentiment-bar-track"><div class="sentiment-bar-fill" style="width:' + item.pct + '%"></div></div>' +
+            '</div>';
+        } else {
+          html += '<span class="' + item.badgeClass + '">' + item.badgeText + '</span>';
         }
-      }
+        html += '<p class="pulse-card-sub" style="margin-top:0.75rem">' + item.note + '</p>';
+        card.innerHTML = html;
+        grid.appendChild(card);
+      });
+    }
 
-      // Pulse grid
-      renderPulse(trending, hiddenGem);
+    function renderMoodFilms(mood) {
+      var films = moodData[mood] || moodData.unsettled;
+      var container = document.getElementById('moodFilms');
+      container.innerHTML = '';
+      films.forEach(function(film) {
+        var card = document.createElement('div');
+        card.className = 'film-card';
+        card.innerHTML =
+          '<img class="film-card-poster" src="' + film.poster + '" alt="' + film.title + '" />' +
+          '<div class="film-card-body">' +
+            '<div class="film-card-title">' + film.title + '</div>' +
+            '<div class="film-card-year">' + film.year + ' · ' + film.director + '</div>' +
+            '<div class="film-card-mood-tag">' + film.tag + '</div>' +
+          '</div>';
+        container.appendChild(card);
+      });
+    }
 
-      // Mood: combine trending + top rated for variety
-      var allFilms = trending.concat(topRated);
-      var assigned = assignToMoods(allFilms);
-      moodFilmsData = assigned;
-      renderMoodFilms('unsettled');
+    renderHero();
+    renderPulse();
+    renderMoodFilms('unsettled');
 
-    }).catch(function(err) {
-      console.warn('TMDB load failed:', err);
-      // Show graceful fallback in hero
-      document.getElementById('heroTitle').textContent = 'The Conversation Worth Having';
-      document.getElementById('heroTagline').textContent = 'Cinema, culture, and the films that stay with you.';
-      // Fallback pulse
-      document.getElementById('pulseGrid').innerHTML =
-        '<p style="color:var(--text-dim);font-style:italic;grid-column:1/-1;">Unable to load live data. Please check back shortly.</p>';
-    });
-
-    // ── Mood chip interactions ─────────────────────────
     var chips = document.querySelectorAll('.mood-chip');
     chips.forEach(function(chip) {
       chip.addEventListener('click', function() {
@@ -1511,7 +1258,6 @@
       });
     });
 
-    // ── Scroll reveals ─────────────────────────────────
     var revealObserver = new IntersectionObserver(function(entries) {
       entries.forEach(function(entry) {
         if (entry.isIntersecting) {
@@ -1525,12 +1271,11 @@
       revealObserver.observe(el);
     });
 
-    // ── Newsletter ─────────────────────────────────────
     document.querySelector('.newsletter-btn').addEventListener('click', function() {
       var input = document.querySelector('.newsletter-input');
       if (input.value && input.value.indexOf('@') !== -1) {
         input.value = '';
-        input.placeholder = 'You\'re in. See you Friday.';
+        input.placeholder = 'You're in. See you Friday.';
         this.textContent = '✓';
         this.style.background = '#4ade80';
       }
