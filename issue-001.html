@@ -11,7 +11,7 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --bg: #0a0a0f;
+      --bg: #080810;
       --surface: #111118;
       --surface-2: #18181f;
       --gold: #f59e0b;
@@ -119,6 +119,30 @@
       transition: transform 8s ease-out;
     }
     .hero:hover .hero-backdrop { transform: scale(1.0); }
+    .hero-grain {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      opacity: 0.06;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+      background-size: 180px 180px;
+      pointer-events: none;
+    }
+    .hero-issue-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(214,179,106,0.12);
+      border: 1px solid rgba(214,179,106,0.3);
+      color: var(--gold);
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      padding: 0.35rem 0.85rem;
+      border-radius: 2rem;
+      margin-bottom: 1.25rem;
+    }
 
     .hero-vignette {
       position: absolute;
@@ -845,10 +869,12 @@
   <!-- ─── HERO ─── -->
   <section class="hero" style="padding:0; max-width:none;" id="heroSection">
     <div class="hero-backdrop" id="heroBackdrop"></div>
+    <div class="hero-grain"></div>
     <div class="hero-vignette"></div>
     <div class="hero-vignette-sides"></div>
 
     <div class="hero-content">
+      <div class="hero-issue-badge">Issue 001 &mdash; March 2026</div>
       <div class="hero-eyebrow">
         <span class="hero-eyebrow-label">This Week on Screen Share</span>
         <span class="hero-eyebrow-dot"></span>
@@ -1048,7 +1074,7 @@
 
   <section>
     <div class="section-eyebrow reveal">
-      <span class="section-eyebrow-icon">🎬</span>
+      <span class="section-eyebrow-icon">🎭</span>
       <span class="section-eyebrow-label">Behind the Curtain</span>
       <span class="section-eyebrow-pipe">|</span>
       <span class="section-eyebrow-desc">Industry news with conscience</span>
@@ -1106,16 +1132,16 @@
 
   <script>
     var heroFilm = {
-      title: 'All We Imagine as Light',
+      title: 'The Films That Found You',
       year: 2024,
       backdrop: null,
-      overview: 'A first-pass issue built around films, criticism, and the cultural conversation around how we watch.'
+      overview: 'A new publication for people who care how they watch. Issue 001.'
     };
 
     var pulseData = [
       {
         type: 'Most Talked About',
-        title: 'All We Imagine as Light',
+        title: 'The Films That Found You',
         sub: 'Payal Kapadia, 2024 · Cannes Grand Prix winner',
         poster: null,
         tone: 'amber',
@@ -1208,7 +1234,11 @@
 
     function renderHero() {
       var backdrop = document.getElementById('heroBackdrop');
-      backdrop.style.backgroundImage = 'radial-gradient(circle at top, rgba(245,158,11,0.18), transparent 34%), linear-gradient(135deg, rgba(10,10,15,0.96), rgba(24,24,31,0.92))';
+      backdrop.style.backgroundImage = [
+        'radial-gradient(ellipse at 30% 50%, rgba(214,179,106,0.13) 0%, transparent 55%)',
+        'radial-gradient(ellipse at 80% 20%, rgba(139,92,246,0.07) 0%, transparent 50%)',
+        'linear-gradient(160deg, rgba(18,14,30,0.97) 0%, rgba(12,12,20,0.95) 40%, rgba(8,8,16,1) 100%)'
+      ].join(', ');
       document.getElementById('heroTitle').textContent = heroFilm.title;
       document.getElementById('heroTagline').textContent = heroFilm.overview;
       var meta = document.getElementById('heroFilmMeta');
