@@ -1,0 +1,1285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Screen Share — The Conversation Worth Having</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,700;0,800;1,700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #0a0a0f;
+      --surface: #111118;
+      --surface-2: #18181f;
+      --gold: #f59e0b;
+      --gold-dim: rgba(245, 158, 11, 0.15);
+      --gold-border: rgba(245, 158, 11, 0.25);
+      --crimson: #dc2626;
+      --text: #e8e8ed;
+      --text-muted: #8888a0;
+      --text-dim: #555568;
+      --border: rgba(255,255,255,0.06);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Inter', sans-serif;
+      font-size: 16px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    /* Film grain overlay */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 9999;
+      opacity: 0.025;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E");
+      background-size: 180px 180px;
+      mix-blend-mode: overlay;
+    }
+
+    /* ─── REVEAL (scroll fade) ─── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(18px);
+      transition: opacity 0.55s ease, transform 0.55s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ─── NAV ─── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 2rem;
+      height: 60px;
+      background: rgba(10, 10, 15, 0.85);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: var(--text);
+      letter-spacing: 0.02em;
+      text-decoration: none;
+    }
+    .nav-logo span { color: var(--gold); }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+    .nav-links a {
+      font-size: 0.8rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--gold); }
+
+    /* ─── HERO ─── */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: flex-end;
+      overflow: hidden;
+    }
+
+    .hero-backdrop {
+      position: absolute;
+      inset: 0;
+      background-size: cover;
+      background-position: center 20%;
+      transform: scale(1.03);
+      transition: transform 8s ease-out;
+    }
+    .hero:hover .hero-backdrop { transform: scale(1.0); }
+
+    .hero-vignette {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to bottom,
+        rgba(10,10,15,0.3) 0%,
+        rgba(10,10,15,0.1) 30%,
+        rgba(10,10,15,0.6) 65%,
+        rgba(10,10,15,0.97) 100%
+      );
+    }
+    .hero-vignette-sides {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to right,
+        rgba(10,10,15,0.7) 0%,
+        transparent 40%,
+        transparent 60%,
+        rgba(10,10,15,0.4) 100%
+      );
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      width: 100%;
+      padding: 2.5rem 2.5rem 4rem;
+      max-width: 900px;
+    }
+
+    .hero-eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 1.25rem;
+    }
+    .hero-eyebrow-label {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+    .hero-eyebrow-date {
+      font-size: 0.7rem;
+      font-weight: 400;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+    .hero-eyebrow-dot {
+      width: 3px;
+      height: 3px;
+      border-radius: 50%;
+      background: var(--text-dim);
+    }
+
+    .hero-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.4rem, 6vw, 4.5rem);
+      font-weight: 800;
+      line-height: 1.08;
+      letter-spacing: -0.01em;
+      color: #fff;
+      margin-bottom: 1rem;
+      max-width: 780px;
+    }
+    .hero-tagline {
+      font-size: clamp(0.95rem, 1.8vw, 1.1rem);
+      color: rgba(232,232,237,0.75);
+      max-width: 520px;
+      line-height: 1.65;
+      margin-bottom: 2rem;
+      font-weight: 300;
+    }
+    .hero-meta {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+    .hero-meta-film {
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+    .hero-meta-film span { color: var(--text); }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.75rem 1.75rem;
+      background: var(--gold);
+      color: #0a0a0f;
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.15s;
+    }
+    .btn-primary:hover { background: #fbbf24; transform: translateY(-1px); }
+
+    .btn-ghost {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.75rem 1.75rem;
+      background: transparent;
+      color: var(--text);
+      font-size: 0.82rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border: 1px solid var(--border);
+      cursor: pointer;
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .btn-ghost:hover { border-color: var(--gold); color: var(--gold); }
+
+    .hero-scroll-hint {
+      position: absolute;
+      bottom: 1.5rem;
+      right: 2.5rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.4rem;
+      opacity: 0.4;
+    }
+    .hero-scroll-hint span {
+      font-size: 0.6rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      writing-mode: vertical-rl;
+    }
+    .hero-scroll-line {
+      width: 1px;
+      height: 40px;
+      background: linear-gradient(to bottom, var(--text-muted), transparent);
+    }
+
+    /* ─── SECTION COMMONS ─── */
+    section {
+      padding: 5rem 2.5rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .section-divider {
+      width: 100%;
+      height: 1px;
+      background: linear-gradient(to right, transparent, var(--gold-border), transparent);
+      margin: 0 2.5rem;
+      max-width: 1200px;
+    }
+
+    .section-eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 2.5rem;
+    }
+    .section-eyebrow-icon { font-size: 1rem; }
+    .section-eyebrow-label {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+    .section-eyebrow-desc {
+      font-size: 0.78rem;
+      color: var(--text-dim);
+      font-style: italic;
+    }
+    .section-eyebrow-pipe {
+      color: var(--text-dim);
+      font-size: 0.8rem;
+    }
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.6rem, 3.5vw, 2.4rem);
+      font-weight: 700;
+      line-height: 1.2;
+      color: var(--text);
+      margin-bottom: 1.25rem;
+    }
+
+    /* ─── REWIND ─── */
+    .rewind-card {
+      display: grid;
+      grid-template-columns: 200px 1fr;
+      gap: 3rem;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--gold);
+      padding: 2.5rem;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .rewind-card:hover {
+      border-left-color: var(--gold);
+      border-color: var(--gold-border);
+      transform: translateY(-2px);
+    }
+    .rewind-poster {
+      width: 100%;
+      aspect-ratio: 2/3;
+      object-fit: cover;
+      display: block;
+      filter: saturate(0.85);
+      transition: filter 0.3s;
+    }
+    .rewind-card:hover .rewind-poster { filter: saturate(1); }
+    .rewind-body {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .rewind-year {
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      color: var(--gold);
+      text-transform: uppercase;
+      margin-bottom: 0.5rem;
+    }
+    .rewind-film-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 1.25rem;
+      line-height: 1.15;
+    }
+    .rewind-text {
+      font-size: 1rem;
+      line-height: 1.75;
+      color: rgba(232,232,237,0.8);
+      margin-bottom: 1.25rem;
+      font-weight: 300;
+    }
+
+    .link-arrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.82rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      color: var(--gold);
+      text-decoration: none;
+      text-transform: uppercase;
+      transition: gap 0.2s;
+    }
+    .link-arrow:hover { gap: 0.7rem; }
+
+    /* ─── ARGUMENT ─── */
+    .argument-question {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.3rem, 2.8vw, 1.9rem);
+      font-weight: 700;
+      font-style: italic;
+      line-height: 1.35;
+      color: #fff;
+      margin-bottom: 2.5rem;
+      padding-left: 1.5rem;
+      border-left: 3px solid var(--crimson);
+    }
+    .argument-camps {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+    .argument-camp {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      padding: 1.75rem;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .argument-camp:hover {
+      border-color: rgba(255,255,255,0.12);
+      transform: translateY(-2px);
+    }
+    .argument-camp-label {
+      font-size: 0.65rem;
+      font-weight: 800;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      margin-bottom: 0.9rem;
+      padding: 0.25rem 0.6rem;
+      display: inline-block;
+    }
+    .argument-camp-label.grief { background: rgba(220,38,38,0.15); color: #f87171; }
+    .argument-camp-label.horror { background: rgba(245,158,11,0.12); color: var(--gold); }
+    .argument-camp-text {
+      font-size: 0.95rem;
+      line-height: 1.7;
+      color: rgba(232,232,237,0.75);
+      font-weight: 300;
+    }
+    .argument-cta {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    .argument-voter-count {
+      font-size: 0.78rem;
+      color: var(--text-dim);
+    }
+
+    /* ─── MOOD ─── */
+    .mood-chips-wrapper {
+      overflow-x: auto;
+      margin-bottom: 2.5rem;
+      padding-bottom: 0.5rem;
+      scrollbar-width: none;
+    }
+    .mood-chips-wrapper::-webkit-scrollbar { display: none; }
+    .mood-chips {
+      display: flex;
+      gap: 0.75rem;
+      width: max-content;
+    }
+    .mood-chip {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.55rem 1.1rem;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+      font-size: 0.82rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s;
+      white-space: nowrap;
+      border-radius: 2px;
+      user-select: none;
+    }
+    .mood-chip:hover { border-color: var(--gold-border); color: var(--text); }
+    .mood-chip.active { background: var(--gold-dim); border-color: var(--gold); color: var(--gold); }
+
+    .mood-films {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.25rem;
+      min-height: 340px;
+    }
+
+    /* ─── FILM CARD (mood + pulse) ─── */
+    .film-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      overflow: hidden;
+      cursor: pointer;
+      transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.2s;
+    }
+    .film-card:hover {
+      border-color: var(--gold-border);
+      transform: translateY(-4px);
+      box-shadow: 0 12px 32px rgba(0,0,0,0.5);
+    }
+    .film-card img {
+      transition: filter 0.3s ease;
+      filter: brightness(0.88);
+    }
+    .film-card:hover img { filter: brightness(1); }
+    .film-card-poster {
+      width: 100%;
+      aspect-ratio: 2/3;
+      object-fit: cover;
+      display: block;
+      transition: filter 0.3s, transform 0.4s;
+    }
+    .film-card:hover .film-card-poster { transform: scale(1.02); }
+    .film-card-body { padding: 1rem; }
+    .film-card-title {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 0.25rem;
+    }
+    .film-card-year {
+      font-size: 0.75rem;
+      color: var(--text-dim);
+    }
+    .film-card-mood-tag {
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-top: 0.5rem;
+    }
+
+    /* ─── WEEKLY PULSE ─── */
+    .pulse-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+    .pulse-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      padding: 1.75rem;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .pulse-card:hover {
+      border-color: rgba(255,255,255,0.1);
+      transform: translateY(-2px);
+    }
+    .pulse-card-type {
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--text-dim);
+      margin-bottom: 1rem;
+    }
+    .pulse-card-film {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 1.25rem;
+    }
+    .pulse-card-poster {
+      width: 56px;
+      height: 84px;
+      object-fit: cover;
+      flex-shrink: 0;
+      filter: saturate(0.8);
+    }
+    .pulse-card-film-info {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .pulse-card-title {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 0.3rem;
+      line-height: 1.3;
+    }
+    .pulse-card-sub {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+    .sentiment-bar-wrap { margin-top: 1rem; }
+    .sentiment-bar-label {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.72rem;
+      color: var(--text-dim);
+      margin-bottom: 0.4rem;
+    }
+    .sentiment-bar-label span:last-child { color: #4ade80; }
+    .sentiment-bar-track {
+      height: 4px;
+      background: rgba(255,255,255,0.06);
+      border-radius: 2px;
+      overflow: hidden;
+    }
+    .sentiment-bar-fill {
+      height: 100%;
+      background: linear-gradient(to right, #dc2626, #f59e0b, #4ade80);
+      border-radius: 2px;
+      transition: width 0.6s ease;
+    }
+    .divisive-badge {
+      display: inline-block;
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.2rem 0.55rem;
+      background: rgba(220,38,38,0.12);
+      color: #f87171;
+      margin-top: 0.75rem;
+    }
+    .gem-badge {
+      display: inline-block;
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.2rem 0.55rem;
+      background: var(--gold-dim);
+      color: var(--gold);
+      margin-top: 0.75rem;
+    }
+
+    /* ─── BEHIND THE FRAME ─── */
+    .btf-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      padding: 3rem;
+      display: grid;
+      grid-template-columns: 1fr 280px;
+      gap: 3rem;
+      align-items: center;
+      transition: border-color 0.2s;
+    }
+    .btf-card:hover { border-color: var(--gold-border); }
+    .btf-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.3rem, 2.5vw, 1.85rem);
+      font-weight: 700;
+      line-height: 1.25;
+      color: #fff;
+      margin-bottom: 1.5rem;
+    }
+    .btf-excerpt {
+      font-size: 1rem;
+      line-height: 1.8;
+      color: rgba(232,232,237,0.7);
+      font-weight: 300;
+      font-style: italic;
+      margin-bottom: 2rem;
+      padding-left: 1.25rem;
+      border-left: 2px solid var(--gold-border);
+    }
+    .btf-image {
+      width: 100%;
+      aspect-ratio: 16/10;
+      object-fit: cover;
+      filter: saturate(0.5) brightness(0.8);
+      transition: filter 0.4s;
+    }
+    .btf-card:hover .btf-image { filter: saturate(0.8) brightness(0.9); }
+
+    /* ─── BEHIND THE CURTAIN ─── */
+    .btc-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+    }
+    .btc-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-top: 2px solid var(--crimson);
+      padding: 2rem;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .btc-card:hover {
+      border-color: rgba(220,38,38,0.4);
+      transform: translateY(-2px);
+    }
+    .btc-source {
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--text-dim);
+      margin-bottom: 0.75rem;
+    }
+    .btc-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 1rem;
+      line-height: 1.3;
+    }
+    .btc-editorial {
+      font-size: 0.9rem;
+      line-height: 1.75;
+      color: rgba(232,232,237,0.7);
+      font-weight: 300;
+      margin-bottom: 1.5rem;
+    }
+
+    /* ─── NEWSLETTER ─── */
+    .newsletter-section { padding: 4rem 2.5rem; }
+    .newsletter-card {
+      background: var(--surface);
+      border: 1px solid var(--gold-border);
+      padding: 4rem;
+      text-align: center;
+      max-width: 680px;
+      margin: 0 auto;
+    }
+    .newsletter-eyebrow {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1rem;
+    }
+    .newsletter-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.5rem, 3vw, 2rem);
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 0.75rem;
+      line-height: 1.25;
+    }
+    .newsletter-sub {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      font-style: italic;
+      margin-bottom: 2.5rem;
+    }
+    .newsletter-form {
+      display: flex;
+      gap: 0;
+      max-width: 420px;
+      margin: 0 auto 1.5rem;
+    }
+    .newsletter-input {
+      flex: 1;
+      padding: 0.85rem 1.25rem;
+      background: var(--bg);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-right: none;
+      color: var(--text);
+      font-size: 0.88rem;
+      font-family: 'Inter', sans-serif;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .newsletter-input::placeholder { color: var(--text-dim); }
+    .newsletter-input:focus { border-color: var(--gold-border); }
+    .newsletter-btn {
+      padding: 0.85rem 1.5rem;
+      background: var(--gold);
+      color: #0a0a0f;
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      border: none;
+      cursor: pointer;
+      font-family: 'Inter', sans-serif;
+      transition: background 0.2s;
+    }
+    .newsletter-btn:hover { background: #fbbf24; }
+    .newsletter-note { font-size: 0.75rem; color: var(--text-dim); }
+
+    /* ─── FOOTER ─── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 2rem 2.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .footer-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1rem;
+      font-weight: 800;
+      color: var(--text-muted);
+    }
+    .footer-logo span { color: var(--gold); }
+    .footer-note { font-size: 0.72rem; color: var(--text-dim); }
+
+    /* ─── LOADING STATE ─── */
+    .loading-shimmer {
+      background: linear-gradient(90deg, var(--surface) 25%, var(--surface-2) 50%, var(--surface) 75%);
+      background-size: 200% 100%;
+      animation: shimmer 1.4s infinite;
+      border-radius: 2px;
+    }
+    @keyframes shimmer {
+      0% { background-position: 200% 0; }
+      100% { background-position: -200% 0; }
+    }
+    .pulse-placeholder {
+      height: 84px;
+      width: 56px;
+      flex-shrink: 0;
+    }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 768px) {
+      nav { padding: 0 1.25rem; }
+      .nav-links { display: none; }
+      section { padding: 3.5rem 1.25rem; }
+      .section-divider { margin: 0 1.25rem; }
+      .hero-content { padding: 2rem 1.25rem 3rem; }
+      .rewind-card { grid-template-columns: 1fr; gap: 1.5rem; }
+      .rewind-poster { max-width: 160px; }
+      .argument-camps { grid-template-columns: 1fr; }
+      .mood-films { grid-template-columns: 1fr 1fr; }
+      .pulse-grid { grid-template-columns: 1fr; }
+      .btf-card { grid-template-columns: 1fr; }
+      .btf-image { display: none; }
+      .btc-grid { grid-template-columns: 1fr; }
+      .newsletter-card { padding: 2.5rem 1.5rem; }
+      .newsletter-form { flex-direction: column; }
+      .newsletter-input { border-right: 1px solid rgba(255,255,255,0.1); border-bottom: none; }
+      footer { flex-direction: column; gap: 0.75rem; text-align: center; }
+    }
+    @media (max-width: 480px) {
+      .mood-films { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="index.html" class="nav-logo">Screen<span>Share</span></a>
+    <ul class="nav-links">
+      <li><a href="#rewind">The Rewind</a></li>
+      <li><a href="#argument">The Argument</a></li>
+      <li><a href="#discover">Discover</a></li>
+      <li><a href="#craft">Craft</a></li>
+      <li><a href="archive.html">Archive</a></li>
+    </ul>
+  </nav>
+
+  <!-- ─── HERO ─── -->
+  <section class="hero" style="padding:0; max-width:none;" id="heroSection">
+    <div class="hero-backdrop" id="heroBackdrop"></div>
+    <div class="hero-vignette"></div>
+    <div class="hero-vignette-sides"></div>
+
+    <div class="hero-content">
+      <div class="hero-eyebrow">
+        <span class="hero-eyebrow-label">This Week on Screen Share</span>
+        <span class="hero-eyebrow-dot"></span>
+        <span class="hero-eyebrow-date" id="heroDate">Week of 7 March 2026</span>
+      </div>
+
+      <h1 class="hero-title" id="heroTitle">Loading this week's film&hellip;</h1>
+      <p class="hero-tagline" id="heroTagline">&nbsp;</p>
+
+      <div class="hero-meta">
+        <span class="hero-meta-film" id="heroFilmMeta">&nbsp;</span>
+      </div>
+
+      <div style="display:flex; gap:1rem; flex-wrap:wrap;">
+        <a href="essay.html" class="btn-primary">Read This Week's Essay &rarr;</a>
+        <a href="archive.html" class="btn-ghost">Browse the Archive</a>
+      </div>
+    </div>
+
+    <div class="hero-scroll-hint">
+      <span>Scroll</span>
+      <div class="hero-scroll-line"></div>
+    </div>
+  </section>
+
+  <!-- ─── THE REWIND ─── -->
+  <div class="section-divider"></div>
+
+  <section id="rewind">
+    <div class="section-eyebrow reveal">
+      <span class="section-eyebrow-icon">🎞️</span>
+      <span class="section-eyebrow-label">The Rewind</span>
+      <span class="section-eyebrow-pipe">|</span>
+      <span class="section-eyebrow-desc">A film from the archive that speaks to right now</span>
+    </div>
+
+    <div class="rewind-card reveal">
+      <img
+        class="rewind-poster"
+        src="https://image.tmdb.org/t/p/w500/t4bFnMpXHKFZiXlMBFiHFXMFH9J.jpg"
+        alt="Three Days of the Condor"
+        onerror="this.style.background='#1a1a22'; this.removeAttribute('src');"
+      />
+      <div class="rewind-body">
+        <div class="rewind-year">1975 &middot; Sydney Pollack</div>
+        <h2 class="rewind-film-title">Three Days of the Condor</h2>
+        <p class="rewind-text">
+          Robert Redford plays a CIA reader — a man whose entire job is to consume information and
+          notice patterns — who returns from lunch one afternoon to find everyone he works with
+          shot dead. What follows is a film about institutions that murder to protect themselves,
+          and the impossible choice between exposing the truth and surviving it.
+        </p>
+        <p class="rewind-text">
+          There is a particular exhaustion in this moment: the exhaustion of people who still,
+          despite everything, expected better from the systems built to serve them. Pollack made
+          this film in the long shadow of Watergate. It feels, right now, like he made it
+          last Tuesday.
+        </p>
+        <a href="rewind.html" class="link-arrow">Why This Film, Why Now &rarr;</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── THE ARGUMENT ─── -->
+  <div class="section-divider"></div>
+
+  <section id="argument">
+    <div class="section-eyebrow reveal">
+      <span class="section-eyebrow-icon">💬</span>
+      <span class="section-eyebrow-label">The Argument</span>
+      <span class="section-eyebrow-pipe">|</span>
+      <span class="section-eyebrow-desc">One question. No verdict. You decide.</span>
+    </div>
+
+    <blockquote class="argument-question reveal">
+      &ldquo;Is <em>Hereditary</em> a grief film disguised as horror, or horror disguised as
+      grief — and does the answer change how you experience it?&rdquo;
+    </blockquote>
+
+    <div class="argument-camps reveal">
+      <div class="argument-camp">
+        <span class="argument-camp-label grief">Reading: Grief First</span>
+        <p class="argument-camp-text">
+          The supernatural in <em>Hereditary</em> is grief given physical form — the way loss
+          warps a family until they are strangers to each other, speaking different languages
+          in the same house. Paimon is just the name Annie gives to the thing that has lived
+          inside her since childhood: the inherited wound, the mother who never loved her
+          right, the damage passed down not by choice but by blood. The horror is real. But
+          it's the kind that happens in kitchens and bedrooms and at gravesides, and it doesn't
+          need a demon to justify it.
+        </p>
+      </div>
+      <div class="argument-camp">
+        <span class="argument-camp-label horror">Reading: Horror First</span>
+        <p class="argument-camp-text">
+          Aster constructs an occult conspiracy from the opening frame — the miniature diorama
+          that zooms into the real world, Joan's face at the support group, the cult that was
+          always already there. The grief is the trap, not the point. Read it as a grief film
+          and you'll feel for Annie. Read it as horror and you'll understand she never had a
+          choice, that every decision she thought she made was already made for her — which is,
+          arguably, the far more terrifying film. Sympathy and dread are not the same emotion.
+        </p>
+      </div>
+    </div>
+
+    <div class="argument-cta reveal">
+      <a href="argument.html" class="btn-primary">Join the Argument &rarr;</a>
+      <span class="argument-voter-count">2,847 people weighing in this week</span>
+    </div>
+  </section>
+
+  <!-- ─── MOOD-FIRST DISCOVERY ─── -->
+  <div class="section-divider"></div>
+
+  <section id="discover">
+    <div class="section-eyebrow reveal">
+      <span class="section-eyebrow-icon">🎭</span>
+      <span class="section-eyebrow-label">Mood-First Discovery</span>
+      <span class="section-eyebrow-pipe">|</span>
+      <span class="section-eyebrow-desc">Not genre. Emotion.</span>
+    </div>
+
+    <div class="mood-chips-wrapper reveal">
+      <div class="mood-chips" id="moodChips">
+        <button class="mood-chip active" data-mood="unsettled">😶 Unsettled</button>
+        <button class="mood-chip" data-mood="devastated">💔 Quietly Devastated</button>
+        <button class="mood-chip" data-mood="rewired">🤯 Mind Rewired</button>
+        <button class="mood-chip" data-mood="hopeful">😤 Furious but Hopeful</button>
+        <button class="mood-chip" data-mood="strange">🌙 Late Night Strange</button>
+        <button class="mood-chip" data-mood="edge">🔥 Edge of Your Seat</button>
+        <button class="mood-chip" data-mood="slowburn">🧘 Slow Burn</button>
+      </div>
+    </div>
+
+    <div class="mood-films reveal" id="moodFilms">
+      <!-- Populated by JS -->
+    </div>
+  </section>
+
+  <!-- ─── WEEKLY PULSE ─── -->
+  <div class="section-divider"></div>
+
+  <section>
+    <div class="section-eyebrow reveal">
+      <span class="section-eyebrow-icon">📡</span>
+      <span class="section-eyebrow-label">The Weekly Pulse</span>
+      <span class="section-eyebrow-pipe">|</span>
+      <span class="section-eyebrow-desc">What the conversation looked like this week</span>
+    </div>
+
+    <div class="pulse-grid reveal" id="pulseGrid">
+      <!-- Populated by JS -->
+    </div>
+  </section>
+
+  <!-- ─── BEHIND THE FRAME ─── -->
+  <div class="section-divider"></div>
+
+  <section id="craft">
+    <div class="section-eyebrow reveal">
+      <span class="section-eyebrow-icon">🎬</span>
+      <span class="section-eyebrow-label">Behind the Frame</span>
+      <span class="section-eyebrow-pipe">|</span>
+      <span class="section-eyebrow-desc">The craft, up close</span>
+    </div>
+
+    <div class="btf-card reveal">
+      <div>
+        <h2 class="btf-title">
+          Why the final ten minutes of<br><em>There Will Be Blood</em> work —
+          and why most films can't do what PTA did
+        </h2>
+        <blockquote class="btf-excerpt">
+          The bowling alley scene works because Paul Thomas Anderson earns his violence the way a
+          novelist earns a death — through two and a half hours of accumulated pressure. Daniel
+          Plainview has not snapped; he has <em>arrived</em>. Every sermon Eli Sunday ever
+          delivered, every handshake Daniel gave while meaning the opposite, every barrel of oil
+          pulled from beneath someone else's land: it all compounds into that single wooden pin
+          swung in a room that used to mean something to both of them. Anderson understood that
+          great cinema doesn't build to a climax. It builds to a revelation. The horror is not
+          that we are shocked. The horror is that we are not. We have been waiting — without
+          knowing we were waiting — and that is what the best films do to you.
+        </blockquote>
+        <a href="craft.html" class="link-arrow">Read the Full Piece &rarr;</a>
+      </div>
+      <img
+        class="btf-image"
+        src="https://image.tmdb.org/t/p/w780/fa0RDkAlCec0STeMNAhPaF89q6i.jpg"
+        alt="There Will Be Blood"
+        onerror="this.style.display='none'"
+      />
+    </div>
+  </section>
+
+  <!-- ─── BEHIND THE CURTAIN ─── -->
+  <div class="section-divider"></div>
+
+  <section>
+    <div class="section-eyebrow reveal">
+      <span class="section-eyebrow-icon">🎬</span>
+      <span class="section-eyebrow-label">Behind the Curtain</span>
+      <span class="section-eyebrow-pipe">|</span>
+      <span class="section-eyebrow-desc">Industry news with conscience</span>
+    </div>
+
+    <div class="btc-grid reveal">
+
+      <div class="btc-card">
+        <div class="btc-source">Hollywood Reporter &middot; March 2026</div>
+        <h3 class="btc-title">Toronto Film Critics Stage Mass Exodus Over Censored Palestine Speech</h3>
+        <p class="btc-editorial">
+          When the Toronto Film Critics Association muted a member's pro-Palestine remarks
+          mid-speech at their awards ceremony, thirty critics walked out. It's a reminder that
+          the politics of whose voice gets amplified — and whose gets cut — don't stop at the
+          cinema door.
+        </p>
+        <a href="https://www.hollywoodreporter.com/movies/movie-news/toronto-film-critics-mass-exodus-pro-palestine-speech-censored-1236522591/" class="link-arrow" target="_blank" rel="noopener">Read the full story &rarr;</a>
+      </div>
+
+      <div class="btc-card">
+        <div class="btc-source">Hollywood Reporter &middot; March 2026</div>
+        <h3 class="btc-title">BBC's Tim Davie Explains BAFTA Broadcast Error After Tourette's Segment</h3>
+        <p class="btc-editorial">
+          The BBC's handling of an unexpected Tourette's outburst during live BAFTA coverage
+          raised questions about broadcaster reflexes — and how institutions respond when
+          reality doesn't follow the script.
+        </p>
+        <a href="https://www.hollywoodreporter.com/news/general-news/bbc-tim-davie-bafta-tourettes-broadcast-error-explanation-1236523513/" class="link-arrow" target="_blank" rel="noopener">Read the full story &rarr;</a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ─── NEWSLETTER ─── -->
+  <div class="section-divider"></div>
+
+  <div class="newsletter-section">
+    <div class="newsletter-card reveal">
+      <div class="newsletter-eyebrow">Every Friday</div>
+      <h2 class="newsletter-title">The weekly digest —<br>one email, worth opening.</h2>
+      <p class="newsletter-sub">&ldquo;No scores. No aggregation. Just the conversation worth having.&rdquo;</p>
+      <div class="newsletter-form">
+        <input class="newsletter-input" type="email" placeholder="your@email.com" />
+        <button class="newsletter-btn">Subscribe</button>
+      </div>
+      <p class="newsletter-note">No noise. Unsubscribe whenever. We mean it.</p>
+    </div>
+  </div>
+
+  <!-- ─── FOOTER ─── -->
+  <footer>
+    <div class="footer-logo">Screen<span>Share</span></div>
+    <div class="footer-note">&copy; 2026 Screen Share &middot; A publication for people who care how they watch</div>
+  </footer>
+
+  <script>
+    var heroFilm = {
+      title: 'All We Imagine as Light',
+      year: 2024,
+      backdrop: 'https://image.tmdb.org/t/p/w1280/ilRyazdMJwN3LHZMT9XhUeKRs1.jpg',
+      overview: 'A first-pass issue built around films, criticism, and the cultural conversation around how we watch.'
+    };
+
+    var pulseData = [
+      {
+        type: 'Most Talked About',
+        title: 'All We Imagine as Light',
+        sub: 'Payal Kapadia, 2024 · Cannes Grand Prix winner',
+        poster: 'https://image.tmdb.org/t/p/w185/saHP97rTPS5eLmrLQEcANmKrsFl.jpg',
+        mode: 'sentiment',
+        pct: 87,
+        note: 'A quiet film with an unusually loud afterlife. The discussion is less about plot than about mood, texture, and tenderness.'
+      },
+      {
+        type: 'Most Divisive',
+        title: 'Saltburn',
+        sub: 'Emerald Fennell, 2023 · Still polarising 18 months on',
+        poster: 'https://image.tmdb.org/t/p/w185/qjaqgHBMZJqrJuDuwJTNQbmXHOF.jpg',
+        mode: 'badge',
+        badgeClass: 'divisive-badge',
+        badgeText: 'Critics 79% · Audiences 52%',
+        note: 'A provocation that still splits the room. The disagreement is the content now.'
+      },
+      {
+        type: 'Hidden Gem Resurface',
+        title: 'A Ghost Story',
+        sub: 'David Lowery, 2017 · Back in conversation this week',
+        poster: 'https://image.tmdb.org/t/p/w185/5qAl0HXC6FXtGXJGgfZqNLkm8Fl.jpg',
+        mode: 'badge',
+        badgeClass: 'gem-badge',
+        badgeText: 'Rediscovered',
+        note: 'Time, grief, legacy. The kind of film that keeps getting rediscovered by people who need it at exactly the right moment.'
+      }
+    ];
+
+    var moodData = {
+      unsettled: [
+        { title: 'Parasite', year: 2019, director: 'Bong Joon-ho', poster: 'https://image.tmdb.org/t/p/w342/7IiTTgloJzvGI1TAYymCfbfl3vT.jpg', tag: 'The floor gives way slowly' },
+        { title: 'The Zone of Interest', year: 2023, director: 'Jonathan Glazer', poster: 'https://image.tmdb.org/t/p/w342/hUu9zyZmKuTpOUT4MKky6xsV0lI.jpg', tag: 'Horror at a distance' },
+        { title: 'Caché', year: 2005, director: 'Michael Haneke', poster: 'https://image.tmdb.org/t/p/w342/jT04sWGhEDYRUBe8bPmTPGdgNaW.jpg', tag: 'Someone is watching' }
+      ],
+      devastated: [
+        { title: 'Burning', year: 2018, director: 'Lee Chang-dong', poster: 'https://image.tmdb.org/t/p/w342/7ICEKETsR8Bsb2SBHM8cRlqnZWk.jpg', tag: 'Grief without a name' },
+        { title: 'Manchester by the Sea', year: 2016, director: 'Kenneth Lonergan', poster: 'https://image.tmdb.org/t/p/w342/o0nTRrFRFuZfCLBX8kXUCXFxGi4.jpg', tag: 'Some things do not heal' },
+        { title: 'Portrait of a Lady on Fire', year: 2019, director: 'Céline Sciamma', poster: 'https://image.tmdb.org/t/p/w342/3YFiNGnlNYoMJaEBBTOOl5KPGSA.jpg', tag: 'Remember us looking' }
+      ],
+      rewired: [
+        { title: 'Annihilation', year: 2018, director: 'Alex Garland', poster: 'https://image.tmdb.org/t/p/w342/hFhCnJLBL2F1sUBVOPg0lUuiBFr.jpg', tag: 'Self-destruction by another name' },
+        { title: 'Under the Skin', year: 2013, director: 'Jonathan Glazer', poster: 'https://image.tmdb.org/t/p/w342/5aqzEqRmwjpVv3AqkDifBNhJwi5.jpg', tag: 'What is a body?' },
+        { title: 'Enemy', year: 2013, director: 'Denis Villeneuve', poster: 'https://image.tmdb.org/t/p/w342/nV41DI4liZXSp3sNmhpO2WrZb3O.jpg', tag: 'You are not who you think you are' }
+      ],
+      hopeful: [
+        { title: 'Sorry to Bother You', year: 2018, director: 'Boots Riley', poster: 'https://image.tmdb.org/t/p/w342/qzPB0hxe38iFshG5fDqMobFPUGq.jpg', tag: 'Furious, and still swinging' },
+        { title: 'Beasts of the Southern Wild', year: 2012, director: 'Benh Zeitlin', poster: 'https://image.tmdb.org/t/p/w342/cX56JsRDhT6iHJOFxR8sclZ3SzL.jpg', tag: 'The world is ending. Hold on.' },
+        { title: 'Selma', year: 2014, director: 'Ava DuVernay', poster: 'https://image.tmdb.org/t/p/w342/9A76UGqHJkAH9JXE8dqrCzKbp2H.jpg', tag: 'The march never really ended' }
+      ],
+      strange: [
+        { title: 'Holy Motors', year: 2012, director: 'Leos Carax', poster: 'https://image.tmdb.org/t/p/w342/wEapMvHDLYmniJxeD7cXHjJVR9e.jpg', tag: 'Cinema dreaming about itself' },
+        { title: 'The Lobster', year: 2015, director: 'Yorgos Lanthimos', poster: 'https://image.tmdb.org/t/p/w342/4CD4GGxZBa43tNHRb2QkNpAWFEL.jpg', tag: 'Love as compliance' },
+        { title: 'Lost Highway', year: 1997, director: 'David Lynch', poster: 'https://image.tmdb.org/t/p/w342/g8JjA3EXr3BVHkH9gnX4Ll9vHHD.jpg', tag: 'The road doubles back' }
+      ],
+      edge: [
+        { title: 'No Country for Old Men', year: 2007, director: 'Coen Brothers', poster: 'https://image.tmdb.org/t/p/w342/6d5XHFiMsKtCMCPMBVp2dKEnfbl.jpg', tag: 'Fate does not negotiate' },
+        { title: 'Uncut Gems', year: 2019, director: 'Safdie Brothers', poster: 'https://image.tmdb.org/t/p/w342/lBuzvMb0MxValuDpxCTFGMUvbqe.jpg', tag: 'Anxiety as cinema' },
+        { title: 'Prisoners', year: 2013, director: 'Denis Villeneuve', poster: 'https://image.tmdb.org/t/p/w342/ho3pl3YCOQIHFdN7DJdWONHhY5q.jpg', tag: 'What would you do?' }
+      ],
+      slowburn: [
+        { title: 'The Turin Horse', year: 2011, director: 'Béla Tarr', poster: 'https://image.tmdb.org/t/p/w342/lj5RBVeVQUf5UMzH4E3FqhGKRVV.jpg', tag: 'Entropy made visible' },
+        { title: 'First Reformed', year: 2017, director: 'Paul Schrader', poster: 'https://image.tmdb.org/t/p/w342/pUEq2xABJ6wlKMFgR25C7TuZh3I.jpg', tag: 'Faith at the breaking point' },
+        { title: 'Certified Copy', year: 2010, director: 'Abbas Kiarostami', poster: 'https://image.tmdb.org/t/p/w342/6Hk8HiIxqhS3X3jKkY1T73pXtk6.jpg', tag: 'Are they strangers or not?' }
+      ]
+    };
+
+    function renderHero() {
+      var backdrop = document.getElementById('heroBackdrop');
+      backdrop.style.backgroundImage = 'url(' + heroFilm.backdrop + ')';
+      document.getElementById('heroTitle').textContent = heroFilm.title;
+      document.getElementById('heroTagline').textContent = heroFilm.overview;
+      var meta = document.getElementById('heroFilmMeta');
+      meta.innerHTML = '';
+      var labelSpan = document.createElement('span');
+      labelSpan.textContent = 'Film: ';
+      var filmSpan = document.createElement('span');
+      filmSpan.textContent = heroFilm.title + ' (' + heroFilm.year + ')';
+      meta.appendChild(labelSpan);
+      meta.appendChild(filmSpan);
+    }
+
+    function renderPulse() {
+      var grid = document.getElementById('pulseGrid');
+      grid.innerHTML = '';
+      pulseData.forEach(function(item) {
+        var card = document.createElement('div');
+        card.className = 'pulse-card';
+        var html = '' +
+          '<div class="pulse-card-type">' + item.type + '</div>' +
+          '<div class="pulse-card-film">' +
+            '<img class="pulse-card-poster" src="' + item.poster + '" alt="' + item.title + '" />' +
+            '<div class="pulse-card-film-info">' +
+              '<div class="pulse-card-title">' + item.title + '</div>' +
+              '<div class="pulse-card-sub">' + item.sub + '</div>' +
+            '</div>' +
+          '</div>';
+        if (item.mode === 'sentiment') {
+          html += '' +
+            '<div class="sentiment-bar-wrap">' +
+              '<div class="sentiment-bar-label"><span>Audience sentiment</span><span>' + item.pct + '% positive</span></div>' +
+              '<div class="sentiment-bar-track"><div class="sentiment-bar-fill" style="width:' + item.pct + '%"></div></div>' +
+            '</div>';
+        } else {
+          html += '<span class="' + item.badgeClass + '">' + item.badgeText + '</span>';
+        }
+        html += '<p class="pulse-card-sub" style="margin-top:0.75rem">' + item.note + '</p>';
+        card.innerHTML = html;
+        grid.appendChild(card);
+      });
+    }
+
+    function renderMoodFilms(mood) {
+      var films = moodData[mood] || moodData.unsettled;
+      var container = document.getElementById('moodFilms');
+      container.innerHTML = '';
+      films.forEach(function(film) {
+        var card = document.createElement('div');
+        card.className = 'film-card';
+        card.innerHTML =
+          '<img class="film-card-poster" src="' + film.poster + '" alt="' + film.title + '" />' +
+          '<div class="film-card-body">' +
+            '<div class="film-card-title">' + film.title + '</div>' +
+            '<div class="film-card-year">' + film.year + ' · ' + film.director + '</div>' +
+            '<div class="film-card-mood-tag">' + film.tag + '</div>' +
+          '</div>';
+        container.appendChild(card);
+      });
+    }
+
+    renderHero();
+    renderPulse();
+    renderMoodFilms('unsettled');
+
+    var chips = document.querySelectorAll('.mood-chip');
+    chips.forEach(function(chip) {
+      chip.addEventListener('click', function() {
+        chips.forEach(function(c) { c.classList.remove('active'); });
+        chip.classList.add('active');
+        renderMoodFilms(chip.getAttribute('data-mood'));
+      });
+    });
+
+    var revealObserver = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.reveal').forEach(function(el) {
+      revealObserver.observe(el);
+    });
+
+    document.querySelector('.newsletter-btn').addEventListener('click', function() {
+      var input = document.querySelector('.newsletter-input');
+      if (input.value && input.value.indexOf('@') !== -1) {
+        input.value = '';
+        input.placeholder = 'You're in. See you Friday.';
+        this.textContent = '✓';
+        this.style.background = '#4ade80';
+      }
+    });
+  </script>
+</body>
+</html>
