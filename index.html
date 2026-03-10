@@ -1132,7 +1132,7 @@
 
   <script>
     var heroFilm = {
-      title: 'The Films That Found You',
+      title: 'All We Imagine as Light',
       year: 2024,
       backdrop: null,
       overview: 'A new publication for people who care how they watch. Issue 001.'
@@ -1141,7 +1141,7 @@
     var pulseData = [
       {
         type: 'Most Talked About',
-        title: 'The Films That Found You',
+        title: 'All We Imagine as Light',
         sub: 'Payal Kapadia, 2024 · Cannes Grand Prix winner',
         poster: null,
         tone: 'amber',
@@ -1235,9 +1235,10 @@
     function renderHero() {
       var backdrop = document.getElementById('heroBackdrop');
       backdrop.style.backgroundImage = [
-        'radial-gradient(ellipse at 30% 50%, rgba(214,179,106,0.13) 0%, transparent 55%)',
-        'radial-gradient(ellipse at 80% 20%, rgba(139,92,246,0.07) 0%, transparent 50%)',
-        'linear-gradient(160deg, rgba(18,14,30,0.97) 0%, rgba(12,12,20,0.95) 40%, rgba(8,8,16,1) 100%)'
+        'radial-gradient(ellipse at 25% 60%, rgba(214,179,106,0.22) 0%, transparent 50%)',
+        'radial-gradient(ellipse at 75% 25%, rgba(139,92,246,0.14) 0%, transparent 45%)',
+        'radial-gradient(ellipse at 50% 100%, rgba(10,8,20,0.9) 0%, transparent 60%)',
+        'linear-gradient(160deg, rgba(28,20,48,0.92) 0%, rgba(18,15,32,0.88) 40%, rgba(10,8,20,0.95) 100%)'
       ].join(', ');
       document.getElementById('heroTitle').textContent = heroFilm.title;
       document.getElementById('heroTagline').textContent = heroFilm.overview;
