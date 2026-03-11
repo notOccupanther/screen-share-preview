@@ -365,10 +365,27 @@
 
     /* ON SCREEN TV */
     .tv-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 2rem; }
+    .tv-card-img {
+      width: 100%; aspect-ratio: 16/9; object-fit: cover; display: block;
+      filter: brightness(0.72) saturate(0.75); transition: filter 0.4s;
+    }
+    .tv-card:hover .tv-card-img { filter: brightness(0.88) saturate(0.9); }
+    .tv-card-img-wrap {
+      position: relative; overflow: hidden; margin: -1px -1px 0;
+    }
+    .tv-card-img-wrap::after {
+      content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 55%;
+      background: linear-gradient(to bottom, transparent, var(--surface));
+      pointer-events: none;
+    }
     .tv-card {
       background: var(--surface); border: 1px solid var(--border); border-top: 3px solid var(--border);
-      padding: 1.75rem; transition: border-color 0.2s, transform 0.2s;
+      padding: 0; overflow: hidden; transition: border-color 0.2s, transform 0.2s;
     }
+    .tv-card-meta { padding: 1.25rem 1.5rem 0; }
+    .tv-card-title { padding: 0 1.5rem; }
+    .tv-card-score { padding: 0 1.5rem; }
+    .tv-card-body { padding: 0 1.5rem 1.5rem; }
     .tv-card:hover { transform: translateY(-2px); }
     /* Tier colour profiles */
     .tv-card.now     { border-top-color: #f59e0b; }
@@ -961,6 +978,7 @@
 
     <div class="tv-grid reveal">
       <div class="tv-card now">
+        <div class="tv-card-img-wrap"><img class="tv-card-img" src="https://image.tmdb.org/t/p/w780/q1z0W19F4T5Xs2qka3xJSmFjv9a.jpg" alt="" loading="lazy" /></div>
         <div class="tv-card-meta">Max (HBO) &middot; US &middot; Season 2</div>
         <div class="tv-card-title">The Pitt</div>
         <div class="tv-card-score">92 Metacritic &mdash; Universal Acclaim</div>
@@ -972,6 +990,7 @@
         </div>
       </div>
       <div class="tv-card now">
+        <div class="tv-card-img-wrap"><img class="tv-card-img" src="https://image.tmdb.org/t/p/w780/xN7mu9YB74dyB4z4vyROkffDuVo.jpg" alt="" loading="lazy" /></div>
         <div class="tv-card-meta">BBC One (UK) / BritBox (US) &middot; Sally Wainwright</div>
         <div class="tv-card-title">Riot Women</div>
         <div class="tv-card-score">82 Metacritic &middot; 92% RT</div>
@@ -983,6 +1002,7 @@
         </div>
       </div>
       <div class="tv-card now">
+        <div class="tv-card-img-wrap"><img class="tv-card-img" src="https://image.tmdb.org/t/p/w780/oHnlulBoE3XbI3HIYWY0dZfh5RH.jpg" alt="" loading="lazy" /></div>
         <div class="tv-card-meta">Prime Video &middot; Nicole Kidman &middot; Premiered March 11</div>
         <div class="tv-card-title">Scarpetta</div>
         <div class="tv-card-score">Season 1 &mdash; First reviews landing now</div>
@@ -994,6 +1014,7 @@
         </div>
       </div>
       <div class="tv-card now">
+        <div class="tv-card-img-wrap"><img class="tv-card-img" src="https://image.tmdb.org/t/p/w780/rCTLaPwuApDx8vLGjYZ9pRl7zRB.jpg" alt="" loading="lazy" /></div>
         <div class="tv-card-meta">HBO / Max &middot; Mike White &middot; Set in Thailand</div>
         <div class="tv-card-title">The White Lotus, Season 3</div>
         <div class="tv-card-score">Airing now &mdash; Weekly &middot; 88 Metacritic</div>
@@ -1011,6 +1032,7 @@
 
     <div class="tv-grid reveal">
       <div class="tv-card horizon">
+        <div class="tv-card-img-wrap"><img class="tv-card-img" src="https://image.tmdb.org/t/p/w780/czffzEgaBko4mXW84B1J1EnQBzo.jpg" alt="" loading="lazy" /></div>
         <div class="tv-card-meta">Prime Video &middot; Final Season &middot; April 8</div>
         <div class="tv-card-title">The Boys, Season 5</div>
         <div class="tv-card-score">Weekly through May 20 &mdash; Two-episode premiere</div>
@@ -1022,6 +1044,7 @@
         </div>
       </div>
       <div class="tv-card horizon">
+        <div class="tv-card-img-wrap"><img class="tv-card-img" src="https://image.tmdb.org/t/p/w780/kCGwvjpqM1owt9kI4pkYPJWJLvc.jpg" alt="" loading="lazy" /></div>
         <div class="tv-card-meta">Disney+ &middot; April 2026 &middot; All episodes</div>
         <div class="tv-card-title">Andor, Season 2</div>
         <div class="tv-card-score">Final season &mdash; Most anticipated return of the year</div>
@@ -1033,6 +1056,7 @@
         </div>
       </div>
       <div class="tv-card horizon">
+        <div class="tv-card-img-wrap"><img class="tv-card-img" src="https://image.tmdb.org/t/p/w780/lBoHzOgft2QfpjkVVvZCqeM4ttT.jpg" alt="" loading="lazy" /></div>
         <div class="tv-card-meta">HBO / Max &middot; 2026 &middot; Dune prequel series</div>
         <div class="tv-card-title">Dune: Prophecy, Season 2</div>
         <div class="tv-card-score">Confirmed 2026 &mdash; Date TBC</div>
@@ -1045,6 +1069,7 @@
         </div>
       </div>
       <div class="tv-card horizon">
+        <div class="tv-card-img-wrap"><img class="tv-card-img" src="https://image.tmdb.org/t/p/w780/dzq83RHwQcnP6WGJ6YkenIqeaa5.jpg" alt="" loading="lazy" /></div>
         <div class="tv-card-meta">Netflix &middot; 2026 &middot; Cillian Murphy returns</div>
         <div class="tv-card-title">Peaky Blinders: The Film</div>
         <div class="tv-card-score">Release date TBC &mdash; Final chapter of the Shelby story</div>
@@ -1062,6 +1087,7 @@
 
     <div class="tv-grid reveal">
       <div class="tv-card radar">
+        <div class="tv-card-img-wrap"><img class="tv-card-img" src="https://image.tmdb.org/t/p/w780/uNvpN37f9HbvsDBQFhHU5m2EnVo.jpg" alt="" loading="lazy" /></div>
         <div class="tv-card-meta">AMC+ &middot; Streaming Now &middot; Seasons 1&ndash;3 &middot; Tony Hillerman adaptation</div>
         <div class="tv-card-title">Dark Winds</div>
         <div class="tv-card-score">73 Metacritic &mdash; Criminally underseen</div>
@@ -1074,6 +1100,7 @@
         </div>
       </div>
       <div class="tv-card radar">
+        <div class="tv-card-img-wrap"><img class="tv-card-img" src="https://image.tmdb.org/t/p/w780/6yrbWzzrPp7pwz6zHdifspJk8t3.jpg" alt="" loading="lazy" /></div>
         <div class="tv-card-meta">MHz Choice &middot; Streaming Now &middot; Seasons 1 &amp; 2 &middot; Belgian/Flemish</div>
         <div class="tv-card-title">Chantal</div>
         <div class="tv-card-score">Voted MHz subscriber top 10 of 2025 &mdash; Dutch with subtitles</div>
