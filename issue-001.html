@@ -336,17 +336,31 @@
 
     /* WEEKLY PULSE */
     .pulse-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+    .pulse-card-img {
+      width: 100%; aspect-ratio: 16/9; object-fit: cover; display: block;
+      filter: brightness(0.75) saturate(0.8);
+      transition: filter 0.4s;
+    }
+    .pulse-card:hover .pulse-card-img { filter: brightness(0.88) saturate(0.9); }
+    .pulse-card-img-wrap {
+      position: relative; overflow: hidden;
+    }
+    .pulse-card-img-wrap::after {
+      content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 60%;
+      background: linear-gradient(to bottom, transparent, var(--surface));
+      pointer-events: none;
+    }
     .pulse-card {
-      background: var(--surface); border: 1px solid var(--border); padding: 1.75rem;
-      transition: border-color 0.2s, transform 0.2s;
+      background: var(--surface); border: 1px solid var(--border); padding: 0;
+      overflow: hidden; transition: border-color 0.2s, transform 0.2s;
     }
     .pulse-card:hover { border-color: rgba(255,255,255,0.1); transform: translateY(-2px); }
-    .pulse-card-type { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-dim); margin-bottom: 1rem; }
-    .pulse-card-title { font-size: 1rem; font-weight: 600; color: #fff; margin-bottom: 0.3rem; line-height: 1.25; font-family: 'Playfair Display', serif; }
-    .pulse-card-sub { font-size: 0.82rem; color: var(--text-muted); line-height: 1.5; }
-    .pulse-card-body { font-size: 0.9rem; line-height: 1.7; color: rgba(232,232,237,0.72); font-weight: 300; margin-top: 1rem; }
-    .divisive-badge { display: inline-block; font-size: 0.65rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.2rem 0.55rem; background: rgba(220,38,38,0.12); color: #f87171; margin-top: 0.75rem; }
-    .gem-badge { display: inline-block; font-size: 0.65rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.2rem 0.55rem; background: var(--gold-dim); color: var(--gold); margin-top: 0.75rem; }
+    .pulse-card-type { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-dim); margin-bottom: 1rem; padding: 1.25rem 1.75rem 0; }
+    .pulse-card-title { font-size: 1rem; font-weight: 600; color: #fff; margin-bottom: 0.3rem; line-height: 1.25; font-family: 'Playfair Display', serif; padding: 0 1.75rem; }
+    .pulse-card-sub { font-size: 0.82rem; color: var(--text-muted); line-height: 1.5; padding: 0 1.75rem; }
+    .pulse-card-body { font-size: 0.9rem; line-height: 1.7; color: rgba(232,232,237,0.72); font-weight: 300; margin-top: 1rem; padding: 0 1.75rem 1.75rem; }
+    .divisive-badge { display: inline-block; font-size: 0.65rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.2rem 0.55rem; background: rgba(220,38,38,0.12); color: #f87171; margin: 0.75rem 1.75rem 0; }
+    .gem-badge { display: inline-block; font-size: 0.65rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.2rem 0.55rem; background: var(--gold-dim); color: var(--gold); margin: 0.75rem 1.75rem 0; }
     .horizon-badge { display: inline-block; font-size: 0.65rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.2rem 0.55rem; background: rgba(139,92,246,0.12); color: #a78bfa; margin-top: 0.75rem; }
 
     /* ON SCREEN TV */
@@ -873,6 +887,9 @@
     <div class="pulse-grid reveal">
 
       <div class="pulse-card">
+        <div class="pulse-card-img-wrap">
+          <img class="pulse-card-img" src="https://image.tmdb.org/t/p/w780/fK5ssgvtI43z19FoWigdlqgpLRE.jpg" alt="" loading="lazy" />
+        </div>
         <div class="pulse-card-type">Most Talked About</div>
         <div class="pulse-card-title">Hoppers</div>
         <div class="pulse-card-sub">Daniel Chong / Pixar, 2026</div>
@@ -886,6 +903,9 @@
       </div>
 
       <div class="pulse-card">
+        <div class="pulse-card-img-wrap">
+          <img class="pulse-card-img" src="https://image.tmdb.org/t/p/w780/qDwD5fmYjPkSjBwseajrg2T2Hhp.jpg" alt="" loading="lazy" />
+        </div>
         <div class="pulse-card-type">Most Divisive</div>
         <div class="pulse-card-title">The Bride!</div>
         <div class="pulse-card-sub">Maggie Gyllenhaal, 2026</div>
@@ -900,6 +920,9 @@
       </div>
 
       <div class="pulse-card">
+        <div class="pulse-card-img-wrap">
+          <img class="pulse-card-img" src="https://image.tmdb.org/t/p/w780/gJbTXKNTL6O7r7PzF6ZRkJGBlPp.jpg" alt="" loading="lazy" />
+        </div>
         <div class="pulse-card-type">Hidden Gem &mdash; Opens This Week</div>
         <div class="pulse-card-title">Undertone</div>
         <div class="pulse-card-sub">Ian Tuason / A24, 2026</div>
@@ -911,7 +934,7 @@
           the algorithm spoils the ending.
         </div>
         <span class="gem-badge">Opens March 13</span>
-        <div style="margin-top:1rem; padding-top:1rem; border-top:1px solid var(--border); font-size:0.8rem; color:var(--text-dim);">
+        <div style="margin:1rem 1.75rem 1.75rem; padding-top:1rem; border-top:1px solid var(--border); font-size:0.8rem; color:var(--text-dim);">
           <strong style="color:var(--text-muted);">On the horizon:</strong> Project Hail Mary opens March 20. The most directly on-theme film of the season. More next week.
         </div>
       </div>
