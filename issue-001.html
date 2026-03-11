@@ -375,6 +375,49 @@
     .film-card-year { font-size: 0.75rem; color: var(--text-dim); }
     .film-card-mood-tag { font-size: 0.68rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold); margin-top: 0.5rem; }
 
+    /* MOOD VOTE WIDGET */
+    .mood-vote {
+      background: var(--surface); border: 1px solid var(--border);
+      padding: 1.75rem; margin-top: 1.25rem;
+    }
+    .mood-vote-prompt {
+      font-size: 0.72rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--text-dim); margin-bottom: 1.1rem;
+    }
+    .mood-vote-btns { display: flex; flex-direction: column; gap: 0.5rem; margin-bottom: 0; }
+    .mood-vote-btn {
+      padding: 0.7rem 1rem; background: transparent;
+      border: 1px solid var(--border); color: var(--text-muted);
+      font-size: 0.82rem; font-weight: 500; text-align: left; cursor: pointer;
+      font-family: 'Inter', sans-serif; transition: all 0.2s;
+      display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+    }
+    .mood-vote-btn:hover:not(:disabled) { border-color: var(--gold-border); color: var(--text); }
+    .mood-vote-btn.selected { border-color: var(--gold); color: var(--gold); background: var(--gold-dim); }
+    .mood-vote-btn:disabled { cursor: default; opacity: 1; }
+    .mood-vote-btn-year { font-size: 0.72rem; color: var(--text-dim); flex-shrink: 0; }
+
+    .mood-vote-results { margin-top: 1.25rem; display: none; }
+    .mood-vote-results.visible { display: block; }
+    .mood-vote-result-row { margin-bottom: 0.85rem; }
+    .mood-vote-result-header {
+      display: flex; justify-content: space-between; align-items: center;
+      margin-bottom: 0.3rem;
+    }
+    .mood-vote-result-title {
+      font-size: 0.8rem; font-weight: 600; color: var(--text-muted);
+      white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 70%;
+    }
+    .mood-vote-result-title.winner { color: var(--gold); }
+    .mood-vote-result-title.chosen { color: var(--text); }
+    .mood-vote-result-pct { font-size: 0.78rem; font-weight: 700; color: var(--text); flex-shrink: 0; }
+    .mood-vote-result-track { height: 4px; background: rgba(255,255,255,0.06); border-radius: 2px; overflow: hidden; }
+    .mood-vote-result-fill { height: 100%; border-radius: 2px; width: 0; transition: width 0.7s cubic-bezier(0.4,0,0.2,1); }
+    .mood-vote-result-fill.winner { background: var(--gold); }
+    .mood-vote-result-fill.chosen { background: rgba(232,232,237,0.5); }
+    .mood-vote-result-fill.other { background: rgba(255,255,255,0.15); }
+    .mood-vote-total { font-size: 0.7rem; color: var(--text-dim); margin-top: 0.6rem; }
+
     /* FLASHPOINT */
     .flashpoint-card {
       background: var(--surface); border: 1px solid var(--border); border-top: 3px solid var(--crimson);
@@ -698,6 +741,12 @@
     </div>
 
     <div class="mood-films reveal" id="moodFilms"></div>
+
+    <div class="mood-vote reveal" id="moodVote">
+      <div class="mood-vote-prompt">Which would you watch tonight?</div>
+      <div class="mood-vote-btns" id="moodVoteBtns"></div>
+      <div class="mood-vote-results" id="moodVoteResults"></div>
+    </div>
   </section>
 
   <!-- WEEKLY PULSE -->
@@ -1030,6 +1079,109 @@
       ]
     };
 
+    var moodSeeds = {
+      unsettled:  [312, 198, 156],
+      devastated: [287, 163, 241],
+      rewired:    [334, 209, 178],
+      hopeful:    [256, 143, 198],
+      strange:    [224, 312, 178],
+      edge:       [267, 289, 198],
+      slowburn:   [89,  198, 176]
+    };
+
+    function getMoodVoteKey(mood) { return 'ss-001-discover-' + mood; }
+
+    function renderMoodVote(mood) {
+      var films = moodData[mood] || moodData.unsettled;
+      var seeds = moodSeeds[mood] || [200, 150, 100];
+      var savedChoice = localStorage.getItem(getMoodVoteKey(mood));
+      var btnsEl = document.getElementById('moodVoteBtns');
+      var resultsEl = document.getElementById('moodVoteResults');
+
+      // Render buttons
+      btnsEl.innerHTML = '';
+      films.forEach(function(film, i) {
+        var btn = document.createElement('button');
+        btn.className = 'mood-vote-btn' + (savedChoice === String(i) ? ' selected' : '');
+        btn.disabled = !!savedChoice;
+        btn.innerHTML =
+          '<span>' + film.title + '</span>' +
+          '<span class="mood-vote-btn-year">' + film.director + ' \u00b7 ' + film.year + '</span>';
+        if (!savedChoice) {
+          btn.addEventListener('click', (function(idx) {
+            return function() { castMoodVote(mood, idx); };
+          })(i));
+        }
+        btnsEl.appendChild(btn);
+      });
+
+      // Render results if already voted
+      if (savedChoice !== null) {
+        showMoodResults(mood, parseInt(savedChoice, 10));
+      } else {
+        resultsEl.classList.remove('visible');
+        resultsEl.innerHTML = '';
+      }
+    }
+
+    function castMoodVote(mood, choiceIdx) {
+      localStorage.setItem(getMoodVoteKey(mood), String(choiceIdx));
+      renderMoodVote(mood);
+    }
+
+    function showMoodResults(mood, choiceIdx) {
+      var films = moodData[mood] || moodData.unsettled;
+      var seeds = (moodSeeds[mood] || [200, 150, 100]).slice();
+      seeds[choiceIdx] += 1;
+      var total = seeds.reduce(function(a, b) { return a + b; }, 0);
+
+      // Find winner index
+      var winnerIdx = seeds.indexOf(Math.max.apply(null, seeds));
+
+      var resultsEl = document.getElementById('moodVoteResults');
+      resultsEl.innerHTML = '';
+
+      // Sort by votes descending for display
+      var order = [0, 1, 2].sort(function(a, b) { return seeds[b] - seeds[a]; });
+
+      order.forEach(function(i) {
+        var pct = Math.round((seeds[i] / total) * 100);
+        var isWinner = (i === winnerIdx);
+        var isChosen = (i === choiceIdx);
+        var fillClass = isWinner ? 'winner' : (isChosen ? 'chosen' : 'other');
+        var titleClass = isWinner ? 'winner' : (isChosen ? 'chosen' : '');
+
+        var row = document.createElement('div');
+        row.className = 'mood-vote-result-row';
+        row.innerHTML =
+          '<div class="mood-vote-result-header">' +
+            '<span class="mood-vote-result-title ' + titleClass + '">' +
+              (isWinner ? '\u2605 ' : '') + films[i].title +
+              (isChosen ? ' \u2014 your pick' : '') +
+            '</span>' +
+            '<span class="mood-vote-result-pct">' + pct + '%</span>' +
+          '</div>' +
+          '<div class="mood-vote-result-track">' +
+            '<div class="mood-vote-result-fill ' + fillClass + '" data-pct="' + pct + '"></div>' +
+          '</div>';
+        resultsEl.appendChild(row);
+      });
+
+      var totalEl = document.createElement('div');
+      totalEl.className = 'mood-vote-total';
+      totalEl.textContent = total.toLocaleString() + ' readers voted in this mood';
+      resultsEl.appendChild(totalEl);
+
+      resultsEl.classList.add('visible');
+
+      // Animate bars after brief delay
+      setTimeout(function() {
+        resultsEl.querySelectorAll('.mood-vote-result-fill').forEach(function(el) {
+          el.style.width = el.getAttribute('data-pct') + '%';
+        });
+      }, 50);
+    }
+
     function renderMoodFilms(mood) {
       var films = moodData[mood] || moodData.unsettled;
       var container = document.getElementById('moodFilms');
@@ -1049,13 +1201,16 @@
     }
 
     renderMoodFilms('unsettled');
+    renderMoodVote('unsettled');
 
     var chips = document.querySelectorAll('.mood-chip');
     chips.forEach(function(chip) {
       chip.addEventListener('click', function() {
         chips.forEach(function(c) { c.classList.remove('active'); });
         chip.classList.add('active');
-        renderMoodFilms(chip.getAttribute('data-mood'));
+        var mood = chip.getAttribute('data-mood');
+        renderMoodFilms(mood);
+        renderMoodVote(mood);
       });
     });
 
