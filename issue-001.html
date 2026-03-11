@@ -404,6 +404,7 @@
     .film-card-title { font-size: 0.9rem; font-weight: 600; color: var(--text); margin-bottom: 0.25rem; }
     .film-card-year { font-size: 0.75rem; color: var(--text-dim); }
     .film-card-mood-tag { font-size: 0.68rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold); margin-top: 0.5rem; }
+    .film-card-primer { font-size: 0.78rem; line-height: 1.6; color: var(--text-muted); font-weight: 300; margin-top: 0.6rem; padding-top: 0.6rem; border-top: 1px solid var(--border); }
 
     /* MOOD VOTE WIDGET */
     .mood-vote {
@@ -1248,39 +1249,39 @@
   <script>
     var moodData = {
       unsettled: [
-        { title: 'Parasite', year: 2019, director: 'Bong Joon-ho', poster: 'https://image.tmdb.org/t/p/w342/7IiTTgloJzvGI1TAYymCfbfl3vT.jpg', tone: 'amber', tag: 'The floor gives way slowly' },
-        { title: 'The Zone of Interest', year: 2023, director: 'Jonathan Glazer', poster: 'https://image.tmdb.org/t/p/w500/hUu9zyZmDd8VZegKi1iK1Vk0RYS.jpg', tone: 'slate', tag: 'Horror at a distance' },
-        { title: 'Cache', year: 2005, director: 'Michael Haneke', poster: 'https://image.tmdb.org/t/p/w500/vTzjRi0Uhy0tt3Rjw8SARZZJHlX.jpg', tone: 'crimson', tag: 'Someone is watching' }
+        { title: 'Parasite', year: 2019, director: 'Bong Joon-ho', poster: 'https://image.tmdb.org/t/p/w342/7IiTTgloJzvGI1TAYymCfbfl3vT.jpg', tone: 'amber', tag: 'The floor gives way slowly', primer: 'Bong Joon-ho\'s Palme d\'Or winner about class, architecture, and proximity. The film shifts genre three times; the last shift is the one nobody saw coming.' },
+        { title: 'The Zone of Interest', year: 2023, director: 'Jonathan Glazer', poster: 'https://image.tmdb.org/t/p/w500/hUu9zyZmDd8VZegKi1iK1Vk0RYS.jpg', tone: 'slate', tag: 'Horror at a distance', primer: 'Glazer places the Auschwitz commandant\'s family next door to the camp. You never see the horror \u2014 only the sounds, only the normality. The most disturbing film in years.' },
+        { title: 'Caché', year: 2005, director: 'Michael Haneke', poster: 'https://image.tmdb.org/t/p/w500/vTzjRi0Uhy0tt3Rjw8SARZZJHlX.jpg', tone: 'crimson', tag: 'Someone is watching', primer: 'Someone is sending surveillance tapes to a Parisian couple. Haneke never reveals who. The real subject is colonial guilt and the price of not looking.' }
       ],
       devastated: [
-        { title: 'Burning', year: 2018, director: 'Lee Chang-dong', poster: 'https://image.tmdb.org/t/p/w500/hxGv1O2W5SOJTmiBc45CL842mrx.jpg', tone: 'amber', tag: 'Grief without a name' },
-        { title: 'Manchester by the Sea', year: 2016, director: 'Kenneth Lonergan', poster: 'https://image.tmdb.org/t/p/w500/o9VXYOuaJxCEKOxbA86xqtwmqYn.jpg', tone: 'slate', tag: 'Some things do not heal' },
-        { title: 'Portrait of a Lady on Fire', year: 2019, director: 'Celine Sciamma', poster: 'https://image.tmdb.org/t/p/w500/2LquGwEhbg3soxSCs9VNyh5VJd9.jpg', tone: 'amber', tag: 'Remember us looking' }
+        { title: 'Burning', year: 2018, director: 'Lee Chang-dong', poster: 'https://image.tmdb.org/t/p/w500/hxGv1O2W5SOJTmiBc45CL842mrx.jpg', tone: 'amber', tag: 'Grief without a name', primer: 'A young man meets a woman and a stranger who burns things. Based on Murakami. The grief is slow, inexplicable, and total.' },
+        { title: 'Manchester by the Sea', year: 2016, director: 'Kenneth Lonergan', poster: 'https://image.tmdb.org/t/p/w500/o9VXYOuaJxCEKOxbA86xqtwmqYn.jpg', tone: 'slate', tag: 'Some things do not heal', primer: 'Casey Affleck, career-best. A man returns home and finds the past cannot be outrun. Lonergan refuses to redeem the pain \u2014 divisive for that reason, essential for the same.' },
+        { title: 'Portrait of a Lady on Fire', year: 2019, director: 'C\u00e9line Sciamma', poster: 'https://image.tmdb.org/t/p/w500/2LquGwEhbg3soxSCs9VNyh5VJd9.jpg', tone: 'amber', tag: 'Remember us looking', primer: 'A painter is commissioned to secretly portrait a woman who does not consent to sit. About looking, being looked at, and what it costs. Audiences wept. Critics raved.' }
       ],
       rewired: [
-        { title: 'Annihilation', year: 2018, director: 'Alex Garland', poster: 'https://image.tmdb.org/t/p/w500/4YRplSk6BhH6PRuE9gfyw9byUJ6.jpg', tone: 'moss', tag: 'Self-destruction by another name' },
-        { title: 'Under the Skin', year: 2013, director: 'Jonathan Glazer', poster: 'https://image.tmdb.org/t/p/w500/55wmcXJIDYITr7JDijJTdvwSaAv.jpg', tone: 'slate', tag: 'What is a body?' },
-        { title: 'Enemy', year: 2013, director: 'Denis Villeneuve', poster: 'https://image.tmdb.org/t/p/w500/vf40tyDRKZsBmaLsYeopzfFLzLx.jpg', tone: 'crimson', tag: 'You are not who you think you are' }
+        { title: 'Annihilation', year: 2018, director: 'Alex Garland', poster: 'https://image.tmdb.org/t/p/w500/4YRplSk6BhH6PRuE9gfyw9byUJ6.jpg', tone: 'moss', tag: 'Self-destruction by another name', primer: 'Scientists enter a zone where biology has lost its rules. Critics loved it; the studio panicked and buried it. The ending has two readings \u2014 both are correct.' },
+        { title: 'Under the Skin', year: 2013, director: 'Jonathan Glazer', poster: 'https://image.tmdb.org/t/p/w500/55wmcXJIDYITr7JDijJTdvwSaAv.jpg', tone: 'slate', tag: 'What is a body?', primer: 'Scarlett Johansson as an alien hunting men in Glasgow. Shot partly on hidden cameras. Deeply strange, deeply effective. More poem than plot.' },
+        { title: 'Enemy', year: 2013, director: 'Denis Villeneuve', poster: 'https://image.tmdb.org/t/p/w500/vf40tyDRKZsBmaLsYeopzfFLzLx.jpg', tone: 'crimson', tag: 'You are not who you think you are', primer: 'A man finds his exact double. Jake Gyllenhaal. The spiders mean something. You will not agree with your friends about what.' }
       ],
       hopeful: [
-        { title: 'Sorry to Bother You', year: 2018, director: 'Boots Riley', poster: 'https://image.tmdb.org/t/p/w500/peTl1V04E9ppvhgvNmSX0r2ALqO.jpg', tone: 'amber', tag: 'Furious, and still swinging' },
-        { title: 'Beasts of the Southern Wild', year: 2012, director: 'Benh Zeitlin', poster: 'https://image.tmdb.org/t/p/w500/nQJmWekGYlXhezGUb21xFfEfwhH.jpg', tone: 'moss', tag: 'The world is ending. Hold on.' },
-        { title: 'Selma', year: 2014, director: 'Ava DuVernay', poster: 'https://image.tmdb.org/t/p/w500/wq4lhMc4BuOyQqe1ZGzhxLyy3Uk.jpg', tone: 'amber', tag: 'The march never really ended' }
+        { title: 'Sorry to Bother You', year: 2018, director: 'Boots Riley', poster: 'https://image.tmdb.org/t/p/w500/peTl1V04E9ppvhgvNmSX0r2ALqO.jpg', tone: 'amber', tag: 'Furious, and still swinging', primer: 'A Black telemarketer discovers his "white voice" and climbs a ladder he didn\'t know he\'d stepped onto. Furious political satire that becomes something stranger in the third act.' },
+        { title: 'Beasts of the Southern Wild', year: 2012, director: 'Benh Zeitlin', poster: 'https://image.tmdb.org/t/p/w500/nQJmWekGYlXhezGUb21xFfEfwhH.jpg', tone: 'moss', tag: 'The world is ending. Hold on.', primer: 'A six-year-old girl in a flooded Louisiana community holds the world together through will alone. Quvenzhane Wallis. Made for almost nothing; felt like everything.' },
+        { title: 'Selma', year: 2014, director: 'Ava DuVernay', poster: 'https://image.tmdb.org/t/p/w500/wq4lhMc4BuOyQqe1ZGzhxLyy3Uk.jpg', tone: 'amber', tag: 'The march never really ended', primer: 'Ava DuVernay\'s account of the 1965 Selma to Montgomery marches. David Oyelowo as MLK. Stately, precise, and quietly devastating.' }
       ],
       strange: [
-        { title: 'Holy Motors', year: 2012, director: 'Leos Carax', poster: 'https://image.tmdb.org/t/p/w500/4ZuTrrDQhCS9f6KzIX6HfsjjyMd.jpg', tone: 'crimson', tag: 'Cinema dreaming about itself' },
-        { title: 'The Lobster', year: 2015, director: 'Yorgos Lanthimos', poster: 'https://image.tmdb.org/t/p/w500/7Y9ILV1unpW9mLpGcqyGQU72LUy.jpg', tone: 'slate', tag: 'Love as compliance' },
-        { title: 'Lost Highway', year: 1997, director: 'David Lynch', poster: 'https://image.tmdb.org/t/p/w500/fdTtij6H0sX9AzIjUeynh5zbfm7.jpg', tone: 'crimson', tag: 'The road doubles back' }
+        { title: 'Holy Motors', year: 2012, director: 'Leos Carax', poster: 'https://image.tmdb.org/t/p/w500/4ZuTrrDQhCS9f6KzIX6HfsjjyMd.jpg', tone: 'crimson', tag: 'Cinema dreaming about itself', primer: 'Denis Lavant plays a man who plays everyone. A film about performance and what it means to inhabit a body. Either the best or most indulgent film of its year \u2014 depending on the viewer.' },
+        { title: 'The Lobster', year: 2015, director: 'Yorgos Lanthimos', poster: 'https://image.tmdb.org/t/p/w500/7Y9ILV1unpW9mLpGcqyGQU72LUy.jpg', tone: 'slate', tag: 'Love as compliance', primer: 'In this world, single people are given 45 days to find a partner or be turned into an animal of their choice. Lanthimos. Deadpan, merciless, and oddly romantic.' },
+        { title: 'Lost Highway', year: 1997, director: 'David Lynch', poster: 'https://image.tmdb.org/t/p/w500/fdTtij6H0sX9AzIjUeynh5zbfm7.jpg', tone: 'crimson', tag: 'The road doubles back', primer: 'A jazz musician wakes in a prison cell with no memory of how he got there. David Lynch. The dream logic is the point. Resist the urge to resolve it.' }
       ],
       edge: [
-        { title: 'No Country for Old Men', year: 2007, director: 'Coen Brothers', poster: 'https://image.tmdb.org/t/p/w500/6d5XOczc226jECq0LIX0siKtgHR.jpg', tone: 'amber', tag: 'Fate does not negotiate' },
-        { title: 'Uncut Gems', year: 2019, director: 'Safdie Brothers', poster: 'https://image.tmdb.org/t/p/w500/6XN1vxHc7kUSqNWtaQKN45J5x2v.jpg', tone: 'crimson', tag: 'Anxiety as cinema' },
-        { title: 'Prisoners', year: 2013, director: 'Denis Villeneuve', poster: 'https://image.tmdb.org/t/p/w500/jsS3a3ep2KyBVmmiwaz3LvK49b1.jpg', tone: 'slate', tag: 'What would you do?' }
+        { title: 'No Country for Old Men', year: 2007, director: 'Coen Brothers', poster: 'https://image.tmdb.org/t/p/w500/6d5XOczc226jECq0LIX0siKtgHR.jpg', tone: 'amber', tag: 'Fate does not negotiate', primer: 'A hunter finds drug money; something finds him. Javier Bardem\'s Anton Chigurh is the most frightening screen presence in decades. The ending infuriated people \u2014 correctly.' },
+        { title: 'Uncut Gems', year: 2019, director: 'Safdie Brothers', poster: 'https://image.tmdb.org/t/p/w500/6XN1vxHc7kUSqNWtaQKN45J5x2v.jpg', tone: 'crimson', tag: 'Anxiety as cinema', primer: 'Adam Sandler as a jeweller who cannot stop gambling on everything. The Safdies make anxiety a physical sensation. Some found it exhausting \u2014 that was the point.' },
+        { title: 'Prisoners', year: 2013, director: 'Denis Villeneuve', poster: 'https://image.tmdb.org/t/p/w500/jsS3a3ep2KyBVmmiwaz3LvK49b1.jpg', tone: 'slate', tag: 'What would you do?', primer: 'Two daughters go missing. What the fathers do next. Hugh Jackman. A thriller about vigilantism, grief, and moral collapse. Deeply uncomfortable. Impossible to stop watching.' }
       ],
       slowburn: [
-        { title: 'The Turin Horse', year: 2011, director: 'Bela Tarr', poster: 'https://image.tmdb.org/t/p/w500/2kSElneXSKmMsGL55k0CbPGqLbu.jpg', tone: 'slate', tag: 'Entropy made visible' },
-        { title: 'First Reformed', year: 2017, director: 'Paul Schrader', poster: 'https://image.tmdb.org/t/p/w500/8HKA3Hwf8jQWy8TCYWr7C8Wft23.jpg', tone: 'moss', tag: 'Faith at the breaking point' },
-        { title: 'Certified Copy', year: 2010, director: 'Abbas Kiarostami', poster: 'https://image.tmdb.org/t/p/w500/soBvtCR33Gv1j6gXwXOIc3JTlNc.jpg', tone: 'amber', tag: 'Are they strangers or not?' }
+        { title: 'The Turin Horse', year: 2011, director: 'B\u00e9la Tarr', poster: 'https://image.tmdb.org/t/p/w500/2kSElneXSKmMsGL55k0CbPGqLbu.jpg', tone: 'slate', tag: 'Entropy made visible', primer: 'A farmer and his daughter. Six days. The wind never stops. Tarr\'s final film. Punishing, meditative, and strangely beautiful. Not for the restless.' },
+        { title: 'First Reformed', year: 2017, director: 'Paul Schrader', poster: 'https://image.tmdb.org/t/p/w500/8HKA3Hwf8jQWy8TCYWr7C8Wft23.jpg', tone: 'moss', tag: 'Faith at the breaking point', primer: 'Ethan Hawke as a pastor whose faith is failing alongside the world. Slow, precise, and building towards something. The ending divided audiences \u2014 both sides have a case.' },
+        { title: 'Certified Copy', year: 2010, director: 'Abbas Kiarostami', poster: 'https://image.tmdb.org/t/p/w500/soBvtCR33Gv1j6gXwXOIc3JTlNc.jpg', tone: 'amber', tag: 'Are they strangers or not?', primer: 'Are these two people strangers meeting for the first time \u2014 or a couple acting as strangers? Kiarostami never says. Juliette Binoche. The ambiguity is the film.' }
       ]
     };
 
@@ -1399,6 +1400,7 @@
           '<div class="film-card-body">' +
             '<div class="film-card-title">' + film.title + '</div>' +
             '<div class="film-card-year">' + film.year + ' \u00b7 ' + film.director + '</div>' +
+            (film.primer ? '<div class="film-card-primer">' + film.primer + '</div>' : '') +
             '<div class="film-card-mood-tag">' + film.tag + '</div>' +
           '</div>';
         container.appendChild(card);
