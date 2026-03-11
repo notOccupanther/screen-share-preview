@@ -201,6 +201,16 @@
     .hero-scroll-hint span { font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase; writing-mode: vertical-rl; }
     .hero-scroll-line { width: 1px; height: 40px; background: linear-gradient(to bottom, var(--text-muted), transparent); }
 
+    /* EDITOR'S NOTE */
+    .editors-note { padding: 3rem 2.5rem 2rem; max-width: 1200px; margin: 0 auto; }
+    .editors-note-inner { border-left: 2px solid var(--gold); padding: 0 0 0 2rem; max-width: 640px; }
+    .editors-note-label { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 1.25rem; }
+    .editors-note-text { font-size: 1rem; line-height: 1.85; color: rgba(232,232,237,0.78); font-weight: 300; margin-bottom: 0.9rem; font-style: italic; }
+    .editors-note-text em { font-style: normal; color: var(--text); font-weight: 500; }
+    .editors-note-sig { display: flex; align-items: baseline; gap: 0.75rem; margin-top: 1.5rem; }
+    .editors-note-name { font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 700; color: var(--text); }
+    .editors-note-role { font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-dim); }
+
     /* SECTION COMMONS */
     section { padding: 5rem 2.5rem; max-width: 1200px; margin: 0 auto; }
     .section-divider {
@@ -598,6 +608,32 @@
   </section>
 
   <!-- THE REWIND -->
+  <!-- EDITOR'S WELCOME -->
+  <div class="editors-note reveal">
+    <div class="editors-note-inner">
+      <div class="editors-note-label">A note from the editor</div>
+      <p class="editors-note-text">
+        Welcome to Screen Share. This is Issue 001, and its theme is <em>Hello</em> &mdash;
+        first encounters, the moment of contact, what we risk by reaching out. The theme
+        chose itself.
+      </p>
+      <p class="editors-note-text">
+        Screen Share is a weekly publication about film and television. Not reviews, not
+        rankings &mdash; something closer to thinking out loud about what we watch and why
+        it matters. Each issue takes a theme and follows it through everything on our radar
+        that week: archive, argument, new releases, television, industry, craft.
+      </p>
+      <p class="editors-note-text">
+        You&rsquo;re early. We&rsquo;re glad you&rsquo;re here. If any of it
+        resonates &mdash; stay.
+      </p>
+      <div class="editors-note-sig">
+        <span class="editors-note-name">Niall</span>
+        <span class="editors-note-role">Editor, Screen Share</span>
+      </div>
+    </div>
+  </div>
+
   <div class="section-divider"></div>
 
   <section id="rewind">
