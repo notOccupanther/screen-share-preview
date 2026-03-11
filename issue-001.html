@@ -261,6 +261,60 @@
     .argument-camp-label.reading-b { background: rgba(245,158,11,0.12); color: var(--gold); }
     .argument-camp-text { font-size: 0.95rem; line-height: 1.7; color: rgba(232,232,237,0.75); font-weight: 300; }
 
+    /* VOTE WIDGET */
+    .vote-widget {
+      background: var(--surface); border: 1px solid var(--border);
+      padding: 2rem; margin-top: 1.5rem;
+    }
+    .vote-prompt {
+      font-size: 0.72rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--text-dim); margin-bottom: 1.25rem; text-align: center;
+    }
+    .vote-buttons {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; margin-bottom: 1.5rem;
+    }
+    .vote-btn {
+      padding: 0.85rem 1.25rem;
+      background: transparent; border: 1px solid var(--border);
+      color: var(--text-muted); font-size: 0.82rem; font-weight: 600;
+      letter-spacing: 0.06em; text-transform: uppercase; cursor: pointer;
+      font-family: 'Inter', sans-serif;
+      transition: all 0.2s;
+    }
+    .vote-btn:hover:not(:disabled) { border-color: var(--gold); color: var(--text); }
+    .vote-btn.vote-a:hover:not(:disabled) { border-color: #f87171; color: #f87171; }
+    .vote-btn.vote-a.selected { background: rgba(220,38,38,0.15); border-color: #f87171; color: #f87171; }
+    .vote-btn.vote-b.selected { background: var(--gold-dim); border-color: var(--gold); color: var(--gold); }
+    .vote-btn:disabled { cursor: default; opacity: 1; }
+
+    .vote-results { display: none; }
+    .vote-results.visible { display: block; }
+    .vote-result-row { margin-bottom: 1rem; }
+    .vote-result-label {
+      display: flex; justify-content: space-between; align-items: center;
+      margin-bottom: 0.4rem;
+    }
+    .vote-result-name { font-size: 0.75rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; }
+    .vote-result-name.a { color: #f87171; }
+    .vote-result-name.b { color: var(--gold); }
+    .vote-result-pct { font-size: 0.8rem; font-weight: 700; color: var(--text); }
+    .vote-result-track {
+      height: 5px; background: rgba(255,255,255,0.06); border-radius: 3px; overflow: hidden;
+    }
+    .vote-result-fill {
+      height: 100%; border-radius: 3px; width: 0;
+      transition: width 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .vote-result-fill.a { background: linear-gradient(to right, #991b1b, #ef4444); }
+    .vote-result-fill.b { background: linear-gradient(to right, #92400e, var(--gold)); }
+    .vote-count { font-size: 0.72rem; color: var(--text-dim); text-align: center; margin-top: 0.75rem; }
+    .vote-your-choice {
+      display: none; font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--text-dim); text-align: center; margin-top: 0.5rem;
+    }
+    .vote-your-choice.visible { display: block; }
+    .vote-your-choice span { color: var(--text-muted); font-weight: 600; }
+
     /* WEEKLY PULSE */
     .pulse-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
     .pulse-card {
@@ -587,6 +641,33 @@
         </p>
       </div>
     </div>
+
+    <div class="vote-widget reveal" id="voteWidget">
+      <div class="vote-prompt">Where do you stand?</div>
+      <div class="vote-buttons" id="voteButtons">
+        <button class="vote-btn vote-a" id="voteBtnA" onclick="castVote('a')">Reading A &mdash; It&rsquo;s a failure</button>
+        <button class="vote-btn vote-b" id="voteBtnB" onclick="castVote('b')">Reading B &mdash; It&rsquo;s a confession</button>
+      </div>
+      <div class="vote-results" id="voteResults">
+        <div class="vote-result-row">
+          <div class="vote-result-label">
+            <span class="vote-result-name a">Reading A &mdash; Failure</span>
+            <span class="vote-result-pct" id="pctA">0%</span>
+          </div>
+          <div class="vote-result-track"><div class="vote-result-fill a" id="fillA"></div></div>
+        </div>
+        <div class="vote-result-row">
+          <div class="vote-result-label">
+            <span class="vote-result-name b">Reading B &mdash; Confession</span>
+            <span class="vote-result-pct" id="pctB">0%</span>
+          </div>
+          <div class="vote-result-track"><div class="vote-result-fill b" id="fillB"></div></div>
+        </div>
+        <div class="vote-count" id="voteCount"></div>
+        <div class="vote-your-choice" id="voteYourChoice">Your vote: <span id="voteChoiceLabel"></span></div>
+      </div>
+    </div>
+
   </section>
 
   <!-- MOOD-FIRST DISCOVERY -->
@@ -990,6 +1071,50 @@
     document.querySelectorAll('.reveal').forEach(function(el) {
       revealObserver.observe(el);
     });
+
+    // VOTE WIDGET
+    var VOTE_KEY = 'ss-001-argument-vote';
+    var SEED_A = 614;
+    var SEED_B = 431;
+
+    function castVote(choice) {
+      var existing = localStorage.getItem(VOTE_KEY);
+      if (existing) return;
+      localStorage.setItem(VOTE_KEY, choice);
+      showResults(choice);
+    }
+
+    function showResults(userChoice) {
+      var a = SEED_A + (userChoice === 'a' ? 1 : 0);
+      var b = SEED_B + (userChoice === 'b' ? 1 : 0);
+      var total = a + b;
+      var pctA = Math.round((a / total) * 100);
+      var pctB = 100 - pctA;
+
+      document.getElementById('pctA').textContent = pctA + '%';
+      document.getElementById('pctB').textContent = pctB + '%';
+      document.getElementById('voteCount').textContent = total.toLocaleString() + ' votes cast';
+
+      var choiceLabel = document.getElementById('voteChoiceLabel');
+      choiceLabel.textContent = userChoice === 'a' ? 'Reading A' : 'Reading B';
+      document.getElementById('voteYourChoice').classList.add('visible');
+
+      document.getElementById('voteBtnA').classList.toggle('selected', userChoice === 'a');
+      document.getElementById('voteBtnB').classList.toggle('selected', userChoice === 'b');
+      document.getElementById('voteBtnA').disabled = true;
+      document.getElementById('voteBtnB').disabled = true;
+
+      document.getElementById('voteResults').classList.add('visible');
+
+      setTimeout(function() {
+        document.getElementById('fillA').style.width = pctA + '%';
+        document.getElementById('fillB').style.width = pctB + '%';
+      }, 50);
+    }
+
+    // Restore vote on page load
+    var savedVote = localStorage.getItem(VOTE_KEY);
+    if (savedVote) { showResults(savedVote); }
 
     document.querySelectorAll('.section-about-btn').forEach(function(btn) {
       btn.addEventListener('click', function() {
