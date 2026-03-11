@@ -3,7 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Screen Share — The Conversation Worth Having</title>
+  <title>Screen Share — Issue 001: Hello</title>
+  <meta name="description" content="First encounters, the moment of contact, and what we risk by reaching out. Screen Share Issue 001." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,700;0,800;1,700&display=swap" rel="stylesheet" />
@@ -36,7 +37,6 @@
       overflow-x: hidden;
     }
 
-    /* Film grain overlay */
     body::before {
       content: '';
       position: fixed;
@@ -49,18 +49,14 @@
       mix-blend-mode: overlay;
     }
 
-    /* ─── REVEAL (scroll fade) ─── */
     .reveal {
       opacity: 0;
       transform: translateY(18px);
       transition: opacity 0.55s ease, transform 0.55s ease;
     }
-    .reveal.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
 
-    /* ─── NAV ─── */
+    /* NAV */
     nav {
       position: fixed;
       top: 0; left: 0; right: 0;
@@ -74,7 +70,6 @@
       backdrop-filter: blur(16px);
       border-bottom: 1px solid var(--border);
     }
-
     .nav-logo {
       font-family: 'Playfair Display', serif;
       font-size: 1.25rem;
@@ -84,12 +79,7 @@
       text-decoration: none;
     }
     .nav-logo span { color: var(--gold); }
-
-    .nav-links {
-      display: flex;
-      gap: 2rem;
-      list-style: none;
-    }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
     .nav-links a {
       font-size: 0.8rem;
       font-weight: 500;
@@ -101,7 +91,7 @@
     }
     .nav-links a:hover { color: var(--gold); }
 
-    /* ─── HERO ─── */
+    /* HERO */
     .hero {
       position: relative;
       min-height: 100vh;
@@ -109,7 +99,6 @@
       align-items: flex-end;
       overflow: hidden;
     }
-
     .hero-backdrop {
       position: absolute;
       inset: 0;
@@ -120,13 +109,18 @@
     }
     .hero:hover .hero-backdrop { transform: scale(1.0); }
     .hero-grain {
-      position: absolute;
-      inset: 0;
-      z-index: 1;
-      opacity: 0.06;
+      position: absolute; inset: 0; z-index: 1; opacity: 0.06;
       background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
       background-size: 180px 180px;
       pointer-events: none;
+    }
+    .hero-vignette {
+      position: absolute; inset: 0;
+      background: linear-gradient(to bottom, rgba(10,10,15,0.3) 0%, rgba(10,10,15,0.1) 30%, rgba(10,10,15,0.6) 65%, rgba(10,10,15,0.97) 100%);
+    }
+    .hero-vignette-sides {
+      position: absolute; inset: 0;
+      background: linear-gradient(to right, rgba(10,10,15,0.7) 0%, transparent 40%, transparent 60%, rgba(10,10,15,0.4) 100%);
     }
     .hero-issue-badge {
       display: inline-flex;
@@ -143,65 +137,24 @@
       border-radius: 2rem;
       margin-bottom: 1.25rem;
     }
-
-    .hero-vignette {
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(
-        to bottom,
-        rgba(10,10,15,0.3) 0%,
-        rgba(10,10,15,0.1) 30%,
-        rgba(10,10,15,0.6) 65%,
-        rgba(10,10,15,0.97) 100%
-      );
-    }
-    .hero-vignette-sides {
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(
-        to right,
-        rgba(10,10,15,0.7) 0%,
-        transparent 40%,
-        transparent 60%,
-        rgba(10,10,15,0.4) 100%
-      );
-    }
-
     .hero-content {
-      position: relative;
-      z-index: 2;
+      position: relative; z-index: 2;
       width: 100%;
       padding: 2.5rem 2.5rem 4rem;
       max-width: 900px;
     }
-
-    .hero-eyebrow {
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-      margin-bottom: 1.25rem;
-    }
-    .hero-eyebrow-label {
-      font-size: 0.7rem;
+    .hero-eyebrow { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1.25rem; }
+    .hero-eyebrow-label { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); }
+    .hero-eyebrow-date { font-size: 0.7rem; font-weight: 400; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-muted); }
+    .hero-eyebrow-dot { width: 3px; height: 3px; border-radius: 50%; background: var(--text-dim); }
+    .hero-theme-label {
+      font-size: 0.72rem;
       font-weight: 700;
-      letter-spacing: 0.2em;
+      letter-spacing: 0.22em;
       text-transform: uppercase;
-      color: var(--gold);
+      color: rgba(232,232,237,0.4);
+      margin-bottom: 0.5rem;
     }
-    .hero-eyebrow-date {
-      font-size: 0.7rem;
-      font-weight: 400;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--text-muted);
-    }
-    .hero-eyebrow-dot {
-      width: 3px;
-      height: 3px;
-      border-radius: 50%;
-      background: var(--text-dim);
-    }
-
     .hero-title {
       font-family: 'Playfair Display', serif;
       font-size: clamp(2.4rem, 6vw, 4.5rem);
@@ -220,614 +173,201 @@
       margin-bottom: 2rem;
       font-weight: 300;
     }
-    .hero-meta {
-      display: flex;
-      align-items: center;
-      gap: 1.5rem;
-      margin-bottom: 2rem;
-    }
-    .hero-meta-film {
-      font-size: 0.78rem;
-      font-weight: 600;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--text-muted);
-    }
+    .hero-meta { display: flex; align-items: center; gap: 1.5rem; margin-bottom: 2rem; }
+    .hero-meta-film { font-size: 0.78rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); }
     .hero-meta-film span { color: var(--text); }
-
     .btn-primary {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
+      display: inline-flex; align-items: center; gap: 0.5rem;
       padding: 0.75rem 1.75rem;
-      background: var(--gold);
-      color: #0a0a0f;
-      font-size: 0.82rem;
-      font-weight: 700;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      text-decoration: none;
-      border: none;
-      cursor: pointer;
+      background: var(--gold); color: #0a0a0f;
+      font-size: 0.82rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
+      text-decoration: none; border: none; cursor: pointer;
       transition: background 0.2s, transform 0.15s;
     }
     .btn-primary:hover { background: #fbbf24; transform: translateY(-1px); }
-
     .btn-ghost {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
+      display: inline-flex; align-items: center; gap: 0.5rem;
       padding: 0.75rem 1.75rem;
-      background: transparent;
-      color: var(--text);
-      font-size: 0.82rem;
-      font-weight: 600;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      text-decoration: none;
-      border: 1px solid var(--border);
-      cursor: pointer;
+      background: transparent; color: var(--text);
+      font-size: 0.82rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase;
+      text-decoration: none; border: 1px solid var(--border); cursor: pointer;
       transition: border-color 0.2s, color 0.2s;
     }
     .btn-ghost:hover { border-color: var(--gold); color: var(--gold); }
-
     .hero-scroll-hint {
-      position: absolute;
-      bottom: 1.5rem;
-      right: 2.5rem;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 0.4rem;
-      opacity: 0.4;
+      position: absolute; bottom: 1.5rem; right: 2.5rem;
+      display: flex; flex-direction: column; align-items: center; gap: 0.4rem; opacity: 0.4;
     }
-    .hero-scroll-hint span {
-      font-size: 0.6rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      writing-mode: vertical-rl;
-    }
-    .hero-scroll-line {
-      width: 1px;
-      height: 40px;
-      background: linear-gradient(to bottom, var(--text-muted), transparent);
-    }
+    .hero-scroll-hint span { font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase; writing-mode: vertical-rl; }
+    .hero-scroll-line { width: 1px; height: 40px; background: linear-gradient(to bottom, var(--text-muted), transparent); }
 
-    /* ─── SECTION COMMONS ─── */
-    section {
-      padding: 5rem 2.5rem;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-
+    /* SECTION COMMONS */
+    section { padding: 5rem 2.5rem; max-width: 1200px; margin: 0 auto; }
     .section-divider {
-      width: 100%;
-      height: 1px;
+      width: 100%; height: 1px;
       background: linear-gradient(to right, transparent, var(--gold-border), transparent);
-      margin: 0 2.5rem;
-      max-width: 1200px;
+      margin: 0 2.5rem; max-width: 1200px;
     }
-
-    .section-eyebrow {
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-      margin-bottom: 2.5rem;
-    }
+    .section-eyebrow { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 2.5rem; }
     .section-eyebrow-icon { font-size: 1rem; }
-    .section-eyebrow-label {
-      font-size: 0.7rem;
-      font-weight: 700;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--gold);
-    }
-    .section-eyebrow-desc {
-      font-size: 0.78rem;
-      color: var(--text-dim);
-      font-style: italic;
-    }
-    .section-eyebrow-pipe {
-      color: var(--text-dim);
-      font-size: 0.8rem;
-    }
-    .section-title {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(1.6rem, 3.5vw, 2.4rem);
-      font-weight: 700;
-      line-height: 1.2;
-      color: var(--text);
-      margin-bottom: 1.25rem;
-    }
-
-    /* ─── REWIND ─── */
-    .rewind-card {
-      display: grid;
-      grid-template-columns: 200px 1fr;
-      gap: 3rem;
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-left: 3px solid var(--gold);
-      padding: 2.5rem;
-      transition: border-color 0.2s, transform 0.2s;
-    }
-    .rewind-card:hover {
-      border-left-color: var(--gold);
-      border-color: var(--gold-border);
-      transform: translateY(-2px);
-    }
-    .rewind-poster {
-      width: 100%;
-      aspect-ratio: 2/3;
-      object-fit: cover;
-      display: block;
-      filter: saturate(0.85);
-      transition: filter 0.3s;
-    }
-    .rewind-card:hover .rewind-poster { filter: saturate(1); }
-    .rewind-body {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-    }
-    .rewind-year {
-      font-size: 0.72rem;
-      font-weight: 600;
-      letter-spacing: 0.2em;
-      color: var(--gold);
-      text-transform: uppercase;
-      margin-bottom: 0.5rem;
-    }
-    .rewind-film-title {
-      font-family: 'Playfair Display', serif;
-      font-size: 2rem;
-      font-weight: 700;
-      color: #fff;
-      margin-bottom: 1.25rem;
-      line-height: 1.15;
-    }
-    .rewind-text {
-      font-size: 1rem;
-      line-height: 1.75;
-      color: rgba(232,232,237,0.8);
-      margin-bottom: 1.25rem;
-      font-weight: 300;
-    }
-
+    .section-eyebrow-label { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); }
+    .section-eyebrow-desc { font-size: 0.78rem; color: var(--text-dim); font-style: italic; }
+    .section-eyebrow-pipe { color: var(--text-dim); font-size: 0.8rem; }
+    .section-title { font-family: 'Playfair Display', serif; font-size: clamp(1.6rem, 3.5vw, 2.4rem); font-weight: 700; line-height: 1.2; color: var(--text); margin-bottom: 1.25rem; }
     .link-arrow {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.4rem;
-      font-size: 0.82rem;
-      font-weight: 600;
-      letter-spacing: 0.06em;
-      color: var(--gold);
-      text-decoration: none;
-      text-transform: uppercase;
-      transition: gap 0.2s;
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      font-size: 0.82rem; font-weight: 600; letter-spacing: 0.06em; color: var(--gold);
+      text-decoration: none; text-transform: uppercase; transition: gap 0.2s;
     }
     .link-arrow:hover { gap: 0.7rem; }
 
-    /* ─── ARGUMENT ─── */
+    /* REWIND */
+    .rewind-card {
+      display: grid; grid-template-columns: 200px 1fr; gap: 3rem;
+      background: var(--surface); border: 1px solid var(--border); border-left: 3px solid var(--gold);
+      padding: 2.5rem;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .rewind-card:hover { border-left-color: var(--gold); border-color: var(--gold-border); transform: translateY(-2px); }
+    .rewind-poster { width: 100%; aspect-ratio: 2/3; object-fit: cover; display: block; filter: saturate(0.85); transition: filter 0.3s; }
+    .rewind-card:hover .rewind-poster { filter: saturate(1); }
+    .rewind-body { display: flex; flex-direction: column; justify-content: center; }
+    .rewind-year { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.2em; color: var(--gold); text-transform: uppercase; margin-bottom: 0.5rem; }
+    .rewind-film-title { font-family: 'Playfair Display', serif; font-size: 2rem; font-weight: 700; color: #fff; margin-bottom: 1.25rem; line-height: 1.15; }
+    .rewind-text { font-size: 1rem; line-height: 1.75; color: rgba(232,232,237,0.8); margin-bottom: 1.25rem; font-weight: 300; }
+
+    /* ARGUMENT */
     .argument-question {
       font-family: 'Playfair Display', serif;
       font-size: clamp(1.3rem, 2.8vw, 1.9rem);
-      font-weight: 700;
-      font-style: italic;
-      line-height: 1.35;
-      color: #fff;
-      margin-bottom: 2.5rem;
-      padding-left: 1.5rem;
-      border-left: 3px solid var(--crimson);
+      font-weight: 700; font-style: italic; line-height: 1.35; color: #fff;
+      margin-bottom: 2.5rem; padding-left: 1.5rem; border-left: 3px solid var(--crimson);
     }
-    .argument-camps {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1.5rem;
-      margin-bottom: 2rem;
+    .argument-intro {
+      font-size: 1.05rem; line-height: 1.8; color: rgba(232,232,237,0.82);
+      font-weight: 300; margin-bottom: 2.5rem; max-width: 740px;
     }
+    .argument-camps { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 2rem; }
     .argument-camp {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      padding: 1.75rem;
+      background: var(--surface); border: 1px solid var(--border); padding: 1.75rem;
       transition: border-color 0.2s, transform 0.2s;
     }
-    .argument-camp:hover {
-      border-color: rgba(255,255,255,0.12);
-      transform: translateY(-2px);
-    }
+    .argument-camp:hover { border-color: rgba(255,255,255,0.12); transform: translateY(-2px); }
     .argument-camp-label {
-      font-size: 0.65rem;
-      font-weight: 800;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      margin-bottom: 0.9rem;
-      padding: 0.25rem 0.6rem;
-      display: inline-block;
+      font-size: 0.65rem; font-weight: 800; letter-spacing: 0.2em; text-transform: uppercase;
+      margin-bottom: 0.9rem; padding: 0.25rem 0.6rem; display: inline-block;
     }
-    .argument-camp-label.grief { background: rgba(220,38,38,0.15); color: #f87171; }
-    .argument-camp-label.horror { background: rgba(245,158,11,0.12); color: var(--gold); }
-    .argument-camp-text {
-      font-size: 0.95rem;
-      line-height: 1.7;
-      color: rgba(232,232,237,0.75);
-      font-weight: 300;
-    }
-    .argument-cta {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-    }
-    .argument-voter-count {
-      font-size: 0.78rem;
-      color: var(--text-dim);
-    }
+    .argument-camp-label.reading-a { background: rgba(220,38,38,0.15); color: #f87171; }
+    .argument-camp-label.reading-b { background: rgba(245,158,11,0.12); color: var(--gold); }
+    .argument-camp-text { font-size: 0.95rem; line-height: 1.7; color: rgba(232,232,237,0.75); font-weight: 300; }
 
-    /* ─── MOOD ─── */
-    .mood-chips-wrapper {
-      overflow-x: auto;
-      margin-bottom: 2.5rem;
-      padding-bottom: 0.5rem;
-      scrollbar-width: none;
+    /* WEEKLY PULSE */
+    .pulse-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+    .pulse-card {
+      background: var(--surface); border: 1px solid var(--border); padding: 1.75rem;
+      transition: border-color 0.2s, transform 0.2s;
     }
+    .pulse-card:hover { border-color: rgba(255,255,255,0.1); transform: translateY(-2px); }
+    .pulse-card-type { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-dim); margin-bottom: 1rem; }
+    .pulse-card-title { font-size: 1rem; font-weight: 600; color: #fff; margin-bottom: 0.3rem; line-height: 1.25; font-family: 'Playfair Display', serif; }
+    .pulse-card-sub { font-size: 0.82rem; color: var(--text-muted); line-height: 1.5; }
+    .pulse-card-body { font-size: 0.9rem; line-height: 1.7; color: rgba(232,232,237,0.72); font-weight: 300; margin-top: 1rem; }
+    .divisive-badge { display: inline-block; font-size: 0.65rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.2rem 0.55rem; background: rgba(220,38,38,0.12); color: #f87171; margin-top: 0.75rem; }
+    .gem-badge { display: inline-block; font-size: 0.65rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.2rem 0.55rem; background: var(--gold-dim); color: var(--gold); margin-top: 0.75rem; }
+    .horizon-badge { display: inline-block; font-size: 0.65rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.2rem 0.55rem; background: rgba(139,92,246,0.12); color: #a78bfa; margin-top: 0.75rem; }
+
+    /* ON SCREEN TV */
+    .tv-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 2rem; }
+    .tv-card {
+      background: var(--surface); border: 1px solid var(--border); border-top: 2px solid rgba(139,92,246,0.5);
+      padding: 1.75rem; transition: border-color 0.2s, transform 0.2s;
+    }
+    .tv-card:hover { border-color: rgba(139,92,246,0.3); transform: translateY(-2px); }
+    .tv-card-meta { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-dim); margin-bottom: 0.75rem; }
+    .tv-card-title { font-family: 'Playfair Display', serif; font-size: 1.2rem; font-weight: 700; color: #fff; margin-bottom: 0.5rem; line-height: 1.25; }
+    .tv-card-score { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.08em; color: #a78bfa; margin-bottom: 0.75rem; }
+    .tv-card-body { font-size: 0.88rem; line-height: 1.72; color: rgba(232,232,237,0.72); font-weight: 300; }
+    .tv-upcoming { background: var(--surface); border: 1px solid var(--border); padding: 1.5rem 1.75rem; margin-bottom: 1rem; display: flex; align-items: flex-start; gap: 1.25rem; }
+    .tv-upcoming-date { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold); white-space: nowrap; padding-top: 0.15rem; min-width: 80px; }
+    .tv-upcoming-title { font-size: 0.92rem; font-weight: 600; color: var(--text); margin-bottom: 0.25rem; }
+    .tv-upcoming-sub { font-size: 0.8rem; color: var(--text-muted); }
+    .tv-gem { background: var(--surface); border: 1px solid var(--border); border-left: 3px solid var(--gold); padding: 1.5rem 1.75rem; }
+    .tv-gem-label { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.5rem; }
+    .tv-gem-title { font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 700; color: #fff; margin-bottom: 0.4rem; }
+    .tv-gem-body { font-size: 0.85rem; line-height: 1.65; color: rgba(232,232,237,0.65); font-weight: 300; }
+
+    /* MOOD-FIRST DISCOVERY */
+    .mood-chips-wrapper { overflow-x: auto; margin-bottom: 2.5rem; padding-bottom: 0.5rem; scrollbar-width: none; }
     .mood-chips-wrapper::-webkit-scrollbar { display: none; }
-    .mood-chips {
-      display: flex;
-      gap: 0.75rem;
-      width: max-content;
-    }
+    .mood-chips { display: flex; gap: 0.75rem; width: max-content; }
     .mood-chip {
-      display: flex;
-      align-items: center;
-      gap: 0.4rem;
-      padding: 0.55rem 1.1rem;
-      background: var(--surface);
-      border: 1px solid var(--border);
-      color: var(--text-muted);
-      font-size: 0.82rem;
-      font-weight: 500;
-      cursor: pointer;
-      transition: all 0.2s;
-      white-space: nowrap;
-      border-radius: 2px;
-      user-select: none;
+      display: flex; align-items: center; gap: 0.4rem;
+      padding: 0.55rem 1.1rem; background: var(--surface); border: 1px solid var(--border);
+      color: var(--text-muted); font-size: 0.82rem; font-weight: 500; cursor: pointer;
+      transition: all 0.2s; white-space: nowrap; border-radius: 2px; user-select: none;
     }
     .mood-chip:hover { border-color: var(--gold-border); color: var(--text); }
     .mood-chip.active { background: var(--gold-dim); border-color: var(--gold); color: var(--gold); }
-
-    .mood-films {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1.25rem;
-      min-height: 340px;
-    }
-
-    /* ─── FILM CARD (mood + pulse) ─── */
+    .mood-films { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; min-height: 340px; }
     .film-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      overflow: hidden;
-      cursor: pointer;
-      transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.2s;
+      background: var(--surface); border: 1px solid var(--border); overflow: hidden;
+      cursor: pointer; transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.2s;
     }
-    .film-card:hover {
-      border-color: var(--gold-border);
-      transform: translateY(-4px);
-      box-shadow: 0 12px 32px rgba(0,0,0,0.5);
-    }
-    .film-card img {
-      transition: filter 0.3s ease;
-      filter: brightness(0.88);
-    }
-    .film-card:hover img { filter: brightness(1); }
-    .film-card-poster {
-      width: 100%;
-      aspect-ratio: 2/3;
-      object-fit: cover;
-      display: block;
-      transition: filter 0.3s, transform 0.4s;
-    }
-    .film-card:hover .film-card-poster { transform: scale(1.02); }
+    .film-card:hover { border-color: var(--gold-border); transform: translateY(-4px); box-shadow: 0 12px 32px rgba(0,0,0,0.5); }
+    .film-card-poster { width: 100%; aspect-ratio: 2/3; object-fit: cover; display: block; transition: filter 0.3s, transform 0.4s; filter: brightness(0.88); }
+    .film-card:hover .film-card-poster { filter: brightness(1); transform: scale(1.02); }
     .film-card-body { padding: 1rem; }
-    .film-card-title {
-      font-size: 0.9rem;
-      font-weight: 600;
-      color: var(--text);
-      margin-bottom: 0.25rem;
-    }
-    .film-card-year {
-      font-size: 0.75rem;
-      color: var(--text-dim);
-    }
-    .film-card-mood-tag {
-      font-size: 0.68rem;
-      font-weight: 600;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--gold);
-      margin-top: 0.5rem;
-    }
+    .film-card-title { font-size: 0.9rem; font-weight: 600; color: var(--text); margin-bottom: 0.25rem; }
+    .film-card-year { font-size: 0.75rem; color: var(--text-dim); }
+    .film-card-mood-tag { font-size: 0.68rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold); margin-top: 0.5rem; }
 
-    /* ─── WEEKLY PULSE ─── */
-    .pulse-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1.5rem;
-    }
-    .pulse-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      padding: 1.75rem;
+    /* FLASHPOINT */
+    .flashpoint-card {
+      background: var(--surface); border: 1px solid var(--border); border-top: 3px solid var(--crimson);
+      padding: 2.5rem;
+      display: grid; grid-template-columns: 160px 1fr; gap: 2.5rem;
       transition: border-color 0.2s, transform 0.2s;
     }
-    .pulse-card:hover {
-      border-color: rgba(255,255,255,0.1);
-      transform: translateY(-2px);
-    }
-    .pulse-card-type {
-      font-size: 0.65rem;
-      font-weight: 700;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--text-dim);
-      margin-bottom: 1rem;
-    }
-    .pulse-card-film {
-      display: flex;
-      gap: 1rem;
-      margin-bottom: 1.25rem;
-    }
-    .pulse-card-poster {
-      width: 56px;
-      height: 84px;
-      object-fit: cover;
-      flex-shrink: 0;
-      filter: saturate(0.8);
-    }
-    .pulse-card-film-info {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-    }
-    .pulse-card-title {
-      font-size: 0.95rem;
-      font-weight: 600;
-      color: var(--text);
-      margin-bottom: 0.3rem;
-      line-height: 1.3;
-    }
-    .pulse-card-sub {
-      font-size: 0.78rem;
-      color: var(--text-muted);
-      line-height: 1.5;
-    }
-    .sentiment-bar-wrap { margin-top: 1rem; }
-    .sentiment-bar-label {
-      display: flex;
-      justify-content: space-between;
-      font-size: 0.72rem;
-      color: var(--text-dim);
-      margin-bottom: 0.4rem;
-    }
-    .sentiment-bar-label span:last-child { color: #4ade80; }
-    .sentiment-bar-track {
-      height: 4px;
-      background: rgba(255,255,255,0.06);
-      border-radius: 2px;
-      overflow: hidden;
-    }
-    .sentiment-bar-fill {
-      height: 100%;
-      background: linear-gradient(to right, #dc2626, #f59e0b, #4ade80);
-      border-radius: 2px;
-      transition: width 0.6s ease;
-    }
-    .divisive-badge {
-      display: inline-block;
-      font-size: 0.65rem;
-      font-weight: 700;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      padding: 0.2rem 0.55rem;
-      background: rgba(220,38,38,0.12);
-      color: #f87171;
-      margin-top: 0.75rem;
-    }
-    .gem-badge {
-      display: inline-block;
-      font-size: 0.65rem;
-      font-weight: 700;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      padding: 0.2rem 0.55rem;
-      background: var(--gold-dim);
-      color: var(--gold);
-      margin-top: 0.75rem;
-    }
+    .flashpoint-card:hover { border-color: rgba(220,38,38,0.3); transform: translateY(-2px); }
+    .flashpoint-poster { width: 100%; aspect-ratio: 2/3; object-fit: cover; filter: saturate(0.7) brightness(0.8); transition: filter 0.3s; }
+    .flashpoint-card:hover .flashpoint-poster { filter: saturate(0.9) brightness(0.95); }
+    .flashpoint-year { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.2em; color: #f87171; text-transform: uppercase; margin-bottom: 0.5rem; }
+    .flashpoint-title { font-family: 'Playfair Display', serif; font-size: 1.6rem; font-weight: 700; color: #fff; margin-bottom: 1.25rem; line-height: 1.2; }
+    .flashpoint-body { font-size: 0.95rem; line-height: 1.8; color: rgba(232,232,237,0.78); font-weight: 300; margin-bottom: 1.25rem; }
 
-    /* ─── BEHIND THE FRAME ─── */
-    .btf-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      padding: 3rem;
-      display: grid;
-      grid-template-columns: 1fr 280px;
-      gap: 3rem;
-      align-items: center;
-      transition: border-color 0.2s;
-    }
-    .btf-card:hover { border-color: var(--gold-border); }
-    .btf-title {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(1.3rem, 2.5vw, 1.85rem);
-      font-weight: 700;
-      line-height: 1.25;
-      color: #fff;
-      margin-bottom: 1.5rem;
-    }
-    .btf-excerpt {
-      font-size: 1rem;
-      line-height: 1.8;
-      color: rgba(232,232,237,0.7);
-      font-weight: 300;
-      font-style: italic;
-      margin-bottom: 2rem;
-      padding-left: 1.25rem;
-      border-left: 2px solid var(--gold-border);
-    }
-    .btf-image {
-      width: 100%;
-      aspect-ratio: 16/10;
-      object-fit: cover;
-      filter: saturate(0.5) brightness(0.8);
-      transition: filter 0.4s;
-    }
-    .btf-card:hover .btf-image { filter: saturate(0.8) brightness(0.9); }
-
-    /* ─── BEHIND THE CURTAIN ─── */
-    .btc-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1.5rem;
-    }
+    /* BEHIND THE CURTAIN */
+    .btc-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
     .btc-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-top: 2px solid var(--crimson);
-      padding: 2rem;
-      transition: border-color 0.2s, transform 0.2s;
+      background: var(--surface); border: 1px solid var(--border); border-top: 2px solid var(--crimson);
+      padding: 2rem; transition: border-color 0.2s, transform 0.2s;
     }
-    .btc-card:hover {
-      border-color: rgba(220,38,38,0.4);
-      transform: translateY(-2px);
-    }
-    .btc-source {
-      font-size: 0.65rem;
-      font-weight: 700;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--text-dim);
-      margin-bottom: 0.75rem;
-    }
-    .btc-title {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.1rem;
-      font-weight: 700;
-      color: #fff;
-      margin-bottom: 1rem;
-      line-height: 1.3;
-    }
-    .btc-editorial {
-      font-size: 0.9rem;
-      line-height: 1.75;
-      color: rgba(232,232,237,0.7);
-      font-weight: 300;
-      margin-bottom: 1.5rem;
-    }
+    .btc-card:hover { border-color: rgba(220,38,38,0.4); transform: translateY(-2px); }
+    .btc-card.full { grid-column: 1 / -1; }
+    .btc-source { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-dim); margin-bottom: 0.75rem; }
+    .btc-title { font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 700; color: #fff; margin-bottom: 1rem; line-height: 1.3; }
+    .btc-editorial { font-size: 0.9rem; line-height: 1.75; color: rgba(232,232,237,0.7); font-weight: 300; margin-bottom: 1.5rem; }
 
-    /* ─── NEWSLETTER ─── */
+    /* NEWSLETTER */
     .newsletter-section { padding: 4rem 2.5rem; }
-    .newsletter-card {
-      background: var(--surface);
-      border: 1px solid var(--gold-border);
-      padding: 4rem;
-      text-align: center;
-      max-width: 680px;
-      margin: 0 auto;
-    }
-    .newsletter-eyebrow {
-      font-size: 0.7rem;
-      font-weight: 700;
-      letter-spacing: 0.25em;
-      text-transform: uppercase;
-      color: var(--gold);
-      margin-bottom: 1rem;
-    }
-    .newsletter-title {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(1.5rem, 3vw, 2rem);
-      font-weight: 700;
-      color: #fff;
-      margin-bottom: 0.75rem;
-      line-height: 1.25;
-    }
-    .newsletter-sub {
-      font-size: 0.9rem;
-      color: var(--text-muted);
-      font-style: italic;
-      margin-bottom: 2.5rem;
-    }
-    .newsletter-form {
-      display: flex;
-      gap: 0;
-      max-width: 420px;
-      margin: 0 auto 1.5rem;
-    }
-    .newsletter-input {
-      flex: 1;
-      padding: 0.85rem 1.25rem;
-      background: var(--bg);
-      border: 1px solid rgba(255,255,255,0.1);
-      border-right: none;
-      color: var(--text);
-      font-size: 0.88rem;
-      font-family: 'Inter', sans-serif;
-      outline: none;
-      transition: border-color 0.2s;
-    }
+    .newsletter-card { background: var(--surface); border: 1px solid var(--gold-border); padding: 4rem; text-align: center; max-width: 680px; margin: 0 auto; }
+    .newsletter-eyebrow { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.25em; text-transform: uppercase; color: var(--gold); margin-bottom: 1rem; }
+    .newsletter-title { font-family: 'Playfair Display', serif; font-size: clamp(1.5rem, 3vw, 2rem); font-weight: 700; color: #fff; margin-bottom: 0.75rem; line-height: 1.25; }
+    .newsletter-sub { font-size: 0.9rem; color: var(--text-muted); font-style: italic; margin-bottom: 2.5rem; }
+    .newsletter-form { display: flex; gap: 0; max-width: 420px; margin: 0 auto 1.5rem; }
+    .newsletter-input { flex: 1; padding: 0.85rem 1.25rem; background: var(--bg); border: 1px solid rgba(255,255,255,0.1); border-right: none; color: var(--text); font-size: 0.88rem; font-family: 'Inter', sans-serif; outline: none; transition: border-color 0.2s; }
     .newsletter-input::placeholder { color: var(--text-dim); }
     .newsletter-input:focus { border-color: var(--gold-border); }
-    .newsletter-btn {
-      padding: 0.85rem 1.5rem;
-      background: var(--gold);
-      color: #0a0a0f;
-      font-size: 0.8rem;
-      font-weight: 700;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      border: none;
-      cursor: pointer;
-      font-family: 'Inter', sans-serif;
-      transition: background 0.2s;
-    }
+    .newsletter-btn { padding: 0.85rem 1.5rem; background: var(--gold); color: #0a0a0f; font-size: 0.8rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; border: none; cursor: pointer; font-family: 'Inter', sans-serif; transition: background 0.2s; }
     .newsletter-btn:hover { background: #fbbf24; }
     .newsletter-note { font-size: 0.75rem; color: var(--text-dim); }
 
-    /* ─── FOOTER ─── */
-    footer {
-      border-top: 1px solid var(--border);
-      padding: 2rem 2.5rem;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-    .footer-logo {
-      font-family: 'Playfair Display', serif;
-      font-size: 1rem;
-      font-weight: 800;
-      color: var(--text-muted);
-    }
+    /* FOOTER */
+    footer { border-top: 1px solid var(--border); padding: 2rem 2.5rem; display: flex; align-items: center; justify-content: space-between; }
+    .footer-logo { font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 800; color: var(--text-muted); }
     .footer-logo span { color: var(--gold); }
     .footer-note { font-size: 0.72rem; color: var(--text-dim); }
 
-    /* ─── LOADING STATE ─── */
-    .loading-shimmer {
-      background: linear-gradient(90deg, var(--surface) 25%, var(--surface-2) 50%, var(--surface) 75%);
-      background-size: 200% 100%;
-      animation: shimmer 1.4s infinite;
-      border-radius: 2px;
-    }
-    @keyframes shimmer {
-      0% { background-position: 200% 0; }
-      100% { background-position: -200% 0; }
-    }
-    .pulse-placeholder {
-      height: 84px;
-      width: 56px;
-      flex-shrink: 0;
-    }
-
-    /* ─── RESPONSIVE ─── */
+    /* RESPONSIVE */
     @media (max-width: 768px) {
       nav { padding: 0 1.25rem; }
       .nav-links { display: none; }
@@ -839,8 +379,8 @@
       .argument-camps { grid-template-columns: 1fr; }
       .mood-films { grid-template-columns: 1fr 1fr; }
       .pulse-grid { grid-template-columns: 1fr; }
-      .btf-card { grid-template-columns: 1fr; }
-      .btf-image { display: none; }
+      .tv-grid { grid-template-columns: 1fr; }
+      .flashpoint-card { grid-template-columns: 1fr; }
       .btc-grid { grid-template-columns: 1fr; }
       .newsletter-card { padding: 2.5rem 1.5rem; }
       .newsletter-form { flex-direction: column; }
@@ -858,17 +398,17 @@
   <nav>
     <a href="index.html" class="nav-logo">Screen<span>Share</span></a>
     <ul class="nav-links">
-      <li><a href="#rewind">The Rewind</a></li>
-      <li><a href="#argument">The Argument</a></li>
-      <li><a href="#discover">Discover</a></li>
-      <li><a href="#craft">Craft</a></li>
+      <li><a href="#rewind">Rewind</a></li>
+      <li><a href="#argument">Argument</a></li>
+      <li><a href="#pulse">Pulse</a></li>
+      <li><a href="#curtain">Curtain</a></li>
       <li><a href="archive.html">Archive</a></li>
     </ul>
   </nav>
 
-  <!-- ─── HERO ─── -->
+  <!-- HERO -->
   <section class="hero" style="padding:0; max-width:none;" id="heroSection">
-    <div class="hero-backdrop" id="heroBackdrop"></div>
+    <div class="hero-backdrop" style="background-image: url('https://image.tmdb.org/t/p/w1280/r8FD6CC3GgjWaGVkZh00AcedfpA.jpg')"></div>
     <div class="hero-grain"></div>
     <div class="hero-vignette"></div>
     <div class="hero-vignette-sides"></div>
@@ -876,20 +416,21 @@
     <div class="hero-content">
       <div class="hero-issue-badge">Issue 001 &mdash; March 2026</div>
       <div class="hero-eyebrow">
-        <span class="hero-eyebrow-label">This Week on Screen Share</span>
+        <span class="hero-eyebrow-label">Screen Share</span>
         <span class="hero-eyebrow-dot"></span>
-        <span class="hero-eyebrow-date" id="heroDate">Week of 7 March 2026</span>
+        <span class="hero-eyebrow-date">Week of 14 March 2026</span>
       </div>
 
-      <h1 class="hero-title" id="heroTitle">Loading this week's film&hellip;</h1>
-      <p class="hero-tagline" id="heroTagline">&nbsp;</p>
+      <div class="hero-theme-label">This Issue</div>
+      <h1 class="hero-title">Hello.</h1>
+      <p class="hero-tagline">First encounters, the moment of contact, and what we risk by reaching out.</p>
 
       <div class="hero-meta">
-        <span class="hero-meta-film" id="heroFilmMeta">&nbsp;</span>
+        <span class="hero-meta-film">Lead Film: <span>Arrival (2016, Denis Villeneuve)</span></span>
       </div>
 
       <div style="display:flex; gap:1rem; flex-wrap:wrap;">
-        <a href="essay.html" class="btn-primary">Read This Week's Essay &rarr;</a>
+        <a href="#rewind" class="btn-primary">Read This Issue &rarr;</a>
         <a href="archive.html" class="btn-ghost">Browse the Archive</a>
       </div>
     </div>
@@ -900,12 +441,12 @@
     </div>
   </section>
 
-  <!-- ─── THE REWIND ─── -->
+  <!-- THE REWIND -->
   <div class="section-divider"></div>
 
   <section id="rewind">
     <div class="section-eyebrow reveal">
-      <span class="section-eyebrow-icon">🎞️</span>
+      <span class="section-eyebrow-icon">&#9654;</span>
       <span class="section-eyebrow-label">The Rewind</span>
       <span class="section-eyebrow-pipe">|</span>
       <span class="section-eyebrow-desc">A film from the archive that speaks to right now</span>
@@ -914,167 +455,293 @@
     <div class="rewind-card reveal">
       <img
         class="rewind-poster"
-        src="https://image.tmdb.org/t/p/w500/zinwtZqdb7gnc4zMu8dfkK1fMN3.jpg"
-        alt="Three Days of the Condor"
+        src="https://image.tmdb.org/t/p/w500/pgqj7QoBPWFLLKtLEpPmFYFRMgB.jpg"
+        alt="Solaris (1972)"
         onerror="this.style.background='#1a1a22'; this.removeAttribute('src');"
       />
       <div class="rewind-body">
-        <div class="rewind-year">1975 &middot; Sydney Pollack</div>
-        <h2 class="rewind-film-title">Three Days of the Condor</h2>
+        <div class="rewind-year">1972 &middot; Andrei Tarkovsky</div>
+        <h2 class="rewind-film-title">Solaris</h2>
         <p class="rewind-text">
-          Robert Redford plays a CIA reader — a man whose entire job is to consume information and
-          notice patterns — who returns from lunch one afternoon to find everyone he works with
-          shot dead. What follows is a film about institutions that murder to protect themselves,
-          and the impossible choice between exposing the truth and surviving it.
+          Tarkovsky's Solaris opens not in space but in rain &mdash; water moving through tall grass,
+          a dacha going grey in the Russian afternoon. This is deliberate. The film is concerned
+          with interiority before it reaches the cosmos.
         </p>
         <p class="rewind-text">
-          There is a particular exhaustion in this moment: the exhaustion of people who still,
-          despite everything, expected better from the systems built to serve them. Pollack made
-          this film in the long shadow of Watergate. It feels, right now, like he made it
-          last Tuesday.
+          When psychologist Kris Kelvin arrives at the space station orbiting a vast sentient ocean,
+          what he finds is not an alien in any recognisable sense. The ocean communicates by
+          constructing the things you most deeply suppress. His dead wife appears &mdash; solid, warm,
+          and wrong. The film then asks, with terrible patience: if the message is assembled from
+          your own material, is that still contact? Or is it an echo that has learned to look
+          like something else?
         </p>
-        <a href="rewind.html" class="link-arrow">Why This Film, Why Now &rarr;</a>
+        <p class="rewind-text">
+          This is the question sitting beneath Arrival too, though Villeneuve reaches toward
+          connection while Tarkovsky holds his distance. Watch it after Arrival. The gap between
+          the two films is not fifty years. It is the distance between hope and rigour.
+        </p>
       </div>
     </div>
   </section>
 
-  <!-- ─── THE ARGUMENT ─── -->
+  <!-- THE ARGUMENT -->
   <div class="section-divider"></div>
 
   <section id="argument">
     <div class="section-eyebrow reveal">
-      <span class="section-eyebrow-icon">💬</span>
+      <span class="section-eyebrow-icon">&#128172;</span>
       <span class="section-eyebrow-label">The Argument</span>
       <span class="section-eyebrow-pipe">|</span>
-      <span class="section-eyebrow-desc">One question. No verdict. You decide.</span>
+      <span class="section-eyebrow-desc">One question. No verdict.</span>
     </div>
 
     <blockquote class="argument-question reveal">
-      &ldquo;Is <em>Hereditary</em> a grief film disguised as horror, or horror disguised as
-      grief — and does the answer change how you experience it?&rdquo;
+      &ldquo;Is contact cinema&rsquo;s persistent anthropomorphism a failure of imagination &mdash; or the only honest position available to art made by humans?&rdquo;
     </blockquote>
+
+    <p class="argument-intro reveal">
+      There is a flattering story we tell about Arrival: that Denis Villeneuve finally gave us
+      a genuinely alien intelligence, something beyond the usual anthropomorphic shorthand.
+      It is a good story. It is mostly wrong. The heptapods are philosophically elegant,
+      beautifully rendered, and almost entirely in service of one human woman&rsquo;s grief.
+      Their non-linear perception of time is interesting because it maps onto how we experience
+      loss &mdash; not because it escapes human concern. We have upgraded the alien from little
+      green men to something that can carry Bergson and trauma theory. But we have not
+      left the mirror.
+    </p>
 
     <div class="argument-camps reveal">
       <div class="argument-camp">
-        <span class="argument-camp-label grief">Reading: Grief First</span>
+        <span class="argument-camp-label reading-a">Reading A &mdash; Failure</span>
         <p class="argument-camp-text">
-          The supernatural in <em>Hereditary</em> is grief given physical form — the way loss
-          warps a family until they are strangers to each other, speaking different languages
-          in the same house. Paimon is just the name Annie gives to the thing that has lived
-          inside her since childhood: the inherited wound, the mother who never loved her
-          right, the damage passed down not by choice but by blood. The horror is real. But
-          it's the kind that happens in kitchens and bedrooms and at gravesides, and it doesn't
-          need a demon to justify it.
+          The villain here is critical consensus. We keep celebrating films like Arrival for their
+          &ldquo;unprecedented alien intelligence&rdquo; while ignoring that the heptapods are,
+          functionally, a grief-processing tool for one human woman. The tentacles are decorative.
+          We have replaced little green men with something more sophisticated &mdash; but we have
+          not escaped the mirror. We have just given it a more flattering frame.
         </p>
       </div>
       <div class="argument-camp">
-        <span class="argument-camp-label horror">Reading: Horror First</span>
+        <span class="argument-camp-label reading-b">Reading B &mdash; Confession</span>
         <p class="argument-camp-text">
-          Aster constructs an occult conspiracy from the opening frame — the miniature diorama
-          that zooms into the real world, Joan's face at the support group, the cult that was
-          always already there. The grief is the trap, not the point. Read it as a grief film
-          and you'll feel for Annie. Read it as horror and you'll understand she never had a
-          choice, that every decision she thought she made was already made for her — which is,
-          arguably, the far more terrifying film. Sympathy and dread are not the same emotion.
+          The anthropomorphism is not a failure &mdash; it is a confession, and confessions can be
+          honest. Cinema can only render interiority through human cognition. What Arrival actually
+          does is use the alien encounter to make the human strange. Louise does not understand the
+          heptapods; she is changed by the attempt. The mirror is cracked, and the cracks are doing
+          real philosophical work. A film that showed us something truly alien would be unwatchable.
         </p>
       </div>
     </div>
-
-    <div class="argument-cta reveal">
-      <a href="argument.html" class="btn-primary">Join the Argument &rarr;</a>
-      <span class="argument-voter-count">2,847 people weighing in this week</span>
-    </div>
   </section>
 
-  <!-- ─── MOOD-FIRST DISCOVERY ─── -->
+  <!-- MOOD-FIRST DISCOVERY -->
   <div class="section-divider"></div>
 
   <section id="discover">
     <div class="section-eyebrow reveal">
-      <span class="section-eyebrow-icon">🎭</span>
-      <span class="section-eyebrow-label">Mood-First Discovery</span>
+      <span class="section-eyebrow-icon">&#127917;</span>
+      <span class="section-eyebrow-label">Discover</span>
       <span class="section-eyebrow-pipe">|</span>
       <span class="section-eyebrow-desc">Not genre. Emotion.</span>
     </div>
 
     <div class="mood-chips-wrapper reveal">
       <div class="mood-chips" id="moodChips">
-        <button class="mood-chip active" data-mood="unsettled">😶 Unsettled</button>
-        <button class="mood-chip" data-mood="devastated">💔 Quietly Devastated</button>
-        <button class="mood-chip" data-mood="rewired">🤯 Mind Rewired</button>
-        <button class="mood-chip" data-mood="hopeful">😤 Furious but Hopeful</button>
-        <button class="mood-chip" data-mood="strange">🌙 Late Night Strange</button>
-        <button class="mood-chip" data-mood="edge">🔥 Edge of Your Seat</button>
-        <button class="mood-chip" data-mood="slowburn">🧘 Slow Burn</button>
+        <button class="mood-chip active" data-mood="unsettled">Unsettled</button>
+        <button class="mood-chip" data-mood="devastated">Quietly Devastated</button>
+        <button class="mood-chip" data-mood="rewired">Mind Rewired</button>
+        <button class="mood-chip" data-mood="hopeful">Furious but Hopeful</button>
+        <button class="mood-chip" data-mood="strange">Late Night Strange</button>
+        <button class="mood-chip" data-mood="edge">Edge of Your Seat</button>
+        <button class="mood-chip" data-mood="slowburn">Slow Burn</button>
       </div>
     </div>
 
-    <div class="mood-films reveal" id="moodFilms">
-      <!-- Populated by JS -->
-    </div>
+    <div class="mood-films reveal" id="moodFilms"></div>
   </section>
 
-  <!-- ─── WEEKLY PULSE ─── -->
+  <!-- WEEKLY PULSE -->
   <div class="section-divider"></div>
 
-  <section>
+  <section id="pulse">
     <div class="section-eyebrow reveal">
-      <span class="section-eyebrow-icon">📡</span>
+      <span class="section-eyebrow-icon">&#128225;</span>
       <span class="section-eyebrow-label">The Weekly Pulse</span>
       <span class="section-eyebrow-pipe">|</span>
       <span class="section-eyebrow-desc">What the conversation looked like this week</span>
     </div>
 
-    <div class="pulse-grid reveal" id="pulseGrid">
-      <!-- Populated by JS -->
-    </div>
-  </section>
+    <div class="pulse-grid reveal">
 
-  <!-- ─── BEHIND THE FRAME ─── -->
-  <div class="section-divider"></div>
-
-  <section id="craft">
-    <div class="section-eyebrow reveal">
-      <span class="section-eyebrow-icon">🎬</span>
-      <span class="section-eyebrow-label">Behind the Frame</span>
-      <span class="section-eyebrow-pipe">|</span>
-      <span class="section-eyebrow-desc">The craft, up close</span>
-    </div>
-
-    <div class="btf-card reveal">
-      <div>
-        <h2 class="btf-title">
-          Why the final ten minutes of<br><em>There Will Be Blood</em> work —
-          and why most films can't do what PTA did
-        </h2>
-        <blockquote class="btf-excerpt">
-          The bowling alley scene works because Paul Thomas Anderson earns his violence the way a
-          novelist earns a death — through two and a half hours of accumulated pressure. Daniel
-          Plainview has not snapped; he has <em>arrived</em>. Every sermon Eli Sunday ever
-          delivered, every handshake Daniel gave while meaning the opposite, every barrel of oil
-          pulled from beneath someone else's land: it all compounds into that single wooden pin
-          swung in a room that used to mean something to both of them. Anderson understood that
-          great cinema doesn't build to a climax. It builds to a revelation. The horror is not
-          that we are shocked. The horror is that we are not. We have been waiting — without
-          knowing we were waiting — and that is what the best films do to you.
-        </blockquote>
-        <a href="craft.html" class="link-arrow">Read the Full Piece &rarr;</a>
+      <div class="pulse-card">
+        <div class="pulse-card-type">Most Talked About</div>
+        <div class="pulse-card-title">Hoppers</div>
+        <div class="pulse-card-sub">Daniel Chong / Pixar, 2026</div>
+        <div class="pulse-card-body">
+          Pixar&rsquo;s biggest original opening in nearly a decade quieted the studio-in-decline
+          discourse &mdash; at least for now. A woman transfers consciousness into a robo-beaver
+          to communicate with woodland creatures. The premise sounds absurd. The film is warm,
+          funny, and carries a quietly sincere idea at its centre: that genuine contact between
+          two kinds of minds requires total vulnerability from one of them.
+        </div>
       </div>
-      <img
-        class="btf-image"
-        src="https://image.tmdb.org/t/p/w780/9UAKA6ceZi6TgQwTAAMt7DWwYPI.jpg"
-        alt="There Will Be Blood"
-        onerror="this.style.display='none'"
-      />
+
+      <div class="pulse-card">
+        <div class="pulse-card-type">Most Divisive</div>
+        <div class="pulse-card-title">The Bride!</div>
+        <div class="pulse-card-sub">Maggie Gyllenhaal, 2026</div>
+        <div class="pulse-card-body">
+          $7.3M domestic on a reported $150M budget. The critical split is genuine &mdash; not
+          prestige-film noise, but a real argument about whether this is a bold feminist punk
+          statement or an expensive incoherence. The Bride is a being jolted into consciousness,
+          encountering existence without having been consulted. Her first &ldquo;Hello&rdquo;
+          to the world is simultaneously a first &ldquo;No.&rdquo;
+        </div>
+        <span class="divisive-badge">Critics split &mdash; no consensus</span>
+      </div>
+
+      <div class="pulse-card">
+        <div class="pulse-card-type">Hidden Gem &mdash; Opens This Week</div>
+        <div class="pulse-card-title">Undertone</div>
+        <div class="pulse-card-sub">Ian Tuason / A24, 2026</div>
+        <div class="pulse-card-body">
+          A debut feature about a paranormal podcast host who may be summoning an entity through
+          old audio recordings. The encounter is sonic, tentative &mdash; a signal received from
+          somewhere uncertain. Critics are calling it a masterclass in atmosphere built almost
+          entirely through sound design. See it in a cinema with a good speaker system before
+          the algorithm spoils the ending.
+        </div>
+        <span class="gem-badge">Opens March 13</span>
+        <div style="margin-top:1rem; padding-top:1rem; border-top:1px solid var(--border); font-size:0.8rem; color:var(--text-dim);">
+          <strong style="color:var(--text-muted);">On the horizon:</strong> Project Hail Mary opens March 20. The most directly on-theme film of the season. More next week.
+        </div>
+      </div>
+
     </div>
   </section>
 
-  <!-- ─── BEHIND THE CURTAIN ─── -->
+  <!-- ON SCREEN: TV -->
   <div class="section-divider"></div>
 
-  <section>
+  <section id="tv">
     <div class="section-eyebrow reveal">
-      <span class="section-eyebrow-icon">🎭</span>
+      <span class="section-eyebrow-icon">&#128250;</span>
+      <span class="section-eyebrow-label">On Screen</span>
+      <span class="section-eyebrow-pipe">|</span>
+      <span class="section-eyebrow-desc">Television worth your time</span>
+    </div>
+
+    <div class="tv-grid reveal">
+      <div class="tv-card">
+        <div class="tv-card-meta">Max (HBO) &middot; US &middot; Season 2</div>
+        <div class="tv-card-title">The Pitt</div>
+        <div class="tv-card-score">92 Metacritic &mdash; Universal Acclaim</div>
+        <div class="tv-card-body">
+          Each season is a single 15-hour emergency room shift depicted in real time, episode
+          by episode. The format is its argument: medicine as pure encounter &mdash; patients
+          arriving at the threshold, strangers handing each other their worst days. Season 2
+          doubles down on formal rigour without the novelty cushion. Noah Wyle is
+          extraordinary. The best-written American drama currently on air.
+        </div>
+      </div>
+      <div class="tv-card">
+        <div class="tv-card-meta">BBC One (UK) / BritBox (US) &middot; Sally Wainwright</div>
+        <div class="tv-card-title">Riot Women</div>
+        <div class="tv-card-score">82 Metacritic &middot; 92% RT &mdash; Just reached BritBox</div>
+        <div class="tv-card-body">
+          The writer of Happy Valley doing something quieter and stranger: five middle-aged
+          women forming a punk band for a talent contest. What it actually is: a drama about
+          reinvention, about women who arrive at a door they did not know existed. Fierce,
+          funny, and profound. This is the moment to pick it up.
+        </div>
+      </div>
+    </div>
+
+    <h3 style="font-size:0.7rem; font-weight:700; letter-spacing:0.2em; text-transform:uppercase; color:var(--text-dim); margin-bottom:1rem;" class="reveal">Coming Up</h3>
+    <div class="reveal">
+      <div class="tv-upcoming">
+        <div class="tv-upcoming-date">Mar 11</div>
+        <div>
+          <div class="tv-upcoming-title">Scarpetta &mdash; Prime Video</div>
+          <div class="tv-upcoming-sub">Nicole Kidman, Jamie Lee Curtis. After 120 million books and decades of failed adaptations, the first Scarpetta arrives. No reviews at filing. Pedigree is strong.</div>
+        </div>
+      </div>
+      <div class="tv-upcoming">
+        <div class="tv-upcoming-date">Apr 8</div>
+        <div>
+          <div class="tv-upcoming-title">The Boys, Season 5 (Final) &mdash; Prime Video</div>
+          <div class="tv-upcoming-sub">The last of the encounters. Weekly through May 20.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tv-gem reveal" style="margin-top:1.5rem;">
+      <div class="tv-gem-label">Under the Radar</div>
+      <div class="tv-gem-title">Chantal &mdash; MHz Choice (Seasons 1 &amp; 2)</div>
+      <div class="tv-gem-body">
+        Belgian/Flemish crime dramedy in Dutch. Inspector Chantal Vantomme is reassigned to a
+        rural cowboy-themed community in western Flanders &mdash; as strange as it sounds. An
+        arrival into an alien world, the awkward first encounters of someone who never planned
+        to be there. Dryer than most European crime, the atmosphere utterly specific. Voted
+        into the MHz Choice subscriber top 10 of 2025.
+      </div>
+    </div>
+  </section>
+
+  <!-- FLASHPOINT -->
+  <div class="section-divider"></div>
+
+  <section id="flashpoint">
+    <div class="section-eyebrow reveal">
+      <span class="section-eyebrow-icon">&#9889;</span>
+      <span class="section-eyebrow-label">Flashpoint</span>
+      <span class="section-eyebrow-pipe">|</span>
+      <span class="section-eyebrow-desc">The moment something ignited</span>
+    </div>
+
+    <div class="flashpoint-card reveal">
+      <img
+        class="flashpoint-poster"
+        src="https://image.tmdb.org/t/p/w500/eslDNzf0LF1m9GsgUXlmyfTcC6Y.jpg"
+        alt="The Day the Earth Stood Still (1951)"
+        onerror="this.style.background='#1a1a22'; this.removeAttribute('src');"
+      />
+      <div>
+        <div class="flashpoint-year">1951 &middot; Robert Wise</div>
+        <h2 class="flashpoint-title">The Day the Earth Stood Still</h2>
+        <p class="flashpoint-body">
+          In the autumn of 1951, at the height of the McCarthy era, a Hollywood studio released a
+          science fiction film in which an emissary from an advanced civilisation lands in
+          Washington D.C., and is immediately shot.
+        </p>
+        <p class="flashpoint-body">
+          Sam Jaffe, cast as the film&rsquo;s Einstein-like scientist, had already been named in
+          Red Channels &mdash; the blacklist publication &mdash; fifteen months before the film was
+          released. The studio cast him anyway. That decision was not accidental. Screenwriter
+          Edmund H. North had a specific agenda: to argue against nuclear proliferation and for
+          something resembling global governance &mdash; positions that, in 1951, carried professional
+          risk. The film&rsquo;s method was genre. By putting its argument in the mouth of an alien,
+          North and Wise found a way to say things American cinema was not supposed to say.
+        </p>
+        <p class="flashpoint-body">
+          The controversy was not a scandal. It was subtler than that. The film was seen, understood,
+          and discussed. It proved that cinemagoers in the most conformist moment of postwar America
+          were still capable of receiving a dissenting argument &mdash; provided it arrived by spaceship.
+        </p>
+        <p style="font-size:0.82rem; color:var(--text-dim); font-style:italic;">
+          The film entered the US National Film Registry in 1995. What preservation records as legacy,
+          1951 experienced as risk. There is a difference, and it is worth naming.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- BEHIND THE CURTAIN -->
+  <div class="section-divider"></div>
+
+  <section id="curtain">
+    <div class="section-eyebrow reveal">
+      <span class="section-eyebrow-icon">&#127917;</span>
       <span class="section-eyebrow-label">Behind the Curtain</span>
       <span class="section-eyebrow-pipe">|</span>
       <span class="section-eyebrow-desc">Industry news with conscience</span>
@@ -1083,38 +750,76 @@
     <div class="btc-grid reveal">
 
       <div class="btc-card">
-        <div class="btc-source">Hollywood Reporter &middot; March 2026</div>
-        <h3 class="btc-title">Toronto Film Critics Stage Mass Exodus Over Censored Palestine Speech</h3>
+        <div class="btc-source">The Hollywood Reporter &middot; February 2026</div>
+        <h3 class="btc-title">The Writers Guild Is Accused of Union-Busting Its Own Staff</h3>
         <p class="btc-editorial">
-          When the Toronto Film Critics Association muted a member's pro-Palestine remarks
-          mid-speech at their awards ceremony, thirty critics walked out. It's a reminder that
-          the politics of whose voice gets amplified — and whose gets cut — don't stop at the
-          cinema door.
+          In February 2026, the Writers Guild Staff Union &mdash; over 100 workers in legal,
+          communications, residuals, and other departments &mdash; walked out against the WGA West,
+          the very organisation that spent 2023 telling the world that writers deserved dignity,
+          transparency, and fair labour practices. The staff union alleges surveillance of union
+          activity, termination of union supporters, and bad-faith bargaining across 19 sessions
+          that produced no contract. The WGA Awards ceremony was cancelled because the WGA West
+          would not ask its own members to cross a picket line. This landed one week before the
+          WGA began its 2026 negotiations with studios.
         </p>
-        <a href="https://www.hollywoodreporter.com/movies/movie-news/toronto-film-critics-mass-exodus-pro-palestine-speech-censored-1236522591/" class="link-arrow" target="_blank" rel="noopener">Read the full story &rarr;</a>
+        <p class="btc-editorial">
+          The interesting question is structural, not just ironic: unions are worker-advocacy
+          bodies and also institutional employers with legal, financial, and reputational interests
+          to protect. Those roles are genuinely in tension. This story asks whether any institution
+          can hold both simultaneously &mdash; and what it costs when it tries.
+        </p>
       </div>
 
       <div class="btc-card">
-        <div class="btc-source">Hollywood Reporter &middot; March 2026</div>
-        <h3 class="btc-title">BBC's Tim Davie Explains BAFTA Broadcast Error After Tourette's Segment</h3>
+        <div class="btc-source">Variety &middot; March 5, 2026</div>
+        <h3 class="btc-title">Netflix Buys an AI Filmmaking Company &mdash; and Gets Ben Affleck&rsquo;s Face on the Press Release</h3>
         <p class="btc-editorial">
-          The BBC's handling of an unexpected Tourette's outburst during live BAFTA coverage
-          raised questions about broadcaster reflexes — and how institutions respond when
-          reality doesn't follow the script.
+          Netflix acquired InterPositive, a startup founded by Ben Affleck building AI tools for
+          production: wire removal, shot reframing, filling missed coverage. The deal came days
+          after Affleck&rsquo;s own company signed a first-look deal with the same streamer.
+          IATSE &mdash; the union representing camera operators, lighting technicians, and grips
+          &mdash; declined to comment. Netflix has brought AI production infrastructure in-house
+          while SAG-AFTRA and WGA are still negotiating AI protections.
         </p>
-        <a href="https://www.hollywoodreporter.com/news/general-news/bbc-tim-davie-bafta-tourettes-broadcast-error-explanation-1236523513/" class="link-arrow" target="_blank" rel="noopener">Read the full story &rarr;</a>
+        <p class="btc-editorial">
+          The more honest frame is about how platforms manufacture legitimacy for technology
+          adoption through creative class alignment. &ldquo;Filmmaker-empowering AI&rdquo; is a
+          category designed partly to soften the scrutiny that &ldquo;labour-displacing AI&rdquo;
+          would invite.
+        </p>
+      </div>
+
+      <div class="btc-card full">
+        <div class="btc-source">SAG-AFTRA / Industry &middot; Ongoing</div>
+        <h3 class="btc-title">The People Who Give Films a Voice Across Languages Are Being Quietly Automated Away</h3>
+        <p class="btc-editorial">
+          Over 1,100 feature films were dubbed using AI platforms in 2025 alone &mdash; a task
+          that previously required weeks of studio time, skilled voice actors, dialogue coaches,
+          and translators who understood not just language but cultural register and performance.
+          Amazon Prime Video has already deployed AI-dubbed content. The results were criticised
+          for quality and flagged for labour impact. Neither stopped the deployment.
+        </p>
+        <p class="btc-editorial">
+          Arrival is a film whose entire argument turns on the idea that translation is not
+          mechanical substitution &mdash; that how you say something changes what it means, that
+          the frame of the language shapes the thought. The slow automation of dubbing and
+          localisation work is a quiet erasure of exactly that: the human work of finding the
+          right word, voice, and weight across a cultural border. It is being replaced by a
+          four-model pipeline that takes 48 hours and costs a fraction of what a person does.
+          The economics win. The intangibles lose.
+        </p>
       </div>
 
     </div>
   </section>
 
-  <!-- ─── NEWSLETTER ─── -->
+  <!-- NEWSLETTER -->
   <div class="section-divider"></div>
 
   <div class="newsletter-section">
     <div class="newsletter-card reveal">
       <div class="newsletter-eyebrow">Every Friday</div>
-      <h2 class="newsletter-title">The weekly digest —<br>one email, worth opening.</h2>
+      <h2 class="newsletter-title">The weekly digest &mdash;<br>one email, worth opening.</h2>
       <p class="newsletter-sub">&ldquo;No scores. No aggregation. Just the conversation worth having.&rdquo;</p>
       <div class="newsletter-form">
         <input class="newsletter-input" type="email" placeholder="your@email.com" />
@@ -1124,66 +829,23 @@
     </div>
   </div>
 
-  <!-- ─── FOOTER ─── -->
+  <!-- FOOTER -->
   <footer>
     <div class="footer-logo">Screen<span>Share</span></div>
-    <div class="footer-note">&copy; 2026 Screen Share &middot; A publication for people who care how they watch</div>
+    <div class="footer-note">&copy; 2026 Screen Share &middot; Issue 001 &middot; A publication for people who care how they watch</div>
   </footer>
 
   <script>
-    var heroFilm = {
-      title: 'All We Imagine as Light',
-      year: 2024,
-      backdrop: 'https://image.tmdb.org/t/p/w1280/xrIicBg0Ac4oQ6cwUPKJxwtqhOQ.jpg',
-      overview: 'A new publication for people who care how they watch. Issue 001.'
-    };
-
-    var pulseData = [
-      {
-        type: 'Most Talked About',
-        title: 'All We Imagine as Light',
-        sub: 'Payal Kapadia, 2024 · Cannes Grand Prix winner',
-        poster: 'https://image.tmdb.org/t/p/w500/ruImrzB4POsrgwCMozmOBV67zs5.jpg',
-        tone: 'amber',
-        mode: 'sentiment',
-        pct: 87,
-        note: 'A quiet film with an unusually loud afterlife. The discussion is less about plot than about mood, texture, and tenderness.'
-      },
-      {
-        type: 'Most Divisive',
-        title: 'Saltburn',
-        sub: 'Emerald Fennell, 2023 · Still polarising 18 months on',
-        poster: 'https://image.tmdb.org/t/p/w500/zGTfMwG112BC66mpaveVxoWPOaB.jpg',
-        tone: 'crimson',
-        mode: 'badge',
-        badgeClass: 'divisive-badge',
-        badgeText: 'Critics 79% · Audiences 52%',
-        note: 'A provocation that still splits the room. The disagreement is the content now.'
-      },
-      {
-        type: 'Hidden Gem Resurface',
-        title: 'A Ghost Story',
-        sub: 'David Lowery, 2017 · Back in conversation this week',
-        poster: 'https://image.tmdb.org/t/p/w500/rp5JPIyZi9sMob15l46zNQLe5cO.jpg',
-        tone: 'slate',
-        mode: 'badge',
-        badgeClass: 'gem-badge',
-        badgeText: 'Rediscovered',
-        note: 'Time, grief, legacy. The kind of film that keeps getting rediscovered by people who need it at exactly the right moment.'
-      }
-    ];
-
     var moodData = {
       unsettled: [
-        { title: 'Parasite', year: 2019, director: 'Bong Joon-ho', poster: 'https://image.tmdb.org/t/p/w342/7IiTTgloJzvGI1TAYymCfbfl3vT.jpg',
-        tone: 'amber', tag: 'The floor gives way slowly' },
+        { title: 'Parasite', year: 2019, director: 'Bong Joon-ho', poster: 'https://image.tmdb.org/t/p/w342/7IiTTgloJzvGI1TAYymCfbfl3vT.jpg', tone: 'amber', tag: 'The floor gives way slowly' },
         { title: 'The Zone of Interest', year: 2023, director: 'Jonathan Glazer', poster: 'https://image.tmdb.org/t/p/w500/hUu9zyZmDd8VZegKi1iK1Vk0RYS.jpg', tone: 'slate', tag: 'Horror at a distance' },
-        { title: 'Caché', year: 2005, director: 'Michael Haneke', poster: 'https://image.tmdb.org/t/p/w500/vTzjRi0Uhy0tt3Rjw8SARZZJHlX.jpg', tone: 'crimson', tag: 'Someone is watching' }
+        { title: 'Cache', year: 2005, director: 'Michael Haneke', poster: 'https://image.tmdb.org/t/p/w500/vTzjRi0Uhy0tt3Rjw8SARZZJHlX.jpg', tone: 'crimson', tag: 'Someone is watching' }
       ],
       devastated: [
         { title: 'Burning', year: 2018, director: 'Lee Chang-dong', poster: 'https://image.tmdb.org/t/p/w500/hxGv1O2W5SOJTmiBc45CL842mrx.jpg', tone: 'amber', tag: 'Grief without a name' },
         { title: 'Manchester by the Sea', year: 2016, director: 'Kenneth Lonergan', poster: 'https://image.tmdb.org/t/p/w500/o9VXYOuaJxCEKOxbA86xqtwmqYn.jpg', tone: 'slate', tag: 'Some things do not heal' },
-        { title: 'Portrait of a Lady on Fire', year: 2019, director: 'Céline Sciamma', poster: 'https://image.tmdb.org/t/p/w500/2LquGwEhbg3soxSCs9VNyh5VJd9.jpg', tone: 'amber', tag: 'Remember us looking' }
+        { title: 'Portrait of a Lady on Fire', year: 2019, director: 'Celine Sciamma', poster: 'https://image.tmdb.org/t/p/w500/2LquGwEhbg3soxSCs9VNyh5VJd9.jpg', tone: 'amber', tag: 'Remember us looking' }
       ],
       rewired: [
         { title: 'Annihilation', year: 2018, director: 'Alex Garland', poster: 'https://image.tmdb.org/t/p/w500/4YRplSk6BhH6PRuE9gfyw9byUJ6.jpg', tone: 'moss', tag: 'Self-destruction by another name' },
@@ -1206,84 +868,11 @@
         { title: 'Prisoners', year: 2013, director: 'Denis Villeneuve', poster: 'https://image.tmdb.org/t/p/w500/jsS3a3ep2KyBVmmiwaz3LvK49b1.jpg', tone: 'slate', tag: 'What would you do?' }
       ],
       slowburn: [
-        { title: 'The Turin Horse', year: 2011, director: 'Béla Tarr', poster: 'https://image.tmdb.org/t/p/w500/2kSElneXSKmMsGL55k0CbPGqLbu.jpg', tone: 'slate', tag: 'Entropy made visible' },
+        { title: 'The Turin Horse', year: 2011, director: 'Bela Tarr', poster: 'https://image.tmdb.org/t/p/w500/2kSElneXSKmMsGL55k0CbPGqLbu.jpg', tone: 'slate', tag: 'Entropy made visible' },
         { title: 'First Reformed', year: 2017, director: 'Paul Schrader', poster: 'https://image.tmdb.org/t/p/w500/8HKA3Hwf8jQWy8TCYWr7C8Wft23.jpg', tone: 'moss', tag: 'Faith at the breaking point' },
         { title: 'Certified Copy', year: 2010, director: 'Abbas Kiarostami', poster: 'https://image.tmdb.org/t/p/w500/soBvtCR33Gv1j6gXwXOIc3JTlNc.jpg', tone: 'amber', tag: 'Are they strangers or not?' }
       ]
     };
-
-
-    function placeholderPoster(title, subtitle, tone) {
-      var palette = {
-        amber: ['#2a2114', '#f59e0b'],
-        crimson: ['#231315', '#dc2626'],
-        slate: ['#161923', '#94a3b8'],
-        moss: ['#172018', '#84cc16']
-      };
-      var pair = palette[tone] || palette.amber;
-      var svg = '<svg xmlns="http://www.w3.org/2000/svg" width="342" height="513" viewBox="0 0 342 513">' +
-        '<defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="' + pair[0] + '"/><stop offset="100%" stop-color="#0b0c10"/></linearGradient></defs>' +
-        '<rect width="342" height="513" fill="url(#g)"/>' +
-        '<rect x="20" y="20" width="302" height="473" rx="18" fill="none" stroke="rgba(255,255,255,0.18)"/>' +
-        '<text x="28" y="70" fill="#f3efe6" font-family="Inter,Arial,sans-serif" font-size="18" letter-spacing="3">SCREEN SHARE</text>' +
-        '<text x="28" y="380" fill="#ffffff" font-family="Georgia,serif" font-size="34">' + title.replace(/&/g, '&amp;') + '</text>' +
-        '<text x="28" y="420" fill="#d6d3cb" font-family="Inter,Arial,sans-serif" font-size="18">' + subtitle.replace(/&/g, '&amp;') + '</text>' +
-        '</svg>';
-      return 'data:image/svg+xml;charset=UTF-8,' + encodeURIComponent(svg);
-    }
-
-    function renderHero() {
-      var backdrop = document.getElementById('heroBackdrop');
-      if (heroFilm.backdrop) {
-        backdrop.style.backgroundImage = 'url(' + heroFilm.backdrop + ')';
-      } else {
-        backdrop.style.backgroundImage = [
-          'radial-gradient(ellipse at 25% 60%, rgba(214,179,106,0.22) 0%, transparent 50%)',
-          'radial-gradient(ellipse at 75% 25%, rgba(139,92,246,0.14) 0%, transparent 45%)',
-          'linear-gradient(160deg, rgba(28,20,48,0.92) 0%, rgba(18,15,32,0.88) 40%, rgba(10,8,20,0.95) 100%)'
-        ].join(', ');
-      }
-      document.getElementById('heroTitle').textContent = heroFilm.title;
-      document.getElementById('heroTagline').textContent = heroFilm.overview;
-      var meta = document.getElementById('heroFilmMeta');
-      meta.innerHTML = '';
-      var labelSpan = document.createElement('span');
-      labelSpan.textContent = 'Film: ';
-      var filmSpan = document.createElement('span');
-      filmSpan.textContent = heroFilm.title + ' (' + heroFilm.year + ')';
-      meta.appendChild(labelSpan);
-      meta.appendChild(filmSpan);
-    }
-
-    function renderPulse() {
-      var grid = document.getElementById('pulseGrid');
-      grid.innerHTML = '';
-      pulseData.forEach(function(item) {
-        var card = document.createElement('div');
-        card.className = 'pulse-card';
-        var html = '' +
-          '<div class="pulse-card-type">' + item.type + '</div>' +
-          '<div class="pulse-card-film">' +
-            '<img class="pulse-card-poster" src="' + (item.poster || placeholderPoster(item.title, item.sub, item.tone)) + '" alt="' + item.title + '" />' +
-            '<div class="pulse-card-film-info">' +
-              '<div class="pulse-card-title">' + item.title + '</div>' +
-              '<div class="pulse-card-sub">' + item.sub + '</div>' +
-            '</div>' +
-          '</div>';
-        if (item.mode === 'sentiment') {
-          html += '' +
-            '<div class="sentiment-bar-wrap">' +
-              '<div class="sentiment-bar-label"><span>Audience sentiment</span><span>' + item.pct + '% positive</span></div>' +
-              '<div class="sentiment-bar-track"><div class="sentiment-bar-fill" style="width:' + item.pct + '%"></div></div>' +
-            '</div>';
-        } else {
-          html += '<span class="' + item.badgeClass + '">' + item.badgeText + '</span>';
-        }
-        html += '<p class="pulse-card-sub" style="margin-top:0.75rem">' + item.note + '</p>';
-        card.innerHTML = html;
-        grid.appendChild(card);
-      });
-    }
 
     function renderMoodFilms(mood) {
       var films = moodData[mood] || moodData.unsettled;
@@ -1293,18 +882,16 @@
         var card = document.createElement('div');
         card.className = 'film-card';
         card.innerHTML =
-          '<img class="film-card-poster" src="' + (film.poster || placeholderPoster(film.title, film.director + ' · ' + film.year, film.tone)) + '" alt="' + film.title + '" />' +
+          '<img class="film-card-poster" src="' + film.poster + '" alt="' + film.title + '" />' +
           '<div class="film-card-body">' +
             '<div class="film-card-title">' + film.title + '</div>' +
-            '<div class="film-card-year">' + film.year + ' · ' + film.director + '</div>' +
+            '<div class="film-card-year">' + film.year + ' \u00b7 ' + film.director + '</div>' +
             '<div class="film-card-mood-tag">' + film.tag + '</div>' +
           '</div>';
         container.appendChild(card);
       });
     }
 
-    renderHero();
-    renderPulse();
     renderMoodFilms('unsettled');
 
     var chips = document.querySelectorAll('.mood-chip');
@@ -1334,7 +921,7 @@
       if (input.value && input.value.indexOf('@') !== -1) {
         input.value = '';
         input.placeholder = 'You are in. See you Friday.';
-        this.textContent = '✓';
+        this.textContent = '\u2713';
         this.style.background = '#4ade80';
       }
     });
