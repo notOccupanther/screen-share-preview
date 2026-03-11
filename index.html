@@ -3,7 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Screen Share — The Conversation Worth Having</title>
+  <title>Screen Share — A Weekly Publication for People Who Care How They Watch</title>
+  <meta name="description" content="Screen Share is a weekly film and television publication. Taste-led, independent, ad-free. Issue 001 is live now." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,700;0,800;1,700&display=swap" rel="stylesheet" />
@@ -15,9 +16,8 @@
       --surface: #111118;
       --surface-2: #18181f;
       --gold: #f59e0b;
-      --gold-dim: rgba(245, 158, 11, 0.15);
-      --gold-border: rgba(245, 158, 11, 0.25);
-      --crimson: #dc2626;
+      --gold-dim: rgba(245,158,11,0.12);
+      --gold-border: rgba(245,158,11,0.25);
       --text: #e8e8ed;
       --text-muted: #8888a0;
       --text-dim: #555568;
@@ -36,1306 +36,453 @@
       overflow-x: hidden;
     }
 
-    /* Film grain overlay */
     body::before {
       content: '';
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      z-index: 9999;
-      opacity: 0.025;
+      position: fixed; inset: 0;
+      pointer-events: none; z-index: 9999; opacity: 0.025;
       background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E");
-      background-size: 180px 180px;
-      mix-blend-mode: overlay;
+      background-size: 180px 180px; mix-blend-mode: overlay;
     }
 
-    /* ─── REVEAL (scroll fade) ─── */
-    .reveal {
-      opacity: 0;
-      transform: translateY(18px);
-      transition: opacity 0.55s ease, transform 0.55s ease;
-    }
-    .reveal.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    /* ─── NAV ─── */
+    /* NAV */
     nav {
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      z-index: 100;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0 2rem;
-      height: 60px;
-      background: rgba(10, 10, 15, 0.85);
-      backdrop-filter: blur(16px);
-      border-bottom: 1px solid var(--border);
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.25rem 2.5rem;
+      background: linear-gradient(to bottom, rgba(8,8,16,0.95) 0%, transparent 100%);
+      backdrop-filter: blur(2px);
     }
-
     .nav-logo {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.25rem;
-      font-weight: 800;
-      color: var(--text);
-      letter-spacing: 0.02em;
-      text-decoration: none;
+      font-family: 'Playfair Display', serif; font-size: 1.6rem;
+      font-weight: 800; color: var(--text); letter-spacing: 0.02em; text-decoration: none;
     }
     .nav-logo span { color: var(--gold); }
-
-    .nav-links {
-      display: flex;
-      gap: 2rem;
-      list-style: none;
-    }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
     .nav-links a {
-      font-size: 0.8rem;
-      font-weight: 500;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--text-muted);
-      text-decoration: none;
+      font-size: 0.8rem; font-weight: 500; color: var(--text-muted);
+      text-decoration: none; letter-spacing: 0.06em; text-transform: uppercase;
       transition: color 0.2s;
     }
     .nav-links a:hover { color: var(--gold); }
+    @media (max-width: 600px) { .nav-links { display: none; } nav { padding: 1.25rem 1.25rem; } }
 
-    /* ─── HERO ─── */
+    /* HERO */
     .hero {
-      position: relative;
-      min-height: 100vh;
-      display: flex;
-      align-items: flex-end;
+      position: relative; min-height: 100vh;
+      display: flex; align-items: center;
       overflow: hidden;
     }
-
     .hero-backdrop {
-      position: absolute;
-      inset: 0;
-      background-size: cover;
-      background-position: center 20%;
-      transform: scale(1.03);
-      transition: transform 8s ease-out;
+      position: absolute; inset: 0;
+      background-image: url('https://image.tmdb.org/t/p/w1280/r8FD6CC3GgjWaGVkZh00AcedfpA.jpg');
+      background-size: cover; background-position: center 30%;
+      filter: brightness(0.35) saturate(0.7);
     }
-    .hero:hover .hero-backdrop { transform: scale(1.0); }
     .hero-grain {
-      position: absolute;
-      inset: 0;
-      z-index: 1;
-      opacity: 0.06;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
-      background-size: 180px 180px;
-      pointer-events: none;
+      position: absolute; inset: 0; pointer-events: none; opacity: 0.04;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      background-size: 120px; mix-blend-mode: overlay;
     }
-    .hero-issue-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      background: rgba(214,179,106,0.12);
-      border: 1px solid rgba(214,179,106,0.3);
-      color: var(--gold);
-      font-size: 0.68rem;
-      font-weight: 700;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      padding: 0.35rem 0.85rem;
-      border-radius: 2rem;
-      margin-bottom: 1.25rem;
-    }
-
     .hero-vignette {
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(
-        to bottom,
-        rgba(10,10,15,0.3) 0%,
-        rgba(10,10,15,0.1) 30%,
-        rgba(10,10,15,0.6) 65%,
-        rgba(10,10,15,0.97) 100%
-      );
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse at center, transparent 30%, rgba(8,8,16,0.7) 100%);
     }
-    .hero-vignette-sides {
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(
-        to right,
-        rgba(10,10,15,0.7) 0%,
-        transparent 40%,
-        transparent 60%,
-        rgba(10,10,15,0.4) 100%
-      );
+    .hero-bottom-fade {
+      position: absolute; bottom: 0; left: 0; right: 0; height: 40%;
+      background: linear-gradient(to bottom, transparent, var(--bg));
     }
-
     .hero-content {
-      position: relative;
-      z-index: 2;
-      width: 100%;
-      padding: 2.5rem 2.5rem 4rem;
-      max-width: 900px;
+      position: relative; z-index: 2;
+      max-width: 1200px; margin: 0 auto; padding: 0 2.5rem;
+      padding-top: 8rem;
     }
-
-    .hero-eyebrow {
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-      margin-bottom: 1.25rem;
+    .hero-badge {
+      display: inline-block;
+      font-size: 0.65rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--gold); border: 1px solid var(--gold-border); padding: 0.35rem 0.75rem;
+      margin-bottom: 2rem; background: var(--gold-dim);
     }
-    .hero-eyebrow-label {
-      font-size: 0.7rem;
-      font-weight: 700;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--gold);
-    }
-    .hero-eyebrow-date {
-      font-size: 0.7rem;
-      font-weight: 400;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--text-muted);
-    }
-    .hero-eyebrow-dot {
-      width: 3px;
-      height: 3px;
-      border-radius: 50%;
-      background: var(--text-dim);
-    }
-
     .hero-title {
       font-family: 'Playfair Display', serif;
-      font-size: clamp(2.4rem, 6vw, 4.5rem);
-      font-weight: 800;
-      line-height: 1.08;
-      letter-spacing: -0.01em;
-      color: #fff;
-      margin-bottom: 1rem;
-      max-width: 780px;
+      font-size: clamp(2.8rem, 7vw, 5.5rem);
+      font-weight: 800; line-height: 1.05; letter-spacing: -0.02em;
+      color: #fff; margin-bottom: 1.5rem; max-width: 800px;
     }
-    .hero-tagline {
-      font-size: clamp(0.95rem, 1.8vw, 1.1rem);
-      color: rgba(232,232,237,0.75);
-      max-width: 520px;
-      line-height: 1.65;
-      margin-bottom: 2rem;
-      font-weight: 300;
+    .hero-title::before {
+      content: ''; display: block; width: 48px; height: 1px;
+      background: var(--gold); margin-bottom: 1.25rem; opacity: 0.75;
     }
-    .hero-meta {
-      display: flex;
-      align-items: center;
-      gap: 1.5rem;
-      margin-bottom: 2rem;
+    .hero-sub {
+      font-size: clamp(1rem, 2vw, 1.2rem); font-weight: 300;
+      color: rgba(232,232,237,0.72); max-width: 540px;
+      line-height: 1.7; margin-bottom: 2.5rem;
     }
-    .hero-meta-film {
-      font-size: 0.78rem;
-      font-weight: 600;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--text-muted);
-    }
-    .hero-meta-film span { color: var(--text); }
-
+    .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
     .btn-primary {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      padding: 0.75rem 1.75rem;
-      background: var(--gold);
-      color: #0a0a0f;
-      font-size: 0.82rem;
-      font-weight: 700;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      text-decoration: none;
-      border: none;
-      cursor: pointer;
-      transition: background 0.2s, transform 0.15s;
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      padding: 0.85rem 2rem; background: var(--gold); border: none;
+      color: #0a0a0f; font-size: 0.85rem; font-weight: 700;
+      letter-spacing: 0.08em; text-transform: uppercase; text-decoration: none;
+      transition: background 0.2s, transform 0.2s; cursor: pointer;
     }
     .btn-primary:hover { background: #fbbf24; transform: translateY(-1px); }
-
     .btn-ghost {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      padding: 0.75rem 1.75rem;
-      background: transparent;
-      color: var(--text);
-      font-size: 0.82rem;
-      font-weight: 600;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      text-decoration: none;
-      border: 1px solid var(--border);
-      cursor: pointer;
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      padding: 0.85rem 2rem; background: transparent;
+      border: 1px solid rgba(255,255,255,0.15);
+      color: var(--text-muted); font-size: 0.85rem; font-weight: 500;
+      letter-spacing: 0.06em; text-transform: uppercase; text-decoration: none;
       transition: border-color 0.2s, color 0.2s;
     }
-    .btn-ghost:hover { border-color: var(--gold); color: var(--gold); }
-
+    .btn-ghost:hover { border-color: rgba(255,255,255,0.3); color: var(--text); }
     .hero-scroll-hint {
-      position: absolute;
-      bottom: 1.5rem;
-      right: 2.5rem;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 0.4rem;
-      opacity: 0.4;
-    }
-    .hero-scroll-hint span {
-      font-size: 0.6rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      writing-mode: vertical-rl;
+      position: absolute; bottom: 2.5rem; left: 50%; transform: translateX(-50%);
+      display: flex; flex-direction: column; align-items: center; gap: 0.5rem;
+      font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--text-dim); z-index: 2;
     }
     .hero-scroll-line {
-      width: 1px;
-      height: 40px;
-      background: linear-gradient(to bottom, var(--text-muted), transparent);
+      width: 1px; height: 40px;
+      background: linear-gradient(to bottom, var(--text-dim), transparent);
     }
 
-    /* ─── SECTION COMMONS ─── */
-    section {
-      padding: 5rem 2.5rem;
-      max-width: 1200px;
-      margin: 0 auto;
+    /* INTRO */
+    .intro {
+      max-width: 1200px; margin: 0 auto; padding: 6rem 2.5rem;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start;
+    }
+    .intro-label {
+      font-size: 0.65rem; font-weight: 700; letter-spacing: 0.2em;
+      text-transform: uppercase; color: var(--gold); margin-bottom: 1.25rem;
+    }
+    .intro-heading {
+      font-family: 'Playfair Display', serif; font-size: clamp(1.6rem, 3vw, 2.2rem);
+      font-weight: 700; line-height: 1.25; color: #fff; margin-bottom: 1.5rem;
+    }
+    .intro-body { font-size: 0.95rem; line-height: 1.8; color: var(--text-muted); font-weight: 300; }
+    .intro-body p + p { margin-top: 1rem; }
+    .intro-stats { display: flex; flex-direction: column; gap: 2rem; padding-top: 1rem; }
+    .stat-item { border-left: 2px solid var(--gold-border); padding-left: 1.25rem; }
+    .stat-number {
+      font-family: 'Playfair Display', serif; font-size: 2rem; font-weight: 800;
+      color: var(--gold); line-height: 1;
+    }
+    .stat-label { font-size: 0.78rem; color: var(--text-muted); margin-top: 0.25rem; font-weight: 300; }
+    @media (max-width: 768px) { .intro { grid-template-columns: 1fr; gap: 2.5rem; padding: 4rem 1.25rem; } }
+
+    /* SECTION DIVIDER */
+    .divider {
+      max-width: 1200px; margin: 0 auto; padding: 0 2.5rem;
+      border-top: 1px solid var(--border);
     }
 
-    .section-divider {
-      width: 100%;
-      height: 1px;
-      background: linear-gradient(to right, transparent, var(--gold-border), transparent);
-      margin: 0 2.5rem;
-      max-width: 1200px;
+    /* SECTION TOUR */
+    .tour {
+      max-width: 1200px; margin: 0 auto; padding: 5rem 2.5rem;
     }
+    .tour-header { text-align: center; margin-bottom: 4rem; }
+    .tour-label {
+      font-size: 0.65rem; font-weight: 700; letter-spacing: 0.2em;
+      text-transform: uppercase; color: var(--gold); margin-bottom: 1rem;
+    }
+    .tour-heading {
+      font-family: 'Playfair Display', serif; font-size: clamp(1.5rem, 3vw, 2rem);
+      font-weight: 700; color: #fff;
+    }
+    .tour-sub { font-size: 0.9rem; color: var(--text-muted); margin-top: 0.75rem; font-weight: 300; }
+    .tour-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem;
+    }
+    .tour-card {
+      background: var(--surface); border: 1px solid var(--border);
+      padding: 2rem; position: relative; overflow: hidden;
+      transition: border-color 0.3s, transform 0.3s;
+      opacity: 0; transform: translateY(28px);
+    }
+    .tour-card.visible { opacity: 1; transform: translateY(0); }
+    .tour-card:hover { border-color: var(--gold-border); transform: translateY(-3px); }
+    .tour-card::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+      background: var(--card-accent, var(--gold)); opacity: 0.6;
+    }
+    .tour-card-icon { font-size: 1.4rem; margin-bottom: 1rem; }
+    .tour-card-label {
+      font-size: 0.6rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--text-dim); margin-bottom: 0.6rem;
+    }
+    .tour-card-title {
+      font-family: 'Playfair Display', serif; font-size: 1.05rem; font-weight: 700;
+      color: #fff; margin-bottom: 0.75rem; line-height: 1.2;
+    }
+    .tour-card-desc { font-size: 0.83rem; line-height: 1.7; color: var(--text-muted); font-weight: 300; }
+    @media (max-width: 900px) { .tour-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 560px) { .tour-grid { grid-template-columns: 1fr; } .tour { padding: 4rem 1.25rem; } }
 
-    .section-eyebrow {
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-      margin-bottom: 2.5rem;
-    }
-    .section-eyebrow-icon { font-size: 1rem; }
-    .section-eyebrow-label {
-      font-size: 0.7rem;
-      font-weight: 700;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--gold);
-    }
-    .section-eyebrow-desc {
-      font-size: 0.78rem;
-      color: var(--text-dim);
-      font-style: italic;
-    }
-    .section-eyebrow-pipe {
-      color: var(--text-dim);
-      font-size: 0.8rem;
-    }
-    .section-title {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(1.6rem, 3.5vw, 2.4rem);
-      font-weight: 700;
-      line-height: 1.2;
-      color: var(--text);
-      margin-bottom: 1.25rem;
-    }
-
-    /* ─── REWIND ─── */
-    .rewind-card {
-      display: grid;
-      grid-template-columns: 200px 1fr;
-      gap: 3rem;
+    /* ISSUE CTA */
+    .issue-cta {
+      position: relative; overflow: hidden;
+      margin: 0; padding: 7rem 2.5rem;
       background: var(--surface);
-      border: 1px solid var(--border);
-      border-left: 3px solid var(--gold);
-      padding: 2.5rem;
-      transition: border-color 0.2s, transform 0.2s;
-    }
-    .rewind-card:hover {
-      border-left-color: var(--gold);
-      border-color: var(--gold-border);
-      transform: translateY(-2px);
-    }
-    .rewind-poster {
-      width: 100%;
-      aspect-ratio: 2/3;
-      object-fit: cover;
-      display: block;
-      filter: saturate(0.85);
-      transition: filter 0.3s;
-    }
-    .rewind-card:hover .rewind-poster { filter: saturate(1); }
-    .rewind-body {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-    }
-    .rewind-year {
-      font-size: 0.72rem;
-      font-weight: 600;
-      letter-spacing: 0.2em;
-      color: var(--gold);
-      text-transform: uppercase;
-      margin-bottom: 0.5rem;
-    }
-    .rewind-film-title {
-      font-family: 'Playfair Display', serif;
-      font-size: 2rem;
-      font-weight: 700;
-      color: #fff;
-      margin-bottom: 1.25rem;
-      line-height: 1.15;
-    }
-    .rewind-text {
-      font-size: 1rem;
-      line-height: 1.75;
-      color: rgba(232,232,237,0.8);
-      margin-bottom: 1.25rem;
-      font-weight: 300;
-    }
-
-    .link-arrow {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.4rem;
-      font-size: 0.82rem;
-      font-weight: 600;
-      letter-spacing: 0.06em;
-      color: var(--gold);
-      text-decoration: none;
-      text-transform: uppercase;
-      transition: gap 0.2s;
-    }
-    .link-arrow:hover { gap: 0.7rem; }
-
-    /* ─── ARGUMENT ─── */
-    .argument-question {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(1.3rem, 2.8vw, 1.9rem);
-      font-weight: 700;
-      font-style: italic;
-      line-height: 1.35;
-      color: #fff;
-      margin-bottom: 2.5rem;
-      padding-left: 1.5rem;
-      border-left: 3px solid var(--crimson);
-    }
-    .argument-camps {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1.5rem;
-      margin-bottom: 2rem;
-    }
-    .argument-camp {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      padding: 1.75rem;
-      transition: border-color 0.2s, transform 0.2s;
-    }
-    .argument-camp:hover {
-      border-color: rgba(255,255,255,0.12);
-      transform: translateY(-2px);
-    }
-    .argument-camp-label {
-      font-size: 0.65rem;
-      font-weight: 800;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      margin-bottom: 0.9rem;
-      padding: 0.25rem 0.6rem;
-      display: inline-block;
-    }
-    .argument-camp-label.grief { background: rgba(220,38,38,0.15); color: #f87171; }
-    .argument-camp-label.horror { background: rgba(245,158,11,0.12); color: var(--gold); }
-    .argument-camp-text {
-      font-size: 0.95rem;
-      line-height: 1.7;
-      color: rgba(232,232,237,0.75);
-      font-weight: 300;
-    }
-    .argument-cta {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-    }
-    .argument-voter-count {
-      font-size: 0.78rem;
-      color: var(--text-dim);
-    }
-
-    /* ─── MOOD ─── */
-    .mood-chips-wrapper {
-      overflow-x: auto;
-      margin-bottom: 2.5rem;
-      padding-bottom: 0.5rem;
-      scrollbar-width: none;
-    }
-    .mood-chips-wrapper::-webkit-scrollbar { display: none; }
-    .mood-chips {
-      display: flex;
-      gap: 0.75rem;
-      width: max-content;
-    }
-    .mood-chip {
-      display: flex;
-      align-items: center;
-      gap: 0.4rem;
-      padding: 0.55rem 1.1rem;
-      background: var(--surface);
-      border: 1px solid var(--border);
-      color: var(--text-muted);
-      font-size: 0.82rem;
-      font-weight: 500;
-      cursor: pointer;
-      transition: all 0.2s;
-      white-space: nowrap;
-      border-radius: 2px;
-      user-select: none;
-    }
-    .mood-chip:hover { border-color: var(--gold-border); color: var(--text); }
-    .mood-chip.active { background: var(--gold-dim); border-color: var(--gold); color: var(--gold); }
-
-    .mood-films {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1.25rem;
-      min-height: 340px;
-    }
-
-    /* ─── FILM CARD (mood + pulse) ─── */
-    .film-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      overflow: hidden;
-      cursor: pointer;
-      transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.2s;
-    }
-    .film-card:hover {
-      border-color: var(--gold-border);
-      transform: translateY(-4px);
-      box-shadow: 0 12px 32px rgba(0,0,0,0.5);
-    }
-    .film-card img {
-      transition: filter 0.3s ease;
-      filter: brightness(0.88);
-    }
-    .film-card:hover img { filter: brightness(1); }
-    .film-card-poster {
-      width: 100%;
-      aspect-ratio: 2/3;
-      object-fit: cover;
-      display: block;
-      transition: filter 0.3s, transform 0.4s;
-    }
-    .film-card:hover .film-card-poster { transform: scale(1.02); }
-    .film-card-body { padding: 1rem; }
-    .film-card-title {
-      font-size: 0.9rem;
-      font-weight: 600;
-      color: var(--text);
-      margin-bottom: 0.25rem;
-    }
-    .film-card-year {
-      font-size: 0.75rem;
-      color: var(--text-dim);
-    }
-    .film-card-mood-tag {
-      font-size: 0.68rem;
-      font-weight: 600;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--gold);
-      margin-top: 0.5rem;
-    }
-
-    /* ─── WEEKLY PULSE ─── */
-    .pulse-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1.5rem;
-    }
-    .pulse-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      padding: 1.75rem;
-      transition: border-color 0.2s, transform 0.2s;
-    }
-    .pulse-card:hover {
-      border-color: rgba(255,255,255,0.1);
-      transform: translateY(-2px);
-    }
-    .pulse-card-type {
-      font-size: 0.65rem;
-      font-weight: 700;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--text-dim);
-      margin-bottom: 1rem;
-    }
-    .pulse-card-film {
-      display: flex;
-      gap: 1rem;
-      margin-bottom: 1.25rem;
-    }
-    .pulse-card-poster {
-      width: 56px;
-      height: 84px;
-      object-fit: cover;
-      flex-shrink: 0;
-      filter: saturate(0.8);
-    }
-    .pulse-card-film-info {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-    }
-    .pulse-card-title {
-      font-size: 0.95rem;
-      font-weight: 600;
-      color: var(--text);
-      margin-bottom: 0.3rem;
-      line-height: 1.3;
-    }
-    .pulse-card-sub {
-      font-size: 0.78rem;
-      color: var(--text-muted);
-      line-height: 1.5;
-    }
-    .sentiment-bar-wrap { margin-top: 1rem; }
-    .sentiment-bar-label {
-      display: flex;
-      justify-content: space-between;
-      font-size: 0.72rem;
-      color: var(--text-dim);
-      margin-bottom: 0.4rem;
-    }
-    .sentiment-bar-label span:last-child { color: #4ade80; }
-    .sentiment-bar-track {
-      height: 4px;
-      background: rgba(255,255,255,0.06);
-      border-radius: 2px;
-      overflow: hidden;
-    }
-    .sentiment-bar-fill {
-      height: 100%;
-      background: linear-gradient(to right, #dc2626, #f59e0b, #4ade80);
-      border-radius: 2px;
-      transition: width 0.6s ease;
-    }
-    .divisive-badge {
-      display: inline-block;
-      font-size: 0.65rem;
-      font-weight: 700;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      padding: 0.2rem 0.55rem;
-      background: rgba(220,38,38,0.12);
-      color: #f87171;
-      margin-top: 0.75rem;
-    }
-    .gem-badge {
-      display: inline-block;
-      font-size: 0.65rem;
-      font-weight: 700;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      padding: 0.2rem 0.55rem;
-      background: var(--gold-dim);
-      color: var(--gold);
-      margin-top: 0.75rem;
-    }
-
-    /* ─── BEHIND THE FRAME ─── */
-    .btf-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      padding: 3rem;
-      display: grid;
-      grid-template-columns: 1fr 280px;
-      gap: 3rem;
-      align-items: center;
-      transition: border-color 0.2s;
-    }
-    .btf-card:hover { border-color: var(--gold-border); }
-    .btf-title {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(1.3rem, 2.5vw, 1.85rem);
-      font-weight: 700;
-      line-height: 1.25;
-      color: #fff;
-      margin-bottom: 1.5rem;
-    }
-    .btf-excerpt {
-      font-size: 1rem;
-      line-height: 1.8;
-      color: rgba(232,232,237,0.7);
-      font-weight: 300;
-      font-style: italic;
-      margin-bottom: 2rem;
-      padding-left: 1.25rem;
-      border-left: 2px solid var(--gold-border);
-    }
-    .btf-image {
-      width: 100%;
-      aspect-ratio: 16/10;
-      object-fit: cover;
-      filter: saturate(0.5) brightness(0.8);
-      transition: filter 0.4s;
-    }
-    .btf-card:hover .btf-image { filter: saturate(0.8) brightness(0.9); }
-
-    /* ─── BEHIND THE CURTAIN ─── */
-    .btc-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1.5rem;
-    }
-    .btc-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-top: 2px solid var(--crimson);
-      padding: 2rem;
-      transition: border-color 0.2s, transform 0.2s;
-    }
-    .btc-card:hover {
-      border-color: rgba(220,38,38,0.4);
-      transform: translateY(-2px);
-    }
-    .btc-source {
-      font-size: 0.65rem;
-      font-weight: 700;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--text-dim);
-      margin-bottom: 0.75rem;
-    }
-    .btc-title {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.1rem;
-      font-weight: 700;
-      color: #fff;
-      margin-bottom: 1rem;
-      line-height: 1.3;
-    }
-    .btc-editorial {
-      font-size: 0.9rem;
-      line-height: 1.75;
-      color: rgba(232,232,237,0.7);
-      font-weight: 300;
-      margin-bottom: 1.5rem;
-    }
-
-    /* ─── NEWSLETTER ─── */
-    .newsletter-section { padding: 4rem 2.5rem; }
-    .newsletter-card {
-      background: var(--surface);
-      border: 1px solid var(--gold-border);
-      padding: 4rem;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
       text-align: center;
-      max-width: 680px;
-      margin: 0 auto;
     }
-    .newsletter-eyebrow {
-      font-size: 0.7rem;
-      font-weight: 700;
-      letter-spacing: 0.25em;
-      text-transform: uppercase;
-      color: var(--gold);
-      margin-bottom: 1rem;
+    .issue-cta-backdrop {
+      position: absolute; inset: 0;
+      background-image: url('https://image.tmdb.org/t/p/w1280/r8FD6CC3GgjWaGVkZh00AcedfpA.jpg');
+      background-size: cover; background-position: center 40%;
+      filter: brightness(0.15) saturate(0.4); opacity: 0.6;
     }
-    .newsletter-title {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(1.5rem, 3vw, 2rem);
-      font-weight: 700;
-      color: #fff;
-      margin-bottom: 0.75rem;
-      line-height: 1.25;
+    .issue-cta-content { position: relative; z-index: 2; max-width: 680px; margin: 0 auto; }
+    .issue-cta-badge {
+      display: inline-block;
+      font-size: 0.6rem; font-weight: 700; letter-spacing: 0.25em; text-transform: uppercase;
+      color: var(--gold); border: 1px solid var(--gold-border);
+      padding: 0.3rem 0.7rem; background: var(--gold-dim); margin-bottom: 1.75rem;
     }
-    .newsletter-sub {
-      font-size: 0.9rem;
-      color: var(--text-muted);
-      font-style: italic;
-      margin-bottom: 2.5rem;
+    .issue-cta-title {
+      font-family: 'Playfair Display', serif; font-size: clamp(2rem, 5vw, 3.2rem);
+      font-weight: 800; color: #fff; line-height: 1.1; margin-bottom: 1.25rem;
     }
-    .newsletter-form {
-      display: flex;
-      gap: 0;
-      max-width: 420px;
-      margin: 0 auto 1.5rem;
+    .issue-cta-title::before {
+      content: ''; display: block; width: 36px; height: 1px;
+      background: var(--gold); margin: 0 auto 1.1rem; opacity: 0.7;
     }
-    .newsletter-input {
-      flex: 1;
-      padding: 0.85rem 1.25rem;
-      background: var(--bg);
-      border: 1px solid rgba(255,255,255,0.1);
-      border-right: none;
-      color: var(--text);
-      font-size: 0.88rem;
-      font-family: 'Inter', sans-serif;
-      outline: none;
-      transition: border-color 0.2s;
+    .issue-cta-sub {
+      font-size: 1rem; color: rgba(232,232,237,0.6); font-weight: 300;
+      line-height: 1.7; margin-bottom: 2.5rem;
     }
-    .newsletter-input::placeholder { color: var(--text-dim); }
-    .newsletter-input:focus { border-color: var(--gold-border); }
-    .newsletter-btn {
-      padding: 0.85rem 1.5rem;
-      background: var(--gold);
-      color: #0a0a0f;
-      font-size: 0.8rem;
-      font-weight: 700;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      border: none;
-      cursor: pointer;
-      font-family: 'Inter', sans-serif;
-      transition: background 0.2s;
-    }
-    .newsletter-btn:hover { background: #fbbf24; }
-    .newsletter-note { font-size: 0.75rem; color: var(--text-dim); }
+    .issue-cta-actions { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
 
-    /* ─── FOOTER ─── */
+    /* SUBSCRIBE */
+    .subscribe-wrap {
+      max-width: 1200px; margin: 0 auto; padding: 5rem 2.5rem;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center;
+    }
+    .subscribe-heading {
+      font-family: 'Playfair Display', serif; font-size: clamp(1.4rem, 3vw, 1.9rem);
+      font-weight: 700; color: #fff; margin-bottom: 0.75rem; line-height: 1.25;
+    }
+    .subscribe-sub { font-size: 0.88rem; color: var(--text-muted); font-weight: 300; line-height: 1.7; }
+    .subscribe-form { display: flex; gap: 0; }
+    .subscribe-input {
+      flex: 1; padding: 0.8rem 1rem; background: var(--surface);
+      border: 1px solid var(--border); border-right: none; color: var(--text);
+      font-family: 'Inter', sans-serif; font-size: 0.88rem; outline: none;
+    }
+    .subscribe-input::placeholder { color: var(--text-dim); }
+    .subscribe-input:focus { border-color: var(--gold-border); }
+    .subscribe-btn {
+      padding: 0.8rem 1.5rem; background: var(--gold); border: none;
+      color: #0a0a0f; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.1em;
+      text-transform: uppercase; cursor: pointer; font-family: 'Inter', sans-serif;
+      transition: background 0.2s; white-space: nowrap;
+    }
+    .subscribe-btn:hover { background: #fbbf24; }
+    @media (max-width: 768px) { .subscribe-wrap { grid-template-columns: 1fr; gap: 2rem; padding: 4rem 1.25rem; } }
+
+    /* FOOTER */
     footer {
       border-top: 1px solid var(--border);
-      padding: 2rem 2.5rem;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
+      padding: 2.5rem;
+      display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem;
     }
-    .footer-logo {
-      font-family: 'Playfair Display', serif;
-      font-size: 1rem;
-      font-weight: 800;
-      color: var(--text-muted);
-    }
+    .footer-logo { font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 800; }
     .footer-logo span { color: var(--gold); }
-    .footer-note { font-size: 0.72rem; color: var(--text-dim); }
+    .footer-note { font-size: 0.75rem; color: var(--text-dim); }
 
-    /* ─── LOADING STATE ─── */
-    .loading-shimmer {
-      background: linear-gradient(90deg, var(--surface) 25%, var(--surface-2) 50%, var(--surface) 75%);
-      background-size: 200% 100%;
-      animation: shimmer 1.4s infinite;
-      border-radius: 2px;
-    }
-    @keyframes shimmer {
-      0% { background-position: 200% 0; }
-      100% { background-position: -200% 0; }
-    }
-    .pulse-placeholder {
-      height: 84px;
-      width: 56px;
-      flex-shrink: 0;
-    }
-
-    /* ─── RESPONSIVE ─── */
-    @media (max-width: 768px) {
-      nav { padding: 0 1.25rem; }
-      .nav-links { display: none; }
-      section { padding: 3.5rem 1.25rem; }
-      .section-divider { margin: 0 1.25rem; }
-      .hero-content { padding: 2rem 1.25rem 3rem; }
-      .rewind-card { grid-template-columns: 1fr; gap: 1.5rem; }
-      .rewind-poster { max-width: 160px; }
-      .argument-camps { grid-template-columns: 1fr; }
-      .mood-films { grid-template-columns: 1fr 1fr; }
-      .pulse-grid { grid-template-columns: 1fr; }
-      .btf-card { grid-template-columns: 1fr; }
-      .btf-image { display: none; }
-      .btc-grid { grid-template-columns: 1fr; }
-      .newsletter-card { padding: 2.5rem 1.5rem; }
-      .newsletter-form { flex-direction: column; }
-      .newsletter-input { border-right: 1px solid rgba(255,255,255,0.1); border-bottom: none; }
-      footer { flex-direction: column; gap: 0.75rem; text-align: center; }
-    }
-    @media (max-width: 480px) {
-      .mood-films { grid-template-columns: 1fr; }
-    }
+    /* REVEAL */
+    .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.7s ease, transform 0.7s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
   </style>
 </head>
 <body>
 
-  <!-- NAV -->
   <nav>
-    <a href="index.html" class="nav-logo">Screen<span>Share</span></a>
+    <a href="/" class="nav-logo">Screen<span>Share</span></a>
     <ul class="nav-links">
-      <li><a href="issue-001.html">Latest Issue</a></li>
-      <li><a href="archive.html">Archive</a></li>
+      <li><a href="issue-001.html">Issue 001</a></li>
       <li><a href="about.html">About</a></li>
+      <li><a href="archive.html">Archive</a></li>
     </ul>
   </nav>
 
-  <!-- ─── HERO ─── -->
-  <section class="hero" style="padding:0; max-width:none;" id="heroSection">
-    <div class="hero-backdrop" id="heroBackdrop"></div>
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-backdrop"></div>
     <div class="hero-grain"></div>
     <div class="hero-vignette"></div>
-    <div class="hero-vignette-sides"></div>
-
+    <div class="hero-bottom-fade"></div>
     <div class="hero-content">
-      <div class="hero-issue-badge">Issue 001 &mdash; March 2026</div>
-      <div class="hero-eyebrow">
-        <span class="hero-eyebrow-label">This Week on Screen Share</span>
-        <span class="hero-eyebrow-dot"></span>
-        <span class="hero-eyebrow-date" id="heroDate">Week of 7 March 2026</span>
-      </div>
-
-      <h1 class="hero-title" id="heroTitle">Loading this week's film&hellip;</h1>
-      <p class="hero-tagline" id="heroTagline">&nbsp;</p>
-
-      <div class="hero-meta">
-        <span class="hero-meta-film" id="heroFilmMeta">&nbsp;</span>
-      </div>
-
-      <div style="display:flex; gap:1rem; flex-wrap:wrap;">
+      <div class="hero-badge reveal">Weekly Film &amp; Television &mdash; Issue 001 Now Live</div>
+      <h1 class="hero-title reveal">A publication<br>for people who care<br>how they watch<span style="color:var(--gold);">.</span></h1>
+      <p class="hero-sub reveal">Taste-led, independent, ad-free. Every week: one theme, six sections, the films and television worth your time &mdash; and the thinking that goes with them.</p>
+      <div class="hero-actions reveal">
         <a href="issue-001.html" class="btn-primary">Read Issue 001 &rarr;</a>
         <a href="about.html" class="btn-ghost">About Screen Share</a>
       </div>
     </div>
-
     <div class="hero-scroll-hint">
       <span>Scroll</span>
       <div class="hero-scroll-line"></div>
     </div>
   </section>
 
-  <!-- ─── THE REWIND ─── -->
-  <div class="section-divider"></div>
-
-  <section id="rewind">
-    <div class="section-eyebrow reveal">
-      <span class="section-eyebrow-icon">🎞️</span>
-      <span class="section-eyebrow-label">The Rewind</span>
-      <span class="section-eyebrow-pipe">|</span>
-      <span class="section-eyebrow-desc">A film from the archive that speaks to right now</span>
-    </div>
-
-    <div class="rewind-card reveal">
-      <img
-        class="rewind-poster"
-        src="https://image.tmdb.org/t/p/w500/zinwtZqdb7gnc4zMu8dfkK1fMN3.jpg"
-        alt="Three Days of the Condor"
-        onerror="this.style.background='#1a1a22'; this.removeAttribute('src');"
-      />
-      <div class="rewind-body">
-        <div class="rewind-year">1975 &middot; Sydney Pollack</div>
-        <h2 class="rewind-film-title">Three Days of the Condor</h2>
-        <p class="rewind-text">
-          Robert Redford plays a CIA reader — a man whose entire job is to consume information and
-          notice patterns — who returns from lunch one afternoon to find everyone he works with
-          shot dead. What follows is a film about institutions that murder to protect themselves,
-          and the impossible choice between exposing the truth and surviving it.
-        </p>
-        <p class="rewind-text">
-          There is a particular exhaustion in this moment: the exhaustion of people who still,
-          despite everything, expected better from the systems built to serve them. Pollack made
-          this film in the long shadow of Watergate. It feels, right now, like he made it
-          last Tuesday.
-        </p>
-        <a href="rewind.html" class="link-arrow">Why This Film, Why Now &rarr;</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- ─── THE ARGUMENT ─── -->
-  <div class="section-divider"></div>
-
-  <section id="argument">
-    <div class="section-eyebrow reveal">
-      <span class="section-eyebrow-icon">💬</span>
-      <span class="section-eyebrow-label">The Argument</span>
-      <span class="section-eyebrow-pipe">|</span>
-      <span class="section-eyebrow-desc">One question. No verdict. You decide.</span>
-    </div>
-
-    <blockquote class="argument-question reveal">
-      &ldquo;Is <em>Hereditary</em> a grief film disguised as horror, or horror disguised as
-      grief — and does the answer change how you experience it?&rdquo;
-    </blockquote>
-
-    <div class="argument-camps reveal">
-      <div class="argument-camp">
-        <span class="argument-camp-label grief">Reading: Grief First</span>
-        <p class="argument-camp-text">
-          The supernatural in <em>Hereditary</em> is grief given physical form — the way loss
-          warps a family until they are strangers to each other, speaking different languages
-          in the same house. Paimon is just the name Annie gives to the thing that has lived
-          inside her since childhood: the inherited wound, the mother who never loved her
-          right, the damage passed down not by choice but by blood. The horror is real. But
-          it's the kind that happens in kitchens and bedrooms and at gravesides, and it doesn't
-          need a demon to justify it.
-        </p>
-      </div>
-      <div class="argument-camp">
-        <span class="argument-camp-label horror">Reading: Horror First</span>
-        <p class="argument-camp-text">
-          Aster constructs an occult conspiracy from the opening frame — the miniature diorama
-          that zooms into the real world, Joan's face at the support group, the cult that was
-          always already there. The grief is the trap, not the point. Read it as a grief film
-          and you'll feel for Annie. Read it as horror and you'll understand she never had a
-          choice, that every decision she thought she made was already made for her — which is,
-          arguably, the far more terrifying film. Sympathy and dread are not the same emotion.
-        </p>
-      </div>
-    </div>
-
-    <div class="argument-cta reveal">
-      <a href="argument.html" class="btn-primary">Join the Argument &rarr;</a>
-      <span class="argument-voter-count">2,847 people weighing in this week</span>
-    </div>
-  </section>
-
-  <!-- ─── MOOD-FIRST DISCOVERY ─── -->
-  <div class="section-divider"></div>
-
-  <section id="discover">
-    <div class="section-eyebrow reveal">
-      <span class="section-eyebrow-icon">🎭</span>
-      <span class="section-eyebrow-label">Mood-First Discovery</span>
-      <span class="section-eyebrow-pipe">|</span>
-      <span class="section-eyebrow-desc">Not genre. Emotion.</span>
-    </div>
-
-    <div class="mood-chips-wrapper reveal">
-      <div class="mood-chips" id="moodChips">
-        <button class="mood-chip active" data-mood="unsettled">😶 Unsettled</button>
-        <button class="mood-chip" data-mood="devastated">💔 Quietly Devastated</button>
-        <button class="mood-chip" data-mood="rewired">🤯 Mind Rewired</button>
-        <button class="mood-chip" data-mood="hopeful">😤 Furious but Hopeful</button>
-        <button class="mood-chip" data-mood="strange">🌙 Late Night Strange</button>
-        <button class="mood-chip" data-mood="edge">🔥 Edge of Your Seat</button>
-        <button class="mood-chip" data-mood="slowburn">🧘 Slow Burn</button>
-      </div>
-    </div>
-
-    <div class="mood-films reveal" id="moodFilms">
-      <!-- Populated by JS -->
-    </div>
-  </section>
-
-  <!-- ─── WEEKLY PULSE ─── -->
-  <div class="section-divider"></div>
-
+  <!-- INTRO -->
   <section>
-    <div class="section-eyebrow reveal">
-      <span class="section-eyebrow-icon">📡</span>
-      <span class="section-eyebrow-label">The Weekly Pulse</span>
-      <span class="section-eyebrow-pipe">|</span>
-      <span class="section-eyebrow-desc">What the conversation looked like this week</span>
-    </div>
-
-    <div class="pulse-grid reveal" id="pulseGrid">
-      <!-- Populated by JS -->
-    </div>
-  </section>
-
-  <!-- ─── BEHIND THE FRAME ─── -->
-  <div class="section-divider"></div>
-
-  <section id="craft">
-    <div class="section-eyebrow reveal">
-      <span class="section-eyebrow-icon">🎬</span>
-      <span class="section-eyebrow-label">Behind the Frame</span>
-      <span class="section-eyebrow-pipe">|</span>
-      <span class="section-eyebrow-desc">The craft, up close</span>
-    </div>
-
-    <div class="btf-card reveal">
+    <div class="intro">
       <div>
-        <h2 class="btf-title">
-          Why the final ten minutes of<br><em>There Will Be Blood</em> work —
-          and why most films can't do what PTA did
-        </h2>
-        <blockquote class="btf-excerpt">
-          The bowling alley scene works because Paul Thomas Anderson earns his violence the way a
-          novelist earns a death — through two and a half hours of accumulated pressure. Daniel
-          Plainview has not snapped; he has <em>arrived</em>. Every sermon Eli Sunday ever
-          delivered, every handshake Daniel gave while meaning the opposite, every barrel of oil
-          pulled from beneath someone else's land: it all compounds into that single wooden pin
-          swung in a room that used to mean something to both of them. Anderson understood that
-          great cinema doesn't build to a climax. It builds to a revelation. The horror is not
-          that we are shocked. The horror is that we are not. We have been waiting — without
-          knowing we were waiting — and that is what the best films do to you.
-        </blockquote>
-        <a href="craft.html" class="link-arrow">Read the Full Piece &rarr;</a>
+        <div class="intro-label reveal">What is Screen Share?</div>
+        <h2 class="intro-heading reveal">Not reviews. Not rankings. Not the algorithm&rsquo;s best guess.</h2>
+        <div class="intro-body reveal">
+          <p>Screen Share is a weekly editorial publication about film and television. Every issue is built around a single theme &mdash; a question, a mood, a moment in cinema history &mdash; and everything in the issue connects back to it.</p>
+          <p>We cover what&rsquo;s worth watching, what&rsquo;s worth arguing about, and what the industry doesn&rsquo;t want you to think too hard about. No scores. No affiliate links. Just the conversation worth having.</p>
+        </div>
       </div>
-      <img
-        class="btf-image"
-        src="https://image.tmdb.org/t/p/w780/9UAKA6ceZi6TgQwTAAMt7DWwYPI.jpg"
-        alt="There Will Be Blood"
-        onerror="this.style.display='none'"
-      />
+      <div class="intro-stats">
+        <div class="stat-item reveal">
+          <div class="stat-number">7</div>
+          <div class="stat-label">Sections per issue — each with a distinct editorial purpose</div>
+        </div>
+        <div class="stat-item reveal">
+          <div class="stat-number">1</div>
+          <div class="stat-label">Theme per week — everything connects back to a single idea</div>
+        </div>
+        <div class="stat-item reveal">
+          <div class="stat-number">Weekly</div>
+          <div class="stat-label">Every issue, same time, same commitment to quality</div>
+        </div>
+      </div>
     </div>
   </section>
 
-  <!-- ─── BEHIND THE CURTAIN ─── -->
-  <div class="section-divider"></div>
+  <div class="divider"></div>
 
+  <!-- SECTION TOUR -->
+  <section class="tour">
+    <div class="tour-header">
+      <div class="tour-label reveal">Inside each issue</div>
+      <h2 class="tour-heading reveal">Seven sections. One theme.</h2>
+      <p class="tour-sub reveal">Here&rsquo;s what you&rsquo;ll find in every issue of Screen Share.</p>
+    </div>
+
+    <div class="tour-grid">
+
+      <div class="tour-card" style="--card-accent:#f59e0b;" data-delay="0">
+        <div class="tour-card-icon">&#127909;</div>
+        <div class="tour-card-label">Section 01</div>
+        <div class="tour-card-title">The Rewind</div>
+        <div class="tour-card-desc">A film from the archive that speaks to right now. Not nostalgia &mdash; relevance. Why this film, why this week, why it still matters.</div>
+      </div>
+
+      <div class="tour-card" style="--card-accent:#a78bfa;" data-delay="100">
+        <div class="tour-card-icon">&#9876;&#65039;</div>
+        <div class="tour-card-label">Section 02</div>
+        <div class="tour-card-title">The Argument</div>
+        <div class="tour-card-desc">A position worth defending. Two readings of the same film or idea &mdash; one question, no easy answer. Vote and see where readers land.</div>
+      </div>
+
+      <div class="tour-card" style="--card-accent:#34d399;" data-delay="200">
+        <div class="tour-card-icon">&#127775;</div>
+        <div class="tour-card-label">Section 03</div>
+        <div class="tour-card-title">Discover</div>
+        <div class="tour-card-desc">Match your mood to a film. Seven moods, three recommendations each &mdash; from unsettled to slow burn. Something for wherever you are tonight.</div>
+      </div>
+
+      <div class="tour-card" style="--card-accent:#f59e0b;" data-delay="0">
+        <div class="tour-card-icon">&#128225;</div>
+        <div class="tour-card-label">Section 04</div>
+        <div class="tour-card-title">The Weekly Pulse</div>
+        <div class="tour-card-desc">What the conversation looked like this week. Most talked-about, most divisive, and the one most people missed. Signal versus noise.</div>
+      </div>
+
+      <div class="tour-card" style="--card-accent:#60a5fa;" data-delay="100">
+        <div class="tour-card-icon">&#128250;</div>
+        <div class="tour-card-label">Section 05</div>
+        <div class="tour-card-title">On Screen</div>
+        <div class="tour-card-desc">Television worth your time. Airing now, on the horizon, and under the radar &mdash; across every platform, curated by what&rsquo;s actually good.</div>
+      </div>
+
+      <div class="tour-card" style="--card-accent:#f87171;" data-delay="200">
+        <div class="tour-card-icon">&#9889;</div>
+        <div class="tour-card-label">Section 06</div>
+        <div class="tour-card-title">Flashpoint</div>
+        <div class="tour-card-desc">One moment in cinema history that still divides audiences. The scene, the release, the argument that never quite resolved.</div>
+      </div>
+
+      <div class="tour-card" style="--card-accent:#e879f9; grid-column: 1 / -1; max-width: 480px; margin: 0 auto; width: 100%;" data-delay="100">
+        <div class="tour-card-icon">&#127909;</div>
+        <div class="tour-card-label">Section 07</div>
+        <div class="tour-card-title">Behind the Curtain</div>
+        <div class="tour-card-desc">The industry stories worth knowing. Labour, money, technology, power &mdash; the things shaping what gets made and how it reaches you.</div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ISSUE CTA -->
+  <section class="issue-cta">
+    <div class="issue-cta-backdrop"></div>
+    <div class="issue-cta-content">
+      <div class="issue-cta-badge reveal">Issue 001 &mdash; March 2026</div>
+      <h2 class="issue-cta-title reveal">Hello<span style="color:var(--gold);">.</span></h2>
+      <p class="issue-cta-sub reveal">First encounters, the moment of contact, and what we risk by reaching out. Arrival, Solaris, The Day the Earth Stood Still &mdash; and everything in between.</p>
+      <div class="issue-cta-actions reveal">
+        <a href="issue-001.html" class="btn-primary">Read Issue 001 &rarr;</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- SUBSCRIBE -->
   <section>
-    <div class="section-eyebrow reveal">
-      <span class="section-eyebrow-icon">🎭</span>
-      <span class="section-eyebrow-label">Behind the Curtain</span>
-      <span class="section-eyebrow-pipe">|</span>
-      <span class="section-eyebrow-desc">Industry news with conscience</span>
-    </div>
-
-    <div class="btc-grid reveal">
-
-      <div class="btc-card">
-        <div class="btc-source">Hollywood Reporter &middot; March 2026</div>
-        <h3 class="btc-title">Toronto Film Critics Stage Mass Exodus Over Censored Palestine Speech</h3>
-        <p class="btc-editorial">
-          When the Toronto Film Critics Association muted a member's pro-Palestine remarks
-          mid-speech at their awards ceremony, thirty critics walked out. It's a reminder that
-          the politics of whose voice gets amplified — and whose gets cut — don't stop at the
-          cinema door.
-        </p>
-        <a href="https://www.hollywoodreporter.com/movies/movie-news/toronto-film-critics-mass-exodus-pro-palestine-speech-censored-1236522591/" class="link-arrow" target="_blank" rel="noopener">Read the full story &rarr;</a>
+    <div class="subscribe-wrap">
+      <div>
+        <div class="intro-label reveal">Stay in the loop</div>
+        <h2 class="subscribe-heading reveal">Get Screen Share in your inbox every week</h2>
+        <p class="subscribe-sub reveal">One issue, one theme, every week. No algorithm. No noise. Just the films and television worth your time &mdash; and the thinking that goes with them.</p>
       </div>
-
-      <div class="btc-card">
-        <div class="btc-source">Hollywood Reporter &middot; March 2026</div>
-        <h3 class="btc-title">BBC's Tim Davie Explains BAFTA Broadcast Error After Tourette's Segment</h3>
-        <p class="btc-editorial">
-          The BBC's handling of an unexpected Tourette's outburst during live BAFTA coverage
-          raised questions about broadcaster reflexes — and how institutions respond when
-          reality doesn't follow the script.
-        </p>
-        <a href="https://www.hollywoodreporter.com/news/general-news/bbc-tim-davie-bafta-tourettes-broadcast-error-explanation-1236523513/" class="link-arrow" target="_blank" rel="noopener">Read the full story &rarr;</a>
+      <div>
+        <form class="subscribe-form reveal" action="https://buttondown.com/api/emails/embed-subscribe/screenshare" method="post" target="_blank" onsubmit="window.open('https://buttondown.com/screenshare','popupwindow')">
+          <input class="subscribe-input" type="email" name="email" placeholder="your@email.com" required />
+          <button class="subscribe-btn" type="submit">Subscribe</button>
+        </form>
       </div>
-
     </div>
   </section>
 
-  <!-- ─── NEWSLETTER ─── -->
-  <div class="section-divider"></div>
-
-  <div class="newsletter-section">
-    <div class="newsletter-card reveal">
-      <div class="newsletter-eyebrow">Every Friday</div>
-      <h2 class="newsletter-title">The weekly digest —<br>one email, worth opening.</h2>
-      <p class="newsletter-sub">&ldquo;No scores. No aggregation. Just the conversation worth having.&rdquo;</p>
-      <div class="newsletter-form">
-        <input class="newsletter-input" type="email" placeholder="your@email.com" />
-        <button class="newsletter-btn">Subscribe</button>
-      </div>
-      <p class="newsletter-note">No noise. Unsubscribe whenever. We mean it.</p>
-    </div>
-  </div>
-
-  <!-- ─── FOOTER ─── -->
   <footer>
     <div class="footer-logo">Screen<span>Share</span></div>
-    <div class="footer-note">&copy; 2026 Screen Share &middot; A publication for people who care how they watch</div>
+    <div class="footer-note">&copy; 2026 Screen Share &middot; Independent &middot; Ad-free &middot; Weekly</div>
   </footer>
 
   <script>
-    var heroFilm = {
-      title: 'Arrival',
-      year: 2016,
-      backdrop: 'https://image.tmdb.org/t/p/w1280/r8FD6CC3GgjWaGVkZh00AcedfpA.jpg',
-      overview: 'Issue 001 \u2014 Hello. First encounters, the moment of contact, and what we risk by reaching out.'
-    };
-
-    var pulseData = [
-      {
-        type: 'Most Talked About',
-        title: 'All We Imagine as Light',
-        sub: 'Payal Kapadia, 2024 · Cannes Grand Prix winner',
-        poster: 'https://image.tmdb.org/t/p/w500/ruImrzB4POsrgwCMozmOBV67zs5.jpg',
-        tone: 'amber',
-        mode: 'sentiment',
-        pct: 87,
-        note: 'A quiet film with an unusually loud afterlife. The discussion is less about plot than about mood, texture, and tenderness.'
-      },
-      {
-        type: 'Most Divisive',
-        title: 'Saltburn',
-        sub: 'Emerald Fennell, 2023 · Still polarising 18 months on',
-        poster: 'https://image.tmdb.org/t/p/w500/zGTfMwG112BC66mpaveVxoWPOaB.jpg',
-        tone: 'crimson',
-        mode: 'badge',
-        badgeClass: 'divisive-badge',
-        badgeText: 'Critics 79% · Audiences 52%',
-        note: 'A provocation that still splits the room. The disagreement is the content now.'
-      },
-      {
-        type: 'Hidden Gem Resurface',
-        title: 'A Ghost Story',
-        sub: 'David Lowery, 2017 · Back in conversation this week',
-        poster: 'https://image.tmdb.org/t/p/w500/rp5JPIyZi9sMob15l46zNQLe5cO.jpg',
-        tone: 'slate',
-        mode: 'badge',
-        badgeClass: 'gem-badge',
-        badgeText: 'Rediscovered',
-        note: 'Time, grief, legacy. The kind of film that keeps getting rediscovered by people who need it at exactly the right moment.'
-      }
-    ];
-
-    var moodData = {
-      unsettled: [
-        { title: 'Parasite', year: 2019, director: 'Bong Joon-ho', poster: 'https://image.tmdb.org/t/p/w342/7IiTTgloJzvGI1TAYymCfbfl3vT.jpg',
-        tone: 'amber', tag: 'The floor gives way slowly' },
-        { title: 'The Zone of Interest', year: 2023, director: 'Jonathan Glazer', poster: 'https://image.tmdb.org/t/p/w500/hUu9zyZmDd8VZegKi1iK1Vk0RYS.jpg', tone: 'slate', tag: 'Horror at a distance' },
-        { title: 'Caché', year: 2005, director: 'Michael Haneke', poster: 'https://image.tmdb.org/t/p/w500/vTzjRi0Uhy0tt3Rjw8SARZZJHlX.jpg', tone: 'crimson', tag: 'Someone is watching' }
-      ],
-      devastated: [
-        { title: 'Burning', year: 2018, director: 'Lee Chang-dong', poster: 'https://image.tmdb.org/t/p/w500/hxGv1O2W5SOJTmiBc45CL842mrx.jpg', tone: 'amber', tag: 'Grief without a name' },
-        { title: 'Manchester by the Sea', year: 2016, director: 'Kenneth Lonergan', poster: 'https://image.tmdb.org/t/p/w500/o9VXYOuaJxCEKOxbA86xqtwmqYn.jpg', tone: 'slate', tag: 'Some things do not heal' },
-        { title: 'Portrait of a Lady on Fire', year: 2019, director: 'Céline Sciamma', poster: 'https://image.tmdb.org/t/p/w500/2LquGwEhbg3soxSCs9VNyh5VJd9.jpg', tone: 'amber', tag: 'Remember us looking' }
-      ],
-      rewired: [
-        { title: 'Annihilation', year: 2018, director: 'Alex Garland', poster: 'https://image.tmdb.org/t/p/w500/4YRplSk6BhH6PRuE9gfyw9byUJ6.jpg', tone: 'moss', tag: 'Self-destruction by another name' },
-        { title: 'Under the Skin', year: 2013, director: 'Jonathan Glazer', poster: 'https://image.tmdb.org/t/p/w500/55wmcXJIDYITr7JDijJTdvwSaAv.jpg', tone: 'slate', tag: 'What is a body?' },
-        { title: 'Enemy', year: 2013, director: 'Denis Villeneuve', poster: 'https://image.tmdb.org/t/p/w500/vf40tyDRKZsBmaLsYeopzfFLzLx.jpg', tone: 'crimson', tag: 'You are not who you think you are' }
-      ],
-      hopeful: [
-        { title: 'Sorry to Bother You', year: 2018, director: 'Boots Riley', poster: 'https://image.tmdb.org/t/p/w500/peTl1V04E9ppvhgvNmSX0r2ALqO.jpg', tone: 'amber', tag: 'Furious, and still swinging' },
-        { title: 'Beasts of the Southern Wild', year: 2012, director: 'Benh Zeitlin', poster: 'https://image.tmdb.org/t/p/w500/nQJmWekGYlXhezGUb21xFfEfwhH.jpg', tone: 'moss', tag: 'The world is ending. Hold on.' },
-        { title: 'Selma', year: 2014, director: 'Ava DuVernay', poster: 'https://image.tmdb.org/t/p/w500/wq4lhMc4BuOyQqe1ZGzhxLyy3Uk.jpg', tone: 'amber', tag: 'The march never really ended' }
-      ],
-      strange: [
-        { title: 'Holy Motors', year: 2012, director: 'Leos Carax', poster: 'https://image.tmdb.org/t/p/w500/4ZuTrrDQhCS9f6KzIX6HfsjjyMd.jpg', tone: 'crimson', tag: 'Cinema dreaming about itself' },
-        { title: 'The Lobster', year: 2015, director: 'Yorgos Lanthimos', poster: 'https://image.tmdb.org/t/p/w500/7Y9ILV1unpW9mLpGcqyGQU72LUy.jpg', tone: 'slate', tag: 'Love as compliance' },
-        { title: 'Lost Highway', year: 1997, director: 'David Lynch', poster: 'https://image.tmdb.org/t/p/w500/fdTtij6H0sX9AzIjUeynh5zbfm7.jpg', tone: 'crimson', tag: 'The road doubles back' }
-      ],
-      edge: [
-        { title: 'No Country for Old Men', year: 2007, director: 'Coen Brothers', poster: 'https://image.tmdb.org/t/p/w500/6d5XOczc226jECq0LIX0siKtgHR.jpg', tone: 'amber', tag: 'Fate does not negotiate' },
-        { title: 'Uncut Gems', year: 2019, director: 'Safdie Brothers', poster: 'https://image.tmdb.org/t/p/w500/6XN1vxHc7kUSqNWtaQKN45J5x2v.jpg', tone: 'crimson', tag: 'Anxiety as cinema' },
-        { title: 'Prisoners', year: 2013, director: 'Denis Villeneuve', poster: 'https://image.tmdb.org/t/p/w500/jsS3a3ep2KyBVmmiwaz3LvK49b1.jpg', tone: 'slate', tag: 'What would you do?' }
-      ],
-      slowburn: [
-        { title: 'The Turin Horse', year: 2011, director: 'Béla Tarr', poster: 'https://image.tmdb.org/t/p/w500/2kSElneXSKmMsGL55k0CbPGqLbu.jpg', tone: 'slate', tag: 'Entropy made visible' },
-        { title: 'First Reformed', year: 2017, director: 'Paul Schrader', poster: 'https://image.tmdb.org/t/p/w500/8HKA3Hwf8jQWy8TCYWr7C8Wft23.jpg', tone: 'moss', tag: 'Faith at the breaking point' },
-        { title: 'Certified Copy', year: 2010, director: 'Abbas Kiarostami', poster: 'https://image.tmdb.org/t/p/w500/soBvtCR33Gv1j6gXwXOIc3JTlNc.jpg', tone: 'amber', tag: 'Are they strangers or not?' }
-      ]
-    };
-
-
-    function placeholderPoster(title, subtitle, tone) {
-      var palette = {
-        amber: ['#2a2114', '#f59e0b'],
-        crimson: ['#231315', '#dc2626'],
-        slate: ['#161923', '#94a3b8'],
-        moss: ['#172018', '#84cc16']
-      };
-      var pair = palette[tone] || palette.amber;
-      var svg = '<svg xmlns="http://www.w3.org/2000/svg" width="342" height="513" viewBox="0 0 342 513">' +
-        '<defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="' + pair[0] + '"/><stop offset="100%" stop-color="#0b0c10"/></linearGradient></defs>' +
-        '<rect width="342" height="513" fill="url(#g)"/>' +
-        '<rect x="20" y="20" width="302" height="473" rx="18" fill="none" stroke="rgba(255,255,255,0.18)"/>' +
-        '<text x="28" y="70" fill="#f3efe6" font-family="Inter,Arial,sans-serif" font-size="18" letter-spacing="3">SCREEN SHARE</text>' +
-        '<text x="28" y="380" fill="#ffffff" font-family="Georgia,serif" font-size="34">' + title.replace(/&/g, '&amp;') + '</text>' +
-        '<text x="28" y="420" fill="#d6d3cb" font-family="Inter,Arial,sans-serif" font-size="18">' + subtitle.replace(/&/g, '&amp;') + '</text>' +
-        '</svg>';
-      return 'data:image/svg+xml;charset=UTF-8,' + encodeURIComponent(svg);
-    }
-
-    function renderHero() {
-      var backdrop = document.getElementById('heroBackdrop');
-      if (heroFilm.backdrop) {
-        backdrop.style.backgroundImage = 'url(' + heroFilm.backdrop + ')';
-      } else {
-        backdrop.style.backgroundImage = [
-          'radial-gradient(ellipse at 25% 60%, rgba(214,179,106,0.22) 0%, transparent 50%)',
-          'radial-gradient(ellipse at 75% 25%, rgba(139,92,246,0.14) 0%, transparent 45%)',
-          'linear-gradient(160deg, rgba(28,20,48,0.92) 0%, rgba(18,15,32,0.88) 40%, rgba(10,8,20,0.95) 100%)'
-        ].join(', ');
-      }
-      document.getElementById('heroTitle').textContent = heroFilm.title;
-      document.getElementById('heroTagline').textContent = heroFilm.overview;
-      var meta = document.getElementById('heroFilmMeta');
-      meta.innerHTML = '';
-      var labelSpan = document.createElement('span');
-      labelSpan.textContent = 'Film: ';
-      var filmSpan = document.createElement('span');
-      filmSpan.textContent = heroFilm.title + ' (' + heroFilm.year + ')';
-      meta.appendChild(labelSpan);
-      meta.appendChild(filmSpan);
-    }
-
-    function renderPulse() {
-      var grid = document.getElementById('pulseGrid');
-      grid.innerHTML = '';
-      pulseData.forEach(function(item) {
-        var card = document.createElement('div');
-        card.className = 'pulse-card';
-        var html = '' +
-          '<div class="pulse-card-type">' + item.type + '</div>' +
-          '<div class="pulse-card-film">' +
-            '<img class="pulse-card-poster" src="' + (item.poster || placeholderPoster(item.title, item.sub, item.tone)) + '" alt="' + item.title + '" />' +
-            '<div class="pulse-card-film-info">' +
-              '<div class="pulse-card-title">' + item.title + '</div>' +
-              '<div class="pulse-card-sub">' + item.sub + '</div>' +
-            '</div>' +
-          '</div>';
-        if (item.mode === 'sentiment') {
-          html += '' +
-            '<div class="sentiment-bar-wrap">' +
-              '<div class="sentiment-bar-label"><span>Audience sentiment</span><span>' + item.pct + '% positive</span></div>' +
-              '<div class="sentiment-bar-track"><div class="sentiment-bar-fill" style="width:' + item.pct + '%"></div></div>' +
-            '</div>';
-        } else {
-          html += '<span class="' + item.badgeClass + '">' + item.badgeText + '</span>';
+    // Reveal on scroll
+    var reveals = document.querySelectorAll('.reveal');
+    var observer = new IntersectionObserver(function(entries) {
+      entries.forEach(function(e) {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          observer.unobserve(e.target);
         }
-        html += '<p class="pulse-card-sub" style="margin-top:0.75rem">' + item.note + '</p>';
-        card.innerHTML = html;
-        grid.appendChild(card);
       });
-    }
+    }, { threshold: 0.12 });
+    reveals.forEach(function(el) { observer.observe(el); });
 
-    function renderMoodFilms(mood) {
-      var films = moodData[mood] || moodData.unsettled;
-      var container = document.getElementById('moodFilms');
-      container.innerHTML = '';
-      films.forEach(function(film) {
-        var card = document.createElement('div');
-        card.className = 'film-card';
-        card.innerHTML =
-          '<img class="film-card-poster" src="' + (film.poster || placeholderPoster(film.title, film.director + ' · ' + film.year, film.tone)) + '" alt="' + film.title + '" />' +
-          '<div class="film-card-body">' +
-            '<div class="film-card-title">' + film.title + '</div>' +
-            '<div class="film-card-year">' + film.year + ' · ' + film.director + '</div>' +
-            '<div class="film-card-mood-tag">' + film.tag + '</div>' +
-          '</div>';
-        container.appendChild(card);
-      });
-    }
-
-    renderHero();
-    renderPulse();
-    renderMoodFilms('unsettled');
-
-    var chips = document.querySelectorAll('.mood-chip');
-    chips.forEach(function(chip) {
-      chip.addEventListener('click', function() {
-        chips.forEach(function(c) { c.classList.remove('active'); });
-        chip.classList.add('active');
-        renderMoodFilms(chip.getAttribute('data-mood'));
-      });
-    });
-
-    var revealObserver = new IntersectionObserver(function(entries) {
-      entries.forEach(function(entry) {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-          revealObserver.unobserve(entry.target);
+    // Tour cards staggered
+    var cards = document.querySelectorAll('.tour-card');
+    var cardObserver = new IntersectionObserver(function(entries) {
+      entries.forEach(function(e) {
+        if (e.isIntersecting) {
+          var delay = parseInt(e.target.getAttribute('data-delay') || 0);
+          setTimeout(function() {
+            e.target.classList.add('visible');
+          }, delay);
+          cardObserver.unobserve(e.target);
         }
       });
     }, { threshold: 0.1 });
-
-    document.querySelectorAll('.reveal').forEach(function(el) {
-      revealObserver.observe(el);
-    });
-
-    document.querySelector('.newsletter-btn').addEventListener('click', function() {
-      var input = document.querySelector('.newsletter-input');
-      if (input.value && input.value.indexOf('@') !== -1) {
-        input.value = '';
-        input.placeholder = 'You are in. See you Friday.';
-        this.textContent = '✓';
-        this.style.background = '#4ade80';
-      }
-    });
+    cards.forEach(function(c) { cardObserver.observe(c); });
   </script>
+
 </body>
 </html>
