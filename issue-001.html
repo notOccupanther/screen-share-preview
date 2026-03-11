@@ -207,9 +207,17 @@
     .editors-note-label { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 1.25rem; }
     .editors-note-text { font-size: 1rem; line-height: 1.85; color: rgba(232,232,237,0.78); font-weight: 300; margin-bottom: 0.9rem; font-style: italic; }
     .editors-note-text em { font-style: normal; color: var(--text); font-weight: 500; }
-    .editors-note-sig { display: flex; align-items: baseline; gap: 0.75rem; margin-top: 1.5rem; }
+    .editors-note-sig { display: flex; align-items: baseline; gap: 0.75rem; margin-top: 1.5rem; opacity: 0; transition: opacity 0.6s ease; }
+    .editors-note-sig.unraveled { opacity: 1; }
     .editors-note-name { font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 700; color: var(--text); }
     .editors-note-role { font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-dim); }
+    .unravel-word {
+      display: inline-block;
+      opacity: 0;
+      transform: translateY(7px);
+      transition: opacity 0.35s ease, transform 0.35s ease;
+    }
+    .unravel-word.visible { opacity: 1; transform: translateY(0); }
 
     /* SECTION COMMONS */
     section { padding: 5rem 2.5rem; max-width: 1200px; margin: 0 auto; }
@@ -1348,6 +1356,56 @@
     document.querySelectorAll('.reveal').forEach(function(el) {
       revealObserver.observe(el);
     });
+
+    // EDITOR'S NOTE UNRAVEL
+    (function() {
+      var note = document.querySelector('.editors-note-inner');
+      if (!note) return;
+
+      // Wrap each word in each paragraph in a span
+      var paragraphs = note.querySelectorAll('.editors-note-text');
+      var allWords = [];
+
+      paragraphs.forEach(function(p) {
+        // Walk text nodes and element nodes, wrap words preserving <em> tags
+        var html = p.innerHTML;
+        // Split on word boundaries, preserving spaces and tags
+        var wrapped = html.replace(/(<[^>]+>)|(\s+)|([^\s<]+)/g, function(match, tag, space, word) {
+          if (tag) return tag;
+          if (space) return space;
+          if (word) return '<span class="unravel-word">' + word + '</span>';
+          return match;
+        });
+        p.innerHTML = wrapped;
+      });
+
+      allWords = note.querySelectorAll('.unravel-word');
+      var sig = note.querySelector('.editors-note-sig');
+
+      var triggered = false;
+      var noteObserver = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+          if (entry.isIntersecting && !triggered) {
+            triggered = true;
+            var delay = 80; // ms between words
+            allWords.forEach(function(word, i) {
+              setTimeout(function() {
+                word.classList.add('visible');
+              }, i * delay);
+            });
+            // Signature fades in after all words
+            if (sig) {
+              setTimeout(function() {
+                sig.classList.add('unraveled');
+              }, allWords.length * delay + 200);
+            }
+            noteObserver.disconnect();
+          }
+        });
+      }, { threshold: 0.2 });
+
+      noteObserver.observe(note);
+    })();
 
     // VOTE WIDGET
     var VOTE_KEY = 'ss-001-argument-vote';
