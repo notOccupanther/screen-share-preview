@@ -361,6 +361,52 @@
     .newsletter-btn:hover { background: #fbbf24; }
     .newsletter-note { font-size: 0.75rem; color: var(--text-dim); }
 
+    /* SECTION ABOUT TOGGLE */
+    .section-about-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      border: 1px solid var(--text-dim);
+      color: var(--text-dim);
+      font-size: 0.65rem;
+      font-weight: 700;
+      cursor: pointer;
+      background: transparent;
+      transition: border-color 0.2s, color 0.2s, background 0.2s;
+      flex-shrink: 0;
+      line-height: 1;
+      font-family: 'Inter', sans-serif;
+      letter-spacing: 0;
+    }
+    .section-about-btn:hover { border-color: var(--gold); color: var(--gold); }
+    .section-about-btn.open { border-color: var(--gold); color: #0a0a0f; background: var(--gold); }
+
+    .section-about-panel {
+      overflow: hidden;
+      max-height: 0;
+      opacity: 0;
+      transition: max-height 0.4s ease, opacity 0.3s ease, margin 0.3s ease;
+      margin-bottom: 0;
+    }
+    .section-about-panel.open {
+      max-height: 200px;
+      opacity: 1;
+      margin-bottom: 2rem;
+    }
+    .section-about-inner {
+      background: rgba(245,158,11,0.06);
+      border: 1px solid var(--gold-border);
+      border-left: 3px solid var(--gold);
+      padding: 1rem 1.25rem;
+      font-size: 0.85rem;
+      line-height: 1.7;
+      color: rgba(232,232,237,0.72);
+      font-style: italic;
+    }
+
     /* FOOTER */
     footer { border-top: 1px solid var(--border); padding: 2rem 2.5rem; display: flex; align-items: center; justify-content: space-between; }
     .footer-logo { font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 800; color: var(--text-muted); }
@@ -450,6 +496,10 @@
       <span class="section-eyebrow-label">The Rewind</span>
       <span class="section-eyebrow-pipe">|</span>
       <span class="section-eyebrow-desc">A film from the archive that speaks to right now</span>
+      <button class="section-about-btn" data-about="rewind" title="What is this section?">i</button>
+    </div>
+    <div class="section-about-panel" id="about-rewind">
+      <div class="section-about-inner">Each issue we reach back into cinema history for a film that earns its place in the conversation right now. Not a classic for a classic&rsquo;s sake &mdash; something that speaks to the week&rsquo;s theme in a way that might surprise you.</div>
     </div>
 
     <div class="rewind-card reveal">
@@ -493,6 +543,10 @@
       <span class="section-eyebrow-label">The Argument</span>
       <span class="section-eyebrow-pipe">|</span>
       <span class="section-eyebrow-desc">One question. No verdict.</span>
+      <button class="section-about-btn" data-about="argument" title="What is this section?">i</button>
+    </div>
+    <div class="section-about-panel" id="about-argument">
+      <div class="section-about-inner">Every issue we pick one interpretive question and lay out two honest readings &mdash; no winner, no consensus. The point isn&rsquo;t to settle the debate. It&rsquo;s to make the debate worth having.</div>
     </div>
 
     <blockquote class="argument-question reveal">
@@ -543,6 +597,10 @@
       <span class="section-eyebrow-label">Discover</span>
       <span class="section-eyebrow-pipe">|</span>
       <span class="section-eyebrow-desc">Not genre. Emotion.</span>
+      <button class="section-about-btn" data-about="discover" title="What is this section?">i</button>
+    </div>
+    <div class="section-about-panel" id="about-discover">
+      <div class="section-about-inner">Algorithms sort by genre. We sort by feeling. Pick the mood you&rsquo;re in and we&rsquo;ll find a film that fits it &mdash; from across the full range of cinema, not just what&rsquo;s trending.</div>
     </div>
 
     <div class="mood-chips-wrapper reveal">
@@ -569,6 +627,10 @@
       <span class="section-eyebrow-label">The Weekly Pulse</span>
       <span class="section-eyebrow-pipe">|</span>
       <span class="section-eyebrow-desc">What the conversation looked like this week</span>
+      <button class="section-about-btn" data-about="pulse" title="What is this section?">i</button>
+    </div>
+    <div class="section-about-panel" id="about-pulse">
+      <div class="section-about-inner">Three film cards every week: the most talked-about, the most divisive, and the one most people missed. Signal versus noise &mdash; what&rsquo;s actually worth paying attention to right now.</div>
     </div>
 
     <div class="pulse-grid reveal">
@@ -629,6 +691,10 @@
       <span class="section-eyebrow-label">On Screen</span>
       <span class="section-eyebrow-pipe">|</span>
       <span class="section-eyebrow-desc">Television worth your time</span>
+      <button class="section-about-btn" data-about="tv" title="What is this section?">i</button>
+    </div>
+    <div class="section-about-panel" id="about-tv">
+      <div class="section-about-inner">Screen Share covers film and television. This section tracks what&rsquo;s worth watching on TV right now &mdash; top picks currently airing, what&rsquo;s coming up, and the one thing nobody seems to have found yet.</div>
     </div>
 
     <div class="tv-grid reveal">
@@ -697,6 +763,10 @@
       <span class="section-eyebrow-label">Flashpoint</span>
       <span class="section-eyebrow-pipe">|</span>
       <span class="section-eyebrow-desc">The moment something ignited</span>
+      <button class="section-about-btn" data-about="flashpoint" title="What is this section?">i</button>
+    </div>
+    <div class="section-about-panel" id="about-flashpoint">
+      <div class="section-about-inner">Cinema has always been political. Flashpoint looks back at the moment a film said something it wasn&rsquo;t supposed to &mdash; and what happened when it did. History as context for the present.</div>
     </div>
 
     <div class="flashpoint-card reveal">
@@ -745,6 +815,10 @@
       <span class="section-eyebrow-label">Behind the Curtain</span>
       <span class="section-eyebrow-pipe">|</span>
       <span class="section-eyebrow-desc">Industry news with conscience</span>
+      <button class="section-about-btn" data-about="curtain" title="What is this section?">i</button>
+    </div>
+    <div class="section-about-panel" id="about-curtain">
+      <div class="section-about-inner">The business of film and television, told with conscience. Labour, power, money, and the gap between what the industry says it values and what it actually does. The stories behind the stories.</div>
     </div>
 
     <div class="btc-grid reveal">
@@ -914,6 +988,18 @@
 
     document.querySelectorAll('.reveal').forEach(function(el) {
       revealObserver.observe(el);
+    });
+
+    document.querySelectorAll('.section-about-btn').forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        var id = 'about-' + btn.getAttribute('data-about');
+        var panel = document.getElementById(id);
+        if (!panel) return;
+        var isOpen = panel.classList.contains('open');
+        panel.classList.toggle('open', !isOpen);
+        btn.classList.toggle('open', !isOpen);
+        btn.textContent = isOpen ? 'i' : '\u00d7';
+      });
     });
 
     document.querySelector('.newsletter-btn').addEventListener('click', function() {
