@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About — Screen Share</title>
+  <meta name="description" content="What Screen Share is, what we believe, and how each issue is put together." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,700;0,800;1,700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #080810;
+      --surface: #111118;
+      --surface-2: #18181f;
+      --gold: #f59e0b;
+      --gold-dim: rgba(245, 158, 11, 0.15);
+      --gold-border: rgba(245, 158, 11, 0.25);
+      --crimson: #dc2626;
+      --text: #e8e8ed;
+      --text-muted: #8888a0;
+      --text-dim: #555568;
+      --border: rgba(255,255,255,0.06);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Inter', sans-serif;
+      font-size: 16px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: '';
+      position: fixed; inset: 0; pointer-events: none; z-index: 9999; opacity: 0.025;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E");
+      background-size: 180px 180px; mix-blend-mode: overlay;
+    }
+
+    .reveal { opacity: 0; transform: translateY(18px); transition: opacity 0.55s ease, transform 0.55s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 2rem; height: 60px;
+      background: rgba(10, 10, 15, 0.85);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-logo { font-family: 'Playfair Display', serif; font-size: 1.25rem; font-weight: 800; color: var(--text); letter-spacing: 0.02em; text-decoration: none; }
+    .nav-logo span { color: var(--gold); }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a { font-size: 0.8rem; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-muted); text-decoration: none; transition: color 0.2s; }
+    .nav-links a:hover, .nav-links a.active { color: var(--gold); }
+
+    /* PAGE HEADER */
+    .page-header {
+      padding: 8rem 2.5rem 4rem;
+      max-width: 900px;
+      margin: 0 auto;
+      border-bottom: 1px solid var(--border);
+    }
+    .page-header-eyebrow {
+      font-size: 0.7rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 1.25rem;
+    }
+    .page-header-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      font-weight: 800; line-height: 1.1; color: #fff;
+      margin-bottom: 1.5rem;
+    }
+    .page-header-intro {
+      font-size: clamp(1rem, 2vw, 1.2rem);
+      line-height: 1.75; color: rgba(232,232,237,0.75);
+      font-weight: 300; max-width: 680px;
+    }
+
+    /* CONTENT */
+    .about-body {
+      max-width: 900px; margin: 0 auto;
+      padding: 4rem 2.5rem;
+    }
+    .about-section { margin-bottom: 4rem; }
+    .about-section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem; font-weight: 700; color: #fff;
+      margin-bottom: 1.5rem;
+    }
+    .about-text {
+      font-size: 1rem; line-height: 1.85; color: rgba(232,232,237,0.78);
+      font-weight: 300; margin-bottom: 1.25rem;
+    }
+    .about-text strong { font-weight: 600; color: var(--text); }
+
+    .manifesto {
+      background: var(--surface);
+      border: 1px solid var(--gold-border);
+      border-left: 3px solid var(--gold);
+      padding: 2.5rem;
+      margin: 2.5rem 0;
+    }
+    .manifesto-item {
+      display: flex; gap: 1.25rem;
+      padding: 1rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .manifesto-item:last-child { border-bottom: none; padding-bottom: 0; }
+    .manifesto-num {
+      font-size: 0.72rem; font-weight: 700; letter-spacing: 0.15em;
+      color: var(--gold); text-transform: uppercase;
+      min-width: 32px; padding-top: 0.15rem;
+    }
+    .manifesto-text {
+      font-size: 0.95rem; line-height: 1.7; color: rgba(232,232,237,0.78); font-weight: 300;
+    }
+    .manifesto-text strong { font-weight: 600; color: var(--text); }
+
+    /* SECTIONS GUIDE */
+    .sections-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem;
+      margin-top: 2rem;
+    }
+    .section-card {
+      background: var(--surface); border: 1px solid var(--border);
+      padding: 1.75rem;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .section-card:hover { border-color: var(--gold-border); transform: translateY(-2px); }
+    .section-card-label {
+      display: flex; align-items: center; gap: 0.6rem;
+      margin-bottom: 0.75rem;
+    }
+    .section-card-icon { font-size: 1rem; }
+    .section-card-name {
+      font-size: 0.72rem; font-weight: 700; letter-spacing: 0.18em;
+      text-transform: uppercase; color: var(--gold);
+    }
+    .section-card-desc {
+      font-size: 0.88rem; line-height: 1.7; color: rgba(232,232,237,0.68); font-weight: 300;
+    }
+
+    /* CTA */
+    .about-cta {
+      background: var(--surface); border: 1px solid var(--gold-border);
+      padding: 3rem 2.5rem; text-align: center; margin-top: 4rem;
+    }
+    .about-cta-title { font-family: 'Playfair Display', serif; font-size: 1.6rem; font-weight: 700; color: #fff; margin-bottom: 0.75rem; }
+    .about-cta-sub { font-size: 0.9rem; color: var(--text-muted); font-style: italic; margin-bottom: 2rem; }
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      padding: 0.75rem 1.75rem; background: var(--gold); color: #0a0a0f;
+      font-size: 0.82rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
+      text-decoration: none; border: none; cursor: pointer;
+      transition: background 0.2s, transform 0.15s;
+    }
+    .btn-primary:hover { background: #fbbf24; transform: translateY(-1px); }
+
+    /* DIVIDER */
+    .divider {
+      width: 100%; height: 1px;
+      background: linear-gradient(to right, transparent, var(--gold-border), transparent);
+      margin: 4rem 0;
+    }
+
+    /* FOOTER */
+    footer { border-top: 1px solid var(--border); padding: 2rem 2.5rem; display: flex; align-items: center; justify-content: space-between; }
+    .footer-logo { font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 800; color: var(--text-muted); }
+    .footer-logo span { color: var(--gold); }
+    .footer-note { font-size: 0.72rem; color: var(--text-dim); }
+
+    @media (max-width: 768px) {
+      nav { padding: 0 1.25rem; }
+      .nav-links { display: none; }
+      .page-header { padding: 6rem 1.25rem 3rem; }
+      .about-body { padding: 3rem 1.25rem; }
+      .sections-grid { grid-template-columns: 1fr; }
+      .about-cta { padding: 2rem 1.5rem; }
+      footer { flex-direction: column; gap: 0.75rem; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="index.html" class="nav-logo">Screen<span>Share</span></a>
+    <ul class="nav-links">
+      <li><a href="issue-001.html">Latest Issue</a></li>
+      <li><a href="archive.html">Archive</a></li>
+      <li><a href="about.html" class="active">About</a></li>
+    </ul>
+  </nav>
+
+  <!-- PAGE HEADER -->
+  <div class="page-header">
+    <div class="page-header-eyebrow reveal">The Publication</div>
+    <h1 class="page-header-title reveal">What Screen Share Is —<br>and What It&rsquo;s For</h1>
+    <p class="page-header-intro reveal">
+      Screen Share is a weekly editorial publication about film and television. Not a review
+      aggregator. Not a streaming guide. A place where the conversation about what we watch
+      is taken as seriously as what we watch.
+    </p>
+  </div>
+
+  <!-- BODY -->
+  <div class="about-body">
+
+    <div class="about-section reveal">
+      <h2 class="about-section-title">Why it exists</h2>
+      <p class="about-text">
+        The internet is very good at telling you what to watch. Rotten Tomatoes gives you a
+        percentage. Netflix gives you a row of thumbnails. Letterboxd gives you the opinion
+        of someone you followed three years ago. What most of it doesn&rsquo;t give you is
+        a reason to care &mdash; context, argument, the sense that what you watch actually
+        matters beyond two hours of your evening.
+      </p>
+      <p class="about-text">
+        Screen Share starts from a different premise: that <strong>films and television are
+        worth thinking about</strong>. That the conversation around a work is part of the
+        experience. That taste is not the same as preference, and that cultivating it is
+        worth the effort. Each issue takes a theme and follows it across everything on
+        our radar that week &mdash; new releases, archive deep cuts, television, industry,
+        craft &mdash; and tries to show how it connects.
+      </p>
+      <p class="about-text">
+        We are not trying to tell you what to think. We are trying to make the
+        thinking more interesting.
+      </p>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="about-section reveal">
+      <h2 class="about-section-title">What we believe</h2>
+
+      <div class="manifesto">
+        <div class="manifesto-item">
+          <div class="manifesto-num">01</div>
+          <div class="manifesto-text"><strong>Taste matters.</strong> Not as gatekeeping &mdash; as discipline. Having an opinion you can defend, and being willing to revise it, is how criticism becomes useful rather than decorative.</div>
+        </div>
+        <div class="manifesto-item">
+          <div class="manifesto-num">02</div>
+          <div class="manifesto-text"><strong>Context is content.</strong> A film doesn&rsquo;t exist in isolation. When it was made, what was happening, who made it and under what conditions &mdash; all of that changes what it means.</div>
+        </div>
+        <div class="manifesto-item">
+          <div class="manifesto-num">03</div>
+          <div class="manifesto-text"><strong>Argument is not attack.</strong> Genuine disagreement about a film is a sign it matters. We present competing readings because the tension between them is often more interesting than either side alone.</div>
+        </div>
+        <div class="manifesto-item">
+          <div class="manifesto-num">04</div>
+          <div class="manifesto-text"><strong>Television is cinema.</strong> The distinction collapsed a long time ago. Screen Share covers both without hierarchy.</div>
+        </div>
+        <div class="manifesto-item">
+          <div class="manifesto-num">05</div>
+          <div class="manifesto-text"><strong>Signal over noise.</strong> We would rather say three things well than twenty things adequately. Every issue has a theme. Every section earns its place in it.</div>
+        </div>
+        <div class="manifesto-item">
+          <div class="manifesto-num">06</div>
+          <div class="manifesto-text"><strong>No scores.</strong> Numerical ratings flatten everything they touch. We use words instead.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="about-section reveal">
+      <h2 class="about-section-title">How each issue works</h2>
+      <p class="about-text">
+        Every issue is built around a single theme &mdash; a question, a mood, an idea that
+        feels alive in the current moment. The lead film anchors it. Every section connects
+        to it in some way, though we try not to force the connection when it isn&rsquo;t there.
+      </p>
+
+      <div class="sections-grid">
+
+        <div class="section-card">
+          <div class="section-card-label">
+            <span class="section-card-icon">&#9654;</span>
+            <span class="section-card-name">The Rewind</span>
+          </div>
+          <div class="section-card-desc">A film from the archive that earns its place in the present moment. Not a classic for a classic&rsquo;s sake &mdash; something that speaks to the week&rsquo;s theme in a way that might surprise you.</div>
+        </div>
+
+        <div class="section-card">
+          <div class="section-card-label">
+            <span class="section-card-icon">&#128172;</span>
+            <span class="section-card-name">The Argument</span>
+          </div>
+          <div class="section-card-desc">One interpretive question, two honest readings, no verdict. The point isn&rsquo;t to settle the debate. It&rsquo;s to make the debate worth having.</div>
+        </div>
+
+        <div class="section-card">
+          <div class="section-card-label">
+            <span class="section-card-icon">&#128225;</span>
+            <span class="section-card-name">The Weekly Pulse</span>
+          </div>
+          <div class="section-card-desc">Three film cards: the most talked-about, the most divisive, and the one most people missed. Signal versus noise &mdash; what&rsquo;s actually worth paying attention to this week.</div>
+        </div>
+
+        <div class="section-card">
+          <div class="section-card-label">
+            <span class="section-card-icon">&#128250;</span>
+            <span class="section-card-name">On Screen</span>
+          </div>
+          <div class="section-card-desc">Television worth your time &mdash; what&rsquo;s currently airing, what&rsquo;s coming up, and the one thing nobody seems to have found yet.</div>
+        </div>
+
+        <div class="section-card">
+          <div class="section-card-label">
+            <span class="section-card-icon">&#9889;</span>
+            <span class="section-card-name">Flashpoint</span>
+          </div>
+          <div class="section-card-desc">Cinema has always been political. Flashpoint looks back at the moment a film said something it wasn&rsquo;t supposed to &mdash; and what happened when it did.</div>
+        </div>
+
+        <div class="section-card">
+          <div class="section-card-label">
+            <span class="section-card-icon">&#127917;</span>
+            <span class="section-card-name">Behind the Curtain</span>
+          </div>
+          <div class="section-card-desc">The business of film and television, told with conscience. Labour, power, money, and the gap between what the industry says it values and what it actually does.</div>
+        </div>
+
+        <div class="section-card">
+          <div class="section-card-label">
+            <span class="section-card-icon">&#127917;</span>
+            <span class="section-card-name">Discover</span>
+          </div>
+          <div class="section-card-desc">Not genre. Emotion. Pick the mood you&rsquo;re in and find a film that fits it &mdash; from across the full range of cinema, not just what&rsquo;s trending.</div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="about-section reveal">
+      <h2 class="about-section-title">How it&rsquo;s made</h2>
+      <p class="about-text">
+        Screen Share is an independent publication edited by Niall. Each issue is assembled
+        weekly from a brief built around the theme, then shaped and reviewed before anything
+        goes out. The goal is quality over volume &mdash; one issue a week, done properly,
+        rather than a content feed that runs on autopilot.
+      </p>
+      <p class="about-text">
+        We do not accept advertising. We do not take commissions from streaming platforms.
+        We do not publish affiliate links. The only thing that determines what appears in
+        Screen Share is whether it&rsquo;s worth your time.
+      </p>
+    </div>
+
+    <div class="about-cta reveal">
+      <div class="about-cta-title">Start with Issue 001</div>
+      <div class="about-cta-sub">&ldquo;Hello &mdash; first encounters, the moment of contact, and what we risk by reaching out.&rdquo;</div>
+      <a href="issue-001.html" class="btn-primary">Read Issue 001 &rarr;</a>
+    </div>
+
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-logo">Screen<span>Share</span></div>
+    <div class="footer-note">&copy; 2026 Screen Share &middot; A publication for people who care how they watch</div>
+  </footer>
+
+  <script>
+    var revealObserver = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.reveal').forEach(function(el) { revealObserver.observe(el); });
+  </script>
+</body>
+</html>
