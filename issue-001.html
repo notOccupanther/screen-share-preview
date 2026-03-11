@@ -334,10 +334,21 @@
     /* ON SCREEN TV */
     .tv-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 2rem; }
     .tv-card {
-      background: var(--surface); border: 1px solid var(--border); border-top: 2px solid rgba(139,92,246,0.5);
+      background: var(--surface); border: 1px solid var(--border); border-top: 3px solid var(--border);
       padding: 1.75rem; transition: border-color 0.2s, transform 0.2s;
     }
-    .tv-card:hover { border-color: rgba(139,92,246,0.3); transform: translateY(-2px); }
+    .tv-card:hover { transform: translateY(-2px); }
+    /* Tier colour profiles */
+    .tv-card.now     { border-top-color: #f59e0b; }
+    .tv-card.now:hover { border-color: rgba(245,158,11,0.25); border-top-color: #f59e0b; }
+    .tv-card.horizon { border-top-color: #60a5fa; }
+    .tv-card.horizon:hover { border-color: rgba(96,165,250,0.25); border-top-color: #60a5fa; }
+    .tv-card.radar   { border-top-color: #34d399; }
+    .tv-card.radar:hover { border-color: rgba(52,211,153,0.25); border-top-color: #34d399; }
+    .tv-tier-label { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; margin: 2.5rem 0 1.25rem; }
+    .tv-tier-now    { color: #f59e0b; }
+    .tv-tier-horizon { color: #60a5fa; }
+    .tv-tier-radar  { color: #34d399; }
     .tv-card-meta { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-dim); margin-bottom: 0.75rem; }
     .tv-card-title { font-family: 'Playfair Display', serif; font-size: 1.2rem; font-weight: 700; color: #fff; margin-bottom: 0.5rem; line-height: 1.25; }
     .tv-card-score { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.08em; color: #a78bfa; margin-bottom: 0.75rem; }
@@ -834,10 +845,10 @@
     </div>
     <h2 class="section-heading reveal">On Screen</h2>
 
-    <div style="font-size:0.65rem; font-weight:700; letter-spacing:0.2em; text-transform:uppercase; color:var(--text-dim); margin-bottom:1.25rem;" class="reveal">Just Released &middot; Renewed &middot; Airing Now</div>
+    <div class="tv-tier-label tv-tier-now reveal">Just Released &middot; Renewed &middot; Airing Now</div>
 
     <div class="tv-grid reveal">
-      <div class="tv-card">
+      <div class="tv-card now">
         <div class="tv-card-meta">Max (HBO) &middot; US &middot; Season 2</div>
         <div class="tv-card-title">The Pitt</div>
         <div class="tv-card-score">92 Metacritic &mdash; Universal Acclaim</div>
@@ -848,7 +859,7 @@
           rigour without the novelty cushion. The best-written American drama currently on air.
         </div>
       </div>
-      <div class="tv-card">
+      <div class="tv-card now">
         <div class="tv-card-meta">BBC One (UK) / BritBox (US) &middot; Sally Wainwright</div>
         <div class="tv-card-title">Riot Women</div>
         <div class="tv-card-score">82 Metacritic &middot; 92% RT</div>
@@ -859,7 +870,7 @@
           Just reached BritBox &mdash; this is the moment.
         </div>
       </div>
-      <div class="tv-card">
+      <div class="tv-card now">
         <div class="tv-card-meta">Prime Video &middot; Nicole Kidman &middot; Premiered March 11</div>
         <div class="tv-card-title">Scarpetta</div>
         <div class="tv-card-score">Season 1 &mdash; First reviews landing now</div>
@@ -870,7 +881,7 @@
           writers&rsquo; rooms. The pedigree is strong. The proof is in this week.
         </div>
       </div>
-      <div class="tv-card">
+      <div class="tv-card now">
         <div class="tv-card-meta">HBO / Max &middot; Mike White &middot; Set in Thailand</div>
         <div class="tv-card-title">The White Lotus, Season 3</div>
         <div class="tv-card-score">Airing now &mdash; Weekly &middot; 88 Metacritic</div>
@@ -884,10 +895,10 @@
       </div>
     </div>
 
-    <div style="font-size:0.65rem; font-weight:700; letter-spacing:0.2em; text-transform:uppercase; color:var(--text-dim); margin: 2.5rem 0 1.25rem;" class="reveal">On the Horizon &mdash; Worth Tracking</div>
+    <div class="tv-tier-label tv-tier-horizon reveal">On the Horizon &mdash; Worth Tracking</div>
 
     <div class="tv-grid reveal">
-      <div class="tv-card">
+      <div class="tv-card horizon">
         <div class="tv-card-meta">Prime Video &middot; Final Season &middot; April 8</div>
         <div class="tv-card-title">The Boys, Season 5</div>
         <div class="tv-card-score">Weekly through May 20 &mdash; Two-episode premiere</div>
@@ -898,7 +909,7 @@
           those encounters. Weekly through May 20.
         </div>
       </div>
-      <div class="tv-card">
+      <div class="tv-card horizon">
         <div class="tv-card-meta">Disney+ &middot; April 2026 &middot; All episodes</div>
         <div class="tv-card-title">Andor, Season 2</div>
         <div class="tv-card-score">Final season &mdash; Most anticipated return of the year</div>
@@ -909,7 +920,7 @@
           completes it. Don&rsquo;t come in cold: start from the beginning.
         </div>
       </div>
-      <div class="tv-card">
+      <div class="tv-card horizon">
         <div class="tv-card-meta">HBO / Max &middot; 2026 &middot; Dune prequel series</div>
         <div class="tv-card-title">Dune: Prophecy, Season 2</div>
         <div class="tv-card-score">Confirmed 2026 &mdash; Date TBC</div>
@@ -921,12 +932,24 @@
           power and how you survive first contact with it.
         </div>
       </div>
+      <div class="tv-card horizon">
+        <div class="tv-card-meta">Netflix &middot; 2026 &middot; Cillian Murphy returns</div>
+        <div class="tv-card-title">Peaky Blinders: The Film</div>
+        <div class="tv-card-score">Release date TBC &mdash; Final chapter of the Shelby story</div>
+        <div class="tv-card-body">
+          The television run ended. The story didn&rsquo;t. Steven Knight brings Tommy
+          Shelby back for a feature film conclusion, with Cillian Murphy picking up where
+          Season 6 left off. For anyone who came late to the series: six seasons on Netflix,
+          now is the time to begin. The film will make more sense &mdash; and hit harder
+          &mdash; if you arrive having done the work.
+        </div>
+      </div>
     </div>
 
-    <div style="font-size:0.65rem; font-weight:700; letter-spacing:0.2em; text-transform:uppercase; color:var(--text-dim); margin: 2.5rem 0 1.25rem;" class="reveal">Under the Radar &mdash; Worth Finding</div>
+    <div class="tv-tier-label tv-tier-radar reveal">Under the Radar &mdash; Worth Finding</div>
 
     <div class="tv-grid reveal">
-      <div class="tv-card">
+      <div class="tv-card radar">
         <div class="tv-card-meta">AMC+ &middot; Streaming Now &middot; Seasons 1&ndash;3 &middot; Tony Hillerman adaptation</div>
         <div class="tv-card-title">Dark Winds</div>
         <div class="tv-card-score">73 Metacritic &mdash; Criminally underseen</div>
@@ -938,7 +961,7 @@
           one encroaching on it. Three complete seasons. Start immediately.
         </div>
       </div>
-      <div class="tv-card">
+      <div class="tv-card radar">
         <div class="tv-card-meta">MHz Choice &middot; Streaming Now &middot; Seasons 1 &amp; 2 &middot; Belgian/Flemish</div>
         <div class="tv-card-title">Chantal</div>
         <div class="tv-card-score">Voted MHz subscriber top 10 of 2025 &mdash; Dutch with subtitles</div>
