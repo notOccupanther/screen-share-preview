@@ -1406,7 +1406,10 @@
 
       // Render results if already voted
       if (savedChoice !== null) {
-        showMoodResults(mood, parseInt(savedChoice, 10));
+        var seedsForMood = moodSeeds[mood] || [200, 150, 100];
+        fetchMoodCounts(mood, seedsForMood, function(realCounts) {
+          showMoodResults(mood, parseInt(savedChoice, 10), realCounts);
+        });
       } else {
         resultsEl.classList.remove('visible');
         resultsEl.innerHTML = '';
@@ -1415,12 +1418,28 @@
 
     function castMoodVote(mood, choiceIdx) {
       localStorage.setItem(getMoodVoteKey(mood), String(choiceIdx));
+      var key = 'mood-' + mood + '-' + choiceIdx;
+      fetch('https://api.counterapi.dev/v1/' + COUNTER_NS + '/' + key + '/up')
+        .catch(function() {});
       renderMoodVote(mood);
     }
 
-    function showMoodResults(mood, choiceIdx) {
+    function fetchMoodCounts(mood, seeds, cb) {
+      var counts = seeds.slice();
+      var done = 0;
+      seeds.forEach(function(_, i) {
+        var key = 'mood-' + mood + '-' + i;
+        fetch('https://api.counterapi.dev/v1/' + COUNTER_NS + '/' + key)
+          .then(function(r) { return r.json(); })
+          .then(function(d) { counts[i] = seeds[i] + (d.count || 0); })
+          .catch(function() {})
+          .finally(function() { if (++done === seeds.length && cb) cb(counts); });
+      });
+    }
+
+    function showMoodResults(mood, choiceIdx, realCounts) {
       var films = moodData[mood] || moodData.unsettled;
-      var seeds = (moodSeeds[mood] || [200, 150, 100]).slice();
+      var seeds = realCounts || (moodSeeds[mood] || [200, 150, 100]).slice();
       seeds[choiceIdx] += 1;
       var total = seeds.reduce(function(a, b) { return a + b; }, 0);
 
@@ -1571,17 +1590,45 @@
     var VOTE_KEY = 'ss-001-argument-vote';
     var SEED_A = 614;
     var SEED_B = 431;
+    var COUNTER_NS = 'ss001-issue1';
+    var realA = 0;
+    var realB = 0;
+
+    function fetchArgCounts(cb) {
+      var done = 0;
+      function check() { if (++done === 2 && cb) cb(); }
+      fetch('https://api.counterapi.dev/v1/' + COUNTER_NS + '/arg-a')
+        .then(function(r) { return r.json(); })
+        .then(function(d) { realA = d.count || 0; check(); })
+        .catch(function() { check(); });
+      fetch('https://api.counterapi.dev/v1/' + COUNTER_NS + '/arg-b')
+        .then(function(r) { return r.json(); })
+        .then(function(d) { realB = d.count || 0; check(); })
+        .catch(function() { check(); });
+    }
 
     function castVote(choice) {
       var existing = localStorage.getItem(VOTE_KEY);
       if (existing) return;
       localStorage.setItem(VOTE_KEY, choice);
-      showResults(choice);
+      var key = choice === 'a' ? 'arg-a' : 'arg-b';
+      fetch('https://api.counterapi.dev/v1/' + COUNTER_NS + '/' + key + '/up')
+        .then(function(r) { return r.json(); })
+        .then(function(d) {
+          if (choice === 'a') realA = d.count || realA + 1;
+          else realB = d.count || realB + 1;
+          showResults(choice);
+        })
+        .catch(function() {
+          if (choice === 'a') realA++;
+          else realB++;
+          showResults(choice);
+        });
     }
 
     function showResults(userChoice) {
-      var a = SEED_A + (userChoice === 'a' ? 1 : 0);
-      var b = SEED_B + (userChoice === 'b' ? 1 : 0);
+      var a = SEED_A + realA;
+      var b = SEED_B + realB;
       var total = a + b;
       var pctA = Math.round((a / total) * 100);
       var pctB = 100 - pctA;
@@ -1607,9 +1654,11 @@
       }, 50);
     }
 
-    // Restore vote on page load
+    // On page load: fetch real counts, then restore saved vote if any
     var savedVote = localStorage.getItem(VOTE_KEY);
-    if (savedVote) { showResults(savedVote); }
+    fetchArgCounts(function() {
+      if (savedVote) { showResults(savedVote); }
+    });
 
     document.querySelectorAll('.section-about-btn').forEach(function(btn) {
       btn.addEventListener('click', function() {
