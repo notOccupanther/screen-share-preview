@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>Screen Share</title>
+    <link>https://screenshare.watch</link>
+    <atom:link href="https://screenshare.watch/feed.xml" rel="self" type="application/rss+xml" />
+    <description>A weekly film and television publication. Taste-led, independent, ad-free. One theme, six sections, the films and television worth your time.</description>
+    <language>en</language>
+    <copyright>Screen Share 2026</copyright>
+    <managingEditor>screenshare.watch</managingEditor>
+    <webMaster>screenshare.watch</webMaster>
+    <image>
+      <url>https://image.tmdb.org/t/p/w500/x2FJsf1ElAgr63Y3PNPtJrcmpoe.jpg</url>
+      <title>Screen Share</title>
+      <link>https://screenshare.watch</link>
+    </image>
+
+    <item>
+      <title>Issue 001: Hello</title>
+      <link>https://screenshare.watch/issue-001.html</link>
+      <guid isPermaLink="true">https://screenshare.watch/issue-001.html</guid>
+      <pubDate>Tue, 11 Mar 2026 12:00:00 +0000</pubDate>
+      <dc:creator>Screen Share</dc:creator>
+      <description><![CDATA[
+        <p>First encounters, the moment of contact, and what we risk by reaching out.</p>
+        <p>Issue 001 explores the theme of <em>Hello</em> — the first contact, the outstretched hand, the moment before everything changes. From Denis Villeneuve's <em>Arrival</em> to Tarkovsky's <em>Solaris</em>, from the alien encounter to the human one.</p>
+        <p>This issue includes: The Rewind, The Argument, Discover by Mood, Weekly Pulse, On Screen (TV), Flashpoint, and Behind the Curtain.</p>
+        <p><a href="https://screenshare.watch/issue-001.html">Read Issue 001 →</a></p>
+      ]]></description>
+    </item>
+
+  </channel>
+</rss>
