@@ -1,0 +1,1552 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Screen Share &mdash; Issue 002: Power</title>
+  <meta name="description" content="Who has it. Who loses it. What it costs. Screen Share Issue 002." />
+  <link rel="canonical" href="https://screenshare.watch/issue-002.html" />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://screenshare.watch/issue-002.html" />
+  <meta property="og:title" content="Screen Share Issue 002: Power" />
+  <meta property="og:description" content="Who has it. Who loses it. What it costs. Network, The Zone of Interest, The Godfather &mdash; and everything in between." />
+  <meta property="og:image" content="https://image.tmdb.org/t/p/w1280/of6OQnsvPHXEASczrBc3nVsMZ7q.jpg" />
+  <meta property="og:site_name" content="Screen Share" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Screen Share Issue 002: Power" />
+  <meta name="twitter:description" content="Who has it. Who loses it. What it costs." />
+  <meta name="twitter:image" content="https://image.tmdb.org/t/p/w1280/of6OQnsvPHXEASczrBc3nVsMZ7q.jpg" />
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Screen Share Issue 002: Power","description":"Who has it. Who loses it. What it costs.","url":"https://screenshare.watch/issue-002.html","publisher":{"@type":"Organization","name":"Screen Share","url":"https://screenshare.watch"},"datePublished":"2026-03-17"}</script>
+  <link rel="alternate" type="application/rss+xml" title="Screen Share" href="https://screenshare.watch/feed.xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,700;0,800;1,700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #080810;
+      --surface: #111118;
+      --surface-2: #18181f;
+      --gold: #f59e0b;
+      --gold-dim: rgba(245, 158, 11, 0.15);
+      --gold-border: rgba(245, 158, 11, 0.25);
+      --crimson: #dc2626;
+      --text: #e8e8ed;
+      --text-muted: #8888a0;
+      --text-dim: #555568;
+      --border: rgba(255,255,255,0.06);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Inter', sans-serif;
+      font-size: 16px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 9999;
+      opacity: 0.025;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E");
+      background-size: 180px 180px;
+      mix-blend-mode: overlay;
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(18px);
+      transition: opacity 0.55s ease, transform 0.55s ease;
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    /* NAV */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 2rem;
+      height: 60px;
+      background: rgba(10, 10, 15, 0.85);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.6rem;
+      font-weight: 800;
+      color: var(--text);
+      letter-spacing: 0.02em;
+      text-decoration: none;
+    }
+    .nav-logo span { color: var(--gold); }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a {
+      font-size: 0.8rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--gold); }
+
+    /* HERO */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: flex-end;
+      overflow: hidden;
+    }
+    .hero-backdrop {
+      position: absolute;
+      inset: 0;
+      background-size: cover;
+      background-position: center 20%;
+      transform: scale(1.03);
+      transition: transform 8s ease-out;
+    }
+    .hero:hover .hero-backdrop { transform: scale(1.0); }
+    .hero-grain {
+      position: absolute; inset: 0; z-index: 1; opacity: 0.06;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+      background-size: 180px 180px;
+      pointer-events: none;
+    }
+    .hero-vignette {
+      position: absolute; inset: 0;
+      background: linear-gradient(to bottom, rgba(10,10,15,0.3) 0%, rgba(10,10,15,0.1) 30%, rgba(10,10,15,0.6) 65%, rgba(10,10,15,0.97) 100%);
+    }
+    .hero-vignette-sides {
+      position: absolute; inset: 0;
+      background: linear-gradient(to right, rgba(10,10,15,0.7) 0%, transparent 40%, transparent 60%, rgba(10,10,15,0.4) 100%);
+    }
+    .hero-issue-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(214,179,106,0.12);
+      border: 1px solid rgba(214,179,106,0.3);
+      color: var(--gold);
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      padding: 0.35rem 0.85rem;
+      border-radius: 2rem;
+      margin-bottom: 1.25rem;
+    }
+    .hero-content {
+      position: relative; z-index: 2;
+      width: 100%;
+      padding: 2.5rem 2.5rem 4rem;
+      max-width: 900px;
+    }
+    .hero-eyebrow { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1.25rem; }
+    .hero-eyebrow-label { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); }
+    .hero-eyebrow-date { font-size: 0.7rem; font-weight: 400; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-muted); }
+    .hero-eyebrow-dot { width: 3px; height: 3px; border-radius: 50%; background: var(--text-dim); }
+    .hero-theme-label {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: rgba(232,232,237,0.4);
+      margin-bottom: 0.5rem;
+    }
+    .hero-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.4rem, 6vw, 4.5rem);
+      font-weight: 800;
+      line-height: 1.08;
+      letter-spacing: -0.01em;
+      color: #fff;
+      margin-bottom: 1rem;
+      max-width: 780px;
+      padding-top: 1.25rem;
+    }
+    .hero-title::before {
+      content: '';
+      display: block;
+      width: 48px;
+      height: 1px;
+      background: var(--gold);
+      margin-bottom: 1.1rem;
+      opacity: 0.75;
+    }
+    .hero-tagline {
+      font-size: clamp(0.95rem, 1.8vw, 1.1rem);
+      color: rgba(232,232,237,0.75);
+      max-width: 520px;
+      line-height: 1.65;
+      margin-bottom: 2rem;
+      font-weight: 300;
+    }
+    .hero-meta { display: flex; align-items: center; gap: 1.5rem; margin-bottom: 2rem; }
+    .hero-meta-film { font-size: 0.78rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); }
+    .hero-meta-film span { color: var(--text); }
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      padding: 0.75rem 1.75rem;
+      background: var(--gold); color: #0a0a0f;
+      font-size: 0.82rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
+      text-decoration: none; border: none; cursor: pointer;
+      transition: background 0.2s, transform 0.15s;
+    }
+    .btn-primary:hover { background: #fbbf24; transform: translateY(-1px); }
+    .btn-ghost {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      padding: 0.75rem 1.75rem;
+      background: transparent; color: var(--text);
+      font-size: 0.82rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase;
+      text-decoration: none; border: 1px solid var(--border); cursor: pointer;
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .btn-ghost:hover { border-color: var(--gold); color: var(--gold); }
+    .hero-scroll-hint {
+      position: absolute; bottom: 1.5rem; right: 2.5rem;
+      display: flex; flex-direction: column; align-items: center; gap: 0.4rem; opacity: 0.4;
+    }
+    .hero-scroll-hint span { font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase; writing-mode: vertical-rl; }
+    .hero-scroll-line { width: 1px; height: 40px; background: linear-gradient(to bottom, var(--text-muted), transparent); }
+
+    /* EDITOR'S NOTE */
+    .editors-note { padding: 3rem 2.5rem 2rem; max-width: 1200px; margin: 0 auto; }
+    .editors-note-inner { border-left: 2px solid var(--gold); padding: 0 0 0 2rem; }
+    .editors-note-label { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 1.25rem; }
+    .editors-note-text { font-size: 1rem; line-height: 1.85; color: rgba(232,232,237,0.78); font-weight: 300; margin-bottom: 0.9rem; font-style: italic; }
+    .editors-note-text em { font-style: normal; color: var(--text); font-weight: 500; }
+    .editors-note-sig { display: flex; align-items: baseline; gap: 0.75rem; margin-top: 1.5rem; opacity: 0; transition: opacity 0.6s ease; }
+    .editors-note-sig.unraveled { opacity: 1; }
+    .editors-note-name { font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 700; color: var(--text); }
+    .editors-note-role { font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-dim); }
+    .unravel-word {
+      display: inline-block;
+      opacity: 0;
+      transform: translateY(7px);
+      transition: opacity 0.35s ease, transform 0.35s ease;
+    }
+    .unravel-word.visible { opacity: 1; transform: translateY(0); }
+
+    /* SECTION COMMONS */
+    section { padding: 5rem 2.5rem; max-width: 1200px; margin: 0 auto; }
+    .section-divider {
+      width: 100%; height: 1px;
+      background: linear-gradient(to right, transparent, var(--gold-border), transparent);
+      margin: 0 2.5rem; max-width: 1200px;
+    }
+    .section-eyebrow { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 2.5rem; }
+    .section-eyebrow-icon { font-size: 1rem; }
+    .section-eyebrow-label { font-size: 1rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); }
+    .section-eyebrow-desc { font-size: 0.88rem; color: var(--text-muted); font-style: italic; font-weight: 400; }
+    .section-eyebrow-pipe { color: var(--text-dim); font-size: 0.8rem; }
+    .section-title { font-family: 'Playfair Display', serif; font-size: clamp(1.6rem, 3.5vw, 2.4rem); font-weight: 700; line-height: 1.2; color: var(--text); margin-bottom: 1.25rem; }
+    .section-heading { font-family: 'Playfair Display', serif; font-size: clamp(2rem, 4.5vw, 3rem); font-weight: 800; line-height: 1.1; color: #fff; margin: 0.75rem 0 1.5rem; letter-spacing: -0.01em; }
+    .link-arrow {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      font-size: 0.82rem; font-weight: 600; letter-spacing: 0.06em; color: var(--gold);
+      text-decoration: none; text-transform: uppercase; transition: gap 0.2s;
+    }
+    .link-arrow:hover { gap: 0.7rem; }
+
+    /* REWIND */
+    .rewind-card {
+      display: grid; grid-template-columns: 200px 1fr; gap: 3rem;
+      background: var(--surface); border: 1px solid var(--border); border-left: 3px solid var(--gold);
+      padding: 2.5rem;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .rewind-card:hover { border-left-color: var(--gold); border-color: var(--gold-border); transform: translateY(-2px); }
+    .rewind-poster { width: 100%; aspect-ratio: 2/3; object-fit: cover; display: block; filter: saturate(0.85); transition: filter 0.3s; }
+    .rewind-card:hover .rewind-poster { filter: saturate(1); }
+    .rewind-body { display: flex; flex-direction: column; justify-content: center; }
+    .rewind-year { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.2em; color: var(--gold); text-transform: uppercase; margin-bottom: 0.5rem; }
+    .rewind-film-title { font-family: 'Playfair Display', serif; font-size: 2rem; font-weight: 700; color: #fff; margin-bottom: 1.25rem; line-height: 1.15; }
+    .rewind-text { font-size: 1rem; line-height: 1.75; color: rgba(232,232,237,0.8); margin-bottom: 1.25rem; font-weight: 300; }
+
+    /* ARGUMENT */
+    .argument-question {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.3rem, 2.8vw, 1.9rem);
+      font-weight: 700; font-style: italic; line-height: 1.35; color: #fff;
+      margin-bottom: 2.5rem; padding-left: 1.5rem; border-left: 3px solid var(--crimson);
+    }
+    .argument-intro {
+      font-size: 1.05rem; line-height: 1.8; color: rgba(232,232,237,0.82);
+      font-weight: 300; margin-bottom: 2.5rem; max-width: 740px;
+    }
+    .argument-camps { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 2rem; }
+    .argument-camp {
+      background: var(--surface); border: 1px solid var(--border); padding: 1.75rem;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .argument-camp:hover { border-color: rgba(255,255,255,0.12); transform: translateY(-2px); }
+    .argument-camp-label {
+      font-size: 0.65rem; font-weight: 800; letter-spacing: 0.2em; text-transform: uppercase;
+      margin-bottom: 0.9rem; padding: 0.25rem 0.6rem; display: inline-block;
+    }
+    .argument-camp-label.reading-a { background: rgba(220,38,38,0.15); color: #f87171; }
+    .argument-camp-label.reading-b { background: rgba(245,158,11,0.12); color: var(--gold); }
+    .argument-camp-text { font-size: 0.95rem; line-height: 1.7; color: rgba(232,232,237,0.75); font-weight: 300; }
+
+    /* VOTE WIDGET */
+    .vote-widget {
+      background: var(--surface); border: 1px solid var(--border);
+      padding: 2rem; margin-top: 1.5rem;
+    }
+    .vote-prompt {
+      font-size: 0.82rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--text-muted); margin-bottom: 1.25rem; text-align: center;
+    }
+    .vote-buttons {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; margin-bottom: 1.5rem;
+    }
+    .vote-btn {
+      padding: 0.85rem 1.25rem;
+      background: transparent; border: 1px solid var(--border);
+      color: var(--text-muted); font-size: 0.82rem; font-weight: 600;
+      letter-spacing: 0.06em; text-transform: uppercase; cursor: pointer;
+      font-family: 'Inter', sans-serif;
+      transition: all 0.2s;
+    }
+    .vote-btn:hover:not(:disabled) { border-color: var(--gold); color: var(--text); }
+    .vote-btn.vote-a:hover:not(:disabled) { border-color: #f87171; color: #f87171; }
+    .vote-btn.vote-a.selected { background: rgba(220,38,38,0.15); border-color: #f87171; color: #f87171; }
+    .vote-btn.vote-b.selected { background: var(--gold-dim); border-color: var(--gold); color: var(--gold); }
+    .vote-btn:disabled { cursor: default; opacity: 1; }
+
+    .vote-results { display: none; }
+    .vote-results.visible { display: block; }
+    .vote-result-row { margin-bottom: 1rem; }
+    .vote-result-label {
+      display: flex; justify-content: space-between; align-items: center;
+      margin-bottom: 0.4rem;
+    }
+    .vote-result-name { font-size: 0.75rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; }
+    .vote-result-name.a { color: #f87171; }
+    .vote-result-name.b { color: var(--gold); }
+    .vote-result-pct { font-size: 0.8rem; font-weight: 700; color: var(--text); }
+    .vote-result-track {
+      height: 5px; background: rgba(255,255,255,0.06); border-radius: 3px; overflow: hidden;
+    }
+    .vote-result-fill {
+      height: 100%; border-radius: 3px; width: 0;
+      transition: width 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .vote-result-fill.a { background: linear-gradient(to right, #991b1b, #ef4444); }
+    .vote-result-fill.b { background: linear-gradient(to right, #92400e, var(--gold)); }
+    .vote-count { font-size: 0.72rem; color: var(--text-dim); text-align: center; margin-top: 0.75rem; }
+    .vote-your-choice {
+      display: none; font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--text-dim); text-align: center; margin-top: 0.5rem;
+    }
+    .vote-your-choice.visible { display: block; }
+    .vote-your-choice span { color: var(--text-muted); font-weight: 600; }
+
+    /* WEEKLY PULSE */
+    .pulse-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+    .pulse-card-img {
+      width: 100%; aspect-ratio: 16/9; object-fit: cover; display: block;
+      filter: brightness(0.75) saturate(0.8);
+      transition: filter 0.4s;
+    }
+    .pulse-card:hover .pulse-card-img { filter: brightness(0.88) saturate(0.9); }
+    .pulse-card-img-wrap {
+      position: relative; overflow: hidden;
+    }
+    .pulse-card-img-wrap::after {
+      content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 60%;
+      background: linear-gradient(to bottom, transparent, var(--surface));
+      pointer-events: none;
+    }
+    .pulse-card {
+      background: var(--surface); border: 1px solid var(--border); padding: 0;
+      overflow: hidden; transition: border-color 0.2s, transform 0.2s;
+    }
+    .pulse-card:hover { border-color: rgba(255,255,255,0.1); transform: translateY(-2px); }
+    .pulse-card-type { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-dim); margin-bottom: 1rem; padding: 1.25rem 1.75rem 0; }
+    .pulse-card-title { font-size: 1rem; font-weight: 600; color: #fff; margin-bottom: 0.3rem; line-height: 1.25; font-family: 'Playfair Display', serif; padding: 0 1.75rem; }
+    .pulse-card-sub { font-size: 0.82rem; color: var(--text-muted); line-height: 1.5; padding: 0 1.75rem; }
+    .pulse-card-body { font-size: 0.9rem; line-height: 1.7; color: rgba(232,232,237,0.72); font-weight: 300; margin-top: 1rem; padding: 0 1.75rem 1.75rem; }
+    .divisive-badge { display: inline-block; font-size: 0.65rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.2rem 0.55rem; background: rgba(220,38,38,0.12); color: #f87171; margin: 0.75rem 1.75rem 0; }
+    .gem-badge { display: inline-block; font-size: 0.65rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.2rem 0.55rem; background: var(--gold-dim); color: var(--gold); margin: 0.75rem 1.75rem 0; }
+    .horizon-badge { display: inline-block; font-size: 0.65rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.2rem 0.55rem; background: rgba(139,92,246,0.12); color: #a78bfa; margin-top: 0.75rem; }
+
+    /* ON SCREEN TV */
+    .tv-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 2rem; }
+    .tv-card-img {
+      width: 100%; aspect-ratio: 16/9; object-fit: cover; display: block;
+      filter: brightness(0.72) saturate(0.75); transition: filter 0.4s;
+    }
+    .tv-card:hover .tv-card-img { filter: brightness(0.88) saturate(0.9); }
+    .tv-card-img-wrap {
+      position: relative; overflow: hidden; margin: -1px -1px 0;
+    }
+    .tv-card-img-wrap::after {
+      content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 55%;
+      background: linear-gradient(to bottom, transparent, var(--surface));
+      pointer-events: none;
+    }
+    .tv-card {
+      background: var(--surface); border: 1px solid var(--border); border-top: 3px solid var(--border);
+      padding: 0; overflow: hidden; transition: border-color 0.2s, transform 0.2s;
+    }
+    .tv-card-meta { padding: 1.25rem 1.5rem 0; }
+    .tv-card-title { padding: 0 1.5rem; }
+    .tv-card-score { padding: 0 1.5rem; }
+    .tv-card-body { padding: 0 1.5rem 1.5rem; }
+    .tv-card:hover { transform: translateY(-2px); }
+    .tv-card.now     { border-top-color: #f59e0b; }
+    .tv-card.now:hover { border-color: rgba(245,158,11,0.25); border-top-color: #f59e0b; }
+    .tv-card.horizon { border-top-color: #60a5fa; }
+    .tv-card.horizon:hover { border-color: rgba(96,165,250,0.25); border-top-color: #60a5fa; }
+    .tv-card.radar   { border-top-color: #34d399; }
+    .tv-card.radar:hover { border-color: rgba(52,211,153,0.25); border-top-color: #34d399; }
+    .tv-tier-label { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; margin: 2.5rem 0 1.25rem; }
+    .tv-tier-now    { color: #f59e0b; }
+    .tv-tier-horizon { color: #60a5fa; }
+    .tv-tier-radar  { color: #34d399; }
+    .tv-card-meta { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-dim); margin-bottom: 0.75rem; }
+    .tv-card-title { font-family: 'Playfair Display', serif; font-size: 1.2rem; font-weight: 700; color: #fff; margin-bottom: 0.5rem; line-height: 1.25; }
+    .tv-card-score { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.08em; color: #a78bfa; margin-bottom: 0.75rem; }
+    .tv-card-body { font-size: 0.88rem; line-height: 1.72; color: rgba(232,232,237,0.72); font-weight: 300; }
+    .tv-upcoming { background: var(--surface); border: 1px solid var(--border); padding: 1.5rem 1.75rem; margin-bottom: 1rem; display: flex; align-items: flex-start; gap: 1.25rem; }
+    .tv-upcoming-date { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold); white-space: nowrap; padding-top: 0.15rem; min-width: 80px; }
+    .tv-upcoming-title { font-size: 0.92rem; font-weight: 600; color: var(--text); margin-bottom: 0.25rem; }
+    .tv-upcoming-sub { font-size: 0.8rem; color: var(--text-muted); }
+    .tv-gem { background: var(--surface); border: 1px solid var(--border); border-left: 3px solid var(--gold); padding: 1.5rem 1.75rem; }
+    .tv-gem-label { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.5rem; }
+    .tv-gem-title { font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 700; color: #fff; margin-bottom: 0.4rem; }
+    .tv-gem-body { font-size: 0.85rem; line-height: 1.65; color: rgba(232,232,237,0.65); font-weight: 300; }
+
+    /* MOOD-FIRST DISCOVERY */
+    .mood-chips-wrapper { overflow-x: auto; margin-bottom: 2.5rem; padding-bottom: 0.5rem; scrollbar-width: none; }
+    .mood-chips-wrapper::-webkit-scrollbar { display: none; }
+    .mood-chips { display: flex; gap: 0.75rem; width: max-content; }
+    .mood-chip {
+      display: flex; align-items: center; gap: 0.4rem;
+      padding: 0.55rem 1.1rem; background: var(--surface); border: 1px solid var(--border);
+      color: var(--text-muted); font-size: 0.82rem; font-weight: 500; cursor: pointer;
+      transition: all 0.2s; white-space: nowrap; border-radius: 2px; user-select: none;
+    }
+    .mood-chip:hover { border-color: var(--gold-border); color: var(--text); }
+    .mood-chip.active { background: var(--gold-dim); border-color: var(--gold); color: var(--gold); }
+    .mood-films { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; min-height: 340px; }
+    .film-card {
+      background: var(--surface); border: 1px solid var(--border); overflow: hidden;
+      cursor: pointer; transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.2s;
+    }
+    .film-card:hover { border-color: var(--gold-border); transform: translateY(-4px); box-shadow: 0 12px 32px rgba(0,0,0,0.5); }
+    .film-card-poster { width: 100%; aspect-ratio: 2/3; object-fit: cover; display: block; transition: filter 0.3s, transform 0.4s; filter: brightness(0.88); }
+    .film-card:hover .film-card-poster { filter: brightness(1); transform: scale(1.02); }
+    .film-card-body { padding: 1rem; }
+    .film-card-title { font-size: 0.9rem; font-weight: 600; color: var(--text); margin-bottom: 0.25rem; }
+    .film-card-year { font-size: 0.75rem; color: var(--text-dim); }
+    .film-card-mood-tag { font-size: 0.68rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold); margin-top: 0.5rem; }
+    .film-card-primer { font-size: 0.78rem; line-height: 1.6; color: var(--text-muted); font-weight: 300; margin-top: 0.6rem; padding-top: 0.6rem; border-top: 1px solid var(--border); }
+
+    /* MOOD VOTE WIDGET */
+    .mood-vote {
+      background: var(--surface); border: 1px solid var(--border);
+      padding: 1.75rem; margin-top: 1.25rem;
+    }
+    .mood-vote-prompt {
+      font-size: 0.82rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--text-muted); margin-bottom: 1.1rem;
+    }
+    .mood-vote-btns { display: flex; flex-direction: column; gap: 0.5rem; margin-bottom: 0; }
+    .mood-vote-btn {
+      padding: 0.7rem 1rem; background: transparent;
+      border: 1px solid var(--border); color: var(--text-muted);
+      font-size: 0.82rem; font-weight: 500; text-align: left; cursor: pointer;
+      font-family: 'Inter', sans-serif; transition: all 0.2s;
+      display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+    }
+    .mood-vote-btn:hover:not(:disabled) { border-color: var(--gold-border); color: var(--text); }
+    .mood-vote-btn.selected { border-color: var(--gold); color: var(--gold); background: var(--gold-dim); }
+    .mood-vote-btn:disabled { cursor: default; opacity: 1; }
+    .mood-vote-btn-year { font-size: 0.72rem; color: var(--text-dim); flex-shrink: 0; }
+
+    .mood-vote-results { margin-top: 1.25rem; display: none; }
+    .mood-vote-results.visible { display: block; }
+    .mood-vote-result-row { margin-bottom: 0.85rem; }
+    .mood-vote-result-header {
+      display: flex; justify-content: space-between; align-items: center;
+      margin-bottom: 0.3rem;
+    }
+    .mood-vote-result-title {
+      font-size: 0.8rem; font-weight: 600; color: var(--text-muted);
+      white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 70%;
+    }
+    .mood-vote-result-title.winner { color: var(--gold); }
+    .mood-vote-result-title.chosen { color: var(--text); }
+    .mood-vote-result-pct { font-size: 0.78rem; font-weight: 700; color: var(--text); flex-shrink: 0; }
+    .mood-vote-result-track { height: 4px; background: rgba(255,255,255,0.06); border-radius: 2px; overflow: hidden; }
+    .mood-vote-result-fill { height: 100%; border-radius: 2px; width: 0; transition: width 0.7s cubic-bezier(0.4,0,0.2,1); }
+    .mood-vote-result-fill.winner { background: var(--gold); }
+    .mood-vote-result-fill.chosen { background: rgba(232,232,237,0.5); }
+    .mood-vote-result-fill.other { background: rgba(255,255,255,0.15); }
+    .mood-vote-total { font-size: 0.7rem; color: var(--text-dim); margin-top: 0.6rem; }
+
+    /* FLASHPOINT */
+    .flashpoint-card {
+      background: var(--surface); border: 1px solid var(--border); border-top: 3px solid var(--crimson);
+      padding: 2.5rem;
+      display: grid; grid-template-columns: 160px 1fr; gap: 2.5rem;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .flashpoint-card:hover { border-color: rgba(220,38,38,0.3); transform: translateY(-2px); }
+    .flashpoint-poster { width: 100%; aspect-ratio: 2/3; object-fit: cover; filter: saturate(0.7) brightness(0.8); transition: filter 0.3s; }
+    .flashpoint-card:hover .flashpoint-poster { filter: saturate(0.9) brightness(0.95); }
+    .flashpoint-year { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.2em; color: #f87171; text-transform: uppercase; margin-bottom: 0.5rem; }
+    .flashpoint-title { font-family: 'Playfair Display', serif; font-size: 1.6rem; font-weight: 700; color: #fff; margin-bottom: 1.25rem; line-height: 1.2; }
+    .flashpoint-body { font-size: 0.95rem; line-height: 1.8; color: rgba(232,232,237,0.78); font-weight: 300; margin-bottom: 1.25rem; }
+
+    /* THE SIGNAL */
+    .signal-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+    .signal-card {
+      background: var(--surface); border: 1px solid var(--border); border-top: 2px solid var(--gold);
+      padding: 1.75rem; transition: border-color 0.2s, transform 0.2s;
+    }
+    .signal-card:hover { border-color: var(--gold-border); transform: translateY(-2px); }
+    .signal-card-label {
+      font-size: 0.65rem; font-weight: 800; letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 0.9rem; padding: 0.25rem 0.6rem;
+      display: inline-block; background: rgba(245,158,11,0.1);
+    }
+    .signal-card-body { font-size: 0.9rem; line-height: 1.75; color: rgba(232,232,237,0.75); font-weight: 300; }
+    .signal-card.deal { border-top-color: var(--gold); }
+    .signal-card.deal .signal-card-label { color: var(--gold); background: rgba(245,158,11,0.1); }
+    .signal-card.resistance { border-top-color: var(--crimson); }
+    .signal-card.resistance .signal-card-label { color: #f87171; background: rgba(220,38,38,0.12); }
+    .signal-card.tool { border-top-color: #2dd4bf; }
+    .signal-card.tool .signal-card-label { color: #2dd4bf; background: rgba(45,212,191,0.1); }
+
+    /* BEHIND THE CURTAIN */
+    .btc-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+    .btc-card {
+      background: var(--surface); border: 1px solid var(--border); border-top: 2px solid var(--crimson);
+      padding: 2rem; transition: border-color 0.2s, transform 0.2s;
+    }
+    .btc-card:hover { border-color: rgba(220,38,38,0.4); transform: translateY(-2px); }
+    .btc-card.full { grid-column: 1 / -1; }
+    .btc-source { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-dim); margin-bottom: 0.75rem; }
+    .btc-title { font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 700; color: #fff; margin-bottom: 1rem; line-height: 1.3; }
+    .btc-editorial { font-size: 0.9rem; line-height: 1.75; color: rgba(232,232,237,0.7); font-weight: 300; margin-bottom: 1.5rem; }
+
+    /* NEWSLETTER */
+    .newsletter-section { padding: 4rem 2.5rem; }
+    .newsletter-card { background: var(--surface); border: 1px solid var(--gold-border); padding: 4rem; text-align: center; max-width: 680px; margin: 0 auto; }
+    .newsletter-eyebrow { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.25em; text-transform: uppercase; color: var(--gold); margin-bottom: 1rem; }
+    .newsletter-title { font-family: 'Playfair Display', serif; font-size: clamp(1.5rem, 3vw, 2rem); font-weight: 700; color: #fff; margin-bottom: 0.75rem; line-height: 1.25; }
+    .newsletter-sub { font-size: 0.9rem; color: var(--text-muted); font-style: italic; margin-bottom: 2.5rem; }
+    .newsletter-form { display: flex; gap: 0; max-width: 420px; margin: 0 auto 1.5rem; }
+    .newsletter-input { flex: 1; padding: 0.85rem 1.25rem; background: var(--bg); border: 1px solid rgba(255,255,255,0.1); border-right: none; color: var(--text); font-size: 0.88rem; font-family: 'Inter', sans-serif; outline: none; transition: border-color 0.2s; }
+    .newsletter-input::placeholder { color: var(--text-dim); }
+    .newsletter-input:focus { border-color: var(--gold-border); }
+    .newsletter-btn { padding: 0.85rem 1.5rem; background: var(--gold); color: #0a0a0f; font-size: 0.8rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; border: none; cursor: pointer; font-family: 'Inter', sans-serif; transition: background 0.2s; }
+    .newsletter-btn:hover { background: #fbbf24; }
+    .newsletter-note { font-size: 0.75rem; color: var(--text-dim); }
+
+    /* SECTION ABOUT TOGGLE */
+    .section-about-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      border: 1px solid var(--text-dim);
+      color: var(--text-dim);
+      font-size: 0.65rem;
+      font-weight: 700;
+      cursor: pointer;
+      background: transparent;
+      transition: border-color 0.2s, color 0.2s, background 0.2s;
+      flex-shrink: 0;
+      line-height: 1;
+      font-family: 'Inter', sans-serif;
+      letter-spacing: 0;
+    }
+    .section-about-btn:hover { border-color: var(--gold); color: var(--gold); }
+    .section-about-btn.open { border-color: var(--gold); color: #0a0a0f; background: var(--gold); }
+
+    .section-about-panel {
+      overflow: hidden;
+      max-height: 0;
+      opacity: 0;
+      transition: max-height 0.4s ease, opacity 0.3s ease, margin 0.3s ease;
+      margin-bottom: 0;
+    }
+    .section-about-panel.open {
+      max-height: 200px;
+      opacity: 1;
+      margin-bottom: 2rem;
+    }
+    .section-about-inner {
+      background: rgba(245,158,11,0.06);
+      border: 1px solid var(--gold-border);
+      border-left: 3px solid var(--gold);
+      padding: 1rem 1.25rem;
+      font-size: 0.85rem;
+      line-height: 1.7;
+      color: rgba(232,232,237,0.72);
+      font-style: italic;
+    }
+
+    /* SUPPORT + SUBSCRIBE */
+    .issue-footer-cta {
+      max-width: 1200px; margin: 0 auto;
+      padding: 0 2.5rem 5rem;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;
+    }
+    .cta-block {
+      background: var(--surface); border: 1px solid var(--border);
+      padding: 2.25rem; display: flex; flex-direction: column; gap: 0.9rem;
+    }
+    .cta-block-label {
+      font-size: 0.65rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--gold);
+    }
+    .cta-block-title {
+      font-family: 'Playfair Display', serif; font-size: 1.2rem; font-weight: 700; color: #fff;
+      line-height: 1.2;
+    }
+    .cta-block-text { font-size: 0.88rem; line-height: 1.7; color: var(--text-muted); font-weight: 300; }
+    .cta-subscribe-form { display: flex; gap: 0; margin-top: 0.5rem; }
+    .cta-subscribe-input {
+      flex: 1; padding: 0.7rem 1rem;
+      background: rgba(255,255,255,0.04); border: 1px solid var(--border);
+      border-right: none; color: var(--text); font-family: 'Inter', sans-serif;
+      font-size: 0.85rem; outline: none;
+    }
+    .cta-subscribe-input::placeholder { color: var(--text-dim); }
+    .cta-subscribe-input:focus { border-color: var(--gold-border); }
+    .cta-subscribe-btn {
+      padding: 0.7rem 1.25rem; background: var(--gold); border: none;
+      color: #0a0a0f; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.08em;
+      text-transform: uppercase; cursor: pointer; font-family: 'Inter', sans-serif;
+      white-space: nowrap; transition: background 0.2s;
+    }
+    .cta-subscribe-btn:hover { background: #fbbf24; }
+    .cta-kofi-btn {
+      display: inline-flex; align-items: center; gap: 0.6rem;
+      padding: 0.75rem 1.5rem; margin-top: 0.5rem;
+      background: transparent; border: 1px solid var(--gold-border);
+      color: var(--gold); font-size: 0.82rem; font-weight: 600;
+      letter-spacing: 0.06em; text-transform: uppercase; text-decoration: none;
+      transition: background 0.2s, border-color 0.2s; align-self: flex-start;
+    }
+    .cta-kofi-btn:hover { background: var(--gold-dim); border-color: var(--gold); }
+    .cta-kofi-btn svg { width: 16px; height: 16px; fill: currentColor; }
+    @media (max-width: 768px) {
+      .issue-footer-cta { grid-template-columns: 1fr; padding: 0 1.25rem 4rem; }
+    }
+
+    /* FOOTER */
+    footer { border-top: 1px solid var(--border); padding: 2rem 2.5rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; }
+    .footer-logo { font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 800; color: var(--text-muted); }
+    .footer-logo span { color: var(--gold); }
+    .footer-note { font-size: 0.72rem; color: var(--text-dim); }
+    .footer-legal { font-size: 0.65rem; color: var(--text-dim); margin-top: 0.75rem; line-height: 1.5; }
+    .footer-legal a { color: var(--text-muted); text-decoration: underline; }
+    .footer-links { font-size: 0.72rem; margin-top: 0.75rem; }
+    .footer-links a { color: var(--text-muted); text-decoration: none; }
+    .footer-links a:hover { color: var(--gold); }
+
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      nav { padding: 0 1.25rem; }
+      .nav-links { display: none; }
+      section { padding: 3.5rem 1.25rem; }
+      .section-divider { margin: 0 1.25rem; }
+      .hero-content { padding: 2rem 1.25rem 3rem; }
+      .rewind-card { grid-template-columns: 1fr; gap: 1.5rem; }
+      .rewind-poster { max-width: 160px; }
+      .argument-camps { grid-template-columns: 1fr; }
+      .mood-films { grid-template-columns: 1fr 1fr; }
+      .pulse-grid { grid-template-columns: 1fr; }
+      .tv-grid { grid-template-columns: 1fr; }
+      .flashpoint-card { grid-template-columns: 1fr; }
+      .signal-grid { grid-template-columns: 1fr; }
+      .btc-grid { grid-template-columns: 1fr; }
+      .newsletter-card { padding: 2.5rem 1.5rem; }
+      .newsletter-form { flex-direction: column; }
+      .newsletter-input { border-right: 1px solid rgba(255,255,255,0.1); border-bottom: none; }
+      footer { flex-direction: column; gap: 0.75rem; text-align: center; }
+    }
+    @media (max-width: 480px) {
+      .mood-films { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="index.html" class="nav-logo">Screen<span>Share</span></a>
+    <ul class="nav-links">
+      <li><a href="#rewind">Rewind</a></li>
+      <li><a href="#argument">Argument</a></li>
+      <li><a href="#flashpoint">Flashpoint</a></li>
+      <li><a href="#pulse">Pulse</a></li>
+      <li><a href="archive.html">Archive</a></li>
+      <li><a href="about.html">About</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero" style="padding:0; max-width:none;" id="heroSection">
+    <div class="hero-backdrop" style="background-image: url('https://image.tmdb.org/t/p/w1280/of6OQnsvPHXEASczrBc3nVsMZ7q.jpg')"></div>
+    <div class="hero-grain"></div>
+    <div class="hero-vignette"></div>
+    <div class="hero-vignette-sides"></div>
+
+    <div class="hero-content">
+      <div class="hero-issue-badge">Issue 002 &mdash; March 2026</div>
+      <div class="hero-eyebrow">
+        <span class="hero-eyebrow-label">Screen Share</span>
+        <span class="hero-eyebrow-dot"></span>
+        <span class="hero-eyebrow-date">Week of 17 March 2026</span>
+      </div>
+
+      <div class="hero-theme-label">This Issue</div>
+      <h1 class="hero-title">Power<span style="color:var(--gold);">.</span></h1>
+      <p class="hero-tagline">Who has it. Who loses it. What it costs.</p>
+
+      <div class="hero-meta">
+        <span class="hero-meta-film">Lead Film: <span>Network (1976, Sidney Lumet)</span></span>
+      </div>
+
+      <div style="display:flex; gap:1rem; flex-wrap:wrap;">
+        <a href="#rewind" class="btn-primary">Read This Issue &rarr;</a>
+        <a href="archive.html" class="btn-ghost">Browse the Archive</a>
+      </div>
+    </div>
+
+    <div class="hero-scroll-hint">
+      <span>Scroll</span>
+      <div class="hero-scroll-line"></div>
+    </div>
+  </section>
+
+  <!-- EDITOR'S NOTE -->
+  <div class="editors-note reveal">
+    <div class="editors-note-inner">
+      <div class="editors-note-label">A note from the editor</div>
+      <p class="editors-note-text">
+        The week I started putting this issue together, a billionaire&rsquo;s son finalised his takeover of a major American studio. Separately, an AI company that promised it wouldn&rsquo;t train on your likeness quietly changed its terms. And Sidney Lumet&rsquo;s <em>Network</em> &mdash; made fifty years ago &mdash; described both events more precisely than any piece of current journalism I read. That&rsquo;s either a great argument for cinema, or a terrifying one about how little changes. Maybe both.
+      </p>
+      <p class="editors-note-text">
+        Power is this issue&rsquo;s subject. Not power as spectacle &mdash; the throne rooms, the monologues, the slow-motion falls from grace. The mechanics of it. Who holds it quietly. Who loses it without noticing. What the camera sees when it decides to look directly.
+      </p>
+      <p class="editors-note-text">
+        <em>Network</em> is in the archive. <em>The Zone of Interest</em> is in Flashpoint. <em>The Godfather</em> is in the Argument &mdash; and so is <em>Gomorrah</em>, which is a better film about power than most people realise. The television list this week is almost entirely about institutions: what they protect, what they cost, who they were built to serve.
+      </p>
+      <p class="editors-note-text">
+        As always &mdash; stay if it resonates.
+      </p>
+      <div class="editors-note-sig">
+        <span class="editors-note-name">Niall</span>
+        <span class="editors-note-role">Editor, Screen Share</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-divider"></div>
+
+  <!-- THE REWIND -->
+  <section id="rewind">
+    <div class="section-eyebrow reveal">
+      <span class="section-eyebrow-icon">&#9654;</span>
+      <span class="section-eyebrow-label">The Rewind</span>
+      <span class="section-eyebrow-pipe">|</span>
+      <span class="section-eyebrow-desc">A film from the archive that speaks to right now</span>
+      <button class="section-about-btn" data-about="rewind" title="What is this section?">i</button>
+    </div>
+    <div class="section-about-panel" id="about-rewind">
+      <div class="section-about-inner">Each issue we reach back into cinema history for a film that earns its place in the conversation right now. Not a classic for a classic&rsquo;s sake &mdash; something that speaks to the week&rsquo;s theme in a way that might surprise you.</div>
+    </div>
+
+    <div class="rewind-card reveal">
+      <img
+        class="rewind-poster"
+        src="https://image.tmdb.org/t/p/w500/qZomlHsaALUtkFeMDwdYmwS2Pbo.jpg"
+        alt="Network (1976)"
+        loading="eager"
+        onerror="this.style.background='#1a1a22'; this.removeAttribute('src');"
+      />
+      <div class="rewind-body">
+        <div class="rewind-year">1976 &middot; Sidney Lumet &middot; Written by Paddy Chayefsky</div>
+        <h2 class="rewind-film-title">Network</h2>
+        <p class="rewind-text">
+          Network is the Rewind pick for Issue 002 because it describes precisely what is happening this week, not just generally. The Paramount-Skydance merger &mdash; where a billionaire&rsquo;s son explicitly negotiated favourable media coverage in exchange for regulatory approval &mdash; is the film&rsquo;s boardroom scene rendered in real time. Paddy Chayefsky&rsquo;s central insight &mdash; that corporations owning the microphone will amplify any outrage that serves profit, and silence any truth that threatens it &mdash; has become the operating manual of 2026&rsquo;s information landscape.
+        </p>
+        <p class="rewind-text">
+          Howard Beale&rsquo;s famous speech: &ldquo;When the 12th-largest company in the world controls the most awesome propaganda force in the whole godless world, who knows what shit will be peddled for truth on this network?&rdquo; In 2026, it&rsquo;s not the 12th-largest company. It&rsquo;s the first.
+        </p>
+        <p class="rewind-text">
+          Fifty years on, the film has not aged into a historical curiosity. It has aged into a documentary.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- THE ARGUMENT -->
+  <div class="section-divider"></div>
+
+  <section id="argument">
+    <div class="section-eyebrow reveal">
+      <span class="section-eyebrow-icon">&#128172;</span>
+      <span class="section-eyebrow-label">The Argument</span>
+      <span class="section-eyebrow-pipe">|</span>
+      <span class="section-eyebrow-desc">One question. No verdict.</span>
+      <button class="section-about-btn" data-about="argument" title="What is this section?">i</button>
+    </div>
+    <div class="section-about-panel" id="about-argument">
+      <div class="section-about-inner">Every issue we pick one interpretive question and lay out two honest readings &mdash; no winner, no consensus. The point isn&rsquo;t to settle the debate. It&rsquo;s to make the debate worth having.</div>
+    </div>
+
+    <blockquote class="argument-question reveal">
+      &ldquo;The best films about power make us root for the wrong person. Is that manipulation &mdash; or the whole point?&rdquo;
+    </blockquote>
+
+    <p class="argument-intro reveal">
+      There&rsquo;s a flattering story we tell about cinema&rsquo;s relationship to power: that the best films expose it, interrogate it, hold it up to the light. The more honest version is that the best films about power make us want to belong to it. The Godfather doesn&rsquo;t just depict a crime empire. It makes the crime empire look like home. Which leaves a question about what the camera is actually doing &mdash; and whether that matters.
+    </p>
+
+    <div class="argument-camps reveal">
+      <div class="argument-camp">
+        <span class="argument-camp-label reading-a">Reading A &mdash; &ldquo;The Camera Is Lying to You&rdquo;</span>
+        <p class="argument-camp-text">
+          Every time Vito Corleone speaks softly and the score swells, you&rsquo;re being worked on &mdash; and the film knows it. <em>The Godfather</em> doesn&rsquo;t just depict a crime empire; it makes you want to belong to one, because Coppola lights it like a Renaissance painting and scores it like a lullaby. <em>Succession</em>&rsquo;s Logan Roy is a bully, a narcissist, and an emotional abuser &mdash; but the show frames his contempt as vigour, and half the audience called him the only real person in the room. That&rsquo;s not neutral storytelling. It&rsquo;s the camera taking sides, and we should at least notice when it does.
+        </p>
+      </div>
+      <div class="argument-camp">
+        <span class="argument-camp-label reading-b">Reading B &mdash; &ldquo;You Were Supposed to Feel That&rdquo;</span>
+        <p class="argument-camp-text">
+          The discomfort of rooting for Tony Soprano isn&rsquo;t a bug &mdash; it&rsquo;s the entire engine of the show. <em>Gomorrah</em> goes further: Ciro Di Marzio has no redemptive arc, no Hollywood gloss, no likeable quirks to soften what he is &mdash; and you&rsquo;re still watching at 1am, genuinely invested. The show isn&rsquo;t asking you to find him charming. You just do. That&rsquo;s not manipulation; that&rsquo;s the mirror working. If you&rsquo;d sat back unmoved, nodding sagely that crime is bad, you&rsquo;d have learned nothing about why people follow charismatic monsters, or why power is so difficult to resist from the inside. Tragedy isn&rsquo;t a warning label. It&rsquo;s a mirror, and it only works if you&rsquo;ve already leaned in.
+        </p>
+      </div>
+    </div>
+
+    <div class="vote-widget reveal" id="voteWidget">
+      <div class="vote-prompt">Which reading lands for you?</div>
+      <div class="vote-buttons" id="voteButtons">
+        <button class="vote-btn vote-a" id="voteBtnA" onclick="castVote('a')">The camera IS lying</button>
+        <button class="vote-btn vote-b" id="voteBtnB" onclick="castVote('b')">The mirror IS the point</button>
+      </div>
+      <div class="vote-results" id="voteResults">
+        <div class="vote-result-row">
+          <div class="vote-result-label">
+            <span class="vote-result-name a">The Camera Is Lying</span>
+            <span class="vote-result-pct" id="pctA">0%</span>
+          </div>
+          <div class="vote-result-track"><div class="vote-result-fill a" id="fillA"></div></div>
+        </div>
+        <div class="vote-result-row">
+          <div class="vote-result-label">
+            <span class="vote-result-name b">The Mirror Is the Point</span>
+            <span class="vote-result-pct" id="pctB">0%</span>
+          </div>
+          <div class="vote-result-track"><div class="vote-result-fill b" id="fillB"></div></div>
+        </div>
+        <div class="vote-count" id="voteCount"></div>
+        <div class="vote-your-choice" id="voteYourChoice">Your vote: <span id="voteChoiceLabel"></span></div>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- MOOD-FIRST DISCOVERY -->
+  <div class="section-divider"></div>
+
+  <section id="discover">
+    <div class="section-eyebrow reveal">
+      <span class="section-eyebrow-icon">&#127917;</span>
+      <span class="section-eyebrow-label">Discover</span>
+      <span class="section-eyebrow-pipe">|</span>
+      <span class="section-eyebrow-desc">Not genre. Emotion.</span>
+      <button class="section-about-btn" data-about="discover" title="What is this section?">i</button>
+    </div>
+    <div class="section-about-panel" id="about-discover">
+      <div class="section-about-inner">Algorithms sort by genre. We sort by feeling. Pick the mood you&rsquo;re in and we&rsquo;ll find something worth watching.</div>
+    </div>
+
+    <div class="mood-chips-wrapper reveal">
+      <div class="mood-chips" id="moodChips">
+        <button class="mood-chip active" data-mood="unsettled">Unsettled</button>
+        <button class="mood-chip" data-mood="devastated">Quietly Devastated</button>
+        <button class="mood-chip" data-mood="rewired">Mind Rewired</button>
+        <button class="mood-chip" data-mood="hopeful">Furious but Hopeful</button>
+        <button class="mood-chip" data-mood="strange">Late Night Strange</button>
+        <button class="mood-chip" data-mood="edge">Edge of Your Seat</button>
+        <button class="mood-chip" data-mood="slowburn">Slow Burn</button>
+      </div>
+    </div>
+
+    <div class="mood-films reveal" id="moodFilms"></div>
+
+    <div class="mood-vote reveal" id="moodVote">
+      <div class="mood-vote-prompt">Which would you watch tonight?</div>
+      <div class="mood-vote-btns" id="moodVoteBtns"></div>
+      <div class="mood-vote-results" id="moodVoteResults"></div>
+    </div>
+  </section>
+
+  <!-- FLASHPOINT -->
+  <div class="section-divider"></div>
+
+  <section id="flashpoint">
+    <div class="section-eyebrow reveal">
+      <span class="section-eyebrow-icon">&#9889;</span>
+      <span class="section-eyebrow-label">Flashpoint</span>
+      <span class="section-eyebrow-pipe">|</span>
+      <span class="section-eyebrow-desc">The moment something ignited</span>
+      <button class="section-about-btn" data-about="flashpoint" title="What is this section?">i</button>
+    </div>
+    <div class="section-about-panel" id="about-flashpoint">
+      <div class="section-about-inner">Cinema has always been political. Flashpoint looks back at the moment a film said something it wasn&rsquo;t supposed to &mdash; and what happened when it did. History as context for the present.</div>
+    </div>
+
+    <div class="flashpoint-card reveal">
+      <img
+        class="flashpoint-poster"
+        src="https://image.tmdb.org/t/p/w500/hUu9zyZmDd8VZegKi1iK1Vk0RYS.jpg"
+        alt="The Zone of Interest (2023)"
+        loading="eager"
+        onerror="this.style.background='#1a1a22'; this.removeAttribute('src');"
+      />
+      <div>
+        <div class="flashpoint-year">2023 &middot; Jonathan Glazer</div>
+        <h2 class="flashpoint-title">The Zone of Interest</h2>
+        <p class="flashpoint-body">
+          The Zone of Interest shows the mundane domestic comfort of the H&ouml;ss family &mdash; the commandant of Auschwitz, his wife, their children &mdash; while the camp operates just over the garden wall. You hear everything. You see nothing. Power through omission: the most radical choice Glazer could have made, and the most unsettling. The H&ouml;ss family tends its garden, hosts dinner parties, sends children to school &mdash; while exercising total power over human life metres away. The banality of that power is the horror.
+        </p>
+        <p class="flashpoint-body">
+          At the 2024 Academy Awards, Glazer used his Best International Film acceptance speech to draw a direct line between the Holocaust and the conflict in Gaza &mdash; in a room full of Hollywood&rsquo;s most powerful people. Half the industry stood and applauded. The other half was furious. The argument has never fully resolved. A filmmaker using his own moment of institutional power to say something the institution didn&rsquo;t want said: that&rsquo;s the Flashpoint.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- THE SIGNAL -->
+  <div class="section-divider"></div>
+
+  <section id="signal">
+    <div class="section-eyebrow reveal">
+      <span class="section-eyebrow-icon">&#128225;</span>
+      <span class="section-eyebrow-label">The Signal</span>
+      <span class="section-eyebrow-pipe">|</span>
+      <span class="section-eyebrow-desc">AI in film and television &mdash; the deal, the resistance, the tool</span>
+      <button class="section-about-btn" data-about="signal" title="What is this section?">i</button>
+    </div>
+    <div class="section-about-panel" id="about-signal">
+      <div class="section-about-inner">The Signal tracks AI&rsquo;s intersection with the film and television industry. Three items each issue: a deal, a resistance, a tool. No hype, no panic &mdash; just what happened and what it means.</div>
+    </div>
+
+    <div class="signal-grid reveal">
+      <div class="signal-card deal">
+        <span class="signal-card-label">The Deal</span>
+        <p class="signal-card-body">
+          On March 5, 2026, Netflix announced the acquisition of InterPositive, a stealth AI startup founded by Ben Affleck in 2022. The system builds AI models from a production&rsquo;s own dailies, then applies them in post to assist with colour, relighting, and visual effects. Netflix is offering the tools to its creative partners rather than selling them commercially; Affleck joins as a senior adviser.
+        </p>
+      </div>
+      <div class="signal-card resistance">
+        <span class="signal-card-label">The Resistance</span>
+        <p class="signal-card-body">
+          ByteDance&rsquo;s AI video model Seedance 2.0 launched on February 12, 2026, and within days users had generated unauthorised clips featuring Tom Cruise, Brad Pitt, and copyrighted IP. The Motion Picture Association sent a cease-and-desist, SAG-AFTRA condemned the &ldquo;blatant infringement,&rdquo; and ByteDance indefinitely halted its global API rollout.
+        </p>
+      </div>
+      <div class="signal-card tool">
+        <span class="signal-card-label">The Tool</span>
+        <p class="signal-card-body">
+          In March 2026, AI firm Asteria &mdash; co-founded by filmmaker Bryn Mooser and Natasha Lyonne, with backing from CAA and Comcast Ventures &mdash; launched Continuum Suite, an AI-enabled cloud operating system for film and TV production. Unlike generative video tools, it functions as a unified workflow layer covering creative development, production coordination, and post.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- WEEKLY PULSE -->
+  <div class="section-divider"></div>
+
+  <section id="pulse">
+    <div class="section-eyebrow reveal">
+      <span class="section-eyebrow-icon">&#128225;</span>
+      <span class="section-eyebrow-label">The Weekly Pulse</span>
+      <span class="section-eyebrow-pipe">|</span>
+      <span class="section-eyebrow-desc">What the conversation looked like this week</span>
+      <button class="section-about-btn" data-about="pulse" title="What is this section?">i</button>
+    </div>
+    <div class="section-about-panel" id="about-pulse">
+      <div class="section-about-inner">Three film cards every week: the most talked-about, the most divisive, and the one most people missed. Signal versus noise &mdash; what&rsquo;s actually worth paying attention to right now.</div>
+    </div>
+
+    <div class="pulse-grid reveal">
+
+      <div class="pulse-card">
+        <div class="pulse-card-img-wrap">
+          <img class="pulse-card-img" src="https://image.tmdb.org/t/p/w780/hz7TdCrpLLt2Dz7S3PS2HG9rpAO.jpg" alt="" loading="eager" />
+        </div>
+        <div class="pulse-card-type">Most Talked About</div>
+        <div class="pulse-card-title">Scream 7</div>
+        <div class="pulse-card-sub">Kevin Williamson / Paramount, 2026</div>
+        <div class="pulse-card-body">
+          The franchise&rsquo;s biggest opening weekend on record &mdash; $63.6M domestic &mdash; arrived shadowed by years of behind-the-scenes power struggles: Neve Campbell locked out over a pay dispute she called a question of &ldquo;value,&rdquo; Melissa Barrera fired, directors cycling in and out before original <em>Scream</em> scribe Kevin Williamson took the helm himself. The boycott didn&rsquo;t stop the crowds; if anything, the controversy was the marketing. What <em>Scream 7</em> really documents isn&rsquo;t Ghostface &mdash; it&rsquo;s who controls a franchise, who gets paid for building it, and what it costs a woman to say her labour is worth more.
+        </div>
+      </div>
+
+      <div class="pulse-card">
+        <div class="pulse-card-img-wrap">
+          <img class="pulse-card-img" src="https://image.tmdb.org/t/p/w780/5hH7QiEPOiz7aGa4eJce74kZkO1.jpg" alt="" loading="eager" />
+        </div>
+        <div class="pulse-card-type">Most Divisive</div>
+        <div class="pulse-card-title">The Bride!</div>
+        <div class="pulse-card-sub">Maggie Gyllenhaal / Warner Bros., 2026</div>
+        <div class="pulse-card-body">
+          Gyllenhaal&rsquo;s gothic monster romance &mdash; Jessie Buckley as the Bride of Frankenstein, Christian Bale as the creature, set against 1930s Chicago &mdash; has split audiences cleanly down the middle. The division isn&rsquo;t really about quality; it&rsquo;s about what you think women in stories are for. Buckley&rsquo;s Bride refuses the role written for her &mdash; companion, reward, mirror &mdash; and the hostile half of the audience finds that unforgivable.
+        </div>
+        <span class="divisive-badge">Audiences split &mdash; no consensus</span>
+      </div>
+
+      <div class="pulse-card">
+        <div class="pulse-card-img-wrap">
+          <img class="pulse-card-img" src="https://image.tmdb.org/t/p/w780/u6YE4rlEWOiYoqhPJuNvt5GHxgu.jpg" alt="" loading="eager" />
+        </div>
+        <div class="pulse-card-type">Most Overlooked</div>
+        <div class="pulse-card-title">Shelter</div>
+        <div class="pulse-card-sub">Ric Roman Waugh / Amazon Prime Video, 2026</div>
+        <div class="pulse-card-body">
+          Dismissed as another Statham vehicle &mdash; and it is a Statham vehicle &mdash; but its engine runs on something sharper: a MI6 director hauled before a political inquiry to answer for a surveillance programme run outside government approval. Bill Nighy&rsquo;s bureaucrat-in-the-dock scenes carry more menace than any set-piece. At a moment when questions of institutional power and unaccountable intelligence are anything but fictional, <em>Shelter</em> deserves a second look.
+        </div>
+        <span class="gem-badge">Streaming now</span>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ON SCREEN: TV -->
+  <div class="section-divider"></div>
+
+  <section id="tv">
+    <div class="section-eyebrow reveal">
+      <span class="section-eyebrow-icon">&#128250;</span>
+      <span class="section-eyebrow-label">On Screen</span>
+      <span class="section-eyebrow-pipe">|</span>
+      <span class="section-eyebrow-desc">Television worth your time</span>
+      <button class="section-about-btn" data-about="tv" title="What is this section?">i</button>
+    </div>
+    <div class="section-about-panel" id="about-tv">
+      <div class="section-about-inner">Screen Share covers film and television. This section tracks what&rsquo;s worth watching on TV right now &mdash; curated picks currently airing, coming soon, or waiting to be found.</div>
+    </div>
+
+    <div class="tv-tier-label tv-tier-now reveal">Airing Now</div>
+
+    <div class="tv-grid reveal">
+      <div class="tv-card now">
+        <div class="tv-card-img-wrap"><img class="tv-card-img" src="https://image.tmdb.org/t/p/w780/5QsLvWh8J1mXl1W05wNJknMmhzR.jpg" alt="" loading="eager" /></div>
+        <div class="tv-card-meta">Hulu/ABC &middot; Season 2 &middot; Weekly from Feb 23</div>
+        <div class="tv-card-title">Paradise</div>
+        <div class="tv-card-body">
+          A president murdered inside a utopia built for the powerful. Season 2 weekly from Feb 23.
+        </div>
+      </div>
+      <div class="tv-card now">
+        <div class="tv-card-img-wrap"><img class="tv-card-img" src="https://image.tmdb.org/t/p/w780/qcV7ebwtZcoRxBufUmXQl0KKdht.jpg" alt="" loading="eager" /></div>
+        <div class="tv-card-meta">HBO/Max &middot; Season 4 &middot; All 8 episodes streaming</div>
+        <div class="tv-card-title">Industry</div>
+        <div class="tv-card-body">
+          The best drama on TV about what capitalism does to the people who serve it. All 8 episodes streaming now.
+        </div>
+      </div>
+      <div class="tv-card now">
+        <div class="tv-card-img-wrap"><img class="tv-card-img" src="https://image.tmdb.org/t/p/w780/bgt0Qd2AfEq6tdwOHXKWiQb8Z0N.jpg" alt="" loading="eager" /></div>
+        <div class="tv-card-meta">Apple TV+ &middot; Season 3 &middot; Just wrapped</div>
+        <div class="tv-card-title">Tehran</div>
+        <div class="tv-card-body">
+          Mossad agent Tamar plus Hugh Laurie as a UN nuclear weapons inspector. Geopolitical power at its most tightly wound. Just wrapped.
+        </div>
+      </div>
+    </div>
+
+    <div class="tv-tier-label tv-tier-horizon reveal">On the Horizon &mdash; Worth Tracking</div>
+
+    <div class="tv-grid reveal">
+      <div class="tv-card horizon">
+        <div class="tv-card-img-wrap"><img class="tv-card-img" src="https://image.tmdb.org/t/p/w780/qsVW888AvaRiQqhYj8hI2DtYNor.jpg" alt="" loading="eager" /></div>
+        <div class="tv-card-meta">Disney+ &middot; Season 2 &middot; March 24</div>
+        <div class="tv-card-title">Daredevil: Born Again</div>
+        <div class="tv-card-body">
+          Wilson Fisk as mayor &mdash; criminal power laundered through legitimate office. March 24.
+        </div>
+      </div>
+      <div class="tv-card horizon">
+        <div class="tv-card-img-wrap"><img class="tv-card-img" src="https://image.tmdb.org/t/p/w780/9OQ5BIITkJwRJo9JA6AlCfJIGBQ.jpg" alt="" loading="eager" /></div>
+        <div class="tv-card-meta">Apple TV+ &middot; Final Season &middot; March 27</div>
+        <div class="tv-card-title">For All Mankind</div>
+        <div class="tv-card-body">
+          Final season. Geopolitical power replicating itself in space. March 27.
+        </div>
+      </div>
+      <div class="tv-card horizon">
+        <div class="tv-card-img-wrap"><img class="tv-card-img" src="https://image.tmdb.org/t/p/w780/n8fffwUPi9DMxtwDIR6xoGx9ItP.jpg" alt="" loading="eager" /></div>
+        <div class="tv-card-meta">Hulu &middot; April 8</div>
+        <div class="tv-card-title">The Testaments</div>
+        <div class="tv-card-body">
+          Atwood&rsquo;s Booker-winning <em>Handmaid&rsquo;s Tale</em> sequel. Three women, Gilead, one act of resistance. April 8.
+        </div>
+      </div>
+    </div>
+
+    <div class="tv-tier-label tv-tier-radar reveal">Under the Radar &mdash; Worth Finding</div>
+
+    <div class="tv-grid reveal">
+      <div class="tv-card radar">
+        <div class="tv-card-img-wrap"><img class="tv-card-img" src="https://image.tmdb.org/t/p/w780/qVyqPzx6wD3Wm3HD4iy3PrJYxGX.jpg" alt="" loading="eager" /></div>
+        <div class="tv-card-meta">Sky/HBO Europe &middot; Complete series</div>
+        <div class="tv-card-title">Gomorrah</div>
+        <div class="tv-card-body">
+          Camorra as alternative state. Ties directly into the Argument section. No glamour, no loyalty, still draws you in.
+        </div>
+      </div>
+      <div class="tv-card radar">
+        <div class="tv-card-img-wrap"><img class="tv-card-img" src="https://image.tmdb.org/t/p/w780/bwSmgmd90hCWwqOKQYTEraeOZhJ.jpg" alt="" loading="eager" /></div>
+        <div class="tv-card-meta">FX/Hulu &middot; 2024 &middot; Complete</div>
+        <div class="tv-card-title">Sh&#333;gun</div>
+        <div class="tv-card-body">
+          Feudal power forensics. Strong new viewer entry point.
+        </div>
+      </div>
+      <div class="tv-card radar">
+        <div class="tv-card-img-wrap"><img class="tv-card-img" src="https://image.tmdb.org/t/p/w780/lp6Rsgid52BIlzYxWDURFSZZU6m.jpg" alt="" loading="eager" /></div>
+        <div class="tv-card-meta">HBO &middot; 2024 Miniseries</div>
+        <div class="tv-card-title">The Regime</div>
+        <div class="tv-card-body">
+          Kate Winslet autocracy portrait. Criminally underseen.
+        </div>
+      </div>
+      <div class="tv-card radar">
+        <div class="tv-card-img-wrap"><img class="tv-card-img" src="https://image.tmdb.org/t/p/w780/ooFxDrNQl5cwnQOuQCuMDRCJrbF.jpg" alt="" loading="eager" /></div>
+        <div class="tv-card-meta">Netflix &middot; 4 Seasons</div>
+        <div class="tv-card-title">Borgen</div>
+        <div class="tv-card-body">
+          The definitive TV study of political power. More honest than <em>Succession</em>, more human than <em>The Crown</em>. S4 subtitled &ldquo;Power and Glory.&rdquo;
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- NEWSLETTER -->
+  <div class="section-divider"></div>
+
+  <div class="newsletter-section">
+    <div class="newsletter-card reveal">
+      <div class="newsletter-eyebrow">Every Friday</div>
+      <h2 class="newsletter-title">The weekly digest &mdash;<br>one email, worth opening.</h2>
+      <p class="newsletter-sub">&ldquo;No scores. No aggregation. Just the conversation worth having.&rdquo;</p>
+      <div class="newsletter-form">
+        <input class="newsletter-input" type="email" placeholder="your@email.com" />
+        <button class="newsletter-btn">Subscribe</button>
+      </div>
+      <p class="newsletter-note">No noise. Unsubscribe whenever. We mean it.</p>
+    </div>
+  </div>
+
+  <!-- SUBSCRIBE + SUPPORT -->
+  <div class="section-divider"></div>
+  <div class="issue-footer-cta reveal">
+
+    <div class="cta-block">
+      <div class="cta-block-label">Stay in the loop</div>
+      <div class="cta-block-title">Get Screen Share in your inbox every week</div>
+      <div class="cta-block-text">One issue, one theme, every week. No algorithm. No noise. Just the films and television worth your time &mdash; and the thinking that goes with them.</div>
+      <form class="cta-subscribe-form" action="https://buttondown.com/api/emails/embed-subscribe/screenshare" method="post" target="_blank" onsubmit="window.open('https://buttondown.com/screenshare', 'popupwindow')">
+        <input class="cta-subscribe-input" type="email" name="email" placeholder="your@email.com" required />
+        <button class="cta-subscribe-btn" type="submit">Subscribe</button>
+      </form>
+    </div>
+
+    <div class="cta-block">
+      <div class="cta-block-label">Support independent publishing</div>
+      <div class="cta-block-title">If Screen Share is worth your time, it&rsquo;s worth a coffee</div>
+      <div class="cta-block-text">Screen Share is independent, ad-free, and takes real work to put together each week. If you value that, any support keeps it going.</div>
+      <a class="cta-kofi-btn" href="https://ko-fi.com/fundscreenshare" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M23.881 8.948c-.773-4.085-4.859-4.593-4.859-4.593H.723c-.604 0-.679.798-.679.798s-.082 7.324-.022 11.822c.164 2.424 2.586 2.672 2.586 2.672s8.267-.023 11.966-.049c2.438-.426 2.683-2.566 2.658-3.734 4.352.24 7.422-2.831 6.649-6.916zm-11.062 3.511c-1.246 1.453-4.011 3.976-4.011 3.976s-.121.119-.31.023c-.076-.057-.108-.09-.108-.09-.443-.441-3.368-3.049-4.034-3.954-.709-.965-1.041-2.7-.091-3.71.951-1.01 3.005-1.086 4.363.407 0 0 1.565-1.782 3.468-.963 1.904.82 1.832 3.011.723 4.311zm6.173.478c-.928.116-1.682.028-1.682.028V7.284h1.77s1.971.551 1.971 2.638c0 1.913-.985 2.667-2.059 3.015z"/></svg>
+        Support on Ko-fi
+      </a>
+    </div>
+
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-logo">Screen<span>Share</span></div>
+    <div class="footer-note">&copy; 2026 Screen Share &middot; Issue 002 &middot; A publication for people who care how they watch</div>
+    <div class="footer-legal">
+      Film data and images courtesy of <a href="https://www.themoviedb.org/" target="_blank" rel="noopener">TMDB</a>. This product uses the TMDB API but is not endorsed or certified by TMDB.
+    </div>
+    <div class="footer-links">
+      <a href="/">Home</a> &middot; <a href="/issue-001.html">Issue 001</a> &middot; <a href="/about.html">About</a> &middot; <a href="/feed.xml">RSS</a> &middot; <a href="https://buttondown.com/screenshare" target="_blank" rel="noopener">Newsletter</a>
+    </div>
+  </footer>
+
+  <script>
+    var moodData = {
+      unsettled: [
+        { title: 'The Conversation', year: 1974, director: 'Francis Ford Coppola', poster: 'https://image.tmdb.org/t/p/w500/dHqVBwcv1SGymOpUueRoKzcmdes.jpg', tone: 'amber', tag: 'Power always flows upward', primer: 'A surveillance expert who built his career selling access to other people\u2019s lives discovers too late that power always flows back to those who own the infrastructure.' },
+        { title: 'Cach\u00e9', year: 2005, director: 'Michael Haneke', poster: 'https://image.tmdb.org/t/p/w500/vTzjRi0Uhy0tt3Rjw8SARZZJHlX.jpg', tone: 'slate', tag: 'Colonial guilt returns', primer: 'A Parisian TV intellectual is slowly undone by the return of a colonial guilt he has spent his entire privileged life refusing to acknowledge.' },
+        { title: 'The Servant', year: 1963, director: 'Joseph Losey', poster: 'https://image.tmdb.org/t/p/w500/pRa4og93BeOoMCt6oWuPCwu5Coo.jpg', tone: 'crimson', tag: 'The house changed hands', primer: 'A manservant is hired to serve a wealthy Londoner and the power dynamic inverts so gradually you can\u2019t identify the exact moment the house changed hands \u2014 which is precisely the point.' }
+      ],
+      devastated: [
+        { title: 'Come and See', year: 1985, director: 'Elem Klimov', poster: 'https://image.tmdb.org/t/p/w500/qNbMsKVzigERgJUbwf8pKyZogpb.jpg', tone: 'slate', tag: 'Power erases everything', primer: 'A Belarusian boy volunteers for the Resistance and watches military power systematically erase an entire people \u2014 and everything that made him human.' },
+        { title: '4 Months, 3 Weeks and 2 Days', year: 2007, director: 'Cristian Mungiu', poster: 'https://image.tmdb.org/t/p/w500/acEtvzFPeOQwbzRWncjRLenhnKV.jpg', tone: 'crimson', tag: 'The state owns your body', primer: 'In Ceausescu\u2019s Romania, the state has claimed ownership of women\u2019s bodies, and two students spend one night navigating what it costs to reclaim that power.' },
+        { title: 'Grave of the Fireflies', year: 1988, director: 'Isao Takahata', poster: 'https://image.tmdb.org/t/p/w500/k9tv1rXZbOhH7eiCk378x61kNQ1.jpg', tone: 'amber', tag: 'Invisible to the machine', primer: 'Two orphaned children are ground into nothing by a war machine that never once noticed them \u2014 power at its most total and most indifferent.' }
+      ],
+      rewired: [
+        { title: 'The Battle of Algiers', year: 1966, director: 'Gillo Pontecorvo', poster: 'https://image.tmdb.org/t/p/w500/2p3AFtOHFvP6OeVMqlnL1zLKOqL.jpg', tone: 'crimson', tag: 'No side is clean', primer: 'Shot with the immediacy of a newsreel, it refuses to let you settle on a side \u2014 colonial power and the violence that resists it are examined with equal, uncomfortable clarity.' },
+        { title: 'All Quiet on the Western Front', year: 2022, director: 'Edward Berger', poster: 'https://image.tmdb.org/t/p/w500/2IRjbi9cADuDMKmHdLK7LaqQDKA.jpg', tone: 'slate', tag: 'The machine is indifferent', primer: 'The 2022 remake strips away every shred of glory and leaves only the war machine \u2014 impersonal, inexhaustible, indifferent to the lives it consumes \u2014 and it rewires you whether you think you know the story or not.' },
+        { title: 'The Act of Killing', year: 2012, director: 'Joshua Oppenheimer', poster: 'https://image.tmdb.org/t/p/w500/sp5B7Tz5ttsgOLnIlCP5uEhtesI.jpg', tone: 'amber', tag: 'Power rewrites history', primer: 'Indonesian death squad leaders reenact their massacres in cinematic style, and the film forces the unbearable question: what happens to a society when the people who hold power are the ones who committed the atrocities?' }
+      ],
+      hopeful: [
+        { title: 'Wadjda', year: 2012, director: 'Haifaa al-Mansour', poster: 'https://image.tmdb.org/t/p/w500/w4iCIZ1kWSOCt0yELjfUMNAToUF.jpg', tone: 'amber', tag: 'Persistence as victory', primer: 'A Saudi girl finds a small, precise route through a system designed to keep her still \u2014 and the film insists, quietly, that persistence against structural power is its own kind of victory.' },
+        { title: 'Pan\u2019s Labyrinth', year: 2006, director: 'Guillermo del Toro', poster: 'https://image.tmdb.org/t/p/w500/z7xXihu5wHuSMWymq5VAulPVuvg.jpg', tone: 'moss', tag: 'Fantasy as resistance', primer: 'In fascist Spain, a child\u2019s imagination becomes the only sovereign territory that Franco\u2019s brutality cannot reach \u2014 fantasy as an act of resistance against absolute power.' },
+        { title: 'Beasts of the Southern Wild', year: 2012, director: 'Benh Zeitlin', poster: 'https://image.tmdb.org/t/p/w500/nQJmWekGYlXhezGUb21xFfEfwhH.jpg', tone: 'moss', tag: 'Refusing to be erased', primer: 'Six-year-old Hushpuppy lives at the margins of everything \u2014 geography, economy, state protection \u2014 and refuses, with ferocious love, to be erased by any of it.' }
+      ],
+      strange: [
+        { title: 'Brazil', year: 1985, director: 'Terry Gilliam', poster: 'https://image.tmdb.org/t/p/w500/aewan59WcFThBimkTVVoNf2o5Vb.jpg', tone: 'crimson', tag: 'Dystopia looks familiar', primer: 'A bureaucratic nightmare state runs on paperwork and torture, and the film\u2019s genius is that its dystopian power looks almost identical to the world we already inhabit.' },
+        { title: 'The Trial', year: 1962, director: 'Orson Welles', poster: 'https://image.tmdb.org/t/p/w500/4qDUe5HqB8pXNplSBlsoyVjNP3r.jpg', tone: 'slate', tag: 'Power refuses to explain', primer: 'Kafka\u2019s Josef K. is prosecuted for a crime no one will name, by an authority no one can locate \u2014 power made total precisely because it refuses to explain itself.' },
+        { title: 'Alphaville', year: 1965, director: 'Jean-Luc Godard', poster: 'https://image.tmdb.org/t/p/w500/fFJP3D5fJDFxN7ChqSye1DZ0fTL.jpg', tone: 'amber', tag: 'Logic rules, humanity fades', primer: 'A noir spy moves through a city governed by a computer that has outlawed emotion and poetry \u2014 technocratic power dressed in shadows, asking what remains of humanity when logic rules.' }
+      ],
+      edge: [
+        { title: 'Z', year: 1969, director: 'Costa-Gavras', poster: 'https://image.tmdb.org/t/p/w500/dFAJyFNgvOv24f2RQyI9KDxjGr3.jpg', tone: 'crimson', tag: 'The state buries truth', primer: 'A left-wing politician is assassinated in broad daylight, and one magistrate\u2019s refusal to accept the official story becomes a race against the state\u2019s power to bury the truth.' },
+        { title: 'No', year: 2012, director: 'Pablo Larra\u00edn', poster: 'https://image.tmdb.org/t/p/w500/Aqp4PH27zI4Uqqag41y2gXwmXma.jpg', tone: 'amber', tag: 'Whoever controls the message', primer: 'A young advertising man takes on Pinochet\u2019s plebiscite with jingles and optimism \u2014 and the film\u2019s terrifying insight is that even dictatorships can be beaten by whoever controls the message.' },
+        { title: 'Dog Day Afternoon', year: 1975, director: 'Sidney Lumet', poster: 'https://image.tmdb.org/t/p/w500/mavrhr0ig2aCRR8d48yaxtD5aMQ.jpg', tone: 'slate', tag: 'The powerless hold the powerful', primer: 'A botched bank robbery becomes a standoff where the powerless briefly, thrillingly hold the powerful \u2014 until the state\u2019s overwhelming force makes the mathematics clear.' }
+      ],
+      slowburn: [
+        { title: 'The Assassin', year: 2015, director: 'Hou Hsiao-hsien', poster: 'https://image.tmdb.org/t/p/w500/10RcGMfzg2lIW1aLcR4ILfNbHK2.jpg', tone: 'slate', tag: 'Loyalty versus conscience', primer: 'A trained killer is sent to assassinate a Tang dynasty ruler she once loved, and the film meditates on whether loyalty to feudal power can ever be reconciled with conscience.' },
+        { title: 'A Separation', year: 2011, director: 'Asghar Farhadi', poster: 'https://image.tmdb.org/t/p/w500/xQadpnoLokxzN3hRpCPbBGpxsiz.jpg', tone: 'amber', tag: 'Invisible architecture', primer: 'An Iranian family fractures along fault lines of class, religion, and gender, with legal and religious authority weighing on every decision \u2014 power not as spectacle but as the invisible architecture of daily life.' },
+        { title: 'The White Ribbon', year: 2009, director: 'Michael Haneke', poster: 'https://image.tmdb.org/t/p/w500/54dlnGDexrwAFlDb8HWKfmmX4LB.jpg', tone: 'crimson', tag: 'Fascism is grown at home', primer: 'In a pre-WWI German village, a schoolteacher watches as authoritarian discipline and moral punishment shape a generation of children \u2014 and the film quietly argues that fascism doesn\u2019t arrive from outside; it is grown at home.' }
+      ]
+    };
+
+    var moodSeeds = {
+      unsettled:  [387, 245, 198],
+      devastated: [312, 198, 276],
+      rewired:    [356, 267, 213],
+      hopeful:    [289, 198, 234],
+      strange:    [267, 334, 198],
+      edge:       [312, 278, 234],
+      slowburn:   [145, 234, 198]
+    };
+
+    function getMoodVoteKey(mood) { return 'ss-002-discover-' + mood; }
+
+    function renderMoodVote(mood) {
+      var films = moodData[mood] || moodData.unsettled;
+      var seeds = moodSeeds[mood] || [200, 150, 100];
+      var savedChoice = localStorage.getItem(getMoodVoteKey(mood));
+      var btnsEl = document.getElementById('moodVoteBtns');
+      var resultsEl = document.getElementById('moodVoteResults');
+
+      btnsEl.innerHTML = '';
+      films.forEach(function(film, i) {
+        var btn = document.createElement('button');
+        btn.className = 'mood-vote-btn' + (savedChoice === String(i) ? ' selected' : '');
+        btn.disabled = !!savedChoice;
+        btn.innerHTML =
+          '<span>' + film.title + '</span>' +
+          '<span class="mood-vote-btn-year">' + film.director + ' \u00b7 ' + film.year + '</span>';
+        if (!savedChoice) {
+          btn.addEventListener('click', (function(idx) {
+            return function() { castMoodVote(mood, idx); };
+          })(i));
+        }
+        btnsEl.appendChild(btn);
+      });
+
+      if (savedChoice !== null) {
+        var seedsForMood = moodSeeds[mood] || [200, 150, 100];
+        fetchMoodCounts(mood, seedsForMood, function(realCounts) {
+          showMoodResults(mood, parseInt(savedChoice, 10), realCounts);
+        });
+      } else {
+        resultsEl.classList.remove('visible');
+        resultsEl.innerHTML = '';
+      }
+    }
+
+    function castMoodVote(mood, choiceIdx) {
+      localStorage.setItem(getMoodVoteKey(mood), String(choiceIdx));
+      var key = 'mood-' + mood + '-' + choiceIdx;
+      fetch('https://api.counterapi.dev/v1/' + COUNTER_NS + '/' + key + '/up')
+        .catch(function() {});
+      renderMoodVote(mood);
+    }
+
+    function fetchMoodCounts(mood, seeds, cb) {
+      var counts = seeds.slice();
+      var done = 0;
+      seeds.forEach(function(_, i) {
+        var key = 'mood-' + mood + '-' + i;
+        fetch('https://api.counterapi.dev/v1/' + COUNTER_NS + '/' + key)
+          .then(function(r) { return r.json(); })
+          .then(function(d) { counts[i] = seeds[i] + (d.count || 0); })
+          .catch(function() {})
+          .finally(function() { if (++done === seeds.length && cb) cb(counts); });
+      });
+    }
+
+    function showMoodResults(mood, choiceIdx, realCounts) {
+      var films = moodData[mood] || moodData.unsettled;
+      var seeds = realCounts || (moodSeeds[mood] || [200, 150, 100]).slice();
+      seeds[choiceIdx] += 1;
+      var total = seeds.reduce(function(a, b) { return a + b; }, 0);
+
+      var winnerIdx = seeds.indexOf(Math.max.apply(null, seeds));
+
+      var resultsEl = document.getElementById('moodVoteResults');
+      resultsEl.innerHTML = '';
+
+      var order = [0, 1, 2].sort(function(a, b) { return seeds[b] - seeds[a]; });
+
+      order.forEach(function(i) {
+        var pct = Math.round((seeds[i] / total) * 100);
+        var isWinner = (i === winnerIdx);
+        var isChosen = (i === choiceIdx);
+        var fillClass = isWinner ? 'winner' : (isChosen ? 'chosen' : 'other');
+        var titleClass = isWinner ? 'winner' : (isChosen ? 'chosen' : '');
+
+        var row = document.createElement('div');
+        row.className = 'mood-vote-result-row';
+        row.innerHTML =
+          '<div class="mood-vote-result-header">' +
+            '<span class="mood-vote-result-title ' + titleClass + '">' +
+              (isWinner ? '\u2605 ' : '') + films[i].title +
+              (isChosen ? ' \u2014 your pick' : '') +
+            '</span>' +
+            '<span class="mood-vote-result-pct">' + pct + '%</span>' +
+          '</div>' +
+          '<div class="mood-vote-result-track">' +
+            '<div class="mood-vote-result-fill ' + fillClass + '" data-pct="' + pct + '"></div>' +
+          '</div>';
+        resultsEl.appendChild(row);
+      });
+
+      var totalEl = document.createElement('div');
+      totalEl.className = 'mood-vote-total';
+      totalEl.textContent = total.toLocaleString() + ' readers voted in this mood';
+      resultsEl.appendChild(totalEl);
+
+      resultsEl.classList.add('visible');
+
+      setTimeout(function() {
+        resultsEl.querySelectorAll('.mood-vote-result-fill').forEach(function(el) {
+          el.style.width = el.getAttribute('data-pct') + '%';
+        });
+      }, 50);
+    }
+
+    function renderMoodFilms(mood) {
+      var films = moodData[mood] || moodData.unsettled;
+      var container = document.getElementById('moodFilms');
+      container.innerHTML = '';
+      films.forEach(function(film) {
+        var card = document.createElement('div');
+        card.className = 'film-card';
+        card.innerHTML =
+          '<img class="film-card-poster" src="' + film.poster + '" alt="' + film.title + '" loading="eager" />' +
+          '<div class="film-card-body">' +
+            '<div class="film-card-title">' + film.title + '</div>' +
+            '<div class="film-card-year">' + film.year + ' \u00b7 ' + film.director + '</div>' +
+            (film.primer ? '<div class="film-card-primer">' + film.primer + '</div>' : '') +
+            '<div class="film-card-mood-tag">' + film.tag + '</div>' +
+          '</div>';
+        container.appendChild(card);
+      });
+    }
+
+    renderMoodFilms('unsettled');
+    renderMoodVote('unsettled');
+
+    var chips = document.querySelectorAll('.mood-chip');
+    chips.forEach(function(chip) {
+      chip.addEventListener('click', function() {
+        chips.forEach(function(c) { c.classList.remove('active'); });
+        chip.classList.add('active');
+        var mood = chip.getAttribute('data-mood');
+        renderMoodFilms(mood);
+        renderMoodVote(mood);
+      });
+    });
+
+    var revealObserver = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.reveal').forEach(function(el) {
+      revealObserver.observe(el);
+    });
+
+    // EDITOR'S NOTE UNRAVEL
+    (function() {
+      var note = document.querySelector('.editors-note-inner');
+      if (!note) return;
+
+      var paragraphs = note.querySelectorAll('.editors-note-text');
+      var allWords = [];
+
+      paragraphs.forEach(function(p) {
+        var html = p.innerHTML;
+        var wrapped = html.replace(/(<[^>]+>)|(\s+)|([^\s<]+)/g, function(match, tag, space, word) {
+          if (tag) return tag;
+          if (space) return space;
+          if (word) return '<span class="unravel-word">' + word + '</span>';
+          return match;
+        });
+        p.innerHTML = wrapped;
+      });
+
+      allWords = note.querySelectorAll('.unravel-word');
+      var sig = note.querySelector('.editors-note-sig');
+
+      var triggered = false;
+      var noteObserver = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+          if (entry.isIntersecting && !triggered) {
+            triggered = true;
+            var delay = 80;
+            allWords.forEach(function(word, i) {
+              setTimeout(function() {
+                word.classList.add('visible');
+              }, i * delay);
+            });
+            if (sig) {
+              setTimeout(function() {
+                sig.classList.add('unraveled');
+              }, allWords.length * delay + 200);
+            }
+            noteObserver.disconnect();
+          }
+        });
+      }, { threshold: 0.2 });
+
+      noteObserver.observe(note);
+    })();
+
+    // VOTE WIDGET
+    var VOTE_KEY = 'ss-002-argument-vote';
+    var SEED_A = 847;
+    var SEED_B = 1203;
+    var COUNTER_NS = 'ss002-issue2';
+    var realA = 0;
+    var realB = 0;
+
+    function fetchArgCounts(cb) {
+      var done = 0;
+      function check() { if (++done === 2 && cb) cb(); }
+      fetch('https://api.counterapi.dev/v1/' + COUNTER_NS + '/arg-a')
+        .then(function(r) { return r.json(); })
+        .then(function(d) { realA = d.count || 0; check(); })
+        .catch(function() { check(); });
+      fetch('https://api.counterapi.dev/v1/' + COUNTER_NS + '/arg-b')
+        .then(function(r) { return r.json(); })
+        .then(function(d) { realB = d.count || 0; check(); })
+        .catch(function() { check(); });
+    }
+
+    function castVote(choice) {
+      var existing = localStorage.getItem(VOTE_KEY);
+      if (existing) return;
+      localStorage.setItem(VOTE_KEY, choice);
+      var key = choice === 'a' ? 'arg-a' : 'arg-b';
+      fetch('https://api.counterapi.dev/v1/' + COUNTER_NS + '/' + key + '/up')
+        .then(function(r) { return r.json(); })
+        .then(function(d) {
+          if (choice === 'a') realA = d.count || realA + 1;
+          else realB = d.count || realB + 1;
+          showResults(choice);
+        })
+        .catch(function() {
+          if (choice === 'a') realA++;
+          else realB++;
+          showResults(choice);
+        });
+    }
+
+    function showResults(userChoice) {
+      var a = SEED_A + realA;
+      var b = SEED_B + realB;
+      var total = a + b;
+      var pctA = Math.round((a / total) * 100);
+      var pctB = 100 - pctA;
+
+      document.getElementById('pctA').textContent = pctA + '%';
+      document.getElementById('pctB').textContent = pctB + '%';
+      document.getElementById('voteCount').textContent = total.toLocaleString() + ' votes cast';
+
+      var choiceLabel = document.getElementById('voteChoiceLabel');
+      choiceLabel.textContent = userChoice === 'a' ? 'The Camera Is Lying' : 'The Mirror Is the Point';
+      document.getElementById('voteYourChoice').classList.add('visible');
+
+      document.getElementById('voteBtnA').classList.toggle('selected', userChoice === 'a');
+      document.getElementById('voteBtnB').classList.toggle('selected', userChoice === 'b');
+      document.getElementById('voteBtnA').disabled = true;
+      document.getElementById('voteBtnB').disabled = true;
+
+      document.getElementById('voteResults').classList.add('visible');
+
+      setTimeout(function() {
+        document.getElementById('fillA').style.width = pctA + '%';
+        document.getElementById('fillB').style.width = pctB + '%';
+      }, 50);
+    }
+
+    var savedVote = localStorage.getItem(VOTE_KEY);
+    fetchArgCounts(function() {
+      if (savedVote) { showResults(savedVote); }
+    });
+
+    document.querySelectorAll('.section-about-btn').forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        var id = 'about-' + btn.getAttribute('data-about');
+        var panel = document.getElementById(id);
+        if (!panel) return;
+        var isOpen = panel.classList.contains('open');
+        panel.classList.toggle('open', !isOpen);
+        btn.classList.toggle('open', !isOpen);
+        btn.textContent = isOpen ? 'i' : '\u00d7';
+      });
+    });
+
+    document.querySelector('.newsletter-btn').addEventListener('click', function() {
+      var input = document.querySelector('.newsletter-input');
+      if (input.value && input.value.indexOf('@') !== -1) {
+        input.value = '';
+        input.placeholder = 'You are in. See you Friday.';
+        this.textContent = '\u2713';
+        this.style.background = '#4ade80';
+      }
+    });
+  </script>
+<script data-goatcounter="https://screenshare.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+</body>
+</html>
