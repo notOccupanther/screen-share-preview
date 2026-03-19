@@ -510,5 +510,31 @@
   </script>
 
 <script data-goatcounter="https://screenshare.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+<!-- STICKY SUBSCRIBE BAR -->
+<div id="stickyBar" style="display:none;position:fixed;bottom:0;left:0;right:0;z-index:9999;background:rgba(8,8,12,0.97);border-top:1px solid rgba(200,147,74,0.25);padding:0.7rem 1.5rem;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap;backdrop-filter:blur(8px);">
+  <div style="display:flex;align-items:center;gap:0.75rem;flex:1;min-width:200px;">
+    <span style="font-size:0.78rem;color:#888;white-space:nowrap;font-style:italic;">Weekly. Free.</span>
+    <form action="https://buttondown.com/api/emails/embed-subscribe/screenshare" method="post" target="_blank" onsubmit="window.open('https://buttondown.com/screenshare','popupwindow')" style="display:flex;gap:0.5rem;flex:1;">
+      <input type="email" name="email" placeholder="your@email.com" required style="flex:1;min-width:130px;padding:0.4rem 0.7rem;background:#111118;border:1px solid #333;border-radius:0.35rem;color:#e8e8e0;font-size:0.8rem;outline:none;">
+      <button type="submit" style="padding:0.4rem 1rem;background:#c8934a;color:#000;border:none;border-radius:0.35rem;font-size:0.8rem;font-weight:700;cursor:pointer;white-space:nowrap;">Subscribe</button>
+    </form>
+  </div>
+  <div style="display:flex;align-items:center;gap:0.75rem;">
+    <a href="https://ko-fi.com/fundscreenshare" target="_blank" rel="noopener" style="padding:0.4rem 1rem;background:transparent;border:1px solid #c8934a;color:#c8934a;border-radius:0.35rem;font-size:0.8rem;font-weight:600;text-decoration:none;white-space:nowrap;">Support this work</a>
+    <button onclick="document.getElementById('stickyBar').style.display='none';localStorage.setItem('ss-bar-dismissed','1')" style="background:none;border:none;color:#666;font-size:1.3rem;cursor:pointer;padding:0 0.25rem;line-height:1;">&times;</button>
+  </div>
+</div>
+<script>
+(function(){
+  if(localStorage.getItem("ss-bar-dismissed")) return;
+  var bar = document.getElementById("stickyBar");
+  var shown = false;
+  window.addEventListener("scroll", function(){
+    if(shown) return;
+    var pct = window.scrollY / (document.body.scrollHeight - window.innerHeight);
+    if(pct > 0.35){ bar.style.display = "flex"; shown = true; }
+  });
+})();
+</script>
 </body>
 </html>
