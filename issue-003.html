@@ -9,14 +9,14 @@
   <meta property="og:type" content="article" />
   <meta property="og:url" content="https://screenshare.watch/issue-003.html" />
   <meta property="og:title" content="Screen Share Issue 003: Truth" />
-  <meta property="og:description" content="The Thin Blue Line, JFK, Ripley, Adolescence — and twenty-one more films about the gap between what happened and what we're told." />
-  <meta property="og:image" content="https://image.tmdb.org/t/p/w1280/9ndhlUu1VQ44pX5dVFo5Y19KqAl.jpg" />
+  <meta property="og:description" content="The camera was never just a witness. It was always an argument." />
+  <meta property="og:image" content="https://image.tmdb.org/t/p/w1280/zauak6TTi3wpehSkwM2NsTJgKhh.jpg" />
   <meta property="og:site_name" content="Screen Share" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Screen Share Issue 003: Truth" />
   <meta name="twitter:description" content="The camera was never just a witness. It was always an argument." />
-  <meta name="twitter:image" content="https://image.tmdb.org/t/p/w1280/9ndhlUu1VQ44pX5dVFo5Y19KqAl.jpg" />
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Screen Share Issue 003: Truth","description":"The Thin Blue Line, JFK, Ripley, Adolescence — and twenty-one more films about the gap between what happened and what were told.","url":"https://screenshare.watch/issue-003.html","publisher":{"@type":"Organization","name":"Screen Share","url":"https://screenshare.watch"},"datePublished":"2026-03-27"}</script>
+  <meta name="twitter:image" content="https://image.tmdb.org/t/p/w1280/zauak6TTi3wpehSkwM2NsTJgKhh.jpg" />
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Screen Share Issue 003: Truth","description":"The Thin Blue Line, JFK, Ripley, Adolescence and twenty-one more films about the gap between what happened and what were told.","url":"https://screenshare.watch/issue-003.html","publisher":{"@type":"Organization","name":"Screen Share","url":"https://screenshare.watch"},"datePublished":"2026-03-27"}</script>
   <link rel="alternate" type="application/rss+xml" title="Screen Share" href="https://screenshare.watch/feed.xml" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -53,7 +53,7 @@
     .hero-eyebrow { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 2rem; }
     .hero-eyebrow-label { font-size: 0.6rem; font-weight: 700; letter-spacing: 0.25em; text-transform: uppercase; color: var(--gold); border: 1px solid var(--gold-border); padding: 0.25rem 0.6rem; background: var(--gold-dim); }
     .hero-eyebrow-issue { font-size: 0.6rem; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-dim); }
-    .hero-title { font-family: 'Playfair Display', serif; font-size: clamp(4rem, 10vw, 8rem); font-weight: 800; color: #fff; line-height: 0.9; letter-spacing: -0.03em; margin-bottom: 0; }
+    .hero-title { font-family: 'Playfair Display', serif; font-size: clamp(4rem, 10vw, 8rem); font-weight: 800; color: #fff; line-height: 0.9; letter-spacing: -0.03em; }
     .hero-title-period { color: var(--gold); }
     .hero-rule { width: 48px; height: 1px; background: var(--gold); opacity: 0.7; margin: 1.5rem 0; }
     .hero-sub { font-size: 1.05rem; color: rgba(232,232,237,0.65); font-weight: 300; line-height: 1.75; max-width: 520px; margin-bottom: 2.5rem; }
@@ -84,7 +84,7 @@
     .section-about-inner { padding: 0.75rem 1rem; margin-bottom: 1.5rem; background: rgba(255,255,255,0.02); border-left: 2px solid var(--gold-border); font-size: 0.82rem; color: var(--text-muted); line-height: 1.65; }
 
     /* EDITOR NOTE */
-    .editors-note { background: var(--surface); border: 1px solid var(--border); border-top: 2px solid var(--gold); padding: 2.5rem; margin-bottom: 0; }
+    .editors-note { background: var(--surface); border: 1px solid var(--border); border-top: 2px solid var(--gold); padding: 2.5rem; }
     .editors-note-label { font-size: 0.6rem; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold); margin-bottom: 1.5rem; }
     .editors-note-body { font-size: 0.95rem; line-height: 1.85; color: rgba(232,232,237,0.78); font-weight: 300; font-style: italic; }
     .editors-note-body p { margin-bottom: 1rem; }
@@ -145,6 +145,46 @@
     .vote-your-choice.visible { display: block; }
     .vote-your-choice span { color: var(--text-muted); font-weight: 600; }
 
+    /* DISCOVER */
+    .mood-chips-wrapper { overflow-x: auto; margin-bottom: 2.5rem; padding-bottom: 0.5rem; scrollbar-width: none; }
+    .mood-chips-wrapper::-webkit-scrollbar { display: none; }
+    .mood-chips { display: flex; gap: 0.75rem; width: max-content; }
+    .mood-chip { padding: 0.5rem 1rem; background: transparent; border: 1px solid var(--border); color: var(--text-muted); font-size: 0.72rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; cursor: pointer; font-family: 'Inter', sans-serif; transition: all 0.2s; white-space: nowrap; }
+    .mood-chip:hover { border-color: var(--gold-border); color: var(--text); }
+    .mood-chip.active { background: var(--gold-dim); border-color: var(--gold); color: var(--gold); }
+    .mood-films { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; min-height: 340px; }
+    .film-card { background: var(--surface); border: 1px solid var(--border); padding: 1.25rem; overflow: hidden; transition: border-color 0.2s, transform 0.2s; }
+    .film-card:hover { border-color: rgba(255,255,255,0.1); transform: translateY(-2px); }
+    .film-card-poster { width: 100%; aspect-ratio: 2/3; object-fit: cover; display: block; margin-bottom: 0.75rem; filter: brightness(0.85) saturate(0.8); }
+    .film-card-title { font-family: 'Playfair Display', serif; font-size: 0.95rem; font-weight: 700; color: #fff; margin-bottom: 0.2rem; line-height: 1.2; }
+    .film-card-year { font-size: 0.65rem; color: var(--text-dim); letter-spacing: 0.1em; margin-bottom: 0.5rem; }
+    .film-card-primer { font-size: 0.78rem; line-height: 1.65; color: rgba(232,232,237,0.58); font-weight: 300; }
+    .film-card-mood-tag { font-size: 0.68rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold); margin-top: 0.5rem; }
+    .mood-vote { margin-top: 2.5rem; padding: 2rem; background: rgba(255,255,255,0.03); border: 1px solid var(--border); }
+    .mood-vote-prompt { font-size: 0.82rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 1.1rem; }
+    .mood-vote-btns { display: flex; flex-direction: column; gap: 0.5rem; }
+    .mood-vote-btn { display: flex; justify-content: space-between; align-items: center; padding: 0.75rem 1rem; background: transparent; border: 1px solid var(--border); color: var(--text-muted); font-size: 0.84rem; font-weight: 500; cursor: pointer; font-family: 'Inter', sans-serif; text-align: left; transition: all 0.2s; }
+    .mood-vote-btn:hover:not(:disabled) { border-color: var(--gold-border); color: var(--text); }
+    .mood-vote-btn.selected { border-color: var(--gold); color: var(--gold); background: var(--gold-dim); }
+    .mood-vote-btn:disabled { cursor: default; opacity: 1; }
+    .mood-vote-btn-year { font-size: 0.72rem; color: var(--text-dim); flex-shrink: 0; }
+    .mood-vote-results { margin-top: 1.25rem; display: none; }
+    .mood-vote-results.visible { display: block; }
+    .mood-vote-result-row { margin-bottom: 0.85rem; }
+    .mood-vote-result-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.4rem; }
+    .mood-vote-result-title { font-size: 0.78rem; font-weight: 600; color: var(--text-muted); }
+    .mood-vote-result-title.winner { color: var(--gold); }
+    .mood-vote-result-title.chosen { color: var(--text); }
+    .mood-vote-result-pct { font-size: 0.78rem; font-weight: 700; color: var(--text); flex-shrink: 0; }
+    .mood-vote-result-track { height: 4px; background: rgba(255,255,255,0.06); border-radius: 2px; overflow: hidden; }
+    .mood-vote-result-fill { height: 100%; border-radius: 2px; width: 0; transition: width 0.7s cubic-bezier(0.4,0,0.2,1); }
+    .mood-vote-result-fill.winner { background: var(--gold); }
+    .mood-vote-result-fill.chosen { background: rgba(232,232,237,0.5); }
+    .mood-vote-result-fill.other { background: rgba(255,255,255,0.15); }
+    .mood-vote-total { font-size: 0.7rem; color: var(--text-dim); margin-top: 0.6rem; }
+    @media(max-width:650px){ .mood-films { grid-template-columns: 1fr 1fr; } }
+    @media(max-width:480px){ .mood-films { grid-template-columns: 1fr; } }
+
     /* FLASHPOINT */
     .flashpoint-hero { position: relative; height: 260px; overflow: hidden; margin: 0 -2.5rem 2.5rem; }
     .flashpoint-hero-img { width: 100%; height: 100%; object-fit: cover; filter: brightness(0.35) saturate(0.55); }
@@ -157,13 +197,14 @@
     /* SIGNAL */
     .btc-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
     @media(max-width:650px){ .btc-grid { grid-template-columns: 1fr; } }
-    .btc-card { background: var(--surface); border: 1px solid var(--border); border-top: 2px solid var(--crimson); padding: 2rem; transition: border-color 0.2s; }
-    .btc-card:hover { border-color: rgba(220,38,38,0.2); border-top-color: var(--crimson); }
+    .btc-card { background: var(--surface); border: 1px solid var(--border); border-top: 2px solid var(--crimson); padding: 2rem; }
     .btc-card.full { grid-column: 1 / -1; }
     .btc-card-type { font-size: 0.6rem; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: var(--crimson); margin-bottom: 0.75rem; }
     .btc-card-title { font-family: 'Playfair Display', serif; font-size: 1.05rem; font-weight: 700; color: #fff; margin-bottom: 0.75rem; line-height: 1.3; }
     .btc-card-body { font-size: 0.84rem; line-height: 1.75; color: rgba(232,232,237,0.7); font-weight: 300; }
     .btc-source { font-size: 0.65rem; color: var(--text-dim); margin-top: 1rem; letter-spacing: 0.06em; }
+    .btc-source a { color: var(--text-muted); text-decoration: underline; }
+    .btc-source a:hover { color: var(--gold); }
 
     /* WEEKLY PULSE */
     .pulse-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
@@ -179,10 +220,7 @@
     .pulse-card-sub { font-size: 0.7rem; color: var(--text-dim); letter-spacing: 0.06em; padding: 0 1.75rem; margin-bottom: 0.75rem; }
     .pulse-card-body { font-size: 0.84rem; line-height: 1.72; color: rgba(232,232,237,0.7); padding: 0 1.75rem 1.75rem; font-weight: 300; }
     .gem-badge { display: inline-block; font-size: 0.6rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold); border: 1px solid var(--gold-border); padding: 0.2rem 0.5rem; margin: 0 1.75rem 1.5rem; background: var(--gold-dim); }
-    .divisive-badge { display: inline-block; font-size: 0.6rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: #f87171; border: 1px solid rgba(239,68,68,0.3); padding: 0.2rem 0.5rem; margin: 0 1.75rem 1.5rem; background: rgba(239,68,68,0.08); }
-    /* CONTINENT uses pulse-card */
     .pulse-card.continent { border-top: 3px solid #a78bfa; }
-    .pulse-card.continent:hover { border-color: rgba(167,139,250,0.3); border-top-color: #a78bfa; }
     .continent-lang { display: block; font-size: 0.65rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: #a78bfa; padding: 0 1.75rem; margin-bottom: 0.6rem; }
 
     /* PULSE VOTE */
@@ -211,27 +249,13 @@
     .tv-card.horizon { border-top: 2px solid rgba(96,165,250,0.6); }
     .tv-card.radar { border-top: 2px solid rgba(167,139,250,0.5); }
     .tv-card:hover { transform: translateY(-2px); border-color: rgba(255,255,255,0.1); }
-    .tv-card-img-wrap { position: relative; overflow: hidden; margin: -1px -1px 0; }
+    .tv-card-img-wrap { position: relative; overflow: hidden; }
     .tv-card-img-wrap::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 55%; background: linear-gradient(to bottom, transparent, var(--surface)); pointer-events: none; }
     .tv-card-img { width: 100%; aspect-ratio: 16/9; object-fit: cover; display: block; filter: brightness(0.72) saturate(0.75); transition: filter 0.4s; }
     .tv-card:hover .tv-card-img { filter: brightness(0.88) saturate(0.9); }
     .tv-card-meta { padding: 1.25rem 1.5rem 0; font-size: 0.65rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-dim); margin-bottom: 0.75rem; }
     .tv-card-title { padding: 0 1.5rem; font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 700; color: #fff; margin-bottom: 0.6rem; }
     .tv-card-body { padding: 0 1.5rem 1.5rem; font-size: 0.84rem; line-height: 1.7; color: rgba(232,232,237,0.68); font-weight: 300; }
-
-    /* DISCOVER */
-    .mood-section { margin-bottom: 3rem; }
-    .mood-heading { font-family: 'Playfair Display', serif; font-size: 1.1rem; font-style: italic; color: var(--text); margin-bottom: 0.5rem; font-weight: 700; }
-    .mood-desc { font-size: 0.82rem; color: var(--text-muted); font-style: italic; margin-bottom: 1.5rem; line-height: 1.65; }
-    .mood-films { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
-    @media(max-width:650px){ .mood-films { grid-template-columns: 1fr; } }
-    .film-card { background: var(--surface); border: 1px solid var(--border); padding: 1.25rem; position: relative; transition: border-color 0.2s, transform 0.2s; overflow: hidden; }
-    .film-card:hover { border-color: rgba(255,255,255,0.1); transform: translateY(-2px); }
-    .film-card-poster { width: 100%; aspect-ratio: 2/3; object-fit: cover; display: block; margin-bottom: 0.75rem; filter: brightness(0.85) saturate(0.8); }
-    .film-card-title { font-family: 'Playfair Display', serif; font-size: 0.95rem; font-weight: 700; color: #fff; margin-bottom: 0.25rem; line-height: 1.2; }
-    .film-card-year { font-size: 0.65rem; color: var(--text-dim); letter-spacing: 0.1em; margin-bottom: 0.5rem; }
-    .film-card-body { font-size: 0.78rem; line-height: 1.65; color: rgba(232,232,237,0.6); font-weight: 300; display: none; }
-    .film-card:hover .film-card-body { display: block; }
 
     /* NEWSLETTER / SUPPORT */
     .nl-section { background: var(--surface); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 3rem 2.5rem; text-align: center; }
@@ -242,7 +266,6 @@
     .nl-input { flex: 1; padding: 0.75rem 1rem; background: var(--bg); border: 1px solid var(--border); border-right: none; color: var(--text); font-family: 'Inter', sans-serif; font-size: 0.88rem; outline: none; }
     .nl-input:focus { border-color: var(--gold-border); }
     .nl-btn { padding: 0.75rem 1.25rem; background: var(--gold); border: none; color: #0a0a0f; font-size: 0.75rem; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase; cursor: pointer; font-family: 'Inter', sans-serif; white-space: nowrap; }
-    .nl-btn:hover { background: #fbbf24; }
     .support-section { max-width: 900px; margin: 0 auto; padding: 3rem 2.5rem; display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
     @media(max-width:650px){ .support-section { grid-template-columns: 1fr; } }
     .support-card { background: var(--surface); border: 1px solid var(--border); padding: 2rem; text-align: center; }
@@ -280,22 +303,20 @@
 </head>
 <body>
 
-  <!-- NAV -->
   <nav>
     <a href="index.html" class="nav-logo">Screen<span>Share</span></a>
     <div class="nav-links">
       <a href="#rewind">Rewind</a>
       <a href="#argument">Argument</a>
+      <a href="#discover">Discover</a>
       <a href="#flashpoint">Flashpoint</a>
       <a href="#pulse">Pulse</a>
       <a href="#tv">On Screen</a>
       <a href="#continent">The Continent</a>
-      <a href="#discover">Discover</a>
       <span class="nav-issue">Issue 003</span>
     </div>
   </nav>
 
-  <!-- HERO -->
   <section class="hero">
     <div class="hero-backdrop"></div>
     <div class="hero-content">
@@ -342,7 +363,7 @@
       <button class="section-about-btn" data-about="rewind" title="What is this section?">i</button>
     </div>
     <div class="section-about-panel" id="about-rewind">
-      <div class="section-about-inner">One film from the archive that speaks to right now. Not nostalgia &mdash; relevance. The film is chosen for what it still has to say about the week&rsquo;s theme, not for sentiment.</div>
+      <div class="section-about-inner">One film from the archive that speaks to right now. Not nostalgia &mdash; relevance.</div>
     </div>
     <div class="rewind-hero reveal">
       <img class="rewind-hero-img" src="https://image.tmdb.org/t/p/w1280/9ndhlUu1VQ44pX5dVFo5Y19KqAl.jpg" alt="The Thin Blue Line" loading="eager" />
@@ -358,14 +379,14 @@
       <h3>What Morris Did That No One Else Would</h3>
       <p>Documentaries, by 1988, had a settled grammar: talking heads, archival footage, narration that held the viewer&rsquo;s hand toward a conclusion. Morris threw that out. <em>The Thin Blue Line</em> uses no narrator. It lets its subjects contradict each other without editorial intervention. And it reconstructs the night of the murder repeatedly &mdash; the same milkshake cup, the same stretch of road, the same gunshot &mdash; each time slightly differently, each time implicating a different version of events.</p>
       <p>Philip Glass&rsquo;s score makes this stranger still. It doesn&rsquo;t soothe or editorialize. It accumulates, cycling through the same melodic fragments like a machine that can&rsquo;t stop asking the same question. The effect is hypnotic in a way that feels almost coercive &mdash; you&rsquo;re being pulled somewhere, but the destination keeps shifting.</p>
-      <h3>Why This Matters Now, in Particular</h3>
-      <p>We are, in 2026, some years into a genuine epistemological crisis. Footage of events that didn&rsquo;t happen is generated in seconds. Voices are cloned. The dominant anxiety is that we can no longer trust what we see. Morris anticipated this &mdash; not the technology, but the underlying problem &mdash; in 1988. <em>The Thin Blue Line</em> argued that there is no neutral footage, no unmediated image, no reconstruction that doesn&rsquo;t carry the fingerprints of the person doing the reconstructing. The camera was never just a witness. It was always an argument.</p>
-      <p>Here&rsquo;s the thing that should make you uncomfortable: the film worked. Randall Adams walked free, in part because of what Morris built. And what Morris built was a series of staged images, lit and scored for maximum effect, designed to lead you to a conclusion. Does that make it truth or manipulation? The honest answer is both. <em>The Thin Blue Line</em> is a film that got an innocent man freed by being, in certain technical senses, dishonest about its own nature. If that makes you uneasy, it should. It should also make you think about every documentary you&rsquo;ve ever trusted.</p>
+      <h3>Why This Matters Now</h3>
+      <p>We are some years into a genuine epistemological crisis. Footage of events that didn&rsquo;t happen is generated in seconds. Voices are cloned. The dominant anxiety is that we can no longer trust what we see. Morris anticipated this &mdash; not the technology, but the underlying problem &mdash; in 1988. <em>The Thin Blue Line</em> argued that there is no neutral footage, no unmediated image, no reconstruction that doesn&rsquo;t carry the fingerprints of the person doing the reconstructing. The camera was never just a witness. It was always an argument.</p>
+      <p>Here&rsquo;s the thing that should make you uncomfortable: the film worked. Randall Adams walked free, in part because of what Morris built. And what Morris built was a series of staged images, lit and scored for maximum effect, designed to lead you to a conclusion. Does that make it truth or manipulation? The honest answer is both.</p>
     </div>
     <div class="rewind-companion reveal">
       <div class="rewind-companion-label">Watch Alongside</div>
       <div class="rewind-companion-film">Standard Operating Procedure (2008, dir. Errol Morris)</div>
-      <div class="rewind-companion-body">Morris turns the same forensic lens on the Abu Ghraib photographs &mdash; images the world thought it understood &mdash; and dismantles that certainty completely. Where <em>The Thin Blue Line</em> asks whether a reconstruction can reveal truth, <em>Standard Operating Procedure</em> asks whether real photographs can conceal it. Together, they form the sharpest argument in cinema about the limits of the image as evidence.</div>
+      <div class="rewind-companion-body">Morris turns the same forensic lens on the Abu Ghraib photographs &mdash; images the world thought it understood &mdash; and dismantles that certainty completely. Together, they form the sharpest argument in cinema about the limits of the image as evidence.</div>
     </div>
   </section>
 
@@ -379,7 +400,7 @@
       <button class="section-about-btn" data-about="argument" title="What is this section?">i</button>
     </div>
     <div class="section-about-panel" id="about-argument">
-      <div class="section-about-inner">Every issue we pick one interpretive question and lay out two genuine positions. Not a straw man and a rebuttal &mdash; two real arguments you might actually hold. Vote and see where readers land.</div>
+      <div class="section-about-inner">Every issue we pick one interpretive question and lay out two genuine positions. Vote and see where readers land.</div>
     </div>
     <div class="argument-q reveal">&ldquo;Documentaries manipulate. Fiction illuminates. We&rsquo;ve always known this &mdash; and ignored it. Now that AI can fabricate footage indistinguishable from the real thing, does the lie finally matter?&rdquo;</div>
     <div class="argument-camps reveal">
@@ -387,7 +408,7 @@
         <div class="argument-camp-label a">Reading A</div>
         <div class="argument-camp-title">The lie always mattered &mdash; we chose complicity</div>
         <div class="argument-camp-body">
-          <p>The contract between documentary and audience has never been what we pretended it was. When Errol Morris reconstructed crime scenes for <em>The Thin Blue Line</em>, complete with dramatised gunshots and slow-motion milkshakes, audiences accepted it as investigative truth. When Robert Flaherty staged Nanook&rsquo;s igloo scenes &mdash; cutting away walls so the camera could fit, asking his subjects to perform a life they no longer lived &mdash; nobody called it fiction. We weren&rsquo;t deceived. We cooperated.</p>
+          <p>The contract between documentary and audience has never been what we pretended it was. When Errol Morris reconstructed crime scenes for <em>The Thin Blue Line</em>, complete with dramatised gunshots and slow-motion milkshakes, audiences accepted it as investigative truth. When Robert Flaherty staged Nanook&rsquo;s igloo scenes, nobody called it fiction. We weren&rsquo;t deceived. We cooperated.</p>
           <p>AI fabricated footage doesn&rsquo;t introduce manipulation into documentary. It removes the deniability that made manipulation comfortable. The question isn&rsquo;t whether we&rsquo;ve been lied to. It&rsquo;s whether we can keep pretending we didn&rsquo;t ask for it.</p>
         </div>
       </div>
@@ -400,7 +421,7 @@
         </div>
       </div>
     </div>
-    <div class="vote-widget reveal" id="voteWidget003">
+    <div class="vote-widget reveal">
       <div class="vote-prompt">Which reading lands for you?</div>
       <div class="vote-buttons" id="voteButtons003">
         <button class="vote-btn vote-a" id="voteBtnA003" onclick="castVote003('a')">The lie always mattered</button>
@@ -418,6 +439,37 @@
         <div class="vote-count" id="voteCount003"></div>
         <div class="vote-your-choice" id="voteYourChoice003">Your vote: <span id="voteChoiceLabel003"></span></div>
       </div>
+    </div>
+  </section>
+
+  <!-- DISCOVER -->
+  <div class="section-divider"></div>
+  <section id="discover" class="section">
+    <div class="section-eyebrow reveal">
+      <span class="section-eyebrow-label">Discover</span>
+      <span class="section-eyebrow-pipe">|</span>
+      <span class="section-eyebrow-desc">Not genre. Feeling.</span>
+      <button class="section-about-btn" data-about="discover" title="What is this section?">i</button>
+    </div>
+    <div class="section-about-panel" id="about-discover">
+      <div class="section-about-inner">Algorithms sort by genre. We sort by feeling. Pick the mood you&rsquo;re in and we&rsquo;ll find something worth watching.</div>
+    </div>
+    <div class="mood-chips-wrapper reveal">
+      <div class="mood-chips" id="moodChips">
+        <button class="mood-chip active" data-mood="dismantled">Assumptions Dismantled</button>
+        <button class="mood-chip" data-mood="constructed">How Stories Are Made</button>
+        <button class="mood-chip" data-mood="beautiful">Beautiful Lies</button>
+        <button class="mood-chip" data-mood="unreliable">Reality Unreliable</button>
+        <button class="mood-chip" data-mood="testimony">The Testimony</button>
+        <button class="mood-chip" data-mood="longview">The Long View</button>
+        <button class="mood-chip" data-mood="unsettled">Unsettled</button>
+      </div>
+    </div>
+    <div class="mood-films reveal" id="moodFilms"></div>
+    <div class="mood-vote reveal" id="moodVote">
+      <div class="mood-vote-prompt">Which would you watch tonight?</div>
+      <div class="mood-vote-btns" id="moodVoteBtns"></div>
+      <div class="mood-vote-results" id="moodVoteResults"></div>
     </div>
   </section>
 
@@ -440,8 +492,8 @@
       <div class="flashpoint-film">JFK (1991, dir. Oliver Stone)</div>
     </div>
     <div class="flashpoint-body reveal">
-      <p>Oliver Stone&rsquo;s <em>JFK</em> arrived in December 1991 with the force of something that wanted to be believed. The film reconstructs the assassination of President Kennedy through the eyes of New Orleans district attorney Jim Garrison, and it does so using every instrument in cinema&rsquo;s persuasion toolkit: handheld urgency, grainy archival-style inserts, rapid-fire montage, re-enacted footage cut against real documentary material until the two become nearly indistinguishable. Stone invented composite characters who speak to Garrison in parking garages and hotel rooms, delivering exposition as revelation. He staged scenarios he openly acknowledged were speculative, then filmed them with the visual grammar of fact. The centrepiece &mdash; a meticulous reconstruction of Dealey Plaza arguing a second shooter on the grassy knoll &mdash; was presented with the confidence of a closing argument. When the film grossed over $200 million worldwide and landed eight Academy Award nominations, it was clear Stone hadn&rsquo;t made a fringe document. He had made a mainstream event. The political fallout was immediate: by 1992, Congress had passed the JFK Records Collection Act, mandating the release of classified government documents. A Hollywood film had moved legislation.</p>
-      <p>What remains unresolved is the question the film smuggled in under its three-hour runtime: what does a filmmaker owe an audience when the story they&rsquo;re telling cannot be verified? Stone has been candid that <em>JFK</em> is not a documentary &mdash; that dramatic licence was taken. But the film never communicates this to the viewer sitting in the dark. Its style insists otherwise. When cinema borrows the aesthetic vocabulary of journalism &mdash; the shaky cam, the found-footage texture, the procedural momentum &mdash; it carries an implicit promise. Audiences read these signals as markers of credibility. When that vocabulary is deployed in service of a theory that remains, decades later, contested and unproven, the line between artistic interpretation and manufactured certainty starts to blur. The defenders of <em>JFK</em> argue it opened a conversation that needed opening, that scepticism about the Warren Commission was entirely legitimate, that art has always been allowed to ask destabilising questions in destabilising ways. The critics argue that millions of people left those cinemas not with questions but with answers &mdash; and that Stone knew they would. Both things can be true at once. That&rsquo;s what makes <em>JFK</em> a genuinely difficult film to hold, not because of what it claims, but because of how fluently it claims it.</p>
+      <p>Oliver Stone&rsquo;s <em>JFK</em> arrived in December 1991 with the force of something that wanted to be believed. The film reconstructs the assassination of President Kennedy through the eyes of New Orleans district attorney Jim Garrison, and it does so using every instrument in cinema&rsquo;s persuasion toolkit: handheld urgency, grainy archival-style inserts, rapid-fire montage, re-enacted footage cut against real documentary material until the two become nearly indistinguishable. Stone invented composite characters who deliver exposition as revelation. He staged scenarios he openly acknowledged were speculative, then filmed them with the visual grammar of fact. The centrepiece &mdash; a meticulous reconstruction of Dealey Plaza arguing a second shooter on the grassy knoll &mdash; was presented with the confidence of a closing argument. When the film grossed over $200 million worldwide and landed eight Academy Award nominations, it was clear Stone hadn&rsquo;t made a fringe document. He had made a mainstream event. The political fallout was immediate: by 1992, Congress had passed the JFK Records Collection Act, mandating the release of classified government documents. A Hollywood film had moved legislation.</p>
+      <p>What remains unresolved is the question the film smuggled in under its three-hour runtime: what does a filmmaker owe an audience when the story they&rsquo;re telling cannot be verified? Stone has been candid that <em>JFK</em> is not a documentary. But the film never communicates this to the viewer sitting in the dark. Its style insists otherwise. When cinema borrows the aesthetic vocabulary of journalism, it carries an implicit promise. When that vocabulary is deployed in service of a theory that remains, decades later, contested and unproven, the line between artistic interpretation and manufactured certainty starts to blur. The defenders of <em>JFK</em> argue it opened a conversation that needed opening. The critics argue that millions of people left those cinemas not with questions but with answers &mdash; and that Stone knew they would. Both things can be true at once.</p>
     </div>
   </section>
 
@@ -461,20 +513,20 @@
       <div class="btc-card">
         <div class="btc-card-type">Deal</div>
         <div class="btc-card-title">Resemble AI Raises $13M to Fight Synthetic Media Fraud</div>
-        <div class="btc-card-body">In February 2026, deepfake detection startup Resemble AI closed a $13 million strategic round backed by Sony Innovation Fund, Google&rsquo;s AI Futures Fund, Comcast Ventures, and Okta Ventures. The funding accelerates global rollout of DETECT-3B Omni, the company&rsquo;s enterprise detection model claiming 98% accuracy across more than 38 languages. Deepfake-related fraud hit $1.56 billion in losses in 2025. The investor list &mdash; spanning hardware, software, and media &mdash; signals the industry now treats authentication as infrastructure, not a niche.</div>
-        <div class="btc-source">Source: Los Angeles Times &mdash; <a href="https://www.latimes.com/b2b/ai-technology/story/2026-02-22/resemble-ai-funding-deepfake-threats" target="_blank" rel="noopener" style="color:var(--text-muted);text-decoration:underline;">More info here</a></div>
+        <div class="btc-card-body">In February 2026, deepfake detection startup Resemble AI closed a $13 million strategic round backed by Sony Innovation Fund, Google&rsquo;s AI Futures Fund, Comcast Ventures, and Okta Ventures. The funding accelerates global rollout of DETECT-3B Omni, the company&rsquo;s enterprise detection model claiming 98% accuracy across more than 38 languages. Deepfake-related fraud hit $1.56 billion in losses in 2025.</div>
+        <div class="btc-source">Los Angeles Times &mdash; <a href="https://www.latimes.com/b2b/ai-technology/story/2026-02-22/resemble-ai-funding-deepfake-threats" target="_blank" rel="noopener">More info here</a></div>
       </div>
       <div class="btc-card">
         <div class="btc-card-type">Resistance</div>
         <div class="btc-card-title">Archival Producers Alliance Sets AI Standards for Documentary</div>
-        <div class="btc-card-body">At IDFA in November 2025, members of the Archival Producers Alliance published a comprehensive set of Best Practices for the use of generative AI in archive-led documentary filmmaking. The guiding principle is transparency: audiences must know when AI has been used. The International Documentary Association has since hosted sessions on the guidelines. It&rsquo;s the first formal industry framework to draw a line between AI as a tool and AI as a fabrication.</div>
-        <div class="btc-source">Source: MIT OpenDocLab &mdash; <a href="https://opendoclab.mit.edu/presents/archival-producers-alliance-apa-best-practices-use-generative-ai-documentaries/" target="_blank" rel="noopener" style="color:var(--text-muted);text-decoration:underline;">More info here</a></div>
+        <div class="btc-card-body">At IDFA in November 2025, members of the Archival Producers Alliance published a comprehensive set of Best Practices for the use of generative AI in archive-led documentary filmmaking. The guiding principle is transparency: audiences must know when AI has been used. It&rsquo;s the first formal industry framework to draw a line between AI as a tool and AI as a fabrication.</div>
+        <div class="btc-source">MIT OpenDocLab &mdash; <a href="https://opendoclab.mit.edu/presents/archival-producers-alliance-apa-best-practices-use-generative-ai-documentaries/" target="_blank" rel="noopener">More info here</a></div>
       </div>
       <div class="btc-card full">
         <div class="btc-card-type">Tool</div>
         <div class="btc-card-title">Sony Puts a Cryptographic Signature in Your Camera</div>
         <div class="btc-card-body">Sony became the first camera manufacturer to embed C2PA content credentials directly into video files &mdash; via firmware updates to the FX3, FX30, a9 III, a1 II, and the professional PXW-Z300 camcorder (October&ndash;November 2025). Each clip gets a tamper-evident digital signature at the point of capture, creating a verifiable chain of provenance from camera to edit suite to distribution. For documentary and news cinematographers, it&rsquo;s the clearest practical answer yet to the question: how do you prove this footage is real?</div>
-        <div class="btc-source">Source: DPReview &mdash; <a href="https://www.dpreview.com/news/7020455528/sony-s-video-content-credentials-are-finally-here-on-cameras-you-will-recognize" target="_blank" rel="noopener" style="color:var(--text-muted);text-decoration:underline;">More info here</a></div>
+        <div class="btc-source">DPReview &mdash; <a href="https://www.dpreview.com/news/7020455528/sony-s-video-content-credentials-are-finally-here-on-cameras-you-will-recognize" target="_blank" rel="noopener">More info here</a></div>
       </div>
     </div>
   </section>
@@ -489,7 +541,7 @@
       <button class="section-about-btn" data-about="pulse" title="What is this section?">i</button>
     </div>
     <div class="section-about-panel" id="about-pulse">
-      <div class="section-about-inner">Three films in cinemas and on streaming this week. Most talked-about, most essential, and the one most people missed. Signal versus noise.</div>
+      <div class="section-about-inner">Three films in cinemas and on streaming this week. Most talked-about, most essential, and the one most people missed.</div>
     </div>
     <div class="pulse-grid reveal">
       <div class="pulse-card">
@@ -519,19 +571,14 @@
         <div class="pulse-card-type">One to Find &mdash; BritBox</div>
         <div class="pulse-card-title">The Lady</div>
         <div class="pulse-card-sub">Lee Haven Jones / BritBox, 2026</div>
-        <div class="pulse-card-body">Lee Haven Jones&rsquo;s four-part drama dramatises the story of Jane Andrews, royal dresser to Sarah Ferguson and, in 2001, a convicted murderer. Andrews refused any involvement &mdash; making <em>The Lady</em> a reconstruction built entirely from the outside. A case study in whose truth gets told, and how class and proximity to power shapes what survives as fact.</div>
+        <div class="pulse-card-body">Lee Haven Jones&rsquo;s four-part drama dramatises the story of Jane Andrews, royal dresser to Sarah Ferguson and, in 2001, a convicted murderer. A reconstruction built entirely from the outside &mdash; a case study in whose truth gets told, and how class and proximity to power shapes what survives as fact.</div>
         <span class="gem-badge">Streaming on BritBox</span>
       </div>
     </div>
-
-    <!-- PULSE VOTE -->
     <div class="pulse-vote reveal">
       <div class="pulse-vote-heading">Are you watching?</div>
       <div class="pulse-vote-row">
-        <div>
-          <div class="pulse-vote-film">Project Hail Mary</div>
-          <div class="pulse-vote-counts" id="pv-hailmary-counts"></div>
-        </div>
+        <div><div class="pulse-vote-film">Project Hail Mary</div><div class="pulse-vote-counts" id="pv-hailmary-counts"></div></div>
         <div class="pulse-vote-btns">
           <button class="pulse-vote-btn yes"   onclick="pulseVote('hailmary','yes')"   id="pv-hailmary-yes">Yes</button>
           <button class="pulse-vote-btn maybe" onclick="pulseVote('hailmary','maybe')" id="pv-hailmary-maybe">Maybe</button>
@@ -539,10 +586,7 @@
         </div>
       </div>
       <div class="pulse-vote-row">
-        <div>
-          <div class="pulse-vote-film">Anatomy of a Fall</div>
-          <div class="pulse-vote-counts" id="pv-anatomy-counts"></div>
-        </div>
+        <div><div class="pulse-vote-film">Anatomy of a Fall</div><div class="pulse-vote-counts" id="pv-anatomy-counts"></div></div>
         <div class="pulse-vote-btns">
           <button class="pulse-vote-btn yes"   onclick="pulseVote('anatomy','yes')"   id="pv-anatomy-yes">Yes</button>
           <button class="pulse-vote-btn maybe" onclick="pulseVote('anatomy','maybe')" id="pv-anatomy-maybe">Maybe</button>
@@ -550,10 +594,7 @@
         </div>
       </div>
       <div class="pulse-vote-row">
-        <div>
-          <div class="pulse-vote-film">The Lady</div>
-          <div class="pulse-vote-counts" id="pv-lady-counts"></div>
-        </div>
+        <div><div class="pulse-vote-film">The Lady</div><div class="pulse-vote-counts" id="pv-lady-counts"></div></div>
         <div class="pulse-vote-btns">
           <button class="pulse-vote-btn yes"   onclick="pulseVote('lady','yes')"   id="pv-lady-yes">Yes</button>
           <button class="pulse-vote-btn maybe" onclick="pulseVote('lady','maybe')" id="pv-lady-maybe">Maybe</button>
@@ -573,9 +614,8 @@
       <button class="section-about-btn" data-about="tv" title="What is this section?">i</button>
     </div>
     <div class="section-about-panel" id="about-tv">
-      <div class="section-about-inner">Television worth your time. Airing now, on the horizon, and under the radar &mdash; across every platform, curated by what&rsquo;s actually good.</div>
+      <div class="section-about-inner">Airing now, on the horizon, and under the radar &mdash; across every platform, curated by what&rsquo;s actually good.</div>
     </div>
-
     <div class="tv-tier-label tv-tier-now reveal">Airing Now</div>
     <div class="tv-grid reveal">
       <div class="tv-card now">
@@ -603,14 +643,13 @@
         <div class="tv-card-body">Based on the true story of wellness influencer Belle Gibson, who fabricated a cancer diagnosis and built an empire on it. How a constructed narrative becomes belief, belief becomes brand, and brand becomes too lucrative for anyone to question.</div>
       </div>
     </div>
-
     <div class="tv-tier-label reveal">Worth Your Time</div>
     <div class="tv-grid reveal">
       <div class="tv-card horizon">
         <div class="tv-card-img-wrap"><img class="tv-card-img" src="https://image.tmdb.org/t/p/w780/fNA0mMdHlRwVrQSRlYONmSAO8Su.jpg" alt="" loading="eager" /></div>
         <div class="tv-card-meta">Paramount+ &middot; Season 1 &middot; Streaming now</div>
         <div class="tv-card-title">The Agency</div>
-        <div class="tv-card-body">Michael Fassbender as a CIA operative whose deep-cover identity and real self collide. Espionage as a study in constructed selfhood &mdash; identity as operational fiction, intimacy as the one thing you can&rsquo;t fully surveil. Adapted from French masterwork <em>Le Bureau des L&eacute;gendes</em>.</div>
+        <div class="tv-card-body">Michael Fassbender as a CIA operative whose deep-cover identity and real self collide. Espionage as a study in constructed selfhood &mdash; identity as operational fiction. Adapted from French masterwork <em>Le Bureau des L&eacute;gendes</em>.</div>
       </div>
       <div class="tv-card horizon">
         <div class="tv-card-img-wrap"><img class="tv-card-img" src="https://image.tmdb.org/t/p/w780/4XccmjsOmQZw8S2iW1wvlvmb5v1.jpg" alt="" loading="eager" /></div>
@@ -622,41 +661,40 @@
         <div class="tv-card-img-wrap"><img class="tv-card-img" src="https://image.tmdb.org/t/p/w780/j4nrXoHEEHnEgMyoFXUSvXYALFh.jpg" alt="" loading="eager" /></div>
         <div class="tv-card-meta">Apple TV+ &middot; Currently airing</div>
         <div class="tv-card-title">The Studio</div>
-        <div class="tv-card-body">Seth Rogen&rsquo;s Hollywood satire about a studio head navigating the chasm between artistic integrity and commercial survival. How the film industry manufactures conviction, sells manufactured reality, and rewards the confident bluff over the honest doubt.</div>
+        <div class="tv-card-body">Seth Rogen&rsquo;s Hollywood satire about a studio head navigating the chasm between artistic integrity and commercial survival. How the film industry manufactures conviction and rewards the confident bluff over the honest doubt.</div>
       </div>
       <div class="tv-card horizon">
         <div class="tv-card-img-wrap"><img class="tv-card-img" src="https://image.tmdb.org/t/p/w780/q71au2YjcwXBMZKNzNgjK7RZ3Hs.jpg" alt="" loading="eager" /></div>
         <div class="tv-card-meta">Paramount+ &middot; Season 1 &middot; Streaming now</div>
         <div class="tv-card-title">Landman</div>
-        <div class="tv-card-body">Taylor Sheridan&rsquo;s oil-industry drama follows a fixer whose job is to make inconvenient truths disappear &mdash; quietly, legally, efficiently. The show lives in the gap between corporate narrative and field reality. Truth here is always a liability.</div>
+        <div class="tv-card-body">Taylor Sheridan&rsquo;s oil-industry drama follows a fixer whose job is to make inconvenient truths disappear &mdash; quietly, legally, efficiently. Truth here is always a liability.</div>
       </div>
     </div>
-
     <div class="tv-tier-label reveal">On the Radar</div>
     <div class="tv-grid reveal">
       <div class="tv-card radar">
         <div class="tv-card-img-wrap"><img class="tv-card-img" src="https://image.tmdb.org/t/p/w780/bDfboQUb45Cv9MYyVBDZw8M8xSM.jpg" alt="" loading="eager" /></div>
-        <div class="tv-card-meta">Apple TV+ &middot; Seasons 1&ndash;4 &middot; Season 5 in production</div>
+        <div class="tv-card-meta">Apple TV+ &middot; Seasons 1&ndash;4 available</div>
         <div class="tv-card-title">Slow Horses</div>
-        <div class="tv-card-body">Gary Oldman leads the finest espionage ensemble on television as disgraced MI5 officers handling the cases the Service would rather didn&rsquo;t exist. Every season unpicks a different lie being maintained by someone with institutional authority and a reason to keep the lid on.</div>
+        <div class="tv-card-body">Gary Oldman leads the finest espionage ensemble on television as disgraced MI5 officers handling the cases the Service would rather didn&rsquo;t exist. Every season unpicks a different lie being maintained by someone with institutional authority.</div>
       </div>
       <div class="tv-card radar">
         <div class="tv-card-img-wrap"><img class="tv-card-img" src="https://image.tmdb.org/t/p/w780/erpjqVdJLpDQJjsbxaSJmMwvcqd.jpg" alt="" loading="eager" /></div>
         <div class="tv-card-meta">Netflix &middot; Season 1 &middot; Streaming now</div>
         <div class="tv-card-title">Ripley</div>
-        <div class="tv-card-body">Andrew Scott as Tom Ripley. Shot in black and white by Steven Zaillian &mdash; eight episodes, a man who invents himself from scratch. Identity theft, forgery, and an entire life constructed on the audacity of a sustained lie. The most beautifully made thing on Netflix in the last two years.</div>
+        <div class="tv-card-body">Andrew Scott as Tom Ripley. Shot in black and white by Steven Zaillian &mdash; eight episodes, a man who invents himself from scratch. The most beautifully made thing on Netflix in the last two years.</div>
       </div>
       <div class="tv-card radar">
         <div class="tv-card-img-wrap"><img class="tv-card-img" src="https://image.tmdb.org/t/p/w780/rhwN3mIN89zlDveR0gv0VkrspXa.jpg" alt="" loading="eager" /></div>
         <div class="tv-card-meta">Netflix &middot; Limited Series &middot; Streaming now</div>
         <div class="tv-card-title">The Residence</div>
-        <div class="tv-card-body">A murder in the White House. Every guest at a state dinner is a suspect. Shonda Rhimes&rsquo; gleefully eccentric whodunit earns its place here because its setting is the ultimate stage of constructed public reality &mdash; a building where every room has a different official version.</div>
+        <div class="tv-card-body">A murder in the White House. Every guest at a state dinner is a suspect. Shonda Rhimes&rsquo; gleefully eccentric whodunit set in the ultimate stage of constructed public reality &mdash; a building where every room has a different official version.</div>
       </div>
       <div class="tv-card radar">
         <div class="tv-card-img-wrap"><img class="tv-card-img" src="https://image.tmdb.org/t/p/w780/v6f9FUDDQfGIv8MLRQwlL0zvRjI.jpg" alt="" loading="eager" /></div>
         <div class="tv-card-meta">Netflix &middot; Season 2 &middot; Streaming now</div>
         <div class="tv-card-title">The Diplomat</div>
-        <div class="tv-card-body">Keri Russell&rsquo;s accidental ambassador navigates international crisis with competing intelligence briefings and unreliable allies. Season 2 sharpens the show&rsquo;s central insight: in diplomacy, truth is always the negotiating position you haven&rsquo;t disclosed yet.</div>
+        <div class="tv-card-body">Keri Russell&rsquo;s accidental ambassador navigates international crisis with competing intelligence briefings and unreliable allies. Season 2: truth is always the negotiating position you haven&rsquo;t disclosed yet.</div>
       </div>
     </div>
   </section>
@@ -671,7 +709,7 @@
       <button class="section-about-btn" data-about="continent" title="What is this section?">i</button>
     </div>
     <div class="section-about-panel" id="about-continent">
-      <div class="section-about-inner">The best television being made right now is frequently not in English. This section exists because subtitle aversion is costing you some of the sharpest writing, directing, and performance in the medium. No excuses.</div>
+      <div class="section-about-inner">The best television being made right now is frequently not in English. Subtitle aversion is costing you some of the sharpest writing and performance in the medium. No excuses.</div>
     </div>
     <div class="tv-grid reveal">
       <div class="pulse-card continent">
@@ -679,217 +717,28 @@
         <div class="pulse-card-type">Germany &middot; Netflix &middot; 3 Seasons &middot; Complete</div>
         <div class="pulse-card-title">Dark</div>
         <div class="continent-lang">German</div>
-        <div class="pulse-card-body">The most rigorous argument on television for why truth is not a fixed point but a question of when. Across three seasons, Dark builds a closed causal loop in which every secret unearthed simply relocates the lie &mdash; memory corrupts, testimony shifts, and the characters who believe they are finally seeing clearly are always, structurally, the last to know. In a media landscape of easy revelations, Dark insists that uncovering the truth may change nothing at all.</div>
+        <div class="pulse-card-body">The most rigorous argument on television for why truth is not a fixed point but a question of when. Across three seasons, Dark builds a closed causal loop in which every secret unearthed simply relocates the lie.</div>
       </div>
       <div class="pulse-card continent">
         <div class="pulse-card-img-wrap"><img class="pulse-card-img" src="https://image.tmdb.org/t/p/w780/a2Q2og2N3H8qr5UVuvANZqrRa0M.jpg" alt="" loading="eager" /></div>
         <div class="pulse-card-type">Italy &middot; Sky Atlantic / Netflix &middot; 1 Season &middot; Complete</div>
         <div class="pulse-card-title">1994</div>
         <div class="continent-lang">Italian</div>
-        <div class="pulse-card-body">Set during the implosion of Italy&rsquo;s First Republic &mdash; Tangentopoli still burning, Berlusconi ascending &mdash; 1994 dramatises the moment a nation collectively decided which version of events it could live with, and chose badly. It refuses a single truth-teller, distributing moral compromise so evenly across prosecutors, spin doctors, and TV executives that the viewer is implicated in the same exhausted bargain as the electorate. Watch it and you will understand every political landscape you&rsquo;ve inhabited since.</div>
+        <div class="pulse-card-body">Set during the implosion of Italy&rsquo;s First Republic &mdash; Tangentopoli still burning, Berlusconi ascending. A nation collectively deciding which version of events it could live with. Watch it and you will understand every political landscape you have inhabited since.</div>
       </div>
       <div class="pulse-card continent">
         <div class="pulse-card-img-wrap"><img class="pulse-card-img" src="https://image.tmdb.org/t/p/w780/vPdUxPFkyLbuT4fP3FqmVjoO00a.jpg" alt="" loading="eager" /></div>
         <div class="pulse-card-type">Norway &middot; Netflix &middot; 3 Seasons &middot; Complete</div>
         <div class="pulse-card-title">Occupied</div>
         <div class="continent-lang">Norwegian</div>
-        <div class="pulse-card-body">Jo Nesb&oslash;&rsquo;s scenario &mdash; Russia quietly occupying Norway with EU backing after a green-energy pivot &mdash; was considered provocative fantasy when it aired in 2015. Considerably less funny now. A slow-burn study in the official lie, the diplomatic non-statement, and the bureaucratic violence of language stripped of meaning. The truth here is visible, filmed, documented &mdash; and it changes nothing. That&rsquo;s the darkest proposition of all.</div>
+        <div class="pulse-card-body">Russia quietly occupies Norway with EU backing. Jo Nesb&oslash;&rsquo;s scenario was considered provocative fantasy in 2015. A study in the official lie and the bureaucratic violence of language stripped of meaning.</div>
       </div>
       <div class="pulse-card continent">
         <div class="pulse-card-img-wrap"><img class="pulse-card-img" src="https://image.tmdb.org/t/p/w780/gQr75UrfUsu799Xwzic1TYtZGTD.jpg" alt="" loading="eager" /></div>
         <div class="pulse-card-type">France &middot; Canal+ / Walter Presents &middot; 8 Seasons &middot; Complete</div>
         <div class="pulse-card-title">Spiral</div>
         <div class="continent-lang">French</div>
-        <div class="pulse-card-body">Eight seasons and no single character you could call honest, not entirely, not all the way down. Spiral treats the Paris justice system as an ecology of competing truths: the police version, the juge d&rsquo;instruction&rsquo;s version, the defence lawyer&rsquo;s version, each internally coherent and mutually incompatible. It is not cynical about this &mdash; it is precise, which is harder. The truth in Spiral exists; it&rsquo;s just that the machinery built to find it was designed, in part, to lose it.</div>
-      </div>
-    </div>
-  </section>
-
-  <!-- DISCOVER -->
-  <div class="section-divider"></div>
-  <section id="discover" class="section">
-    <div class="section-eyebrow reveal">
-      <span class="section-eyebrow-label">Discover</span>
-      <span class="section-eyebrow-pipe">|</span>
-      <span class="section-eyebrow-desc">Match your mood to a film</span>
-      <button class="section-about-btn" data-about="discover" title="What is this section?">i</button>
-    </div>
-    <div class="section-about-panel" id="about-discover">
-      <div class="section-about-inner">Seven moods, three films each. Not best-of lists &mdash; mood-matched picks for wherever you are tonight.</div>
-    </div>
-
-    <div class="mood-section reveal">
-      <div class="mood-heading">When you want your assumptions dismantled</div>
-      <div class="mood-desc">The ground shifts under you, and the version of events you were so sure about simply stops holding.</div>
-      <div class="mood-films">
-        <div class="film-card">
-          <img class="film-card-poster" src="https://image.tmdb.org/t/p/w500/lR1oSEBa4LbOzOZcWlNBBqtlGFL.jpg" alt="Rashomon" loading="lazy" />
-          <div class="film-card-title">Rashomon</div>
-          <div class="film-card-year">1950 &mdash; Akira Kurosawa</div>
-          <div class="film-card-body">Four irreconcilable accounts of a single violent incident. Not about who&rsquo;s lying &mdash; about the terrifying possibility that everyone is telling the truth they need to tell.</div>
-        </div>
-        <div class="film-card">
-          <img class="film-card-poster" src="https://image.tmdb.org/t/p/w500/8oRCxtyFmCFrRHD7bYS4DEv7FQ9.jpg" alt="The Act of Killing" loading="lazy" />
-          <div class="film-card-title">The Act of Killing</div>
-          <div class="film-card-year">2012 &mdash; Joshua Oppenheimer</div>
-          <div class="film-card-body">Death squad leaders recreate their own massacres in the genres they love. One of the most genuinely disorienting documents ever made &mdash; the perpetrators are gleeful, then confused, then something crumbles.</div>
-        </div>
-        <div class="film-card">
-          <img class="film-card-poster" src="https://image.tmdb.org/t/p/w500/rOVxvPv3YIzPFnAJYz2RJMJ5nzS.jpg" alt="Stories We Tell" loading="lazy" />
-          <div class="film-card-title">Stories We Tell</div>
-          <div class="film-card-year">2012 &mdash; Sarah Polley</div>
-          <div class="film-card-body">Polley investigates a family secret about her own parentage, then complicates every account by showing you the seams of the film itself. About how families construct usable versions of the past.</div>
-        </div>
-      </div>
-    </div>
-
-    <div class="mood-section reveal">
-      <div class="mood-heading">When you need to see how the story gets made</div>
-      <div class="mood-desc">You want to sit inside the grind of it &mdash; the calls that don&rsquo;t get returned, the moment the shape of something becomes visible.</div>
-      <div class="mood-films">
-        <div class="film-card">
-          <img class="film-card-poster" src="https://image.tmdb.org/t/p/w500/nGPnGjkEFJGv6WQSoXiuaXcb6c.jpg" alt="Spotlight" loading="lazy" />
-          <div class="film-card-title">Spotlight</div>
-          <div class="film-card-year">2015 &mdash; Tom McCarthy</div>
-          <div class="film-card-body">The Boston Globe&rsquo;s investigation into systemic clergy abuse. Almost procedural in its refusal to dramatise. The horror builds through accumulation. When it lands, it lands hard.</div>
-        </div>
-        <div class="film-card">
-          <img class="film-card-poster" src="https://image.tmdb.org/t/p/w500/qoHFSNa7Hk4OoaLNFqABDUXnkrY.jpg" alt="Zodiac" loading="lazy" />
-          <div class="film-card-title">Zodiac</div>
-          <div class="film-card-year">2007 &mdash; David Fincher</div>
-          <div class="film-card-body">The Zodiac killings as a film about obsession masquerading as investigation. What happens to people who can&rsquo;t stop looking even when the looking is slowly destroying them.</div>
-        </div>
-        <div class="film-card">
-          <img class="film-card-poster" src="https://image.tmdb.org/t/p/w500/hHw3QHQPD0sCBJbP7XRNLhMDAL4.jpg" alt="Citizenfour" loading="lazy" />
-          <div class="film-card-title">Citizenfour</div>
-          <div class="film-card-year">2014 &mdash; Laura Poitras</div>
-          <div class="film-card-body">Poitras was already filming when Snowden contacted her. A Hong Kong hotel room. A man methodically dismantling the world&rsquo;s assumptions about surveillance, unfolding in real time.</div>
-        </div>
-      </div>
-    </div>
-
-    <div class="mood-section reveal">
-      <div class="mood-heading">When you want beautiful, careful lies</div>
-      <div class="mood-desc">Films that tell the truth sideways, through invented people in invented situations that somehow get closer to real feeling.</div>
-      <div class="mood-films">
-        <div class="film-card">
-          <img class="film-card-poster" src="https://image.tmdb.org/t/p/w500/s0eMsEwBKIlM4b3eEh5bvhqq6qS.jpg" alt="A Separation" loading="lazy" />
-          <div class="film-card-title">A Separation</div>
-          <div class="film-card-year">2011 &mdash; Asghar Farhadi</div>
-          <div class="film-card-body">A moral labyrinth from a custody dispute and a wrongful accusation in Tehran. Nobody is simply wrong. Fiction that functions like a philosophy seminar.</div>
-        </div>
-        <div class="film-card">
-          <img class="film-card-poster" src="https://image.tmdb.org/t/p/w500/iDVOSJUjLLMGmCc5RfQvNvV7yBC.jpg" alt="The Sweet Hereafter" loading="lazy" />
-          <div class="film-card-title">The Sweet Hereafter</div>
-          <div class="film-card-year">1997 &mdash; Atom Egoyan</div>
-          <div class="film-card-body">A school bus accident and its aftermath through a fractured chronology that mirrors how grief refuses linear time. The truth of a community catastrophe is never the official version.</div>
-        </div>
-        <div class="film-card">
-          <img class="film-card-poster" src="https://image.tmdb.org/t/p/w500/s2NxPJcEE06BGMI9ENPpKTSMT2u.jpg" alt="Certified Copy" loading="lazy" />
-          <div class="film-card-title">Certified Copy</div>
-          <div class="film-card-year">2010 &mdash; Abbas Kiarostami</div>
-          <div class="film-card-body">A British author and a French dealer through the Italian countryside. Their relationship gradually becomes uncertain. Are they strangers? A long-married couple? Both? A copy authenticated as real becomes real.</div>
-        </div>
-      </div>
-    </div>
-
-    <div class="mood-section reveal">
-      <div class="mood-heading">When reality feels unreliable</div>
-      <div class="mood-desc">Films that put you inside the paranoia rather than watching it from a safe distance.</div>
-      <div class="mood-films">
-        <div class="film-card">
-          <img class="film-card-poster" src="https://image.tmdb.org/t/p/w500/9jNGRRfSpKuqNFH7cD3G0GVGEQI.jpg" alt="The Conversation" loading="lazy" />
-          <div class="film-card-title">The Conversation</div>
-          <div class="film-card-year">1974 &mdash; Francis Ford Coppola</div>
-          <div class="film-card-body">A surveillance expert convinced the recording he&rsquo;s made will be used for a murder. The more he listens, the less certain he is. Quiet, claustrophobic, and finally vertiginous.</div>
-        </div>
-        <div class="film-card">
-          <img class="film-card-poster" src="https://image.tmdb.org/t/p/w500/dKuBBBcfpVUJXqDjlgITVMoD5bk.jpg" alt="Caché" loading="lazy" />
-          <div class="film-card-title">Cach&eacute;</div>
-          <div class="film-card-year">2005 &mdash; Michael Haneke</div>
-          <div class="film-card-body">Anonymous surveillance tapes sent to a comfortable Parisian couple. The film is relentless in its refusal to resolve. Who is sending the tapes remains unanswered, deliberately. Watch the final shot twice.</div>
-        </div>
-        <div class="film-card">
-          <img class="film-card-poster" src="https://image.tmdb.org/t/p/w500/nOca36ADK2RYSc65BEz5PQUZ47n.jpg" alt="Mulholland Drive" loading="lazy" />
-          <div class="film-card-title">Mulholland Drive</div>
-          <div class="film-card-year">2001 &mdash; David Lynch</div>
-          <div class="film-card-body">A dream about Hollywood that collapses in on itself at the midpoint. The first half is intoxicating and the second is like waking from it. One of the films that genuinely reorganises how you watch everything else.</div>
-        </div>
-      </div>
-    </div>
-
-    <div class="mood-section reveal">
-      <div class="mood-heading">When you want the testimony</div>
-      <div class="mood-desc">Films that make space for a single voice or account &mdash; and ask you to sit with what you can and cannot verify.</div>
-      <div class="mood-films">
-        <div class="film-card">
-          <img class="film-card-poster" src="https://image.tmdb.org/t/p/w500/4w4BJk3l8y9gYwPPLRs6uPHOmGL.jpg" alt="The Thin Blue Line" loading="lazy" />
-          <div class="film-card-title">The Thin Blue Line</div>
-          <div class="film-card-year">1988 &mdash; Errol Morris</div>
-          <div class="film-card-body">Reconstructs the 1976 murder of a Dallas police officer and the conviction of a man who almost certainly didn&rsquo;t do it. The film that invented a genre and got an innocent man released from death row.</div>
-        </div>
-        <div class="film-card">
-          <img class="film-card-poster" src="https://image.tmdb.org/t/p/w500/6Jb7xCiDSnABIJmLaJ4sInGPtw0.jpg" alt="The Look of Silence" loading="lazy" />
-          <div class="film-card-title">The Look of Silence</div>
-          <div class="film-card-year">2014 &mdash; Joshua Oppenheimer</div>
-          <div class="film-card-body">An optometrist quietly confronts the men who killed his brother in the 1965 Indonesian massacres while testing their vision. The power is in the restraint. Unbearable, necessary, utterly unlike anything else.</div>
-        </div>
-        <div class="film-card">
-          <img class="film-card-poster" src="https://image.tmdb.org/t/p/w500/fnxnea3loMg5pIV0poyuaXfGzgP.jpg" alt="Standard Operating Procedure" loading="lazy" />
-          <div class="film-card-title">Standard Operating Procedure</div>
-          <div class="film-card-year">2008 &mdash; Errol Morris</div>
-          <div class="film-card-body">Morris takes the Abu Ghraib photographs and interviews the people inside them. Asks what the images actually prove &mdash; and what happened just outside their frame. The soldiers&rsquo; accounts are banal, self-serving, and somehow more troubling than the pictures.</div>
-        </div>
-      </div>
-    </div>
-
-    <div class="mood-section reveal">
-      <div class="mood-heading">When you need the long view</div>
-      <div class="mood-desc">Films that show how truth gets buried for decades &mdash; and what it takes to dig it back up.</div>
-      <div class="mood-films">
-        <div class="film-card">
-          <img class="film-card-poster" src="https://image.tmdb.org/t/p/w500/dDRFQNfNJxcKJXsRGV1d2tBLOXa.jpg" alt="Shoah" loading="lazy" />
-          <div class="film-card-title">Shoah</div>
-          <div class="film-card-year">1985 &mdash; Claude Lanzmann</div>
-          <div class="film-card-body">Nine-and-a-half hours. Not a single frame of archival footage &mdash; only the present, survivors and perpetrators speaking into the camera. The definitive argument for testimony over archive.</div>
-        </div>
-        <div class="film-card">
-          <img class="film-card-poster" src="https://image.tmdb.org/t/p/w500/b7k1S3M7JWlqy6uxl8GmTH7fVcN.jpg" alt="The Battle of Algiers" loading="lazy" />
-          <div class="film-card-title">The Battle of Algiers</div>
-          <div class="film-card-year">1966 &mdash; Gillo Pontecorvo</div>
-          <div class="film-card-body">Looks so much like newsreel footage that distributors had to disclaim it. Refuses to simplify either side, which is why both French authorities and revolutionary groups screened it as a training document.</div>
-        </div>
-        <div class="film-card">
-          <img class="film-card-poster" src="https://image.tmdb.org/t/p/w500/3XK7e1IXF5MvHPKJU5JxfbEEGIz.jpg" alt="Icarus" loading="lazy" />
-          <div class="film-card-title">Icarus</div>
-          <div class="film-card-year">2017 &mdash; Bryan Fogel</div>
-          <div class="film-card-body">Fogel starts a personal doping experiment and accidentally stumbles into the Russian state doping programme. What begins as a cycling doc becomes a whistleblower thriller in real time. The film&rsquo;s accidental nature gives it an energy no scripted version could manufacture.</div>
-        </div>
-      </div>
-    </div>
-
-    <div class="mood-section reveal">
-      <div class="mood-heading">When you just want to be unsettled</div>
-      <div class="mood-desc">Finish a film uncertain of what you witnessed &mdash; not confused, but genuinely disturbed by how much it left unresolved.</div>
-      <div class="mood-films">
-        <div class="film-card">
-          <img class="film-card-poster" src="https://image.tmdb.org/t/p/w500/iYTFBvXkLZd3KLvVW0U8XJL7dFk.jpg" alt="Funny Games" loading="lazy" />
-          <div class="film-card-title">Funny Games</div>
-          <div class="film-card-year">1997 &mdash; Michael Haneke</div>
-          <div class="film-card-body">Haneke systematically destroys every convention of the thriller genre, including your right to catharsis. At one point a character picks up the remote and rewinds the film. The version you watch and the one he&rsquo;s making are not the same film.</div>
-        </div>
-        <div class="film-card">
-          <img class="film-card-poster" src="https://image.tmdb.org/t/p/w500/oi24FKmuPdloQj2FyVxUWEFJFWs.jpg" alt="The Wailing" loading="lazy" />
-          <div class="film-card-title">The Wailing</div>
-          <div class="film-card-year">2016 &mdash; Na Hong-jin</div>
-          <div class="film-card-body">A rural Korean mystery that accumulates dread through sheer tonal instability. You genuinely cannot fix the genre, and that instability is the point. The final sequence is one of the most discussed endings in contemporary world cinema.</div>
-        </div>
-        <div class="film-card">
-          <img class="film-card-poster" src="https://image.tmdb.org/t/p/w500/nBRlkAoGvKREjbBxXRYgAg63L4Y.jpg" alt="Dogtooth" loading="lazy" />
-          <div class="film-card-title">Dogtooth</div>
-          <div class="film-card-year">2009 &mdash; Yorgos Lanthimos</div>
-          <div class="film-card-body">Parents have raised their adult children in a sealed compound, teaching them a private language where words mean different things. What happens to people whose entire map of reality is a deliberate construction.</div>
-        </div>
+        <div class="pulse-card-body">Eight seasons and no single character you could call honest, not entirely. The Paris justice system as an ecology of competing truths: the police version, the juge d&rsquo;instruction&rsquo;s version, the defence lawyer&rsquo;s version &mdash; each internally coherent and mutually incompatible.</div>
       </div>
     </div>
   </section>
@@ -899,14 +748,13 @@
   <div class="nl-section">
     <div class="nl-label">Stay in the loop</div>
     <h2 class="nl-heading">Get Screen Share in your inbox every week</h2>
-    <p class="nl-sub">One issue, one theme, every week. No algorithm. No noise. Just the films and television worth your time &mdash; and the thinking that goes with them.</p>
+    <p class="nl-sub">One issue, one theme, every week. No algorithm. No noise. Just the films and television worth your time.</p>
     <form class="nl-form" action="https://buttondown.com/api/emails/embed-subscribe/screenshare" method="post" target="_blank" onsubmit="window.open('https://buttondown.com/screenshare','popupwindow')">
       <input class="nl-input" type="email" name="email" placeholder="your@email.com" required />
       <button class="nl-btn" type="submit">Subscribe</button>
     </form>
   </div>
 
-  <!-- SUBSCRIBE + SUPPORT -->
   <div class="support-section">
     <div class="support-card">
       <div class="support-card-icon">&#9749;</div>
@@ -917,12 +765,11 @@
     <div class="support-card">
       <div class="support-card-icon">&#128218;</div>
       <div class="support-card-title">Back Issues</div>
-      <div class="support-card-body">All issues are archived and free to read. Start from Issue 001 or browse the archive for films by theme.</div>
+      <div class="support-card-body">All issues are archived and free to read. Start from Issue 001 or browse by theme.</div>
       <a href="archive.html" class="btn-secondary">Browse &rarr;</a>
     </div>
   </div>
 
-  <!-- FOOTER -->
   <footer>
     <div class="footer-inner">
       <a href="index.html" class="footer-logo">Screen<span>Share</span></a>
@@ -939,7 +786,6 @@
     </div>
   </footer>
 
-  <!-- STICKY SUBSCRIBE BAR -->
   <div class="sticky-bar" id="stickyBar">
     <div class="sticky-bar-left">
       <span class="sticky-bar-label">Free weekly</span>
@@ -954,7 +800,6 @@
     </div>
   </div>
 
-  <!-- GOATCOUNTER -->
   <script data-goatcounter="https://screenshare.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 
   <script>
@@ -967,23 +812,20 @@
     // SECTION ABOUT BUTTONS
     document.querySelectorAll('.section-about-btn').forEach(function(btn) {
       btn.addEventListener('click', function() {
-        var id = btn.getAttribute('data-about');
-        var panel = document.getElementById('about-' + id);
+        var panel = document.getElementById('about-' + btn.getAttribute('data-about'));
         if (panel) panel.classList.toggle('open');
       });
     });
 
-    // ARGUMENT VOTE 003
+    // ARGUMENT VOTE
     var seedA003 = 734, seedB003 = 891;
     function castVote003(choice) {
-      var key = 'ss-003-argument-vote';
-      if (localStorage.getItem(key)) return;
-      localStorage.setItem(key, choice);
+      if (localStorage.getItem('ss-003-argument-vote')) return;
+      localStorage.setItem('ss-003-argument-vote', choice);
       renderVote003();
     }
     function renderVote003() {
-      var key = 'ss-003-argument-vote';
-      var saved = localStorage.getItem(key);
+      var saved = localStorage.getItem('ss-003-argument-vote');
       var totA = seedA003 + (saved === 'a' ? 1 : 0);
       var totB = seedB003 + (saved === 'b' ? 1 : 0);
       var total = totA + totB;
@@ -1001,19 +843,108 @@
           document.getElementById('fillB003').style.width = pB + '%';
         }, 50);
         document.getElementById('voteCount003').textContent = total.toLocaleString() + ' votes';
-        var label = saved === 'a' ? 'The lie always mattered' : 'Truth was always negotiated';
-        document.getElementById('voteChoiceLabel003').textContent = label;
+        document.getElementById('voteChoiceLabel003').textContent = saved === 'a' ? 'The lie always mattered' : 'Truth was always negotiated';
         document.getElementById('voteYourChoice003').classList.add('visible');
       }
     }
     renderVote003();
 
-    // PULSE VOTE 003
-    var pulseSeeds003 = {
-      hailmary: { yes: 534, maybe: 412, pass: 89 },
-      anatomy:  { yes: 678, maybe: 198, pass: 143 },
-      lady:     { yes: 187, maybe: 334, pass: 212 },
+    // DISCOVER MOOD DATA
+    var moodData003 = {
+      dismantled: [
+        { title: 'Rashomon', year: 1950, director: 'Akira Kurosawa', poster: 'https://image.tmdb.org/t/p/w500/lR1oSEBa4LbOzOZcWlNBBqtlGFL.jpg', tag: 'Every account is true', primer: 'Four irreconcilable accounts of a single violent incident. Not about who is lying — about the terrifying possibility that everyone is telling the truth they need to tell.' },
+        { title: 'The Act of Killing', year: 2012, director: 'Joshua Oppenheimer', poster: 'https://image.tmdb.org/t/p/w500/8oRCxtyFmCFrRHD7bYS4DEv7FQ9.jpg', tag: 'The perpetrators are gleeful', primer: 'Death squad leaders recreate their own massacres in the genres they love. One of the most genuinely disorienting documents ever made.' },
+        { title: 'Stories We Tell', year: 2012, director: 'Sarah Polley', poster: 'https://image.tmdb.org/t/p/w500/rOVxvPv3YIzPFnAJYz2RJMJ5nzS.jpg', tag: 'The family constructs its past', primer: 'Polley investigates a family secret about her own parentage, then complicates every account by showing you the seams of the film itself.' }
+      ],
+      constructed: [
+        { title: 'Spotlight', year: 2015, director: 'Tom McCarthy', poster: 'https://image.tmdb.org/t/p/w500/nGPnGjkEFJGv6WQSoXiuaXcb6c.jpg', tag: 'Horror through accumulation', primer: 'The Boston Globe investigation into systemic clergy abuse. Almost procedural in its refusal to dramatise. The horror builds through accumulation. When it lands, it lands hard.' },
+        { title: 'Zodiac', year: 2007, director: 'David Fincher', poster: 'https://image.tmdb.org/t/p/w500/qoHFSNa7Hk4OoaLNFqABDUXnkrY.jpg', tag: 'The looking slowly destroys them', primer: 'The Zodiac killings as a film about obsession masquerading as investigation. What happens to people who cannot stop looking even when the looking is slowly destroying them.' },
+        { title: 'Citizenfour', year: 2014, director: 'Laura Poitras', poster: 'https://image.tmdb.org/t/p/w500/hHw3QHQPD0sCBJbP7XRNLhMDAL4.jpg', tag: 'Dismantling surveillance in real time', primer: 'Poitras was already filming when Snowden contacted her. A Hong Kong hotel room. A man methodically dismantling the world assumptions about surveillance, unfolding in real time.' }
+      ],
+      beautiful: [
+        { title: 'A Separation', year: 2011, director: 'Asghar Farhadi', poster: 'https://image.tmdb.org/t/p/w500/s0eMsEwBKIlM4b3eEh5bvhqq6qS.jpg', tag: 'Nobody is simply wrong', primer: 'A moral labyrinth from a custody dispute and a wrongful accusation in Tehran. Nobody is simply wrong. Fiction that functions like a philosophy seminar.' },
+        { title: 'The Sweet Hereafter', year: 1997, director: 'Atom Egoyan', poster: 'https://image.tmdb.org/t/p/w500/iDVOSJUjLLMGmCc5RfQvNvV7yBC.jpg', tag: 'Grief refuses linear time', primer: 'A school bus accident and its aftermath through a fractured chronology that mirrors how grief refuses linear time. The truth of a community catastrophe is never the official version.' },
+        { title: 'Certified Copy', year: 2010, director: 'Abbas Kiarostami', poster: 'https://image.tmdb.org/t/p/w500/s2NxPJcEE06BGMI9ENPpKTSMT2u.jpg', tag: 'A copy authenticated becomes real', primer: 'A British author and a French woman through the Italian countryside. Their relationship gradually becomes uncertain. A copy authenticated as real becomes real.' }
+      ],
+      unreliable: [
+        { title: 'The Conversation', year: 1974, director: 'Francis Ford Coppola', poster: 'https://image.tmdb.org/t/p/w500/9jNGRRfSpKuqNFH7cD3G0GVGEQI.jpg', tag: 'The more he listens, the less he knows', primer: 'A surveillance expert convinced the recording he made will be used for a murder. The more he listens, the less certain he is. Quiet, claustrophobic, and finally vertiginous.' },
+        { title: 'Cache', year: 2005, director: 'Michael Haneke', poster: 'https://image.tmdb.org/t/p/w500/dKuBBBcfpVUJXqDjlgITVMoD5bk.jpg', tag: 'Who is sending the tapes', primer: 'Anonymous surveillance tapes sent to a comfortable Parisian couple. Relentless in its refusal to resolve. Who is sending the tapes remains unanswered, deliberately. Watch the final shot twice.' },
+        { title: 'Mulholland Drive', year: 2001, director: 'David Lynch', poster: 'https://image.tmdb.org/t/p/w500/x7A59t6ySylr1L7aubOQEA480vM.jpg', tag: 'It collapses in on itself', primer: 'A dream about Hollywood that collapses in on itself at the midpoint. The first half is intoxicating and the second is like waking from it. One of the films that reorganises how you watch everything else.' }
+      ],
+      testimony: [
+        { title: 'The Thin Blue Line', year: 1988, director: 'Errol Morris', poster: 'https://image.tmdb.org/t/p/w500/4w4BJk3l8y9gYwPPLRs6uPHOmGL.jpg', tag: 'Construction as justice', primer: 'Reconstructs the 1976 murder of a Dallas police officer and the conviction of a man who almost certainly did not do it. The film that invented a genre and got an innocent man released from death row.' },
+        { title: 'The Look of Silence', year: 2014, director: 'Joshua Oppenheimer', poster: 'https://image.tmdb.org/t/p/w500/6Jb7xCiDSnABIJmLaJ4sInGPtw0.jpg', tag: 'Unbearable, necessary', primer: 'An optometrist quietly confronts the men who killed his brother in the 1965 Indonesian massacres while testing their vision. The power is in the restraint. Unbearable, necessary.' },
+        { title: 'Standard Operating Procedure', year: 2008, director: 'Errol Morris', poster: 'https://image.tmdb.org/t/p/w500/v2QCXsisMLYsozC2qJtYGa3Rvsi.jpg', tag: 'What happened outside the frame', primer: 'Morris takes the Abu Ghraib photographs and interviews the people inside them. Asks what the images actually prove — and what happened just outside their frame.' }
+      ],
+      longview: [
+        { title: 'Shoah', year: 1985, director: 'Claude Lanzmann', poster: 'https://image.tmdb.org/t/p/w500/dDRFQNfNJxcKJXsRGV1d2tBLOXa.jpg', tag: 'Testimony over archive', primer: 'Nine-and-a-half hours. Not a single frame of archival footage — only the present, survivors and perpetrators speaking into the camera. The definitive argument for testimony over archive.' },
+        { title: 'The Battle of Algiers', year: 1966, director: 'Gillo Pontecorvo', poster: 'https://image.tmdb.org/t/p/w500/b7k1S3M7JWlqy6uxl8GmTH7fVcN.jpg', tag: 'Both sides screened it as a training doc', primer: 'Looks so much like newsreel footage that distributors had to disclaim it. Refuses to simplify either side, which is why both French authorities and revolutionary groups screened it as training.' },
+        { title: 'Icarus', year: 2017, director: 'Bryan Fogel', poster: 'https://image.tmdb.org/t/p/w500/3XK7e1IXF5MvHPKJU5JxfbEEGIz.jpg', tag: 'Accidental whistleblower thriller', primer: 'Fogel starts a personal doping experiment and accidentally stumbles into the Russian state doping programme. What begins as a cycling doc becomes a whistleblower thriller in real time.' }
+      ],
+      unsettled: [
+        { title: 'Funny Games', year: 1997, director: 'Michael Haneke', poster: 'https://image.tmdb.org/t/p/w500/vUJxLlRGM6KfXQDeAHqyMyhrI59.jpg', tag: 'It rewinds the film on you', primer: 'Haneke systematically destroys every convention of the thriller genre, including your right to catharsis. At one point a character picks up the remote and rewinds the film on you.' },
+        { title: 'The Wailing', year: 2016, director: 'Na Hong-jin', poster: 'https://image.tmdb.org/t/p/w500/oi24FKmuPdloQj2FyVxUWEFJFWs.jpg', tag: 'Cannot fix the genre', primer: 'A rural Korean mystery that accumulates dread through sheer tonal instability. You genuinely cannot fix the genre. The final sequence is one of the most discussed endings in contemporary world cinema.' },
+        { title: 'Dogtooth', year: 2009, director: 'Yorgos Lanthimos', poster: 'https://image.tmdb.org/t/p/w500/nBRlkAoGvKREjbBxXRYgAg63L4Y.jpg', tag: 'Language rebuilt from scratch', primer: 'Parents raise their adult children in a sealed compound with a private language where words mean different things. What happens to people whose entire map of reality is a deliberate construction.' }
+      ]
     };
+    var moodSeeds003 = { dismantled:[312,267,198], constructed:[389,245,312], beautiful:[267,198,312], unreliable:[445,312,267], testimony:[534,198,276], longview:[145,312,234], unsettled:[289,198,267] };
+    function getMoodKey003(mood) { return 'ss-003-discover-' + mood; }
+    function renderMoodVote003(mood) {
+      var films = moodData003[mood]; var seeds = moodSeeds003[mood];
+      var saved = localStorage.getItem(getMoodKey003(mood));
+      var btnsEl = document.getElementById('moodVoteBtns'); var resultsEl = document.getElementById('moodVoteResults');
+      btnsEl.innerHTML = '';
+      films.forEach(function(film, i) {
+        var btn = document.createElement('button');
+        btn.className = 'mood-vote-btn' + (saved === String(i) ? ' selected' : '');
+        btn.disabled = !!saved;
+        btn.innerHTML = '<span>' + film.title + '</span><span class="mood-vote-btn-year">' + film.director + ' \u00b7 ' + film.year + '</span>';
+        if (!saved) btn.addEventListener('click', (function(idx){ return function(){ castMoodVote003(mood,idx); }; })(i));
+        btnsEl.appendChild(btn);
+      });
+      if (saved !== null) { showMoodResults003(mood, parseInt(saved,10), seeds.slice()); } else { resultsEl.classList.remove('visible'); resultsEl.innerHTML = ''; }
+    }
+    function castMoodVote003(mood, idx) { localStorage.setItem(getMoodKey003(mood), String(idx)); renderMoodVote003(mood); }
+    function showMoodResults003(mood, choiceIdx, counts) {
+      counts[choiceIdx] += 1;
+      var total = counts.reduce(function(a,b){return a+b;},0);
+      var winnerIdx = counts.indexOf(Math.max.apply(null,counts));
+      var films = moodData003[mood]; var resultsEl = document.getElementById('moodVoteResults');
+      resultsEl.innerHTML = '';
+      [0,1,2].sort(function(a,b){return counts[b]-counts[a];}).forEach(function(i) {
+        var pct = Math.round((counts[i]/total)*100);
+        var isWin = i===winnerIdx, isChosen = i===choiceIdx;
+        var row = document.createElement('div'); row.className = 'mood-vote-result-row';
+        row.innerHTML = '<div class="mood-vote-result-header"><span class="mood-vote-result-title ' + (isWin?'winner':isChosen?'chosen':'') + '">' + (isWin?'\u2605 ':'') + films[i].title + (isChosen?' \u2014 your pick':'') + '</span><span class="mood-vote-result-pct">' + pct + '%</span></div><div class="mood-vote-result-track"><div class="mood-vote-result-fill ' + (isWin?'winner':isChosen?'chosen':'other') + '" data-pct="' + pct + '"></div></div>';
+        resultsEl.appendChild(row);
+      });
+      var tot = document.createElement('div'); tot.className='mood-vote-total'; tot.textContent=total.toLocaleString()+' readers voted in this mood'; resultsEl.appendChild(tot);
+      resultsEl.classList.add('visible');
+      setTimeout(function(){ resultsEl.querySelectorAll('.mood-vote-result-fill').forEach(function(el){el.style.width=el.getAttribute('data-pct')+'%';}); }, 50);
+    }
+    function renderMoodFilms003(mood) {
+      var films = moodData003[mood]; var container = document.getElementById('moodFilms');
+      container.innerHTML = '';
+      films.forEach(function(film) {
+        var card = document.createElement('div'); card.className = 'film-card';
+        card.innerHTML = '<img class="film-card-poster" src="' + film.poster + '" alt="' + film.title + '" loading="eager" /><div><div class="film-card-title">' + film.title + '</div><div class="film-card-year">' + film.year + ' \u00b7 ' + film.director + '</div><div class="film-card-primer">' + film.primer + '</div><div class="film-card-mood-tag">' + film.tag + '</div></div>';
+        container.appendChild(card);
+      });
+    }
+    renderMoodFilms003('dismantled');
+    renderMoodVote003('dismantled');
+    document.querySelectorAll('.mood-chip').forEach(function(chip) {
+      chip.addEventListener('click', function() {
+        document.querySelectorAll('.mood-chip').forEach(function(c){c.classList.remove('active');});
+        chip.classList.add('active');
+        var mood = chip.getAttribute('data-mood');
+        renderMoodFilms003(mood);
+        renderMoodVote003(mood);
+      });
+    });
+
+    // PULSE VOTE
+    var pulseSeeds003 = { hailmary:{yes:534,maybe:412,pass:89}, anatomy:{yes:678,maybe:198,pass:143}, lady:{yes:187,maybe:334,pass:212} };
     function pulseVote(film, choice) {
       var key = 'ss-003-pulse-' + film;
       if (localStorage.getItem(key)) return;
@@ -1027,7 +958,6 @@
       var totals = { yes: seed.yes, maybe: seed.maybe, pass: seed.pass };
       if (saved) totals[saved]++;
       var total = totals.yes + totals.maybe + totals.pass;
-      var pct = function(v) { return Math.round(v/total*100); };
       ['yes','maybe','pass'].forEach(function(c) {
         var btn = document.getElementById('pv-' + film + '-' + c);
         if (!btn) return;
@@ -1035,21 +965,17 @@
       });
       var counts = document.getElementById('pv-' + film + '-counts');
       if (counts && saved) {
-        counts.textContent = pct(totals.yes) + '% Yes \u00b7 ' + pct(totals.maybe) + '% Maybe \u00b7 ' + pct(totals.pass) + '% Pass';
+        var py = Math.round(totals.yes/total*100), pm = Math.round(totals.maybe/total*100), pp = 100-py-pm;
+        counts.textContent = py + '% Yes \u00b7 ' + pm + '% Maybe \u00b7 ' + pp + '% Pass';
       }
     }
     ['hailmary','anatomy','lady'].forEach(renderPulseVote003);
 
     // STICKY BAR
-    function dismissBar() {
-      document.getElementById('stickyBar').classList.remove('visible');
-      localStorage.setItem('ss-bar-dismissed','1');
-    }
+    function dismissBar() { document.getElementById('stickyBar').classList.remove('visible'); localStorage.setItem('ss-bar-dismissed','1'); }
     if (!localStorage.getItem('ss-bar-dismissed')) {
       window.addEventListener('scroll', function() {
-        if (window.scrollY > document.body.scrollHeight * 0.35) {
-          document.getElementById('stickyBar').classList.add('visible');
-        }
+        if (window.scrollY > document.body.scrollHeight * 0.35) document.getElementById('stickyBar').classList.add('visible');
       }, { passive: true });
     }
   </script>
