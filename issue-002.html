@@ -1036,6 +1036,47 @@
         <span class="gem-badge">Streaming now</span>
       </div>
 
+
+    <!-- PULSE VOTE -->
+    <div class="pulse-vote reveal">
+      <div class="pulse-vote-heading">Are you watching?</div>
+
+      <div class="pulse-vote-row">
+        <div>
+          <div class="pulse-vote-film">Scream 7</div>
+          <div class="pulse-vote-counts" id="pv-scream-counts"></div>
+        </div>
+        <div class="pulse-vote-btns">
+          <button class="pulse-vote-btn yes"   onclick="pulseVote('scream','yes')"   id="pv-scream-yes">Yes</button>
+          <button class="pulse-vote-btn maybe" onclick="pulseVote('scream','maybe')" id="pv-scream-maybe">Maybe</button>
+          <button class="pulse-vote-btn pass"  onclick="pulseVote('scream','pass')"  id="pv-scream-pass">Pass</button>
+        </div>
+      </div>
+
+      <div class="pulse-vote-row">
+        <div>
+          <div class="pulse-vote-film">The Bride!</div>
+          <div class="pulse-vote-counts" id="pv-bride-counts"></div>
+        </div>
+        <div class="pulse-vote-btns">
+          <button class="pulse-vote-btn yes"   onclick="pulseVote('bride','yes')"   id="pv-bride-yes">Yes</button>
+          <button class="pulse-vote-btn maybe" onclick="pulseVote('bride','maybe')" id="pv-bride-maybe">Maybe</button>
+          <button class="pulse-vote-btn pass"  onclick="pulseVote('bride','pass')"  id="pv-bride-pass">Pass</button>
+        </div>
+      </div>
+
+      <div class="pulse-vote-row">
+        <div>
+          <div class="pulse-vote-film">Shelter</div>
+          <div class="pulse-vote-counts" id="pv-shelter-counts"></div>
+        </div>
+        <div class="pulse-vote-btns">
+          <button class="pulse-vote-btn yes"   onclick="pulseVote('shelter','yes')"   id="pv-shelter-yes">Yes</button>
+          <button class="pulse-vote-btn maybe" onclick="pulseVote('shelter','maybe')" id="pv-shelter-maybe">Maybe</button>
+          <button class="pulse-vote-btn pass"  onclick="pulseVote('shelter','pass')"  id="pv-shelter-pass">Pass</button>
+        </div>
+      </div>
+    </div>
     </div>
   </section>
 
@@ -1589,6 +1630,41 @@
     if(pct > 0.35){ bar.style.display = "flex"; shown = true; }
   });
 })();
+
+  // PULSE VOTE
+  const pulseSeeds = {
+    scream:  { yes: 612, maybe: 287, pass: 143 },
+    bride:   { yes: 389, maybe: 445, pass: 198 },
+    shelter: { yes: 201, maybe: 312, pass: 156 },
+  };
+  function pulseVote(film, choice) {
+    const key = 'ss-002-pulse-' + film;
+    if (localStorage.getItem(key)) return;
+    localStorage.setItem(key, choice);
+    renderPulseVote(film);
+  }
+  function renderPulseVote(film) {
+    const key = 'ss-002-pulse-' + film;
+    const saved = localStorage.getItem(key);
+    const seed = pulseSeeds[film];
+    const totals = { yes: seed.yes, maybe: seed.maybe, pass: seed.pass };
+    if (saved) totals[saved]++;
+    const total = totals.yes + totals.maybe + totals.pass;
+    const pct = v => Math.round(v / total * 100);
+    ['yes','maybe','pass'].forEach(c => {
+      const btn = document.getElementById('pv-' + film + '-' + c);
+      if (!btn) return;
+      if (saved) {
+        btn.disabled = true;
+        if (c === saved) btn.classList.add(c, 'selected');
+      }
+    });
+    const counts = document.getElementById('pv-' + film + '-counts');
+    if (counts && saved) {
+      counts.textContent = pct(totals.yes) + '% Yes · ' + pct(totals.maybe) + '% Maybe · ' + pct(totals.pass) + '% Pass';
+    }
+  }
+  ['scream','bride','shelter'].forEach(renderPulseVote);
 </script>
 </body>
 </html>
