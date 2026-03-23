@@ -1,0 +1,1057 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Screen Share &mdash; Issue 003: Truth</title>
+  <meta name="description" content="The Thin Blue Line, JFK, Ripley, Adolescence — and twenty-one more films about the gap between what happened and what we're told. Screen Share Issue 003." />
+  <link rel="canonical" href="https://screenshare.watch/issue-003.html" />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://screenshare.watch/issue-003.html" />
+  <meta property="og:title" content="Screen Share Issue 003: Truth" />
+  <meta property="og:description" content="The Thin Blue Line, JFK, Ripley, Adolescence — and twenty-one more films about the gap between what happened and what we're told." />
+  <meta property="og:image" content="https://image.tmdb.org/t/p/w1280/9ndhlUu1VQ44pX5dVFo5Y19KqAl.jpg" />
+  <meta property="og:site_name" content="Screen Share" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Screen Share Issue 003: Truth" />
+  <meta name="twitter:description" content="The camera was never just a witness. It was always an argument." />
+  <meta name="twitter:image" content="https://image.tmdb.org/t/p/w1280/9ndhlUu1VQ44pX5dVFo5Y19KqAl.jpg" />
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Screen Share Issue 003: Truth","description":"The Thin Blue Line, JFK, Ripley, Adolescence — and twenty-one more films about the gap between what happened and what were told.","url":"https://screenshare.watch/issue-003.html","publisher":{"@type":"Organization","name":"Screen Share","url":"https://screenshare.watch"},"datePublished":"2026-03-27"}</script>
+  <link rel="alternate" type="application/rss+xml" title="Screen Share" href="https://screenshare.watch/feed.xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,700;0,800;1,700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #080810; --surface: #111118; --surface-2: #18181f;
+      --gold: #f59e0b; --gold-dim: rgba(245,158,11,0.15); --gold-border: rgba(245,158,11,0.25);
+      --crimson: #dc2626; --text: #e8e8ed; --text-muted: #8888a0; --text-dim: #555568;
+      --border: rgba(255,255,255,0.06);
+    }
+    html { scroll-behavior: smooth; }
+    body { background: var(--bg); color: var(--text); font-family: 'Inter', sans-serif; font-size: 16px; line-height: 1.6; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+    body::before { content: ''; position: fixed; inset: 0; pointer-events: none; z-index: 9999; opacity: 0.025; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E"); background-size: 180px 180px; mix-blend-mode: overlay; }
+    .reveal { opacity: 0; transform: translateY(18px); transition: opacity 0.55s ease, transform 0.55s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    /* NAV */
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 0 2rem; height: 56px; background: rgba(8,8,16,0.88); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); }
+    .nav-logo { font-family: 'Playfair Display', serif; font-size: 1.6rem; font-weight: 800; color: #fff; text-decoration: none; letter-spacing: -0.02em; }
+    .nav-logo span { color: var(--gold); }
+    .nav-links { display: flex; gap: 1.5rem; align-items: center; }
+    .nav-links a { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-muted); text-decoration: none; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--text); }
+    .nav-issue { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); border: 1px solid var(--gold-border); padding: 0.25rem 0.6rem; }
+    @media(max-width:600px){ .nav-links { display: none; } }
+
+    /* HERO */
+    .hero { position: relative; min-height: 100vh; display: flex; align-items: flex-end; padding: 0 2.5rem 5rem; overflow: hidden; }
+    .hero-backdrop { position: absolute; inset: 0; background-image: url('https://image.tmdb.org/t/p/w1280/9ndhlUu1VQ44pX5dVFo5Y19KqAl.jpg'); background-size: cover; background-position: center 30%; filter: brightness(0.28) saturate(0.6); }
+    .hero-backdrop::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to top, var(--bg) 0%, rgba(8,8,16,0.5) 50%, transparent 100%); }
+    .hero-content { position: relative; z-index: 2; max-width: 700px; }
+    .hero-eyebrow { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 2rem; }
+    .hero-eyebrow-label { font-size: 0.6rem; font-weight: 700; letter-spacing: 0.25em; text-transform: uppercase; color: var(--gold); border: 1px solid var(--gold-border); padding: 0.25rem 0.6rem; background: var(--gold-dim); }
+    .hero-eyebrow-issue { font-size: 0.6rem; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-dim); }
+    .hero-title { font-family: 'Playfair Display', serif; font-size: clamp(4rem, 10vw, 8rem); font-weight: 800; color: #fff; line-height: 0.9; letter-spacing: -0.03em; margin-bottom: 0; }
+    .hero-title-period { color: var(--gold); }
+    .hero-rule { width: 48px; height: 1px; background: var(--gold); opacity: 0.7; margin: 1.5rem 0; }
+    .hero-sub { font-size: 1.05rem; color: rgba(232,232,237,0.65); font-weight: 300; line-height: 1.75; max-width: 520px; margin-bottom: 2.5rem; }
+    .hero-meta { display: flex; gap: 2rem; align-items: center; flex-wrap: wrap; }
+    .hero-meta-film { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-dim); }
+    .hero-meta-film span { color: var(--text); }
+    .btn-primary { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.75rem 1.5rem; background: var(--gold); color: #0a0a0f; font-size: 0.75rem; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; text-decoration: none; transition: background 0.2s; font-family: 'Inter', sans-serif; }
+    .btn-primary:hover { background: #fbbf24; }
+    .btn-secondary { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.75rem 1.5rem; background: transparent; color: var(--text-muted); border: 1px solid var(--border); font-size: 0.75rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; text-decoration: none; transition: all 0.2s; font-family: 'Inter', sans-serif; }
+    .btn-secondary:hover { border-color: rgba(255,255,255,0.15); color: var(--text); }
+    .hero-scroll-hint { position: absolute; bottom: 2rem; right: 2.5rem; display: flex; flex-direction: column; align-items: center; gap: 0.5rem; opacity: 0.35; }
+    .hero-scroll-hint span { font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase; writing-mode: vertical-rl; }
+    .hero-scroll-arrow { width: 1px; height: 40px; background: var(--text-muted); position: relative; overflow: hidden; }
+    .hero-scroll-arrow::after { content: ''; position: absolute; top: -40px; width: 100%; height: 100%; background: var(--gold); animation: scrollDown 1.5s ease infinite; }
+    @keyframes scrollDown { 0%{top:-40px}100%{top:40px} }
+
+    /* SECTION */
+    .section-divider { height: 1px; background: var(--border); margin: 0; }
+    .section { max-width: 900px; margin: 0 auto; padding: 2.5rem 2.5rem 4rem; }
+    .section-eyebrow { display: flex; align-items: center; gap: 0.6rem; margin-bottom: 2rem; }
+    .section-eyebrow-label { font-size: 0.6rem; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold); }
+    .section-eyebrow-pipe { color: var(--text-dim); font-size: 0.7rem; }
+    .section-eyebrow-desc { font-size: 0.88rem; color: var(--text-muted); font-weight: 300; font-style: italic; }
+    .section-about-btn { margin-left: auto; width: 20px; height: 20px; border-radius: 50%; border: 1px solid var(--border); background: none; color: var(--text-dim); font-size: 0.65rem; font-style: italic; cursor: pointer; font-family: Georgia, serif; transition: all 0.2s; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .section-about-btn:hover { border-color: var(--gold-border); color: var(--gold); }
+    .section-about-panel { max-height: 0; overflow: hidden; transition: max-height 0.4s ease; }
+    .section-about-panel.open { max-height: 200px; }
+    .section-about-inner { padding: 0.75rem 1rem; margin-bottom: 1.5rem; background: rgba(255,255,255,0.02); border-left: 2px solid var(--gold-border); font-size: 0.82rem; color: var(--text-muted); line-height: 1.65; }
+
+    /* EDITOR NOTE */
+    .editors-note { background: var(--surface); border: 1px solid var(--border); border-top: 2px solid var(--gold); padding: 2.5rem; margin-bottom: 0; }
+    .editors-note-label { font-size: 0.6rem; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold); margin-bottom: 1.5rem; }
+    .editors-note-body { font-size: 0.95rem; line-height: 1.85; color: rgba(232,232,237,0.78); font-weight: 300; font-style: italic; }
+    .editors-note-body p { margin-bottom: 1rem; }
+    .editors-note-body p:last-child { margin-bottom: 0; }
+    .editors-note-sign { font-size: 0.75rem; font-weight: 600; color: var(--text-dim); margin-top: 1.5rem; letter-spacing: 0.08em; }
+
+    /* REWIND */
+    .rewind-hero { position: relative; height: 320px; overflow: hidden; margin: 0 -2.5rem 2.5rem; }
+    .rewind-hero-img { width: 100%; height: 100%; object-fit: cover; filter: brightness(0.45) saturate(0.7); }
+    .rewind-hero-overlay { position: absolute; inset: 0; background: linear-gradient(to top, var(--bg) 0%, transparent 60%); }
+    .rewind-hero-title { position: absolute; bottom: 2rem; left: 2.5rem; right: 2.5rem; }
+    .rewind-film-title { font-family: 'Playfair Display', serif; font-size: clamp(1.6rem, 4vw, 2.4rem); font-weight: 800; color: #fff; line-height: 1.1; }
+    .rewind-film-meta { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-dim); margin-top: 0.5rem; }
+    .rewind-body { font-size: 0.92rem; line-height: 1.85; color: rgba(232,232,237,0.75); font-weight: 300; }
+    .rewind-body p { margin-bottom: 1.25rem; }
+    .rewind-body h3 { font-family: 'Playfair Display', serif; font-size: 1.1rem; color: #fff; margin: 2rem 0 0.75rem; font-weight: 700; }
+    .rewind-companion { margin-top: 2.5rem; padding: 1.5rem; background: rgba(255,255,255,0.03); border-left: 3px solid var(--gold); }
+    .rewind-companion-label { font-size: 0.6rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.75rem; }
+    .rewind-companion-film { font-family: 'Playfair Display', serif; font-size: 1rem; color: #fff; font-weight: 700; margin-bottom: 0.5rem; }
+    .rewind-companion-body { font-size: 0.84rem; color: var(--text-muted); line-height: 1.7; }
+
+    /* ARGUMENT */
+    .argument-camps { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 2rem; }
+    @media(max-width:650px){ .argument-camps { grid-template-columns: 1fr; } }
+    .argument-camp { background: var(--surface); border: 1px solid var(--border); padding: 2rem; }
+    .argument-camp-label { font-size: 0.6rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-dim); margin-bottom: 1rem; }
+    .argument-camp.a { border-top: 2px solid #f87171; }
+    .argument-camp.b { border-top: 2px solid var(--gold); }
+    .argument-camp-label.a { color: #f87171; }
+    .argument-camp-label.b { color: var(--gold); }
+    .argument-camp-title { font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 700; color: #fff; margin-bottom: 1rem; line-height: 1.25; }
+    .argument-camp-body { font-size: 0.84rem; line-height: 1.8; color: rgba(232,232,237,0.7); font-weight: 300; }
+    .argument-camp-body p { margin-bottom: 0.75rem; }
+    .argument-q { font-family: 'Playfair Display', serif; font-size: 1.1rem; font-style: italic; color: rgba(232,232,237,0.6); line-height: 1.65; margin-bottom: 2rem; padding: 1.5rem; border-left: 3px solid var(--gold); }
+    .vote-prompt { font-size: 0.82rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 1.1rem; }
+    .vote-widget { background: var(--surface); border: 1px solid var(--border); padding: 2rem; margin-top: 1.5rem; }
+    .vote-buttons { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; margin-bottom: 1.5rem; }
+    .vote-btn { padding: 0.85rem 1.25rem; text-align: center; width: 100%; background: transparent; border: 1px solid var(--border); color: var(--text-muted); font-size: 0.82rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; cursor: pointer; font-family: 'Inter', sans-serif; transition: all 0.2s; }
+    .vote-btn:hover:not(:disabled) { border-color: var(--gold); color: var(--text); }
+    .vote-btn.vote-a:hover:not(:disabled) { border-color: #f87171; color: #f87171; }
+    .vote-btn.vote-a.selected { background: rgba(220,38,38,0.15); border-color: #f87171; color: #f87171; }
+    .vote-btn.vote-b.selected { background: var(--gold-dim); border-color: var(--gold); color: var(--gold); }
+    .vote-btn:disabled { cursor: default; opacity: 1; }
+    .vote-results { display: none; }
+    .vote-results.visible { display: block; }
+    .vote-result-row { margin-bottom: 1rem; }
+    .vote-result-label { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.4rem; }
+    .vote-result-name { font-size: 0.75rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; }
+    .vote-result-name.a { color: #f87171; }
+    .vote-result-name.b { color: var(--gold); }
+    .vote-result-pct { font-size: 0.8rem; font-weight: 700; color: var(--text); }
+    .vote-result-track { height: 5px; background: rgba(255,255,255,0.06); border-radius: 3px; overflow: hidden; }
+    .vote-result-fill { height: 100%; border-radius: 3px; width: 0; transition: width 0.7s cubic-bezier(0.4,0,0.2,1); }
+    .vote-result-fill.a { background: linear-gradient(to right, #991b1b, #ef4444); }
+    .vote-result-fill.b { background: linear-gradient(to right, #92400e, #f59e0b); }
+    .vote-count { font-size: 0.72rem; color: var(--text-dim); margin-top: 1rem; }
+    .vote-your-choice { display: none; font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-dim); text-align: center; margin-top: 0.5rem; }
+    .vote-your-choice.visible { display: block; }
+    .vote-your-choice span { color: var(--text-muted); font-weight: 600; }
+
+    /* FLASHPOINT */
+    .flashpoint-hero { position: relative; height: 260px; overflow: hidden; margin: 0 -2.5rem 2.5rem; }
+    .flashpoint-hero-img { width: 100%; height: 100%; object-fit: cover; filter: brightness(0.35) saturate(0.55); }
+    .flashpoint-hero-overlay { position: absolute; inset: 0; background: linear-gradient(to top, var(--bg) 0%, transparent 55%); }
+    .flashpoint-hero-label { position: absolute; top: 2rem; left: 2.5rem; font-size: 0.6rem; font-weight: 700; letter-spacing: 0.25em; text-transform: uppercase; color: #f87171; border: 1px solid rgba(239,68,68,0.3); padding: 0.25rem 0.6rem; background: rgba(239,68,68,0.1); }
+    .flashpoint-film { position: absolute; bottom: 1.75rem; left: 2.5rem; font-family: 'Playfair Display', serif; font-size: 1.3rem; font-weight: 700; color: #fff; }
+    .flashpoint-body { font-size: 0.92rem; line-height: 1.85; color: rgba(232,232,237,0.75); font-weight: 300; }
+    .flashpoint-body p { margin-bottom: 1.25rem; }
+
+    /* SIGNAL */
+    .btc-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+    @media(max-width:650px){ .btc-grid { grid-template-columns: 1fr; } }
+    .btc-card { background: var(--surface); border: 1px solid var(--border); border-top: 2px solid var(--crimson); padding: 2rem; transition: border-color 0.2s; }
+    .btc-card:hover { border-color: rgba(220,38,38,0.2); border-top-color: var(--crimson); }
+    .btc-card.full { grid-column: 1 / -1; }
+    .btc-card-type { font-size: 0.6rem; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: var(--crimson); margin-bottom: 0.75rem; }
+    .btc-card-title { font-family: 'Playfair Display', serif; font-size: 1.05rem; font-weight: 700; color: #fff; margin-bottom: 0.75rem; line-height: 1.3; }
+    .btc-card-body { font-size: 0.84rem; line-height: 1.75; color: rgba(232,232,237,0.7); font-weight: 300; }
+    .btc-source { font-size: 0.65rem; color: var(--text-dim); margin-top: 1rem; letter-spacing: 0.06em; }
+
+    /* WEEKLY PULSE */
+    .pulse-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+    @media(max-width:750px){ .pulse-grid { grid-template-columns: 1fr; } }
+    .pulse-card { background: var(--surface); border: 1px solid var(--border); padding: 0; overflow: hidden; transition: border-color 0.2s, transform 0.2s; }
+    .pulse-card:hover { border-color: rgba(255,255,255,0.1); transform: translateY(-2px); }
+    .pulse-card-img-wrap { position: relative; overflow: hidden; }
+    .pulse-card-img-wrap::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 60%; background: linear-gradient(to bottom, transparent, var(--surface)); pointer-events: none; }
+    .pulse-card-img { width: 100%; aspect-ratio: 16/9; object-fit: cover; display: block; filter: brightness(0.75) saturate(0.8); transition: filter 0.4s; }
+    .pulse-card:hover .pulse-card-img { filter: brightness(0.88) saturate(0.9); }
+    .pulse-card-type { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-dim); margin-bottom: 1rem; padding: 1.25rem 1.75rem 0; }
+    .pulse-card-title { font-family: 'Playfair Display', serif; font-size: 1.05rem; font-weight: 700; color: #fff; padding: 0 1.75rem; margin-bottom: 0.4rem; }
+    .pulse-card-sub { font-size: 0.7rem; color: var(--text-dim); letter-spacing: 0.06em; padding: 0 1.75rem; margin-bottom: 0.75rem; }
+    .pulse-card-body { font-size: 0.84rem; line-height: 1.72; color: rgba(232,232,237,0.7); padding: 0 1.75rem 1.75rem; font-weight: 300; }
+    .gem-badge { display: inline-block; font-size: 0.6rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold); border: 1px solid var(--gold-border); padding: 0.2rem 0.5rem; margin: 0 1.75rem 1.5rem; background: var(--gold-dim); }
+    .divisive-badge { display: inline-block; font-size: 0.6rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: #f87171; border: 1px solid rgba(239,68,68,0.3); padding: 0.2rem 0.5rem; margin: 0 1.75rem 1.5rem; background: rgba(239,68,68,0.08); }
+    /* CONTINENT uses pulse-card */
+    .pulse-card.continent { border-top: 3px solid #a78bfa; }
+    .pulse-card.continent:hover { border-color: rgba(167,139,250,0.3); border-top-color: #a78bfa; }
+    .continent-lang { display: block; font-size: 0.65rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: #a78bfa; padding: 0 1.75rem; margin-bottom: 0.6rem; }
+
+    /* PULSE VOTE */
+    .pulse-vote { margin: 2.5rem 0 0; padding: 2rem; background: rgba(255,255,255,0.03); border: 1px solid var(--border); }
+    .pulse-vote-heading { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--text-muted); text-align: center; margin-bottom: 1.75rem; }
+    .pulse-vote-row { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; align-items: center; gap: 0.5rem; margin-bottom: 0.75rem; padding-bottom: 0.75rem; border-bottom: 1px solid rgba(255,255,255,0.06); }
+    .pulse-vote-row:last-child { margin-bottom: 0; padding-bottom: 0; border-bottom: none; }
+    .pulse-vote-film { font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 700; color: var(--text); }
+    .pulse-vote-counts { font-size: 0.7rem; color: var(--text-dim); margin-top: 0.25rem; letter-spacing: 0.04em; }
+    .pulse-vote-btns { display: contents; }
+    .pulse-vote-btn { padding: 0.6rem 0.5rem; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; cursor: pointer; font-family: 'Inter', sans-serif; background: transparent; border: 1px solid var(--border); color: var(--text-muted); transition: all 0.2s; white-space: nowrap; text-align: center; width: 100%; }
+    .pulse-vote-btn:hover:not(:disabled) { border-color: var(--gold); color: var(--text); }
+    .pulse-vote-btn.yes.selected { background: rgba(34,197,94,0.15); border-color: #22c55e; color: #22c55e; }
+    .pulse-vote-btn.maybe.selected { background: rgba(251,191,36,0.12); border-color: #fbbf24; color: #fbbf24; }
+    .pulse-vote-btn.pass.selected { background: rgba(239,68,68,0.12); border-color: #f87171; color: #f87171; }
+    .pulse-vote-btn:disabled { cursor: default; opacity: 1; }
+    @media(max-width:600px){ .pulse-vote-row { grid-template-columns: 1fr 1fr 1fr; } .pulse-vote-film { grid-column: 1 / -1; } }
+
+    /* ON SCREEN */
+    .tv-tier-label { font-size: 0.6rem; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: var(--text-dim); margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 1px solid var(--border); }
+    .tv-tier-now { color: var(--gold); border-bottom-color: var(--gold-border); }
+    .tv-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 2rem; }
+    @media(max-width:600px){ .tv-grid { grid-template-columns: 1fr; } }
+    .tv-card { background: var(--surface); border: 1px solid var(--border); overflow: hidden; transition: border-color 0.2s, transform 0.2s; }
+    .tv-card.now { border-top: 2px solid var(--gold); }
+    .tv-card.horizon { border-top: 2px solid rgba(96,165,250,0.6); }
+    .tv-card.radar { border-top: 2px solid rgba(167,139,250,0.5); }
+    .tv-card:hover { transform: translateY(-2px); border-color: rgba(255,255,255,0.1); }
+    .tv-card-img-wrap { position: relative; overflow: hidden; margin: -1px -1px 0; }
+    .tv-card-img-wrap::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 55%; background: linear-gradient(to bottom, transparent, var(--surface)); pointer-events: none; }
+    .tv-card-img { width: 100%; aspect-ratio: 16/9; object-fit: cover; display: block; filter: brightness(0.72) saturate(0.75); transition: filter 0.4s; }
+    .tv-card:hover .tv-card-img { filter: brightness(0.88) saturate(0.9); }
+    .tv-card-meta { padding: 1.25rem 1.5rem 0; font-size: 0.65rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-dim); margin-bottom: 0.75rem; }
+    .tv-card-title { padding: 0 1.5rem; font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 700; color: #fff; margin-bottom: 0.6rem; }
+    .tv-card-body { padding: 0 1.5rem 1.5rem; font-size: 0.84rem; line-height: 1.7; color: rgba(232,232,237,0.68); font-weight: 300; }
+
+    /* DISCOVER */
+    .mood-section { margin-bottom: 3rem; }
+    .mood-heading { font-family: 'Playfair Display', serif; font-size: 1.1rem; font-style: italic; color: var(--text); margin-bottom: 0.5rem; font-weight: 700; }
+    .mood-desc { font-size: 0.82rem; color: var(--text-muted); font-style: italic; margin-bottom: 1.5rem; line-height: 1.65; }
+    .mood-films { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+    @media(max-width:650px){ .mood-films { grid-template-columns: 1fr; } }
+    .film-card { background: var(--surface); border: 1px solid var(--border); padding: 1.25rem; position: relative; transition: border-color 0.2s, transform 0.2s; overflow: hidden; }
+    .film-card:hover { border-color: rgba(255,255,255,0.1); transform: translateY(-2px); }
+    .film-card-poster { width: 100%; aspect-ratio: 2/3; object-fit: cover; display: block; margin-bottom: 0.75rem; filter: brightness(0.85) saturate(0.8); }
+    .film-card-title { font-family: 'Playfair Display', serif; font-size: 0.95rem; font-weight: 700; color: #fff; margin-bottom: 0.25rem; line-height: 1.2; }
+    .film-card-year { font-size: 0.65rem; color: var(--text-dim); letter-spacing: 0.1em; margin-bottom: 0.5rem; }
+    .film-card-body { font-size: 0.78rem; line-height: 1.65; color: rgba(232,232,237,0.6); font-weight: 300; display: none; }
+    .film-card:hover .film-card-body { display: block; }
+
+    /* NEWSLETTER / SUPPORT */
+    .nl-section { background: var(--surface); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 3rem 2.5rem; text-align: center; }
+    .nl-label { font-size: 0.6rem; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold); margin-bottom: 1rem; }
+    .nl-heading { font-family: 'Playfair Display', serif; font-size: clamp(1.3rem, 3vw, 1.8rem); font-weight: 700; color: #fff; margin-bottom: 0.75rem; }
+    .nl-sub { font-size: 0.88rem; color: var(--text-muted); font-weight: 300; max-width: 480px; margin: 0 auto 2rem; line-height: 1.7; }
+    .nl-form { display: flex; gap: 0; max-width: 440px; margin: 0 auto; }
+    .nl-input { flex: 1; padding: 0.75rem 1rem; background: var(--bg); border: 1px solid var(--border); border-right: none; color: var(--text); font-family: 'Inter', sans-serif; font-size: 0.88rem; outline: none; }
+    .nl-input:focus { border-color: var(--gold-border); }
+    .nl-btn { padding: 0.75rem 1.25rem; background: var(--gold); border: none; color: #0a0a0f; font-size: 0.75rem; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase; cursor: pointer; font-family: 'Inter', sans-serif; white-space: nowrap; }
+    .nl-btn:hover { background: #fbbf24; }
+    .support-section { max-width: 900px; margin: 0 auto; padding: 3rem 2.5rem; display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+    @media(max-width:650px){ .support-section { grid-template-columns: 1fr; } }
+    .support-card { background: var(--surface); border: 1px solid var(--border); padding: 2rem; text-align: center; }
+    .support-card-icon { font-size: 2rem; margin-bottom: 1rem; }
+    .support-card-title { font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 700; color: #fff; margin-bottom: 0.75rem; }
+    .support-card-body { font-size: 0.84rem; color: var(--text-muted); line-height: 1.7; margin-bottom: 1.5rem; }
+
+    /* FOOTER */
+    footer { border-top: 1px solid var(--border); padding: 2rem 2.5rem; }
+    .footer-inner { max-width: 900px; margin: 0 auto; display: flex; flex-wrap: wrap; gap: 1.5rem; justify-content: space-between; align-items: flex-start; }
+    .footer-logo { font-family: 'Playfair Display', serif; font-size: 1.2rem; font-weight: 800; color: #fff; text-decoration: none; }
+    .footer-logo span { color: var(--gold); }
+    .footer-right { text-align: right; }
+    .footer-note { font-size: 0.72rem; color: var(--text-dim); }
+    .footer-legal { font-size: 0.65rem; color: var(--text-dim); margin-top: 0.5rem; line-height: 1.6; }
+    .footer-legal a { color: var(--text-muted); text-decoration: underline; }
+    .footer-links { font-size: 0.72rem; margin-top: 0.6rem; display: flex; gap: 1rem; flex-wrap: wrap; justify-content: flex-end; }
+    .footer-links a { color: var(--text-muted); text-decoration: none; }
+    .footer-links a:hover { color: var(--gold); }
+
+    /* STICKY BAR */
+    .sticky-bar { position: fixed; bottom: 0; left: 0; right: 0; z-index: 200; background: rgba(10,10,18,0.97); border-top: 1px solid var(--border); padding: 0.75rem 2rem; display: flex; align-items: center; justify-content: space-between; gap: 1rem; transform: translateY(100%); transition: transform 0.4s ease; backdrop-filter: blur(12px); }
+    .sticky-bar.visible { transform: translateY(0); }
+    .sticky-bar-left { display: flex; align-items: center; gap: 1rem; flex: 1; }
+    .sticky-bar-label { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-dim); white-space: nowrap; }
+    .sticky-bar-form { display: flex; gap: 0; flex: 1; max-width: 320px; }
+    .sticky-bar-input { flex: 1; padding: 0.55rem 0.75rem; background: var(--surface); border: 1px solid var(--border); border-right: none; color: var(--text); font-family: 'Inter', sans-serif; font-size: 0.82rem; outline: none; min-width: 0; }
+    .sticky-bar-btn { padding: 0.55rem 0.85rem; background: var(--gold); border: none; color: #0a0a0f; font-size: 0.7rem; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; cursor: pointer; font-family: 'Inter', sans-serif; white-space: nowrap; }
+    .sticky-bar-right { display: flex; align-items: center; gap: 0.75rem; }
+    .sticky-bar-kofi { display: inline-flex; align-items: center; gap: 0.4rem; padding: 0.5rem 0.9rem; background: transparent; border: 1px solid var(--border); color: var(--text-muted); font-size: 0.7rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; text-decoration: none; transition: all 0.2s; white-space: nowrap; }
+    .sticky-bar-kofi:hover { border-color: var(--gold-border); color: var(--gold); }
+    .sticky-bar-close { background: none; border: none; color: var(--text-dim); cursor: pointer; font-size: 1rem; padding: 0.25rem; line-height: 1; }
+    @media(max-width:650px){ .sticky-bar-form { display: none; } }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="index.html" class="nav-logo">Screen<span>Share</span></a>
+    <div class="nav-links">
+      <a href="#rewind">Rewind</a>
+      <a href="#argument">Argument</a>
+      <a href="#flashpoint">Flashpoint</a>
+      <a href="#pulse">Pulse</a>
+      <a href="#tv">On Screen</a>
+      <a href="#continent">The Continent</a>
+      <a href="#discover">Discover</a>
+      <span class="nav-issue">Issue 003</span>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-backdrop"></div>
+    <div class="hero-content">
+      <div class="hero-eyebrow">
+        <span class="hero-eyebrow-label">Screen Share</span>
+        <span class="hero-eyebrow-issue">Issue 003 &mdash; March 2026</span>
+      </div>
+      <h1 class="hero-title">Truth<span class="hero-title-period">.</span></h1>
+      <div class="hero-rule"></div>
+      <p class="hero-sub">The camera was never just a witness. It was always an argument. The Thin Blue Line, JFK, Ripley, Adolescence &mdash; and twenty-one more films about the gap between what happened and what we&rsquo;re told.</p>
+      <div class="hero-meta">
+        <div class="hero-meta-film">This week &mdash; <span>The Thin Blue Line (1988)</span></div>
+        <a href="#rewind" class="btn-primary">Read the issue &darr;</a>
+        <a href="index.html" class="btn-secondary">All issues</a>
+      </div>
+    </div>
+    <div class="hero-scroll-hint">
+      <div class="hero-scroll-arrow"></div>
+      <span>Scroll</span>
+    </div>
+  </section>
+
+  <!-- EDITOR'S NOTE -->
+  <div class="section-divider"></div>
+  <section class="section" id="editors-note">
+    <div class="editors-note reveal">
+      <div class="editors-note-label">Editor&rsquo;s Note</div>
+      <div class="editors-note-body">
+        <p>There&rsquo;s a strange comfort in learning that cinema has been worried about this longer than we have. The Thin Blue Line came out in 1988 &mdash; a film built from re-enactments, contradictions, and a Philip Glass score that made the whole thing feel like a fever dream of justice. Errol Morris didn&rsquo;t point a camera at the truth and press record.</p>
+        <p>He made a film that functioned like a legal argument: methodical, obsessive, built on the premise that if you look at something long enough and from enough angles, something true will eventually surface. It got Randall Adams released from prison. The camera as instrument of justice rather than witness to it. That felt important to sit with, particularly right now, when the shows I&rsquo;ve been watching &mdash; Ripley, Adolescence, Apple Cider Vinegar &mdash; are all fundamentally about the gap between performance and fact. How long someone can maintain a story. How much we want to believe it. These aren&rsquo;t just thriller mechanics. They&rsquo;re the question the whole issue is circling.</p>
+        <p>What does it take to actually know something?</p>
+      </div>
+      <div class="editors-note-sign">Screen Share &mdash; Issue 003</div>
+    </div>
+  </section>
+
+  <!-- THE REWIND -->
+  <div class="section-divider"></div>
+  <section id="rewind" class="section">
+    <div class="section-eyebrow reveal">
+      <span class="section-eyebrow-label">The Rewind</span>
+      <span class="section-eyebrow-pipe">|</span>
+      <span class="section-eyebrow-desc">From the archive &mdash; why this film, why now</span>
+      <button class="section-about-btn" data-about="rewind" title="What is this section?">i</button>
+    </div>
+    <div class="section-about-panel" id="about-rewind">
+      <div class="section-about-inner">One film from the archive that speaks to right now. Not nostalgia &mdash; relevance. The film is chosen for what it still has to say about the week&rsquo;s theme, not for sentiment.</div>
+    </div>
+    <div class="rewind-hero reveal">
+      <img class="rewind-hero-img" src="https://image.tmdb.org/t/p/w1280/9ndhlUu1VQ44pX5dVFo5Y19KqAl.jpg" alt="The Thin Blue Line" loading="eager" />
+      <div class="rewind-hero-overlay"></div>
+      <div class="rewind-hero-title">
+        <div class="rewind-film-title">The Thin Blue Line</div>
+        <div class="rewind-film-meta">1988 &mdash; Dir. Errol Morris &mdash; MUBI / Apple TV+</div>
+      </div>
+    </div>
+    <div class="rewind-body reveal">
+      <p>In 1976, a Dallas police officer was shot dead during a routine traffic stop. A drifter named Randall Adams was convicted and sentenced to death. He was almost certainly innocent. Errol Morris spent two years pulling the case apart, and then did something no documentary filmmaker had done before: he put it back together &mdash; not as it happened, but as it might have happened, over and over, from different angles, under different light. <em>The Thin Blue Line</em> didn&rsquo;t just expose a wrongful conviction. It got Adams released. And it did so by constructing fictions.</p>
+      <p>That paradox is where the film lives, and it&rsquo;s never fully resolved &mdash; which is why, almost forty years later, it still refuses to sit still.</p>
+      <h3>What Morris Did That No One Else Would</h3>
+      <p>Documentaries, by 1988, had a settled grammar: talking heads, archival footage, narration that held the viewer&rsquo;s hand toward a conclusion. Morris threw that out. <em>The Thin Blue Line</em> uses no narrator. It lets its subjects contradict each other without editorial intervention. And it reconstructs the night of the murder repeatedly &mdash; the same milkshake cup, the same stretch of road, the same gunshot &mdash; each time slightly differently, each time implicating a different version of events.</p>
+      <p>Philip Glass&rsquo;s score makes this stranger still. It doesn&rsquo;t soothe or editorialize. It accumulates, cycling through the same melodic fragments like a machine that can&rsquo;t stop asking the same question. The effect is hypnotic in a way that feels almost coercive &mdash; you&rsquo;re being pulled somewhere, but the destination keeps shifting.</p>
+      <h3>Why This Matters Now, in Particular</h3>
+      <p>We are, in 2026, some years into a genuine epistemological crisis. Footage of events that didn&rsquo;t happen is generated in seconds. Voices are cloned. The dominant anxiety is that we can no longer trust what we see. Morris anticipated this &mdash; not the technology, but the underlying problem &mdash; in 1988. <em>The Thin Blue Line</em> argued that there is no neutral footage, no unmediated image, no reconstruction that doesn&rsquo;t carry the fingerprints of the person doing the reconstructing. The camera was never just a witness. It was always an argument.</p>
+      <p>Here&rsquo;s the thing that should make you uncomfortable: the film worked. Randall Adams walked free, in part because of what Morris built. And what Morris built was a series of staged images, lit and scored for maximum effect, designed to lead you to a conclusion. Does that make it truth or manipulation? The honest answer is both. <em>The Thin Blue Line</em> is a film that got an innocent man freed by being, in certain technical senses, dishonest about its own nature. If that makes you uneasy, it should. It should also make you think about every documentary you&rsquo;ve ever trusted.</p>
+    </div>
+    <div class="rewind-companion reveal">
+      <div class="rewind-companion-label">Watch Alongside</div>
+      <div class="rewind-companion-film">Standard Operating Procedure (2008, dir. Errol Morris)</div>
+      <div class="rewind-companion-body">Morris turns the same forensic lens on the Abu Ghraib photographs &mdash; images the world thought it understood &mdash; and dismantles that certainty completely. Where <em>The Thin Blue Line</em> asks whether a reconstruction can reveal truth, <em>Standard Operating Procedure</em> asks whether real photographs can conceal it. Together, they form the sharpest argument in cinema about the limits of the image as evidence.</div>
+    </div>
+  </section>
+
+  <!-- THE ARGUMENT -->
+  <div class="section-divider"></div>
+  <section id="argument" class="section">
+    <div class="section-eyebrow reveal">
+      <span class="section-eyebrow-label">The Argument</span>
+      <span class="section-eyebrow-pipe">|</span>
+      <span class="section-eyebrow-desc">Two readings, one question, no easy answer</span>
+      <button class="section-about-btn" data-about="argument" title="What is this section?">i</button>
+    </div>
+    <div class="section-about-panel" id="about-argument">
+      <div class="section-about-inner">Every issue we pick one interpretive question and lay out two genuine positions. Not a straw man and a rebuttal &mdash; two real arguments you might actually hold. Vote and see where readers land.</div>
+    </div>
+    <div class="argument-q reveal">&ldquo;Documentaries manipulate. Fiction illuminates. We&rsquo;ve always known this &mdash; and ignored it. Now that AI can fabricate footage indistinguishable from the real thing, does the lie finally matter?&rdquo;</div>
+    <div class="argument-camps reveal">
+      <div class="argument-camp a">
+        <div class="argument-camp-label a">Reading A</div>
+        <div class="argument-camp-title">The lie always mattered &mdash; we chose complicity</div>
+        <div class="argument-camp-body">
+          <p>The contract between documentary and audience has never been what we pretended it was. When Errol Morris reconstructed crime scenes for <em>The Thin Blue Line</em>, complete with dramatised gunshots and slow-motion milkshakes, audiences accepted it as investigative truth. When Robert Flaherty staged Nanook&rsquo;s igloo scenes &mdash; cutting away walls so the camera could fit, asking his subjects to perform a life they no longer lived &mdash; nobody called it fiction. We weren&rsquo;t deceived. We cooperated.</p>
+          <p>AI fabricated footage doesn&rsquo;t introduce manipulation into documentary. It removes the deniability that made manipulation comfortable. The question isn&rsquo;t whether we&rsquo;ve been lied to. It&rsquo;s whether we can keep pretending we didn&rsquo;t ask for it.</p>
+        </div>
+      </div>
+      <div class="argument-camp b">
+        <div class="argument-camp-label b">Reading B</div>
+        <div class="argument-camp-title">AI changes nothing fundamental &mdash; truth was always negotiated</div>
+        <div class="argument-camp-body">
+          <p><em>Come and See</em> &mdash; the most devastating film ever made about the Second World War &mdash; features no archival footage, no survivors&rsquo; testimony. Shot forty years after the events it depicts. It is, by almost any measure, truer to what happened on the Eastern Front than anything captured at the time. <em>The Battle of Algiers</em> was mistaken by so many audiences for a documentary that the filmmakers added a title card clarifying it wasn&rsquo;t.</p>
+          <p>The current panic about AI-generated footage assumes there was once a golden age when documentary meant something pure. There wasn&rsquo;t. The panic is real, but it&rsquo;s not about truth &mdash; it&rsquo;s about power: who gets to fabricate, with what resources, in whose interest.</p>
+        </div>
+      </div>
+    </div>
+    <div class="vote-widget reveal" id="voteWidget003">
+      <div class="vote-prompt">Which reading lands for you?</div>
+      <div class="vote-buttons" id="voteButtons003">
+        <button class="vote-btn vote-a" id="voteBtnA003" onclick="castVote003('a')">The lie always mattered</button>
+        <button class="vote-btn vote-b" id="voteBtnB003" onclick="castVote003('b')">Truth was always negotiated</button>
+      </div>
+      <div class="vote-results" id="voteResults003">
+        <div class="vote-result-row">
+          <div class="vote-result-label"><span class="vote-result-name a">Reading A</span><span class="vote-result-pct" id="pctA003">0%</span></div>
+          <div class="vote-result-track"><div class="vote-result-fill a" id="fillA003"></div></div>
+        </div>
+        <div class="vote-result-row">
+          <div class="vote-result-label"><span class="vote-result-name b">Reading B</span><span class="vote-result-pct" id="pctB003">0%</span></div>
+          <div class="vote-result-track"><div class="vote-result-fill b" id="fillB003"></div></div>
+        </div>
+        <div class="vote-count" id="voteCount003"></div>
+        <div class="vote-your-choice" id="voteYourChoice003">Your vote: <span id="voteChoiceLabel003"></span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FLASHPOINT -->
+  <div class="section-divider"></div>
+  <section id="flashpoint" class="section">
+    <div class="section-eyebrow reveal">
+      <span class="section-eyebrow-label">Flashpoint</span>
+      <span class="section-eyebrow-pipe">|</span>
+      <span class="section-eyebrow-desc">The moment that still divides</span>
+      <button class="section-about-btn" data-about="flashpoint" title="What is this section?">i</button>
+    </div>
+    <div class="section-about-panel" id="about-flashpoint">
+      <div class="section-about-inner">One moment in cinema history that still divides audiences &mdash; a scene, a release, or an argument that never quite resolved.</div>
+    </div>
+    <div class="flashpoint-hero reveal">
+      <img class="flashpoint-hero-img" src="https://image.tmdb.org/t/p/w1280/zNjp6eolIcpGx11tDbE5eekeHEG.jpg" alt="JFK" loading="eager" />
+      <div class="flashpoint-hero-overlay"></div>
+      <div class="flashpoint-hero-label">Flashpoint</div>
+      <div class="flashpoint-film">JFK (1991, dir. Oliver Stone)</div>
+    </div>
+    <div class="flashpoint-body reveal">
+      <p>Oliver Stone&rsquo;s <em>JFK</em> arrived in December 1991 with the force of something that wanted to be believed. The film reconstructs the assassination of President Kennedy through the eyes of New Orleans district attorney Jim Garrison, and it does so using every instrument in cinema&rsquo;s persuasion toolkit: handheld urgency, grainy archival-style inserts, rapid-fire montage, re-enacted footage cut against real documentary material until the two become nearly indistinguishable. Stone invented composite characters who speak to Garrison in parking garages and hotel rooms, delivering exposition as revelation. He staged scenarios he openly acknowledged were speculative, then filmed them with the visual grammar of fact. The centrepiece &mdash; a meticulous reconstruction of Dealey Plaza arguing a second shooter on the grassy knoll &mdash; was presented with the confidence of a closing argument. When the film grossed over $200 million worldwide and landed eight Academy Award nominations, it was clear Stone hadn&rsquo;t made a fringe document. He had made a mainstream event. The political fallout was immediate: by 1992, Congress had passed the JFK Records Collection Act, mandating the release of classified government documents. A Hollywood film had moved legislation.</p>
+      <p>What remains unresolved is the question the film smuggled in under its three-hour runtime: what does a filmmaker owe an audience when the story they&rsquo;re telling cannot be verified? Stone has been candid that <em>JFK</em> is not a documentary &mdash; that dramatic licence was taken. But the film never communicates this to the viewer sitting in the dark. Its style insists otherwise. When cinema borrows the aesthetic vocabulary of journalism &mdash; the shaky cam, the found-footage texture, the procedural momentum &mdash; it carries an implicit promise. Audiences read these signals as markers of credibility. When that vocabulary is deployed in service of a theory that remains, decades later, contested and unproven, the line between artistic interpretation and manufactured certainty starts to blur. The defenders of <em>JFK</em> argue it opened a conversation that needed opening, that scepticism about the Warren Commission was entirely legitimate, that art has always been allowed to ask destabilising questions in destabilising ways. The critics argue that millions of people left those cinemas not with questions but with answers &mdash; and that Stone knew they would. Both things can be true at once. That&rsquo;s what makes <em>JFK</em> a genuinely difficult film to hold, not because of what it claims, but because of how fluently it claims it.</p>
+    </div>
+  </section>
+
+  <!-- THE SIGNAL -->
+  <div class="section-divider"></div>
+  <section id="signal" class="section">
+    <div class="section-eyebrow reveal">
+      <span class="section-eyebrow-label">The Signal</span>
+      <span class="section-eyebrow-pipe">|</span>
+      <span class="section-eyebrow-desc">AI in film &mdash; three stories this week</span>
+      <button class="section-about-btn" data-about="signal" title="What is this section?">i</button>
+    </div>
+    <div class="section-about-panel" id="about-signal">
+      <div class="section-about-inner">Three industry stories every week: a Deal, a Resistance, and a Tool &mdash; tracking how AI, money, and power are reshaping what gets made and how.</div>
+    </div>
+    <div class="btc-grid reveal">
+      <div class="btc-card">
+        <div class="btc-card-type">Deal</div>
+        <div class="btc-card-title">Resemble AI Raises $13M to Fight Synthetic Media Fraud</div>
+        <div class="btc-card-body">In February 2026, deepfake detection startup Resemble AI closed a $13 million strategic round backed by Sony Innovation Fund, Google&rsquo;s AI Futures Fund, Comcast Ventures, and Okta Ventures. The funding accelerates global rollout of DETECT-3B Omni, the company&rsquo;s enterprise detection model claiming 98% accuracy across more than 38 languages. Deepfake-related fraud hit $1.56 billion in losses in 2025. The investor list &mdash; spanning hardware, software, and media &mdash; signals the industry now treats authentication as infrastructure, not a niche.</div>
+        <div class="btc-source">Source: Los Angeles Times</div>
+      </div>
+      <div class="btc-card">
+        <div class="btc-card-type">Resistance</div>
+        <div class="btc-card-title">Archival Producers Alliance Sets AI Standards for Documentary</div>
+        <div class="btc-card-body">At IDFA in November 2025, members of the Archival Producers Alliance published a comprehensive set of Best Practices for the use of generative AI in archive-led documentary filmmaking. The guiding principle is transparency: audiences must know when AI has been used. The International Documentary Association has since hosted sessions on the guidelines. It&rsquo;s the first formal industry framework to draw a line between AI as a tool and AI as a fabrication.</div>
+        <div class="btc-source">Source: Variety, MIT OpenDocLab</div>
+      </div>
+      <div class="btc-card full">
+        <div class="btc-card-type">Tool</div>
+        <div class="btc-card-title">Sony Puts a Cryptographic Signature in Your Camera</div>
+        <div class="btc-card-body">Sony became the first camera manufacturer to embed C2PA content credentials directly into video files &mdash; via firmware updates to the FX3, FX30, a9 III, a1 II, and the professional PXW-Z300 camcorder (October&ndash;November 2025). Each clip gets a tamper-evident digital signature at the point of capture, creating a verifiable chain of provenance from camera to edit suite to distribution. For documentary and news cinematographers, it&rsquo;s the clearest practical answer yet to the question: how do you prove this footage is real?</div>
+        <div class="btc-source">Source: DPReview, PetaPixel</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WEEKLY PULSE -->
+  <div class="section-divider"></div>
+  <section id="pulse" class="section">
+    <div class="section-eyebrow reveal">
+      <span class="section-eyebrow-label">Weekly Pulse</span>
+      <span class="section-eyebrow-pipe">|</span>
+      <span class="section-eyebrow-desc">What the conversation looked like this week</span>
+      <button class="section-about-btn" data-about="pulse" title="What is this section?">i</button>
+    </div>
+    <div class="section-about-panel" id="about-pulse">
+      <div class="section-about-inner">Three films in cinemas and on streaming this week. Most talked-about, most essential, and the one most people missed. Signal versus noise.</div>
+    </div>
+    <div class="pulse-grid reveal">
+      <div class="pulse-card">
+        <div class="pulse-card-img-wrap">
+          <img class="pulse-card-img" src="https://image.tmdb.org/t/p/w780/P82NAcEsLIYgQtrtn36tYsj41m.jpg" alt="" loading="eager" />
+        </div>
+        <div class="pulse-card-type">In Cinemas Now &mdash; IMAX</div>
+        <div class="pulse-card-title">Project Hail Mary</div>
+        <div class="pulse-card-sub">Phil Lord &amp; Christopher Miller / Amazon MGM, 2026</div>
+        <div class="pulse-card-body">A man wakes up alone in deep space with no memory of who he is or why he&rsquo;s there. Lord and Miller&rsquo;s adaptation of Andy Weir&rsquo;s novel opens in radical disorientation: Ryland Grace must reconstruct himself from evidence, using the scientific method as a kind of existential detective work. Truth as something pieced together rather than simply known.</div>
+        <span class="gem-badge">In cinemas now</span>
+      </div>
+      <div class="pulse-card">
+        <div class="pulse-card-img-wrap">
+          <img class="pulse-card-img" src="https://image.tmdb.org/t/p/w780/kszooR7v1TLFM4pzx6IkKq2jDAN.jpg" alt="" loading="eager" />
+        </div>
+        <div class="pulse-card-type">Most Essential &mdash; Netflix</div>
+        <div class="pulse-card-title">Anatomy of a Fall</div>
+        <div class="pulse-card-sub">Justine Triet / Palme d&rsquo;Or Winner, 2023</div>
+        <div class="pulse-card-body">In Justine Triet&rsquo;s Palme d&rsquo;Or masterwork, a woman is tried for her husband&rsquo;s death in the French Alps. The courtroom becomes a machine for manufacturing competing truths &mdash; audio recordings played, reinterpreted, weaponised. The only eyewitness is their partially-sighted son. Now on Netflix: essential.</div>
+        <span class="gem-badge">Streaming on Netflix</span>
+      </div>
+      <div class="pulse-card">
+        <div class="pulse-card-img-wrap">
+          <img class="pulse-card-img" src="https://image.tmdb.org/t/p/w780/9ndhlUu1VQ44pX5dVFo5Y19KqAl.jpg" alt="" loading="eager" />
+        </div>
+        <div class="pulse-card-type">One to Find &mdash; BritBox</div>
+        <div class="pulse-card-title">The Lady</div>
+        <div class="pulse-card-sub">Lee Haven Jones / BritBox, 2026</div>
+        <div class="pulse-card-body">Lee Haven Jones&rsquo;s four-part drama dramatises the story of Jane Andrews, royal dresser to Sarah Ferguson and, in 2001, a convicted murderer. Andrews refused any involvement &mdash; making <em>The Lady</em> a reconstruction built entirely from the outside. A case study in whose truth gets told, and how class and proximity to power shapes what survives as fact.</div>
+        <span class="gem-badge">Streaming on BritBox</span>
+      </div>
+    </div>
+
+    <!-- PULSE VOTE -->
+    <div class="pulse-vote reveal">
+      <div class="pulse-vote-heading">Are you watching?</div>
+      <div class="pulse-vote-row">
+        <div>
+          <div class="pulse-vote-film">Project Hail Mary</div>
+          <div class="pulse-vote-counts" id="pv-hailmary-counts"></div>
+        </div>
+        <div class="pulse-vote-btns">
+          <button class="pulse-vote-btn yes"   onclick="pulseVote('hailmary','yes')"   id="pv-hailmary-yes">Yes</button>
+          <button class="pulse-vote-btn maybe" onclick="pulseVote('hailmary','maybe')" id="pv-hailmary-maybe">Maybe</button>
+          <button class="pulse-vote-btn pass"  onclick="pulseVote('hailmary','pass')"  id="pv-hailmary-pass">Pass</button>
+        </div>
+      </div>
+      <div class="pulse-vote-row">
+        <div>
+          <div class="pulse-vote-film">Anatomy of a Fall</div>
+          <div class="pulse-vote-counts" id="pv-anatomy-counts"></div>
+        </div>
+        <div class="pulse-vote-btns">
+          <button class="pulse-vote-btn yes"   onclick="pulseVote('anatomy','yes')"   id="pv-anatomy-yes">Yes</button>
+          <button class="pulse-vote-btn maybe" onclick="pulseVote('anatomy','maybe')" id="pv-anatomy-maybe">Maybe</button>
+          <button class="pulse-vote-btn pass"  onclick="pulseVote('anatomy','pass')"  id="pv-anatomy-pass">Pass</button>
+        </div>
+      </div>
+      <div class="pulse-vote-row">
+        <div>
+          <div class="pulse-vote-film">The Lady</div>
+          <div class="pulse-vote-counts" id="pv-lady-counts"></div>
+        </div>
+        <div class="pulse-vote-btns">
+          <button class="pulse-vote-btn yes"   onclick="pulseVote('lady','yes')"   id="pv-lady-yes">Yes</button>
+          <button class="pulse-vote-btn maybe" onclick="pulseVote('lady','maybe')" id="pv-lady-maybe">Maybe</button>
+          <button class="pulse-vote-btn pass"  onclick="pulseVote('lady','pass')"  id="pv-lady-pass">Pass</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ON SCREEN: TV -->
+  <div class="section-divider"></div>
+  <section id="tv" class="section">
+    <div class="section-eyebrow reveal">
+      <span class="section-eyebrow-label">On Screen</span>
+      <span class="section-eyebrow-pipe">|</span>
+      <span class="section-eyebrow-desc">Television worth your time</span>
+      <button class="section-about-btn" data-about="tv" title="What is this section?">i</button>
+    </div>
+    <div class="section-about-panel" id="about-tv">
+      <div class="section-about-inner">Television worth your time. Airing now, on the horizon, and under the radar &mdash; across every platform, curated by what&rsquo;s actually good.</div>
+    </div>
+
+    <div class="tv-tier-label tv-tier-now reveal">Airing Now</div>
+    <div class="tv-grid reveal">
+      <div class="tv-card now">
+        <div class="tv-card-img-wrap"><img class="tv-card-img" src="https://image.tmdb.org/t/p/w780/ixgFmf1X59PUZam2qbAfskx2gQr.jpg" alt="" loading="eager" /></div>
+        <div class="tv-card-meta">Apple TV+ &middot; Season 2 &middot; Finale this week</div>
+        <div class="tv-card-title">Severance</div>
+        <div class="tv-card-body">The show built entirely on the premise that truth is what you&rsquo;re denied. Season 2 digs deeper into Lumon&rsquo;s architecture of institutional deception. The severed mind as the perfect metaphor for a culture of managed ignorance.</div>
+      </div>
+      <div class="tv-card now">
+        <div class="tv-card-img-wrap"><img class="tv-card-img" src="https://image.tmdb.org/t/p/w780/llZodlkVKRkTdUsiRxvn8h80hhx.jpg" alt="" loading="eager" /></div>
+        <div class="tv-card-meta">Netflix &middot; Limited Series &middot; Streaming now</div>
+        <div class="tv-card-title">Adolescence</div>
+        <div class="tv-card-body">Shot in unbroken single takes, each episode follows a different participant in the investigation of a 13-year-old accused of murder. A forensic portrait of how truth fractures across testimony. No one is lying, exactly. Everyone has a different piece of it.</div>
+      </div>
+      <div class="tv-card now">
+        <div class="tv-card-img-wrap"><img class="tv-card-img" src="https://image.tmdb.org/t/p/w780/t4JPNpET4aEmMA4Fg7Bfc7tI6jQ.jpg" alt="" loading="eager" /></div>
+        <div class="tv-card-meta">Netflix &middot; Limited Series &middot; Streaming now</div>
+        <div class="tv-card-title">Zero Day</div>
+        <div class="tv-card-body">Robert De Niro as a former US president chairing a national inquiry into a catastrophic cyberattack. Truth here is the thing every power player wants to own &mdash; and the one thing the inquiry was never really designed to find.</div>
+      </div>
+      <div class="tv-card now">
+        <div class="tv-card-img-wrap"><img class="tv-card-img" src="https://image.tmdb.org/t/p/w780/c2r31iNC052gj1noKDntFEh1VHX.jpg" alt="" loading="eager" /></div>
+        <div class="tv-card-meta">Netflix &middot; Limited Series &middot; Streaming now</div>
+        <div class="tv-card-title">Apple Cider Vinegar</div>
+        <div class="tv-card-body">Based on the true story of wellness influencer Belle Gibson, who fabricated a cancer diagnosis and built an empire on it. How a constructed narrative becomes belief, belief becomes brand, and brand becomes too lucrative for anyone to question.</div>
+      </div>
+    </div>
+
+    <div class="tv-tier-label reveal">Worth Your Time</div>
+    <div class="tv-grid reveal">
+      <div class="tv-card horizon">
+        <div class="tv-card-img-wrap"><img class="tv-card-img" src="https://image.tmdb.org/t/p/w780/fNA0mMdHlRwVrQSRlYONmSAO8Su.jpg" alt="" loading="eager" /></div>
+        <div class="tv-card-meta">Paramount+ &middot; Season 1 &middot; Streaming now</div>
+        <div class="tv-card-title">The Agency</div>
+        <div class="tv-card-body">Michael Fassbender as a CIA operative whose deep-cover identity and real self collide. Espionage as a study in constructed selfhood &mdash; identity as operational fiction, intimacy as the one thing you can&rsquo;t fully surveil. Adapted from French masterwork <em>Le Bureau des L&eacute;gendes</em>.</div>
+      </div>
+      <div class="tv-card horizon">
+        <div class="tv-card-img-wrap"><img class="tv-card-img" src="https://image.tmdb.org/t/p/w780/4XccmjsOmQZw8S2iW1wvlvmb5v1.jpg" alt="" loading="eager" /></div>
+        <div class="tv-card-meta">Apple TV+ &middot; Season 2 &middot; Streaming now</div>
+        <div class="tv-card-title">Silo</div>
+        <div class="tv-card-body">Engineer Juliette Nichols goes deeper into the one question the silo is designed to prevent: what is the world outside, and who decided that knowledge was forbidden? Season 2 leans hard into the mechanics of information control.</div>
+      </div>
+      <div class="tv-card horizon">
+        <div class="tv-card-img-wrap"><img class="tv-card-img" src="https://image.tmdb.org/t/p/w780/j4nrXoHEEHnEgMyoFXUSvXYALFh.jpg" alt="" loading="eager" /></div>
+        <div class="tv-card-meta">Apple TV+ &middot; Currently airing</div>
+        <div class="tv-card-title">The Studio</div>
+        <div class="tv-card-body">Seth Rogen&rsquo;s Hollywood satire about a studio head navigating the chasm between artistic integrity and commercial survival. How the film industry manufactures conviction, sells manufactured reality, and rewards the confident bluff over the honest doubt.</div>
+      </div>
+      <div class="tv-card horizon">
+        <div class="tv-card-img-wrap"><img class="tv-card-img" src="https://image.tmdb.org/t/p/w780/q71au2YjcwXBMZKNzNgjK7RZ3Hs.jpg" alt="" loading="eager" /></div>
+        <div class="tv-card-meta">Paramount+ &middot; Season 1 &middot; Streaming now</div>
+        <div class="tv-card-title">Landman</div>
+        <div class="tv-card-body">Taylor Sheridan&rsquo;s oil-industry drama follows a fixer whose job is to make inconvenient truths disappear &mdash; quietly, legally, efficiently. The show lives in the gap between corporate narrative and field reality. Truth here is always a liability.</div>
+      </div>
+    </div>
+
+    <div class="tv-tier-label reveal">On the Radar</div>
+    <div class="tv-grid reveal">
+      <div class="tv-card radar">
+        <div class="tv-card-img-wrap"><img class="tv-card-img" src="https://image.tmdb.org/t/p/w780/bDfboQUb45Cv9MYyVBDZw8M8xSM.jpg" alt="" loading="eager" /></div>
+        <div class="tv-card-meta">Apple TV+ &middot; Seasons 1&ndash;4 &middot; Season 5 in production</div>
+        <div class="tv-card-title">Slow Horses</div>
+        <div class="tv-card-body">Gary Oldman leads the finest espionage ensemble on television as disgraced MI5 officers handling the cases the Service would rather didn&rsquo;t exist. Every season unpicks a different lie being maintained by someone with institutional authority and a reason to keep the lid on.</div>
+      </div>
+      <div class="tv-card radar">
+        <div class="tv-card-img-wrap"><img class="tv-card-img" src="https://image.tmdb.org/t/p/w780/erpjqVdJLpDQJjsbxaSJmMwvcqd.jpg" alt="" loading="eager" /></div>
+        <div class="tv-card-meta">Netflix &middot; Season 1 &middot; Streaming now</div>
+        <div class="tv-card-title">Ripley</div>
+        <div class="tv-card-body">Andrew Scott as Tom Ripley. Shot in black and white by Steven Zaillian &mdash; eight episodes, a man who invents himself from scratch. Identity theft, forgery, and an entire life constructed on the audacity of a sustained lie. The most beautifully made thing on Netflix in the last two years.</div>
+      </div>
+      <div class="tv-card radar">
+        <div class="tv-card-img-wrap"><img class="tv-card-img" src="https://image.tmdb.org/t/p/w780/rhwN3mIN89zlDveR0gv0VkrspXa.jpg" alt="" loading="eager" /></div>
+        <div class="tv-card-meta">Netflix &middot; Limited Series &middot; Streaming now</div>
+        <div class="tv-card-title">The Residence</div>
+        <div class="tv-card-body">A murder in the White House. Every guest at a state dinner is a suspect. Shonda Rhimes&rsquo; gleefully eccentric whodunit earns its place here because its setting is the ultimate stage of constructed public reality &mdash; a building where every room has a different official version.</div>
+      </div>
+      <div class="tv-card radar">
+        <div class="tv-card-img-wrap"><img class="tv-card-img" src="https://image.tmdb.org/t/p/w780/v6f9FUDDQfGIv8MLRQwlL0zvRjI.jpg" alt="" loading="eager" /></div>
+        <div class="tv-card-meta">Netflix &middot; Season 2 &middot; Streaming now</div>
+        <div class="tv-card-title">The Diplomat</div>
+        <div class="tv-card-body">Keri Russell&rsquo;s accidental ambassador navigates international crisis with competing intelligence briefings and unreliable allies. Season 2 sharpens the show&rsquo;s central insight: in diplomacy, truth is always the negotiating position you haven&rsquo;t disclosed yet.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- THE CONTINENT -->
+  <div class="section-divider"></div>
+  <section id="continent" class="section">
+    <div class="section-eyebrow reveal">
+      <span class="section-eyebrow-label">The Continent</span>
+      <span class="section-eyebrow-pipe">|</span>
+      <span class="section-eyebrow-desc">Subtitles Required</span>
+      <button class="section-about-btn" data-about="continent" title="What is this section?">i</button>
+    </div>
+    <div class="section-about-panel" id="about-continent">
+      <div class="section-about-inner">The best television being made right now is frequently not in English. This section exists because subtitle aversion is costing you some of the sharpest writing, directing, and performance in the medium. No excuses.</div>
+    </div>
+    <div class="tv-grid reveal">
+      <div class="pulse-card continent">
+        <div class="pulse-card-img-wrap"><img class="pulse-card-img" src="https://image.tmdb.org/t/p/w780/3jDXL4Xvj3AzDOF6UH1xeyHW8MH.jpg" alt="" loading="eager" /></div>
+        <div class="pulse-card-type">Germany &middot; Netflix &middot; 3 Seasons &middot; Complete</div>
+        <div class="pulse-card-title">Dark</div>
+        <div class="continent-lang">German</div>
+        <div class="pulse-card-body">The most rigorous argument on television for why truth is not a fixed point but a question of when. Across three seasons, Dark builds a closed causal loop in which every secret unearthed simply relocates the lie &mdash; memory corrupts, testimony shifts, and the characters who believe they are finally seeing clearly are always, structurally, the last to know. In a media landscape of easy revelations, Dark insists that uncovering the truth may change nothing at all.</div>
+      </div>
+      <div class="pulse-card continent">
+        <div class="pulse-card-img-wrap"><img class="pulse-card-img" src="https://image.tmdb.org/t/p/w780/a2Q2og2N3H8qr5UVuvANZqrRa0M.jpg" alt="" loading="eager" /></div>
+        <div class="pulse-card-type">Italy &middot; Sky Atlantic / Netflix &middot; 1 Season &middot; Complete</div>
+        <div class="pulse-card-title">1994</div>
+        <div class="continent-lang">Italian</div>
+        <div class="pulse-card-body">Set during the implosion of Italy&rsquo;s First Republic &mdash; Tangentopoli still burning, Berlusconi ascending &mdash; 1994 dramatises the moment a nation collectively decided which version of events it could live with, and chose badly. It refuses a single truth-teller, distributing moral compromise so evenly across prosecutors, spin doctors, and TV executives that the viewer is implicated in the same exhausted bargain as the electorate. Watch it and you will understand every political landscape you&rsquo;ve inhabited since.</div>
+      </div>
+      <div class="pulse-card continent">
+        <div class="pulse-card-img-wrap"><img class="pulse-card-img" src="https://image.tmdb.org/t/p/w780/vPdUxPFkyLbuT4fP3FqmVjoO00a.jpg" alt="" loading="eager" /></div>
+        <div class="pulse-card-type">Norway &middot; Netflix &middot; 3 Seasons &middot; Complete</div>
+        <div class="pulse-card-title">Occupied</div>
+        <div class="continent-lang">Norwegian</div>
+        <div class="pulse-card-body">Jo Nesb&oslash;&rsquo;s scenario &mdash; Russia quietly occupying Norway with EU backing after a green-energy pivot &mdash; was considered provocative fantasy when it aired in 2015. Considerably less funny now. A slow-burn study in the official lie, the diplomatic non-statement, and the bureaucratic violence of language stripped of meaning. The truth here is visible, filmed, documented &mdash; and it changes nothing. That&rsquo;s the darkest proposition of all.</div>
+      </div>
+      <div class="pulse-card continent">
+        <div class="pulse-card-img-wrap"><img class="pulse-card-img" src="https://image.tmdb.org/t/p/w780/gQr75UrfUsu799Xwzic1TYtZGTD.jpg" alt="" loading="eager" /></div>
+        <div class="pulse-card-type">France &middot; Canal+ / Walter Presents &middot; 8 Seasons &middot; Complete</div>
+        <div class="pulse-card-title">Spiral</div>
+        <div class="continent-lang">French</div>
+        <div class="pulse-card-body">Eight seasons and no single character you could call honest, not entirely, not all the way down. Spiral treats the Paris justice system as an ecology of competing truths: the police version, the juge d&rsquo;instruction&rsquo;s version, the defence lawyer&rsquo;s version, each internally coherent and mutually incompatible. It is not cynical about this &mdash; it is precise, which is harder. The truth in Spiral exists; it&rsquo;s just that the machinery built to find it was designed, in part, to lose it.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DISCOVER -->
+  <div class="section-divider"></div>
+  <section id="discover" class="section">
+    <div class="section-eyebrow reveal">
+      <span class="section-eyebrow-label">Discover</span>
+      <span class="section-eyebrow-pipe">|</span>
+      <span class="section-eyebrow-desc">Match your mood to a film</span>
+      <button class="section-about-btn" data-about="discover" title="What is this section?">i</button>
+    </div>
+    <div class="section-about-panel" id="about-discover">
+      <div class="section-about-inner">Seven moods, three films each. Not best-of lists &mdash; mood-matched picks for wherever you are tonight.</div>
+    </div>
+
+    <div class="mood-section reveal">
+      <div class="mood-heading">When you want your assumptions dismantled</div>
+      <div class="mood-desc">The ground shifts under you, and the version of events you were so sure about simply stops holding.</div>
+      <div class="mood-films">
+        <div class="film-card">
+          <img class="film-card-poster" src="https://image.tmdb.org/t/p/w500/lR1oSEBa4LbOzOZcWlNBBqtlGFL.jpg" alt="Rashomon" loading="lazy" />
+          <div class="film-card-title">Rashomon</div>
+          <div class="film-card-year">1950 &mdash; Akira Kurosawa</div>
+          <div class="film-card-body">Four irreconcilable accounts of a single violent incident. Not about who&rsquo;s lying &mdash; about the terrifying possibility that everyone is telling the truth they need to tell.</div>
+        </div>
+        <div class="film-card">
+          <img class="film-card-poster" src="https://image.tmdb.org/t/p/w500/8oRCxtyFmCFrRHD7bYS4DEv7FQ9.jpg" alt="The Act of Killing" loading="lazy" />
+          <div class="film-card-title">The Act of Killing</div>
+          <div class="film-card-year">2012 &mdash; Joshua Oppenheimer</div>
+          <div class="film-card-body">Death squad leaders recreate their own massacres in the genres they love. One of the most genuinely disorienting documents ever made &mdash; the perpetrators are gleeful, then confused, then something crumbles.</div>
+        </div>
+        <div class="film-card">
+          <img class="film-card-poster" src="https://image.tmdb.org/t/p/w500/rOVxvPv3YIzPFnAJYz2RJMJ5nzS.jpg" alt="Stories We Tell" loading="lazy" />
+          <div class="film-card-title">Stories We Tell</div>
+          <div class="film-card-year">2012 &mdash; Sarah Polley</div>
+          <div class="film-card-body">Polley investigates a family secret about her own parentage, then complicates every account by showing you the seams of the film itself. About how families construct usable versions of the past.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="mood-section reveal">
+      <div class="mood-heading">When you need to see how the story gets made</div>
+      <div class="mood-desc">You want to sit inside the grind of it &mdash; the calls that don&rsquo;t get returned, the moment the shape of something becomes visible.</div>
+      <div class="mood-films">
+        <div class="film-card">
+          <img class="film-card-poster" src="https://image.tmdb.org/t/p/w500/nGPnGjkEFJGv6WQSoXiuaXcb6c.jpg" alt="Spotlight" loading="lazy" />
+          <div class="film-card-title">Spotlight</div>
+          <div class="film-card-year">2015 &mdash; Tom McCarthy</div>
+          <div class="film-card-body">The Boston Globe&rsquo;s investigation into systemic clergy abuse. Almost procedural in its refusal to dramatise. The horror builds through accumulation. When it lands, it lands hard.</div>
+        </div>
+        <div class="film-card">
+          <img class="film-card-poster" src="https://image.tmdb.org/t/p/w500/qoHFSNa7Hk4OoaLNFqABDUXnkrY.jpg" alt="Zodiac" loading="lazy" />
+          <div class="film-card-title">Zodiac</div>
+          <div class="film-card-year">2007 &mdash; David Fincher</div>
+          <div class="film-card-body">The Zodiac killings as a film about obsession masquerading as investigation. What happens to people who can&rsquo;t stop looking even when the looking is slowly destroying them.</div>
+        </div>
+        <div class="film-card">
+          <img class="film-card-poster" src="https://image.tmdb.org/t/p/w500/hHw3QHQPD0sCBJbP7XRNLhMDAL4.jpg" alt="Citizenfour" loading="lazy" />
+          <div class="film-card-title">Citizenfour</div>
+          <div class="film-card-year">2014 &mdash; Laura Poitras</div>
+          <div class="film-card-body">Poitras was already filming when Snowden contacted her. A Hong Kong hotel room. A man methodically dismantling the world&rsquo;s assumptions about surveillance, unfolding in real time.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="mood-section reveal">
+      <div class="mood-heading">When you want beautiful, careful lies</div>
+      <div class="mood-desc">Films that tell the truth sideways, through invented people in invented situations that somehow get closer to real feeling.</div>
+      <div class="mood-films">
+        <div class="film-card">
+          <img class="film-card-poster" src="https://image.tmdb.org/t/p/w500/s0eMsEwBKIlM4b3eEh5bvhqq6qS.jpg" alt="A Separation" loading="lazy" />
+          <div class="film-card-title">A Separation</div>
+          <div class="film-card-year">2011 &mdash; Asghar Farhadi</div>
+          <div class="film-card-body">A moral labyrinth from a custody dispute and a wrongful accusation in Tehran. Nobody is simply wrong. Fiction that functions like a philosophy seminar.</div>
+        </div>
+        <div class="film-card">
+          <img class="film-card-poster" src="https://image.tmdb.org/t/p/w500/iDVOSJUjLLMGmCc5RfQvNvV7yBC.jpg" alt="The Sweet Hereafter" loading="lazy" />
+          <div class="film-card-title">The Sweet Hereafter</div>
+          <div class="film-card-year">1997 &mdash; Atom Egoyan</div>
+          <div class="film-card-body">A school bus accident and its aftermath through a fractured chronology that mirrors how grief refuses linear time. The truth of a community catastrophe is never the official version.</div>
+        </div>
+        <div class="film-card">
+          <img class="film-card-poster" src="https://image.tmdb.org/t/p/w500/s2NxPJcEE06BGMI9ENPpKTSMT2u.jpg" alt="Certified Copy" loading="lazy" />
+          <div class="film-card-title">Certified Copy</div>
+          <div class="film-card-year">2010 &mdash; Abbas Kiarostami</div>
+          <div class="film-card-body">A British author and a French dealer through the Italian countryside. Their relationship gradually becomes uncertain. Are they strangers? A long-married couple? Both? A copy authenticated as real becomes real.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="mood-section reveal">
+      <div class="mood-heading">When reality feels unreliable</div>
+      <div class="mood-desc">Films that put you inside the paranoia rather than watching it from a safe distance.</div>
+      <div class="mood-films">
+        <div class="film-card">
+          <img class="film-card-poster" src="https://image.tmdb.org/t/p/w500/9jNGRRfSpKuqNFH7cD3G0GVGEQI.jpg" alt="The Conversation" loading="lazy" />
+          <div class="film-card-title">The Conversation</div>
+          <div class="film-card-year">1974 &mdash; Francis Ford Coppola</div>
+          <div class="film-card-body">A surveillance expert convinced the recording he&rsquo;s made will be used for a murder. The more he listens, the less certain he is. Quiet, claustrophobic, and finally vertiginous.</div>
+        </div>
+        <div class="film-card">
+          <img class="film-card-poster" src="https://image.tmdb.org/t/p/w500/dKuBBBcfpVUJXqDjlgITVMoD5bk.jpg" alt="Caché" loading="lazy" />
+          <div class="film-card-title">Cach&eacute;</div>
+          <div class="film-card-year">2005 &mdash; Michael Haneke</div>
+          <div class="film-card-body">Anonymous surveillance tapes sent to a comfortable Parisian couple. The film is relentless in its refusal to resolve. Who is sending the tapes remains unanswered, deliberately. Watch the final shot twice.</div>
+        </div>
+        <div class="film-card">
+          <img class="film-card-poster" src="https://image.tmdb.org/t/p/w500/nOca36ADK2RYSc65BEz5PQUZ47n.jpg" alt="Mulholland Drive" loading="lazy" />
+          <div class="film-card-title">Mulholland Drive</div>
+          <div class="film-card-year">2001 &mdash; David Lynch</div>
+          <div class="film-card-body">A dream about Hollywood that collapses in on itself at the midpoint. The first half is intoxicating and the second is like waking from it. One of the films that genuinely reorganises how you watch everything else.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="mood-section reveal">
+      <div class="mood-heading">When you want the testimony</div>
+      <div class="mood-desc">Films that make space for a single voice or account &mdash; and ask you to sit with what you can and cannot verify.</div>
+      <div class="mood-films">
+        <div class="film-card">
+          <img class="film-card-poster" src="https://image.tmdb.org/t/p/w500/4w4BJk3l8y9gYwPPLRs6uPHOmGL.jpg" alt="The Thin Blue Line" loading="lazy" />
+          <div class="film-card-title">The Thin Blue Line</div>
+          <div class="film-card-year">1988 &mdash; Errol Morris</div>
+          <div class="film-card-body">Reconstructs the 1976 murder of a Dallas police officer and the conviction of a man who almost certainly didn&rsquo;t do it. The film that invented a genre and got an innocent man released from death row.</div>
+        </div>
+        <div class="film-card">
+          <img class="film-card-poster" src="https://image.tmdb.org/t/p/w500/6Jb7xCiDSnABIJmLaJ4sInGPtw0.jpg" alt="The Look of Silence" loading="lazy" />
+          <div class="film-card-title">The Look of Silence</div>
+          <div class="film-card-year">2014 &mdash; Joshua Oppenheimer</div>
+          <div class="film-card-body">An optometrist quietly confronts the men who killed his brother in the 1965 Indonesian massacres while testing their vision. The power is in the restraint. Unbearable, necessary, utterly unlike anything else.</div>
+        </div>
+        <div class="film-card">
+          <img class="film-card-poster" src="https://image.tmdb.org/t/p/w500/fnxnea3loMg5pIV0poyuaXfGzgP.jpg" alt="Standard Operating Procedure" loading="lazy" />
+          <div class="film-card-title">Standard Operating Procedure</div>
+          <div class="film-card-year">2008 &mdash; Errol Morris</div>
+          <div class="film-card-body">Morris takes the Abu Ghraib photographs and interviews the people inside them. Asks what the images actually prove &mdash; and what happened just outside their frame. The soldiers&rsquo; accounts are banal, self-serving, and somehow more troubling than the pictures.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="mood-section reveal">
+      <div class="mood-heading">When you need the long view</div>
+      <div class="mood-desc">Films that show how truth gets buried for decades &mdash; and what it takes to dig it back up.</div>
+      <div class="mood-films">
+        <div class="film-card">
+          <img class="film-card-poster" src="https://image.tmdb.org/t/p/w500/dDRFQNfNJxcKJXsRGV1d2tBLOXa.jpg" alt="Shoah" loading="lazy" />
+          <div class="film-card-title">Shoah</div>
+          <div class="film-card-year">1985 &mdash; Claude Lanzmann</div>
+          <div class="film-card-body">Nine-and-a-half hours. Not a single frame of archival footage &mdash; only the present, survivors and perpetrators speaking into the camera. The definitive argument for testimony over archive.</div>
+        </div>
+        <div class="film-card">
+          <img class="film-card-poster" src="https://image.tmdb.org/t/p/w500/b7k1S3M7JWlqy6uxl8GmTH7fVcN.jpg" alt="The Battle of Algiers" loading="lazy" />
+          <div class="film-card-title">The Battle of Algiers</div>
+          <div class="film-card-year">1966 &mdash; Gillo Pontecorvo</div>
+          <div class="film-card-body">Looks so much like newsreel footage that distributors had to disclaim it. Refuses to simplify either side, which is why both French authorities and revolutionary groups screened it as a training document.</div>
+        </div>
+        <div class="film-card">
+          <img class="film-card-poster" src="https://image.tmdb.org/t/p/w500/3XK7e1IXF5MvHPKJU5JxfbEEGIz.jpg" alt="Icarus" loading="lazy" />
+          <div class="film-card-title">Icarus</div>
+          <div class="film-card-year">2017 &mdash; Bryan Fogel</div>
+          <div class="film-card-body">Fogel starts a personal doping experiment and accidentally stumbles into the Russian state doping programme. What begins as a cycling doc becomes a whistleblower thriller in real time. The film&rsquo;s accidental nature gives it an energy no scripted version could manufacture.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="mood-section reveal">
+      <div class="mood-heading">When you just want to be unsettled</div>
+      <div class="mood-desc">Finish a film uncertain of what you witnessed &mdash; not confused, but genuinely disturbed by how much it left unresolved.</div>
+      <div class="mood-films">
+        <div class="film-card">
+          <img class="film-card-poster" src="https://image.tmdb.org/t/p/w500/iYTFBvXkLZd3KLvVW0U8XJL7dFk.jpg" alt="Funny Games" loading="lazy" />
+          <div class="film-card-title">Funny Games</div>
+          <div class="film-card-year">1997 &mdash; Michael Haneke</div>
+          <div class="film-card-body">Haneke systematically destroys every convention of the thriller genre, including your right to catharsis. At one point a character picks up the remote and rewinds the film. The version you watch and the one he&rsquo;s making are not the same film.</div>
+        </div>
+        <div class="film-card">
+          <img class="film-card-poster" src="https://image.tmdb.org/t/p/w500/oi24FKmuPdloQj2FyVxUWEFJFWs.jpg" alt="The Wailing" loading="lazy" />
+          <div class="film-card-title">The Wailing</div>
+          <div class="film-card-year">2016 &mdash; Na Hong-jin</div>
+          <div class="film-card-body">A rural Korean mystery that accumulates dread through sheer tonal instability. You genuinely cannot fix the genre, and that instability is the point. The final sequence is one of the most discussed endings in contemporary world cinema.</div>
+        </div>
+        <div class="film-card">
+          <img class="film-card-poster" src="https://image.tmdb.org/t/p/w500/nBRlkAoGvKREjbBxXRYgAg63L4Y.jpg" alt="Dogtooth" loading="lazy" />
+          <div class="film-card-title">Dogtooth</div>
+          <div class="film-card-year">2009 &mdash; Yorgos Lanthimos</div>
+          <div class="film-card-body">Parents have raised their adult children in a sealed compound, teaching them a private language where words mean different things. What happens to people whose entire map of reality is a deliberate construction.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- NEWSLETTER -->
+  <div class="section-divider"></div>
+  <div class="nl-section">
+    <div class="nl-label">Stay in the loop</div>
+    <h2 class="nl-heading">Get Screen Share in your inbox every week</h2>
+    <p class="nl-sub">One issue, one theme, every week. No algorithm. No noise. Just the films and television worth your time &mdash; and the thinking that goes with them.</p>
+    <form class="nl-form" action="https://buttondown.com/api/emails/embed-subscribe/screenshare" method="post" target="_blank" onsubmit="window.open('https://buttondown.com/screenshare','popupwindow')">
+      <input class="nl-input" type="email" name="email" placeholder="your@email.com" required />
+      <button class="nl-btn" type="submit">Subscribe</button>
+    </form>
+  </div>
+
+  <!-- SUBSCRIBE + SUPPORT -->
+  <div class="support-section">
+    <div class="support-card">
+      <div class="support-card-icon">&#9749;</div>
+      <div class="support-card-title">Support on Ko-fi</div>
+      <div class="support-card-body">Screen Share is independent and ad-free. If you find it useful, a Ko-fi keeps the lights on and the issues coming.</div>
+      <a href="https://ko-fi.com/screenshare" class="btn-secondary" target="_blank" rel="noopener">Support &rarr;</a>
+    </div>
+    <div class="support-card">
+      <div class="support-card-icon">&#128218;</div>
+      <div class="support-card-title">Back Issues</div>
+      <div class="support-card-body">All issues are archived and free to read. Start from Issue 001 or browse the archive for films by theme.</div>
+      <a href="archive.html" class="btn-secondary">Browse &rarr;</a>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
+      <a href="index.html" class="footer-logo">Screen<span>Share</span></a>
+      <div class="footer-right">
+        <div class="footer-note">&copy; 2026 Screen Share &middot; Independent &middot; Ad-free &middot; Weekly</div>
+        <div class="footer-legal">Film data and images courtesy of <a href="https://www.themoviedb.org/" target="_blank" rel="noopener">TMDB</a>. This product uses the TMDB API but is not endorsed or certified by TMDB. &middot; <a href="privacy.html">Privacy</a></div>
+        <div class="footer-links">
+          <a href="index.html">Home</a>
+          <a href="archive.html">Archive</a>
+          <a href="about.html">About</a>
+          <a href="https://screenshare.watch/feed.xml">RSS</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- STICKY SUBSCRIBE BAR -->
+  <div class="sticky-bar" id="stickyBar">
+    <div class="sticky-bar-left">
+      <span class="sticky-bar-label">Free weekly</span>
+      <form class="sticky-bar-form" action="https://buttondown.com/api/emails/embed-subscribe/screenshare" method="post" target="_blank" onsubmit="window.open('https://buttondown.com/screenshare','popupwindow')">
+        <input class="sticky-bar-input" type="email" name="email" placeholder="your@email.com" required />
+        <button class="sticky-bar-btn" type="submit">Subscribe</button>
+      </form>
+    </div>
+    <div class="sticky-bar-right">
+      <a href="https://ko-fi.com/screenshare" class="sticky-bar-kofi" target="_blank" rel="noopener">&#9749; Ko-fi</a>
+      <button class="sticky-bar-close" onclick="dismissBar()" aria-label="Close">&times;</button>
+    </div>
+  </div>
+
+  <!-- GOATCOUNTER -->
+  <script data-goatcounter="https://screenshare.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+
+  <script>
+    // REVEAL
+    var observer = new IntersectionObserver(function(entries) {
+      entries.forEach(function(e) { if (e.isIntersecting) { e.target.classList.add('visible'); } });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.reveal').forEach(function(el) { observer.observe(el); });
+
+    // SECTION ABOUT BUTTONS
+    document.querySelectorAll('.section-about-btn').forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        var id = btn.getAttribute('data-about');
+        var panel = document.getElementById('about-' + id);
+        if (panel) panel.classList.toggle('open');
+      });
+    });
+
+    // ARGUMENT VOTE 003
+    var seedA003 = 734, seedB003 = 891;
+    function castVote003(choice) {
+      var key = 'ss-003-argument-vote';
+      if (localStorage.getItem(key)) return;
+      localStorage.setItem(key, choice);
+      renderVote003();
+    }
+    function renderVote003() {
+      var key = 'ss-003-argument-vote';
+      var saved = localStorage.getItem(key);
+      var totA = seedA003 + (saved === 'a' ? 1 : 0);
+      var totB = seedB003 + (saved === 'b' ? 1 : 0);
+      var total = totA + totB;
+      if (saved) {
+        document.getElementById('voteBtnA003').disabled = true;
+        document.getElementById('voteBtnB003').disabled = true;
+        if (saved === 'a') document.getElementById('voteBtnA003').classList.add('vote-a','selected');
+        if (saved === 'b') document.getElementById('voteBtnB003').classList.add('vote-b','selected');
+        document.getElementById('voteResults003').classList.add('visible');
+        var pA = Math.round(totA/total*100), pB = 100-pA;
+        document.getElementById('pctA003').textContent = pA + '%';
+        document.getElementById('pctB003').textContent = pB + '%';
+        setTimeout(function() {
+          document.getElementById('fillA003').style.width = pA + '%';
+          document.getElementById('fillB003').style.width = pB + '%';
+        }, 50);
+        document.getElementById('voteCount003').textContent = total.toLocaleString() + ' votes';
+        var label = saved === 'a' ? 'The lie always mattered' : 'Truth was always negotiated';
+        document.getElementById('voteChoiceLabel003').textContent = label;
+        document.getElementById('voteYourChoice003').classList.add('visible');
+      }
+    }
+    renderVote003();
+
+    // PULSE VOTE 003
+    var pulseSeeds003 = {
+      hailmary: { yes: 534, maybe: 412, pass: 89 },
+      anatomy:  { yes: 678, maybe: 198, pass: 143 },
+      lady:     { yes: 187, maybe: 334, pass: 212 },
+    };
+    function pulseVote(film, choice) {
+      var key = 'ss-003-pulse-' + film;
+      if (localStorage.getItem(key)) return;
+      localStorage.setItem(key, choice);
+      renderPulseVote003(film);
+    }
+    function renderPulseVote003(film) {
+      var key = 'ss-003-pulse-' + film;
+      var saved = localStorage.getItem(key);
+      var seed = pulseSeeds003[film];
+      var totals = { yes: seed.yes, maybe: seed.maybe, pass: seed.pass };
+      if (saved) totals[saved]++;
+      var total = totals.yes + totals.maybe + totals.pass;
+      var pct = function(v) { return Math.round(v/total*100); };
+      ['yes','maybe','pass'].forEach(function(c) {
+        var btn = document.getElementById('pv-' + film + '-' + c);
+        if (!btn) return;
+        if (saved) { btn.disabled = true; if (c === saved) btn.classList.add(c,'selected'); }
+      });
+      var counts = document.getElementById('pv-' + film + '-counts');
+      if (counts && saved) {
+        counts.textContent = pct(totals.yes) + '% Yes \u00b7 ' + pct(totals.maybe) + '% Maybe \u00b7 ' + pct(totals.pass) + '% Pass';
+      }
+    }
+    ['hailmary','anatomy','lady'].forEach(renderPulseVote003);
+
+    // STICKY BAR
+    function dismissBar() {
+      document.getElementById('stickyBar').classList.remove('visible');
+      localStorage.setItem('ss-bar-dismissed','1');
+    }
+    if (!localStorage.getItem('ss-bar-dismissed')) {
+      window.addEventListener('scroll', function() {
+        if (window.scrollY > document.body.scrollHeight * 0.35) {
+          document.getElementById('stickyBar').classList.add('visible');
+        }
+      }, { passive: true });
+    }
+  </script>
+</body>
+</html>
