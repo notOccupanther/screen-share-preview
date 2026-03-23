@@ -204,7 +204,7 @@
     }
     .tour-sub { font-size: 0.9rem; color: var(--text-muted); margin-top: 0.75rem; font-weight: 300; }
     .tour-grid {
-      display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem;
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem;
     }
     .tour-card {
       background: var(--surface); border: 1px solid var(--border);
@@ -228,7 +228,7 @@
       color: #fff; margin-bottom: 0.75rem; line-height: 1.2;
     }
     .tour-card-desc { font-size: 0.83rem; line-height: 1.7; color: var(--text-muted); font-weight: 300; }
-    @media (max-width: 900px) { .tour-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 1100px) { .tour-grid { grid-template-columns: repeat(2, 1fr); } }
     @media (max-width: 560px) { .tour-grid { grid-template-columns: 1fr; } .tour { padding: 4rem 1.25rem; } }
 
     /* ISSUE CTA */
@@ -429,11 +429,18 @@
         <div class="tour-card-desc">One moment in cinema history that still divides audiences. The scene, the release, the argument that never quite resolved.</div>
       </div>
 
-      <div class="tour-card" style="--card-accent:#e879f9; grid-column: 1 / -1; max-width: 480px; margin: 0 auto; width: 100%;" data-delay="100">
-        <div class="tour-card-icon">&#127909;</div>
+      <div class="tour-card" style="--card-accent:#e879f9;" data-delay="0">
+        <div class="tour-card-icon">&#128268;</div>
         <div class="tour-card-label">Section 07</div>
-        <div class="tour-card-title">Behind the Curtain</div>
-        <div class="tour-card-desc">The industry stories worth knowing. Labour, money, technology, power &mdash; the things shaping what gets made and how it reaches you.</div>
+        <div class="tour-card-title">The Signal</div>
+        <div class="tour-card-desc">Three industry stories every week. A deal, a resistance, a tool &mdash; tracking how AI, money, and power are reshaping what gets made and how.</div>
+      </div>
+
+      <div class="tour-card" style="--card-accent:#a78bfa;" data-delay="100">
+        <div class="tour-card-icon">&#127758;</div>
+        <div class="tour-card-label">Section 08</div>
+        <div class="tour-card-title">The Continent</div>
+        <div class="tour-card-desc">Subtitles required. The best European television you&rsquo;re missing because of subtitle aversion &mdash; French, Italian, German, and beyond. No excuses.</div>
       </div>
 
     </div>
