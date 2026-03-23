@@ -692,6 +692,25 @@
     @media (max-width: 480px) {
       .mood-films { grid-template-columns: 1fr; }
     }
+
+    /* PULSE VOTE */
+    .pulse-vote { margin: 2.5rem 0 0; padding: 2rem; background: rgba(255,255,255,0.03); border: 1px solid var(--border); }
+    .pulse-vote-heading { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--text-muted); text-align: center; margin-bottom: 1.75rem; }
+    .pulse-vote-row { display: flex; align-items: center; justify-content: space-between; gap: 1rem; margin-bottom: 1.25rem; padding-bottom: 1.25rem; border-bottom: 1px solid rgba(255,255,255,0.06); flex-wrap: wrap; }
+    .pulse-vote-row:last-child { margin-bottom: 0; padding-bottom: 0; border-bottom: none; }
+    .pulse-vote-film { font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 700; color: var(--text); flex: 1; min-width: 120px; }
+    .pulse-vote-counts { font-size: 0.7rem; color: var(--text-dim); margin-top: 0.3rem; letter-spacing: 0.04em; }
+    .pulse-vote-btns { display: flex; gap: 0.5rem; flex-shrink: 0; }
+    .pulse-vote-btn { padding: 0.45rem 0.85rem; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; cursor: pointer; font-family: 'Inter', sans-serif; background: transparent; border: 1px solid var(--border); color: var(--text-muted); transition: all 0.2s; white-space: nowrap; }
+    .pulse-vote-btn:hover:not(:disabled) { border-color: var(--gold); color: var(--text); }
+    .pulse-vote-btn.yes.selected  { background: rgba(34,197,94,0.15); border-color: #22c55e; color: #22c55e; }
+    .pulse-vote-btn.maybe.selected{ background: rgba(251,191,36,0.12); border-color: #fbbf24; color: #fbbf24; }
+    .pulse-vote-btn.pass.selected { background: rgba(239,68,68,0.12); border-color: #f87171; color: #f87171; }
+    .pulse-vote-btn:disabled { cursor: default; opacity: 1; }
+    /* CONTINENT - reuses pulse-card with purple accent */
+    .pulse-card.continent { border-top-color: #a78bfa; }
+    .pulse-card.continent:hover { border-color: rgba(167,139,250,0.3); border-top-color: #a78bfa; }
+    .continent-lang { display: inline-block; font-size: 0.65rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: #a78bfa; margin-bottom: 0.6rem; padding: 0 1.5rem; }
   </style>
 </head>
 <body>
@@ -1264,42 +1283,51 @@
       <div class="section-about-inner">The best television being made right now is frequently not in English. This section exists because subtitle aversion is costing you some of the sharpest writing, directing, and performance in the medium. No excuses.</div>
     </div>
 
-    <div class="continent-grid reveal">
+    <div class="pulse-grid reveal">
 
-      <div class="continent-card">
-        <div class="continent-card-img-wrap"><img class="continent-card-img" src="https://image.tmdb.org/t/p/w780/2g4SyBPnnddD8Pdg0tbdIeJiFfQ.jpg" alt="" loading="eager" /></div>
-        <div class="continent-card-meta">Canal+ &middot; 3 Seasons &middot; Complete</div>
-        <div class="continent-card-title">Baron Noir</div>
-        <div class="continent-card-lang">French</div>
-        <div class="continent-card-body">A fictional French president forged in betrayal and backroom deals. Baron Noir is the political drama the English-speaking world keeps reinventing without getting right. The best study of how power is actually accumulated &mdash; not through vision, but through patience and ruthlessness.</div>
+      <div class="pulse-card continent">
+        <div class="pulse-card-img-wrap">
+          <img class="pulse-card-img" src="https://image.tmdb.org/t/p/w780/2g4SyBPnnddD8Pdg0tbdIeJiFfQ.jpg" alt="" loading="eager" />
+        </div>
+        <div class="pulse-card-type">France &mdash; Canal+ &mdash; 3 Seasons</div>
+        <div class="pulse-card-title">Baron Noir</div>
+        <div class="continent-lang">French</div>
+        <div class="pulse-card-body">A fictional French president forged in betrayal and backroom deals. Baron Noir is the political drama the English-speaking world keeps reinventing without getting right. The best study of how power is actually accumulated &mdash; not through vision, but through patience and ruthlessness.</div>
       </div>
 
-      <div class="continent-card">
-        <div class="continent-card-img-wrap"><img class="continent-card-img" src="https://image.tmdb.org/t/p/w780/3ZIWMs9vRjuss8RJWn2ijGRuwtE.jpg" alt="" loading="eager" /></div>
-        <div class="continent-card-meta">Canal+ &middot; 5 Seasons &middot; Complete</div>
-        <div class="continent-card-title">Le Bureau des L&eacute;gendes</div>
-        <div class="continent-card-lang">French</div>
-        <div class="continent-card-body">Deep-cover intelligence done properly. Consistently rated among the best television ever made, and still underseen outside France. Institutional power, fractured identity, and the cost of living inside a fiction. Start it this week.</div>
+      <div class="pulse-card continent">
+        <div class="pulse-card-img-wrap">
+          <img class="pulse-card-img" src="https://image.tmdb.org/t/p/w780/3ZIWMs9vRjuss8RJWn2ijGRuwtE.jpg" alt="" loading="eager" />
+        </div>
+        <div class="pulse-card-type">France &mdash; Canal+ &mdash; 5 Seasons</div>
+        <div class="pulse-card-title">Le Bureau des L&eacute;gendes</div>
+        <div class="continent-lang">French</div>
+        <div class="pulse-card-body">Deep-cover intelligence done properly. Consistently rated among the best television ever made, and still underseen outside France. Institutional power, fractured identity, and the cost of living inside a fiction. Start it this week.</div>
       </div>
 
-      <div class="continent-card">
-        <div class="continent-card-img-wrap"><img class="continent-card-img" src="https://image.tmdb.org/t/p/w780/wHdFKpwd98z3M8GVBB09iiKjlxK.jpg" alt="" loading="eager" /></div>
-        <div class="continent-card-meta">Netflix &middot; 3 Seasons &middot; Complete</div>
-        <div class="continent-card-title">Suburra: Blood on Rome</div>
-        <div class="continent-card-lang">Italian</div>
-        <div class="continent-card-body">Crime, church, and government locked in a three-way power struggle for Rome&rsquo;s coastline. Brutal, gorgeous, and more honest about how Italian politics actually works than anything you&rsquo;ll read in a newspaper. The power theme of this issue runs through every frame.</div>
+      <div class="pulse-card continent">
+        <div class="pulse-card-img-wrap">
+          <img class="pulse-card-img" src="https://image.tmdb.org/t/p/w780/wHdFKpwd98z3M8GVBB09iiKjlxK.jpg" alt="" loading="eager" />
+        </div>
+        <div class="pulse-card-type">Italy &mdash; Netflix &mdash; 3 Seasons</div>
+        <div class="pulse-card-title">Suburra: Blood on Rome</div>
+        <div class="continent-lang">Italian</div>
+        <div class="pulse-card-body">Crime, church, and government locked in a three-way power struggle for Rome&rsquo;s coastline. Brutal, gorgeous, and more honest about Italian politics than anything you&rsquo;ll read in a newspaper. The power theme of this issue runs through every frame.</div>
       </div>
 
-      <div class="continent-card">
-        <div class="continent-card-img-wrap"><img class="continent-card-img" src="https://image.tmdb.org/t/p/w780/7hezSIqkDjhP7MNGFN9vRkyWgO9.jpg" alt="" loading="eager" /></div>
-        <div class="continent-card-meta">Sky / Netflix &middot; 4 Seasons &middot; Complete</div>
-        <div class="continent-card-title">Babylon Berlin</div>
-        <div class="continent-card-lang">German</div>
-        <div class="continent-card-body">Weimar Republic, 1929. Political power rotting from the inside as the centre fails to hold. The most expensive German television production ever made &mdash; and worth every frame. If you watch one European series this year, let it be this one.</div>
+      <div class="pulse-card continent">
+        <div class="pulse-card-img-wrap">
+          <img class="pulse-card-img" src="https://image.tmdb.org/t/p/w780/7hezSIqkDjhP7MNGFN9vRkyWgO9.jpg" alt="" loading="eager" />
+        </div>
+        <div class="pulse-card-type">Germany &mdash; Sky / Netflix &mdash; 4 Seasons</div>
+        <div class="pulse-card-title">Babylon Berlin</div>
+        <div class="continent-lang">German</div>
+        <div class="pulse-card-body">Weimar Republic, 1929. Political power rotting from the inside as the centre fails to hold. The most expensive German television production ever made &mdash; and worth every frame. If you watch one European series this year, let it be this one.</div>
       </div>
 
     </div>
   </section>
+
 
   <!-- FOOTER -->
   <footer>
