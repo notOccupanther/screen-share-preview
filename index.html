@@ -268,31 +268,55 @@
     .issue-cta-actions { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
 
     /* SUBSCRIBE */
+    .subscribe-section {
+      background: #07070c;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='400' height='400' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
     .subscribe-wrap {
-      max-width: 1200px; margin: 0 auto; padding: 5rem 2.5rem;
-      display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center;
+      max-width: 680px; margin: 0 auto; padding: 5.5rem 2rem; text-align: center;
+    }
+    .subscribe-label {
+      font-size: 0.68rem; letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--gold); font-weight: 600; margin-bottom: 1.25rem;
+    }
+    .subscribe-rule {
+      width: 40px; height: 1px; background: var(--gold); margin: 0 auto 1.75rem; opacity: 0.6;
     }
     .subscribe-heading {
-      font-family: 'Playfair Display', serif; font-size: clamp(1.4rem, 3vw, 1.9rem);
-      font-weight: 700; color: #fff; margin-bottom: 0.75rem; line-height: 1.25;
+      font-family: 'Playfair Display', serif; font-size: clamp(1.7rem, 4vw, 2.4rem);
+      font-weight: 700; color: #fff; margin-bottom: 1rem; line-height: 1.2;
+      font-style: italic;
     }
-    .subscribe-sub { font-size: 0.88rem; color: var(--text-muted); font-weight: 300; line-height: 1.7; }
-    .subscribe-form { display: flex; gap: 0; }
+    .subscribe-sub {
+      font-size: 0.88rem; color: var(--text-muted); font-weight: 300;
+      line-height: 1.8; margin-bottom: 2.25rem; max-width: 440px; margin-left: auto; margin-right: auto;
+    }
+    .subscribe-form { display: flex; gap: 0; max-width: 440px; margin: 0 auto 1rem; }
     .subscribe-input {
-      flex: 1; padding: 0.8rem 1rem; background: var(--surface);
-      border: 1px solid var(--border); border-right: none; color: var(--text);
+      flex: 1; padding: 0.85rem 1.1rem; background: #0e0e18;
+      border: 1px solid rgba(255,255,255,0.1); border-right: none; color: var(--text);
       font-family: 'Inter', sans-serif; font-size: 0.88rem; outline: none;
+      transition: border-color 0.2s;
     }
     .subscribe-input::placeholder { color: var(--text-dim); }
     .subscribe-input:focus { border-color: var(--gold-border); }
     .subscribe-btn {
-      padding: 0.8rem 1.5rem; background: var(--gold); border: none;
-      color: #0a0a0f; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.1em;
+      padding: 0.85rem 1.6rem; background: var(--gold); border: none;
+      color: #0a0a0f; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.12em;
       text-transform: uppercase; cursor: pointer; font-family: 'Inter', sans-serif;
       transition: background 0.2s; white-space: nowrap;
     }
     .subscribe-btn:hover { background: #fbbf24; }
-    @media (max-width: 768px) { .subscribe-wrap { grid-template-columns: 1fr; gap: 2rem; padding: 4rem 1.25rem; } }
+    .subscribe-meta {
+      font-size: 0.72rem; color: var(--text-dim); letter-spacing: 0.04em;
+    }
+    @media (max-width: 600px) {
+      .subscribe-wrap { padding: 4rem 1.25rem; }
+      .subscribe-form { flex-direction: column; }
+      .subscribe-input { border-right: 1px solid rgba(255,255,255,0.1); border-bottom: none; }
+    }
 
     /* FOOTER */
     footer {
@@ -467,19 +491,17 @@
   </section>
 
   <!-- SUBSCRIBE -->
-  <section>
+  <section class="subscribe-section">
     <div class="subscribe-wrap">
-      <div>
-        <div class="intro-label reveal">Stay in the loop</div>
-        <h2 class="subscribe-heading reveal">Get Screen Share in your inbox every fortnight</h2>
-        <p class="subscribe-sub reveal">One issue, one theme, every fortnight. No algorithm. No noise. Just the films and television worth your time &mdash; and the thinking that goes with them.</p>
-      </div>
-      <div>
-        <form class="subscribe-form reveal" action="https://buttondown.com/api/emails/embed-subscribe/screenshare" method="post" target="_blank" onsubmit="window.open('https://buttondown.com/screenshare','popupwindow')">
-          <input class="subscribe-input" type="email" name="email" placeholder="your@email.com" required />
-          <button class="subscribe-btn" type="submit">Subscribe</button>
-        </form>
-      </div>
+      <div class="subscribe-label reveal">The Newsletter</div>
+      <div class="subscribe-rule reveal"></div>
+      <h2 class="subscribe-heading reveal">One theme.<br>Every fortnight.<br>Worth your time.</h2>
+      <p class="subscribe-sub reveal">No algorithm. No noise. Just the films and television that deserve your attention — and the thinking that goes with them. Delivered to your inbox, free.</p>
+      <form class="subscribe-form reveal" action="https://buttondown.com/api/emails/embed-subscribe/screenshare" method="post" target="_blank" onsubmit="window.open('https://buttondown.com/screenshare','popupwindow')">
+        <input class="subscribe-input" type="email" name="email" placeholder="your@email.com" required />
+        <button class="subscribe-btn" type="submit">Subscribe →</button>
+      </form>
+      <div class="subscribe-meta reveal">Free &nbsp;·&nbsp; Fortnightly &nbsp;·&nbsp; Unsubscribe anytime</div>
     </div>
   </section>
 
