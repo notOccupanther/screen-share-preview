@@ -737,25 +737,22 @@
     }
 
     // Mood chip filtering
-    const moodChips = document.querySelectorAll('.mood-chip');
-    const filmCards = document.querySelectorAll('.film-card');
+    function filterMoodFilms(mood) {
+      document.querySelectorAll('.mood-chip').forEach(c => c.classList.toggle('active', c.dataset.mood === mood));
+      document.querySelectorAll('.film-card').forEach(card => {
+        card.style.display = card.dataset.mood === mood ? 'block' : 'none';
+      });
+    }
 
-    moodChips.forEach(chip => {
-      chip.addEventListener('click', () => {
-        const selectedMood = chip.getAttribute('data-mood');
-
-        moodChips.forEach(c => c.classList.remove('active'));
-        chip.classList.add('active');
-
-        filmCards.forEach(card => {
-          if (card.getAttribute('data-mood') === selectedMood) {
-            card.style.display = 'block';
-          } else {
-            card.style.display = 'none';
-          }
-        });
+    document.querySelectorAll('.mood-chip').forEach(chip => {
+      chip.addEventListener('click', function(e) {
+        e.preventDefault();
+        filterMoodFilms(this.dataset.mood);
       });
     });
+
+    // Initialize with first mood
+    filterMoodFilms('character-study');
   </script>
 </body>
 </html>
