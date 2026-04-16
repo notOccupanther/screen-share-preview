@@ -244,6 +244,19 @@
     </div>
   </div>
 
+  <div class="editors-note reveal">
+    <div class="editors-note-inner">
+      <div class="editors-note-label">A note from the editor</div>
+      <p class="editors-note-text">Performance is the oldest contract in cinema. You perform; I watch. That contract has always been fragile. The question isn't whether the performance is real — it's who gets to decide what counts as real in the first place. All About Eve understood this in 1950: Eve Harrington doesn't fail because she's fake. She succeeds because her performance is more convincing than Margo's, more complete, more total. The tragedy of the film is that it shows us a world where the best performance wins, and we all know how that ends.</p>
+      <p class="editors-note-text">Seventy-five years later, we live in that world. Every screen is a stage. Every scroll is a performance. Every like is a vote on whether your performance was convincing enough. The machinery has gotten faster, the feedback more immediate, the stakes somehow both higher and lower. You perform your life in real time and the audience decides who you are before you finish the sentence.</p>
+      <p class="editors-note-text">This issue circles the question that All About Eve raised but never quite answered: What's left when the performance becomes the only thing that matters?</p>
+      <div class="editors-note-sig">
+        <span class="editors-note-name">Niall</span>
+        <span class="editors-note-role">Editor, Screen Share</span>
+      </div>
+    </div>
+  </div>
+
   <div class="section-divider"></div>
 
   <section id="rewind">
@@ -649,15 +662,24 @@
     }, { threshold: 0.1 });
     revealElements.forEach(el => observer.observe(el));
 
-    const unravelSig = document.querySelector('.editors-note-sig');
-    if (unravelSig) {
-      setTimeout(() => {
-        unravelSig.classList.add('unraveled');
-        unravelSig.querySelectorAll('.unravel-word').forEach((word, index) => {
-          setTimeout(() => word.classList.add('visible'), index * 100);
-        });
-      }, 500);
-    }
+    // Editor's note unravel animation
+    document.querySelectorAll('.editors-note-text').forEach(p => {
+      const html = p.innerHTML;
+      const tokens = html.split(/(\s+)/);
+      p.innerHTML = tokens.map((t, i) => t.trim() ? '<span class="unravel-word" style="transition-delay:' + (i * 18) + 'ms">' + t + '</span>' : t).join('');
+    });
+
+    const noteObs = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.querySelectorAll('.unravel-word').forEach(w => w.classList.add('visible'));
+          const sig = entry.target.querySelector('.editors-note-sig');
+          if (sig) setTimeout(() => sig.classList.add('unraveled'), 800);
+          noteObs.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15 });
+    document.querySelectorAll('.editors-note').forEach(el => noteObs.observe(el));
 
     // Mood data with 3 films per mood
     const moodData = {
