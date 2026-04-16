@@ -246,6 +246,215 @@
 
   <div class="section-divider"></div>
 
+  <section id="rewind">
+    <div class="section-eyebrow reveal">
+      <span class="section-eyebrow-icon">&#9654;</span>
+      <span class="section-eyebrow-label">The Rewind</span>
+      <span class="section-eyebrow-pipe">|</span>
+      <span class="section-eyebrow-desc">A film from the archive that speaks to right now</span>
+    </div>
+    <div class="rewind-card reveal">
+      <img class="rewind-poster" src="https://image.tmdb.org/t/p/w500/l4hdgMBgB7aQm5XYAG4VAGmR6H8.jpg" alt="All About Eve (1950)" loading="eager" onerror="this.style.background='#1a1a22'; this.removeAttribute('src');" />
+      <div class="rewind-body">
+        <div class="rewind-year">1950 &middot; Joseph L. Mankiewicz</div>
+        <h2 class="rewind-film-title">All About Eve</h2>
+        <p class="rewind-text">Eve Harrington arrives at a Broadway stage door with a story: she was at every performance, she has loved Margo Channing since she was a child, she has nothing but devotion. Margo takes her under her wing. By the third act, Eve has stolen her roles, her boyfriend, and her future. What <em>All About Eve</em> understands with surgical precision is that performance and deception are not opposites — they are the same skill, deployed in different rooms. Margo is a star who performs Margo Channing eight times a week. Eve is a woman performing devotion, then humility, then talent, then entitlement. The film asks: where is the line between the character you play and who you become when you play it?</p>
+        <p class="rewind-text">Seventy-five years later, the answer has not changed. It has only become faster. The machinery of visibility — social media, streaming, constant documentation — has collapsed the backstage and the stage into one. There is no longer a private self to perform from. You are what you perform, and performance is what survives you. <em>All About Eve</em> captured this moment in 1950 because it understood that performance was never about honesty. It was about power: who gets to decide what you're allowed to be, and for how long you're allowed to be it.</p>
+        <div class="rewind-companion">
+          <div class="rewind-companion-label">Watch Alongside</div>
+          <div class="rewind-companion-title">Sunset Boulevard (1950, Billy Wilder)</div>
+          <div class="rewind-companion-body">Released the same year, Sunset Boulevard is <em>All About Eve</em> from the other side of the mirror. Norma Desmond is not ascending; she is clinging to a performance that the industry has already written off. Both films understand that in Hollywood, performance is the only currency that matters — and when it's spent, you disappear entirely.</div>
+        </div>
+        <div class="rewind-availability"><em>All About Eve</em> is available to stream on multiple platforms and is also held in the National Film Registry.</div>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <section id="argument">
+    <div class="section-eyebrow reveal">
+      <span class="section-eyebrow-icon">&#128172;</span>
+      <span class="section-eyebrow-label">The Argument</span>
+      <span class="section-eyebrow-pipe">|</span>
+      <span class="section-eyebrow-desc">One question. No verdict.</span>
+    </div>
+    <blockquote class="argument-question reveal">&ldquo;Is there a self beneath the performance, or is the performance all there ever was?&rdquo;</blockquote>
+    <p class="argument-intro reveal">The streaming age has made performance visible in ways cinema alone never could. You can now watch someone perform their life in real-time, edit it into narrative, and monetise the edit. The person and the persona have become one product. What happens to the question of authenticity when there is no longer a backstage to retreat to?</p>
+    <div class="argument-camps reveal">
+      <div class="argument-camp">
+        <span class="argument-camp-label reading-a">Reading A &mdash; &ldquo;The Performance Is the Prison&rdquo;</span>
+        <p class="argument-camp-text">There is a self underneath, and the performance suffocates it. Watch someone stream for twelve hours and you see a performance of energy that no human body can sustain — because it isn't sustainable. It's a construction. The person inside experiences this as splitting: the version they broadcast and the version that goes home. SAG-AFTRA's central demand in their 2026 negotiations wasn't about money. It was about the right to not be cloned, scanned, and deployed without consent — about the right to a self that isn't monetised. The performance is increasingly the only version of you that survives in public space, and that asymmetry creates a kind of erasure. You become the performance because there's nothing left of you but the data.</p>
+      </div>
+      <div class="argument-camp">
+        <span class="argument-camp-label reading-b">Reading B &mdash; &ldquo;The Self Was Always a Performance&rdquo;</span>
+        <p class="argument-camp-text">The notion that there's a "true self" waiting behind the performance is the lie we tell ourselves to feel stable. Erving Goffman argued this in 1959: the self is not a thing, it's a repertoire of behaviours adjusted to context. What's changed is not the nature of performance — it's the archive. Every performance used to disappear. Now every performance is permanent, searchable, and separable from context. The crisis isn't that people are "fake." It's that we can now see all our selves at once and experience the contradiction as fragmentation. But the fragmentation was always there. We just had the luxury of not seeing it.</p>
+      </div>
+    </div>
+    <div class="argument-provocation reveal"><strong>Provocation:</strong> If you stream your entire day, and your audience sees the livestream as the real version of you, what exactly have you lied about?</div>
+    <div class="vote-widget reveal" id="voteWidget">
+      <div class="vote-prompt">Which reading lands for you?</div>
+      <div class="vote-buttons" id="voteButtons">
+        <button class="vote-btn vote-a" id="voteBtnA" onclick="castVote('a')">The performance is the prison</button>
+        <button class="vote-btn vote-b" id="voteBtnB" onclick="castVote('b')">The self was always a performance</button>
+      </div>
+      <div class="vote-results" id="voteResults">
+        <div class="vote-result-row"><div class="vote-result-label"><span class="vote-result-name a">The Performance Is the Prison</span><span class="vote-result-pct" id="pctA">0%</span></div><div class="vote-result-track"><div class="vote-result-fill a" id="fillA"></div></div></div>
+        <div class="vote-result-row"><div class="vote-result-label"><span class="vote-result-name b">The Self Was Always a Performance</span><span class="vote-result-pct" id="pctB">0%</span></div><div class="vote-result-track"><div class="vote-result-fill b" id="fillB"></div></div></div>
+        <div class="vote-count" id="voteCount"></div>
+        <div class="vote-your-choice" id="voteYourChoice">Your vote: <span id="voteChoiceLabel"></span></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <section id="discover">
+    <div class="section-eyebrow reveal">
+      <span class="section-eyebrow-icon">&#127917;</span>
+      <span class="section-eyebrow-label">Discover</span>
+      <span class="section-eyebrow-pipe">|</span>
+      <span class="section-eyebrow-desc">Not genre. Emotion.</span>
+    </div>
+    <div class="mood-chips-wrapper reveal">
+      <div class="mood-chips" id="moodChips">
+        <button class="mood-chip active" data-mood="character-study">Character Study</button>
+        <button class="mood-chip" data-mood="identity-theft">Identity Theft</button>
+        <button class="mood-chip" data-mood="stage-fright">Stage Fright</button>
+        <button class="mood-chip" data-mood="method-acting">Method Acting</button>
+        <button class="mood-chip" data-mood="fame-costs">What Fame Costs</button>
+        <button class="mood-chip" data-mood="double-life">Double Life</button>
+        <button class="mood-chip" data-mood="transformation">Transformation</button>
+      </div>
+    </div>
+    <div class="mood-films" id="moodFilms">
+      <div class="film-card">
+        <img class="film-card-poster" src="https://image.tmdb.org/t/p/w342/mR8EX3Q1ry0MqQ5f2LDLwBXLRvE.jpg" alt="Mulholland Drive" loading="eager" />
+        <div class="film-card-body">
+          <div class="film-card-title">Mulholland Drive</div>
+          <div class="film-card-year">2001</div>
+          <div class="film-card-mood-tag">Character Study</div>
+          <div class="film-card-primer">Lynch's masterpiece about an actress who may or may not be who she thinks she is. The performance becomes the plot becomes the person.</div>
+        </div>
+      </div>
+      <div class="film-card">
+        <img class="film-card-poster" src="https://image.tmdb.org/t/p/w342/3VFt6lRfCE8Pf7TnZ9L2kRJ1kqR.jpg" alt="Carol" loading="eager" />
+        <div class="film-card-body">
+          <div class="film-card-title">Carol</div>
+          <div class="film-card-year">2015</div>
+          <div class="film-card-mood-tag">Double Life</div>
+          <div class="film-card-primer">Two women navigating the performance of heterosexuality in 1950s America. Passing as ordinary while being entirely yourself.</div>
+        </div>
+      </div>
+      <div class="film-card">
+        <img class="film-card-poster" src="https://image.tmdb.org/t/p/w342/xCXmZp_XRqLKNqyg5kW6pXnYfLz.jpg" alt="The Passenger" loading="eager" />
+        <div class="film-card-body">
+          <div class="film-card-title">The Passenger</div>
+          <div class="film-card-year">1975</div>
+          <div class="film-card-mood-tag">Identity Theft</div>
+          <div class="film-card-primer">Antonioni's slow-burn about a man who assumes another's identity and discovers identity itself is a kind of performance you can never escape.</div>
+        </div>
+      </div>
+      <div class="film-card">
+        <img class="film-card-poster" src="https://image.tmdb.org/t/p/w342/dXNAPwY001t0nYkK7t0yXcP1IUV.jpg" alt="A Star Is Born" loading="eager" />
+        <div class="film-card-body">
+          <div class="film-card-title">A Star Is Born</div>
+          <div class="film-card-year">2018</div>
+          <div class="film-card-mood-tag">What Fame Costs</div>
+          <div class="film-card-primer">The price of visibility. When your performance becomes your only commodity, what happens when you can't perform anymore?</div>
+        </div>
+      </div>
+      <div class="film-card">
+        <img class="film-card-poster" src="https://image.tmdb.org/t/p/w342/4S3gPxRAr5GBPe5tVUHCjLx5EYO.jpg" alt="The Hours" loading="eager" />
+        <div class="film-card-body">
+          <div class="film-card-title">The Hours</div>
+          <div class="film-card-year">2002</div>
+          <div class="film-card-mood-tag">Transformation</div>
+          <div class="film-card-primer">Three women performing the roles history assigned them: wife, mother, writer. Each film about refusing to be what you were told.</div>
+        </div>
+      </div>
+      <div class="film-card">
+        <img class="film-card-poster" src="https://image.tmdb.org/t/p/w342/3xNDhJESNHT9w8vVvb6LgA0Y9Ml.jpg" alt="Singin' in the Rain" loading="eager" />
+        <div class="film-card-body">
+          <div class="film-card-title">Singin' in the Rain</div>
+          <div class="film-card-year">1952</div>
+          <div class="film-card-mood-tag">Stage Fright</div>
+          <div class="film-card-primer">The transition from silent to sound cinema. When the performance you've perfected becomes obsolete overnight, who are you underneath?</div>
+        </div>
+      </div>
+      <div class="film-card">
+        <img class="film-card-poster" src="https://image.tmdb.org/t/p/w342/qf1kpHjlJM2i56cF8wMdYWXbVQj.jpg" alt="Buster Keaton" loading="eager" />
+        <div class="film-card-body">
+          <div class="film-card-title">The General</div>
+          <div class="film-card-year">1926</div>
+          <div class="film-card-mood-tag">Character Study</div>
+          <div class="film-card-primer">Keaton's face never changes. The performance is entirely bodily, entirely external. What's left when you remove expression?</div>
+        </div>
+      </div>
+      <div class="film-card">
+        <img class="film-card-poster" src="https://image.tmdb.org/t/p/w342/9PYfNLSBwVzKZhMfPaGM8sP5HKn.jpg" alt="Tár" loading="eager" />
+        <div class="film-card-body">
+          <div class="film-card-title">Tár</div>
+          <div class="film-card-year">2022</div>
+          <div class="film-card-mood-tag">Method Acting</div>
+          <div class="film-card-primer">When the performance is so total that reality bends to accommodate it — until suddenly the world stops performing back.</div>
+        </div>
+      </div>
+      <div class="film-card">
+        <img class="film-card-poster" src="https://image.tmdb.org/t/p/w342/pWmb0V4WBNsYXJW3hqQOE1Lk6Ua.jpg" alt="Phantom Thread" loading="eager" />
+        <div class="film-card-body">
+          <div class="film-card-title">Phantom Thread</div>
+          <div class="film-card-year">2017</div>
+          <div class="film-card-mood-tag">Double Life</div>
+          <div class="film-card-primer">Two people performing devotion to each other. But which is the performance and which is the person?</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <section id="continent">
+    <div class="section-eyebrow reveal">
+      <span class="section-eyebrow-icon">&#127758;</span>
+      <span class="section-eyebrow-label">The Continent</span>
+      <span class="section-eyebrow-pipe">|</span>
+      <span class="section-eyebrow-desc">Subtitles required</span>
+    </div>
+    <div class="tv-grid reveal">
+      <div class="pulse-card continent">
+        <div class="pulse-card-img-wrap"><img class="pulse-card-img" src="https://image.tmdb.org/t/p/w780/hlEaYKlqfb0gDXbUHqJEVVBTquB.jpg" alt="The Trap" loading="eager" /></div>
+        <div class="pulse-card-type">France &mdash; France 3 &mdash; 2024 &mdash; 4 Episodes</div>
+        <div class="pulse-card-title">The Trap / Le Piège</div>
+        <div class="continent-lang">French</div>
+        <div class="pulse-card-body">Grégory Montel directs a woman who constructs an elaborate false identity to infiltrate the life of a dangerous man. The show is built on the premise that performance can become so total it becomes real — that the act and the person collapse into one.</div>
+      </div>
+      <div class="pulse-card continent">
+        <div class="pulse-card-img-wrap"><img class="pulse-card-img" src="https://image.tmdb.org/t/p/w780/9k7JqDIbJC2V7fvPy3CqG8Ey5gX.jpg" alt=" Estructuras de Poder" loading="eager" /></div>
+        <div class="pulse-card-type">Spain &mdash; Netflix &mdash; 2024 &mdash; 8 Episodes</div>
+        <div class="pulse-card-title">Power Structures / Estructuras de Poder</div>
+        <div class="continent-lang">Spanish</div>
+        <div class="pulse-card-body">An intimate portrait of four people in positions of institutional power — political, corporate, cultural. The series interrogates what performance is required to occupy those positions and what it costs those who perform it.</div>
+      </div>
+      <div class="pulse-card continent">
+        <div class="pulse-card-img-wrap"><img class="pulse-card-img" src="https://image.tmdb.org/t/p/w780/uNyVaYEPw0Z7wKG7JKxCFQ2bZPK.jpg" alt="Godless" loading="eager" /></div>
+        <div class="pulse-card-type">Poland &mdash; TVN &mdash; 2023 &mdash; 8 Episodes</div>
+        <div class="pulse-card-title">Godless</div>
+        <div class="continent-lang">Polish</div>
+        <div class="pulse-card-body">A priest abandons his faith and ministry. What he discovers is that his entire life was a performance, and outside that role he has no self to return to. The show is Kieslowski-adjacent: faith, identity, the performances we maintain to survive.</div>
+      </div>
+      <div class="pulse-card continent">
+        <div class="pulse-card-img-wrap"><img class="pulse-card-img" src="https://image.tmdb.org/t/p/w780/xJPW2dRNLFbDPqMVVcPm1lPK7MZ.jpg" alt="Reputation" loading="eager" /></div>
+        <div class="pulse-card-type">Germany &mdash; ARD &mdash; 2024 &mdash; 6 Episodes</div>
+        <div class="pulse-card-title">Reputation / Ruf</div>
+        <div class="continent-lang">German</div>
+        <div class="pulse-card-body">A man's reputation — his public performance — becomes his only reality when scandal hits. The show asks the essential question: if you perform yourself so completely that others believe it, does the performance become the truth?</div>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
   <section id="argument">
     <div class="section-eyebrow">
       <span class="section-eyebrow-label">The Argument</span>
