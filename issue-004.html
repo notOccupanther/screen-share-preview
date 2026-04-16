@@ -726,9 +726,15 @@
       if (!data) return;
 
       const container = document.getElementById('moodFilms');
-      container.innerHTML = data.films.map(f =>
-        '<div class="film-card reveal"><img class="film-card-poster" src="' + f.poster + '" alt="' + f.title + '" loading="lazy" onerror="this.style.background=\'#1a1a22\';this.removeAttribute(\'src\');" /><div class="film-card-body"><div class="film-card-title">' + f.title + '</div><div class="film-card-year">' + f.year + ' &middot; ' + f.director + '</div><div class="film-card-mood-tag">' + f.tag + '</div><div class="film-card-primer">' + f.primer + '</div></div></div>'
-      ).join('');
+      container.innerHTML = data.films.map(f => {
+        const posterUrl = f.poster;
+        const title = f.title;
+        const year = f.year;
+        const director = f.director;
+        const tag = f.tag;
+        const primer = f.primer;
+        return '<div class="film-card"><img class="film-card-poster" src="' + posterUrl + '" alt="' + title + '" loading="lazy" /><div class="film-card-body"><div class="film-card-title">' + title + '</div><div class="film-card-year">' + year + ' &middot; ' + director + '</div><div class="film-card-mood-tag">' + tag + '</div><div class="film-card-primer">' + primer + '</div></div></div>';
+      }).join('');
 
       renderMoodVote(mood);
     }
