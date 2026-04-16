@@ -328,7 +328,7 @@
       </div>
     </div>
     <div class="mood-films" id="moodFilms">
-      <div class="film-card">
+      <div class="film-card" data-mood="character-study">
         <img class="film-card-poster" src="https://image.tmdb.org/t/p/w342/mR8EX3Q1ry0MqQ5f2LDLwBXLRvE.jpg" alt="Mulholland Drive" loading="eager" />
         <div class="film-card-body">
           <div class="film-card-title">Mulholland Drive</div>
@@ -337,7 +337,7 @@
           <div class="film-card-primer">Lynch's masterpiece about an actress who may or may not be who she thinks she is. The performance becomes the plot becomes the person.</div>
         </div>
       </div>
-      <div class="film-card">
+      <div class="film-card" data-mood="double-life">
         <img class="film-card-poster" src="https://image.tmdb.org/t/p/w342/3VFt6lRfCE8Pf7TnZ9L2kRJ1kqR.jpg" alt="Carol" loading="eager" />
         <div class="film-card-body">
           <div class="film-card-title">Carol</div>
@@ -346,7 +346,7 @@
           <div class="film-card-primer">Two women navigating the performance of heterosexuality in 1950s America. Passing as ordinary while being entirely yourself.</div>
         </div>
       </div>
-      <div class="film-card">
+      <div class="film-card" data-mood="identity-theft">
         <img class="film-card-poster" src="https://image.tmdb.org/t/p/w342/xCXmZp_XRqLKNqyg5kW6pXnYfLz.jpg" alt="The Passenger" loading="eager" />
         <div class="film-card-body">
           <div class="film-card-title">The Passenger</div>
@@ -355,7 +355,7 @@
           <div class="film-card-primer">Antonioni's slow-burn about a man who assumes another's identity and discovers identity itself is a kind of performance you can never escape.</div>
         </div>
       </div>
-      <div class="film-card">
+      <div class="film-card" data-mood="fame-costs">
         <img class="film-card-poster" src="https://image.tmdb.org/t/p/w342/dXNAPwY001t0nYkK7t0yXcP1IUV.jpg" alt="A Star Is Born" loading="eager" />
         <div class="film-card-body">
           <div class="film-card-title">A Star Is Born</div>
@@ -364,7 +364,7 @@
           <div class="film-card-primer">The price of visibility. When your performance becomes your only commodity, what happens when you can't perform anymore?</div>
         </div>
       </div>
-      <div class="film-card">
+      <div class="film-card" data-mood="transformation">
         <img class="film-card-poster" src="https://image.tmdb.org/t/p/w342/4S3gPxRAr5GBPe5tVUHCjLx5EYO.jpg" alt="The Hours" loading="eager" />
         <div class="film-card-body">
           <div class="film-card-title">The Hours</div>
@@ -373,7 +373,7 @@
           <div class="film-card-primer">Three women performing the roles history assigned them: wife, mother, writer. Each film about refusing to be what you were told.</div>
         </div>
       </div>
-      <div class="film-card">
+      <div class="film-card" data-mood="stage-fright">
         <img class="film-card-poster" src="https://image.tmdb.org/t/p/w342/3xNDhJESNHT9w8vVvb6LgA0Y9Ml.jpg" alt="Singin' in the Rain" loading="eager" />
         <div class="film-card-body">
           <div class="film-card-title">Singin' in the Rain</div>
@@ -382,7 +382,7 @@
           <div class="film-card-primer">The transition from silent to sound cinema. When the performance you've perfected becomes obsolete overnight, who are you underneath?</div>
         </div>
       </div>
-      <div class="film-card">
+      <div class="film-card" data-mood="character-study">
         <img class="film-card-poster" src="https://image.tmdb.org/t/p/w342/qf1kpHjlJM2i56cF8wMdYWXbVQj.jpg" alt="Buster Keaton" loading="eager" />
         <div class="film-card-body">
           <div class="film-card-title">The General</div>
@@ -391,7 +391,7 @@
           <div class="film-card-primer">Keaton's face never changes. The performance is entirely bodily, entirely external. What's left when you remove expression?</div>
         </div>
       </div>
-      <div class="film-card">
+      <div class="film-card" data-mood="method-acting">
         <img class="film-card-poster" src="https://image.tmdb.org/t/p/w342/9PYfNLSBwVzKZhMfPaGM8sP5HKn.jpg" alt="Tár" loading="eager" />
         <div class="film-card-body">
           <div class="film-card-title">Tár</div>
@@ -400,7 +400,7 @@
           <div class="film-card-primer">When the performance is so total that reality bends to accommodate it — until suddenly the world stops performing back.</div>
         </div>
       </div>
-      <div class="film-card">
+      <div class="film-card" data-mood="double-life">
         <img class="film-card-poster" src="https://image.tmdb.org/t/p/w342/pWmb0V4WBNsYXJW3hqQOE1Lk6Ua.jpg" alt="Phantom Thread" loading="eager" />
         <div class="film-card-body">
           <div class="film-card-title">Phantom Thread</div>
@@ -735,6 +735,27 @@
         });
       }, 500);
     }
+
+    // Mood chip filtering
+    const moodChips = document.querySelectorAll('.mood-chip');
+    const filmCards = document.querySelectorAll('.film-card');
+
+    moodChips.forEach(chip => {
+      chip.addEventListener('click', () => {
+        const selectedMood = chip.getAttribute('data-mood');
+
+        moodChips.forEach(c => c.classList.remove('active'));
+        chip.classList.add('active');
+
+        filmCards.forEach(card => {
+          if (card.getAttribute('data-mood') === selectedMood) {
+            card.style.display = 'block';
+          } else {
+            card.style.display = 'none';
+          }
+        });
+      });
+    });
   </script>
 </body>
 </html>
