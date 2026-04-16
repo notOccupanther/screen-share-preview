@@ -236,14 +236,45 @@
     .section-about-panel { overflow: hidden; max-height: 0; opacity: 0; transition: max-height 0.4s ease, opacity 0.3s ease, margin 0.3s ease; margin-bottom: 0; }
     .section-about-panel.open { max-height: 200px; opacity: 1; margin-bottom: 2rem; }
     .section-about-inner { background: rgba(245,158,11,0.06); border: 1px solid var(--gold-border); border-left: 3px solid var(--gold); padding: 1rem 1.25rem; font-size: 0.85rem; line-height: 1.7; color: rgba(232,232,237,0.72); font-style: italic; }
+    .issue-footer-cta { max-width: 1200px; margin: 0 auto; padding: 0 2.5rem 5rem; display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+    .cta-block { background: var(--surface); border: 1px solid var(--border); padding: 2.25rem; display: flex; flex-direction: column; gap: 0.9rem; }
+    .cta-block-label { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); }
+    .cta-block-title { font-family: 'Playfair Display', serif; font-size: 1.2rem; font-weight: 700; color: #fff; line-height: 1.2; }
+    .cta-block-text { font-size: 0.88rem; line-height: 1.7; color: var(--text-muted); font-weight: 300; }
+    .cta-subscribe-form { display: flex; gap: 0; margin-top: 0.5rem; }
+    .cta-subscribe-input { flex: 1; padding: 0.7rem 1rem; background: rgba(255,255,255,0.04); border: 1px solid var(--border); border-right: none; color: var(--text); font-family: 'Inter', sans-serif; font-size: 0.85rem; outline: none; }
+    .cta-subscribe-input::placeholder { color: var(--text-dim); }
+    .cta-subscribe-input:focus { border-color: var(--gold-border); }
+    .cta-subscribe-btn { padding: 0.7rem 1.25rem; background: var(--gold); border: none; color: #0a0a0f; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; cursor: pointer; font-family: 'Inter', sans-serif; white-space: nowrap; transition: background 0.2s; }
+    .cta-subscribe-btn:hover { background: #fbbf24; }
+    .cta-kofi-btn { display: inline-flex; align-items: center; gap: 0.6rem; padding: 0.75rem 1.5rem; margin-top: 0.5rem; background: transparent; border: 1px solid var(--gold-border); color: var(--gold); font-size: 0.82rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; text-decoration: none; transition: background 0.2s, border-color 0.2s; align-self: flex-start; }
+    .cta-kofi-btn:hover { background: var(--gold-dim); border-color: var(--gold); }
+    .cta-kofi-btn svg { width: 16px; height: 16px; fill: currentColor; }
+    footer { max-width: 1200px; margin: 0 auto; padding: 2rem 2.5rem 3rem; border-top: 1px solid var(--border); display: flex; flex-direction: column; gap: 0.75rem; }
+    .footer-top { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; }
+    .footer-logo { font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 800; color: var(--text-muted); }
+    .footer-logo span { color: var(--gold); }
+    .footer-note { font-size: 0.72rem; color: var(--text-dim); }
+    .footer-legal { font-size: 0.65rem; color: var(--text-dim); line-height: 1.5; }
+    .footer-legal a { color: var(--text-muted); text-decoration: underline; }
+    .footer-links { font-size: 0.72rem; }
+    .footer-links a { color: var(--text-muted); text-decoration: none; }
+    .footer-links a:hover { color: var(--gold); }
+    @media (max-width: 768px) { .issue-footer-cta { grid-template-columns: 1fr; padding: 0 1.25rem 4rem; } }
   </style>
 </head>
 <body>
   <nav>
-    <a href="https://screenshare.watch" class="nav-logo">Screen <span>Share</span></a>
+    <a href="https://screenshare.watch" class="nav-logo">Screen<span>Share</span></a>
     <ul class="nav-links">
-      <li><a href="https://screenshare.watch">Home</a></li>
-      <li><a href="https://screenshare.watch/archive">Archive</a></li>
+      <li><a href="#rewind">Rewind</a></li>
+      <li><a href="#argument">Argument</a></li>
+      <li><a href="#flashpoint">Flashpoint</a></li>
+      <li><a href="#signal">Signal</a></li>
+      <li><a href="#pulse">Pulse</a></li>
+      <li><a href="#onscreen">On Screen</a></li>
+      <li><a href="#continent">The Continent</a></li>
+      <li><a href="#behind">Behind the Curtain</a></li>
     </ul>
   </nav>
 
@@ -682,14 +713,48 @@
 
   
 
-  <footer style="padding: 3rem 2.5rem; max-width: 1200px; margin: 0 auto; border-top: 1px solid var(--border); text-align: center;">
-    <p style="color: var(--text-dim); font-size: 0.85rem; margin-bottom: 1rem;">
-      <a href="https://screenshare.watch" style="color: var(--gold); text-decoration: none; border-bottom: 1px solid var(--gold);">Screen Share</a> is an independent newsletter exploring the week in film and television.
-    </p>
-    <p style="color: var(--text-dim); font-size: 0.8rem;">
-      <a href="https://screenshare.watch/archive" style="color: var(--text-muted); text-decoration: none;">Archive</a> | <a href="https://screenshare.watch/subscribe" style="color: var(--text-muted); text-decoration: none;">Subscribe</a>
-    </p>
+  <div class="section-divider"></div>
+
+  <div class="issue-footer-cta reveal">
+    <div class="cta-block">
+      <div class="cta-block-label">Stay in the loop</div>
+      <div class="cta-block-title">Get Screen Share in your inbox every fortnight</div>
+      <div class="cta-block-text">One issue, one theme, every fortnight. No algorithm. No noise. Just the films and television worth your time.</div>
+      <form class="cta-subscribe-form" action="https://buttondown.com/api/emails/embed-subscribe/screenshare" method="post" target="_blank" onsubmit="window.open('https://buttondown.com/screenshare','popupwindow')">
+        <input class="cta-subscribe-input" type="email" name="email" placeholder="your@email.com" required />
+        <button class="cta-subscribe-btn" type="submit">Subscribe</button>
+      </form>
+    </div>
+    <div class="cta-block">
+      <div class="cta-block-label">Support independent publishing</div>
+      <div class="cta-block-title">If Screen Share is worth your time, it&rsquo;s worth a coffee</div>
+      <div class="cta-block-text">Screen Share is independent, ad-free, and takes real work to put together each fortnight. If you value that, any support keeps it going.</div>
+      <a class="cta-kofi-btn" href="https://ko-fi.com/screenshare" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24"><path d="M23.881 8.948c-.773-4.085-4.859-4.593-4.859-4.593H.723c-.604 0-.679.798-.679.798s-.082 7.324-.022 11.822c.164 2.424 2.586 2.672 2.586 2.672s8.267-.023 11.966-.049c2.438-.426 2.683-2.566 2.658-3.734 4.352.24 7.422-2.831 6.649-6.916zm-11.062 3.511c-1.246 1.453-4.011 3.976-4.011 3.976s-.121.119-.31.023c-.076-.057-.108-.09-.108-.09-.443-.441-3.368-3.049-4.034-3.954-.709-.965-1.041-2.7-.091-3.71.951-1.01 3.005-1.086 4.363.407 0 0 1.565-1.782 3.468-.963 1.904.82 1.832 3.011.723 4.311z"/></svg>
+        Support on Ko-fi
+      </a>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-top">
+      <span class="footer-logo">Screen<span>Share</span></span>
+      <span class="footer-note">Issue 004 &middot; Performance &middot; April 2026</span>
+    </div>
+    <div class="footer-links"><a href="https://screenshare.watch/feed.xml">RSS</a> &middot; <a href="https://ko-fi.com/screenshare">Ko-fi</a> &middot; <a href="https://screenshare.watch/archive">Archive</a></div>
+    <div class="footer-legal">&copy; 2026 Screen Share. Film data and images courtesy of <a href="https://www.themoviedb.org/" target="_blank" rel="noopener">TMDB</a>. Screen Share uses the TMDB API but is not endorsed or certified by TMDB.</div>
   </footer>
+
+  <div id="stickyBar" style="display:none;position:fixed;bottom:0;left:0;right:0;z-index:200;background:rgba(10,10,15,0.95);backdrop-filter:blur(16px);border-top:1px solid rgba(245,158,11,0.25);padding:0.85rem 2rem;align-items:center;justify-content:space-between;">
+    <span style="font-size:0.85rem;color:#8888a0;font-weight:500;"><span style="color:#f59e0b;font-weight:700;">Screen Share</span> &mdash; Every Fortnight. One theme, one conversation.</span>
+    <div style="display:flex;align-items:center;gap:0.75rem;">
+      <form action="https://buttondown.com/api/emails/embed-subscribe/screenshare" method="post" target="_blank" onsubmit="window.open('https://buttondown.com/screenshare','popupwindow')" style="display:flex;gap:0;">
+        <input type="email" name="email" placeholder="your@email.com" required style="padding:0.55rem 1rem;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.06);border-right:none;color:#e8e8ed;font-size:0.82rem;font-family:'Inter',sans-serif;outline:none;width:200px;" />
+        <button type="submit" style="padding:0.55rem 1rem;background:#f59e0b;border:none;color:#0a0a0f;font-size:0.78rem;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;cursor:pointer;font-family:'Inter',sans-serif;white-space:nowrap;">Subscribe</button>
+      </form>
+      <button id="stickyDismiss" style="background:none;border:none;color:#555568;font-size:1.2rem;cursor:pointer;padding:0.25rem 0.5rem;line-height:1;">&times;</button>
+    </div>
+  </div>
 
   <script>
     const revealElements = document.querySelectorAll('.reveal');
@@ -849,6 +914,15 @@
         if(!isOpen){panel.classList.add('open');btn.classList.add('open');}
       });
     });
+
+    // STICKY BAR
+    (function(){
+      const bar=document.getElementById('stickyBar'),dismiss=document.getElementById('stickyDismiss');
+      if(localStorage.getItem('ss-bar-dismissed'))return;
+      let shown=false;
+      window.addEventListener('scroll',function(){if(shown)return;var pct=window.scrollY/(document.body.scrollHeight-window.innerHeight);if(pct>0.35){bar.style.display='flex';shown=true}});
+      dismiss.addEventListener('click',function(){bar.style.display='none';localStorage.setItem('ss-bar-dismissed','1')});
+    })();
   </script>
 </body>
 </html>
