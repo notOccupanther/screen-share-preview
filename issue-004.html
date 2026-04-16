@@ -193,6 +193,10 @@
     .tv-card.horizon:hover { border-color: rgba(96,165,250,0.25); border-top-color: #60a5fa; }
     .tv-card.radar { border-top-color: #34d399; }
     .tv-card.radar:hover { border-color: rgba(52,211,153,0.25); border-top-color: #34d399; }
+    .tv-tier-label { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; margin: 2.5rem 0 1.25rem; }
+    .tv-tier-now { color: #f59e0b; }
+    .tv-tier-horizon { color: #60a5fa; }
+    .tv-tier-radar { color: #34d399; }
     .signal-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.5rem; }
     .signal-card { background: var(--surface); border: 1px solid var(--border); border-top: 2px solid var(--gold); padding: 1.75rem; transition: border-color 0.2s, transform 0.2s; }
     .signal-card:hover { border-color: var(--gold-border); transform: translateY(-2px); }
@@ -513,7 +517,7 @@
       <div class="section-about-inner">Screen Share covers film and television. This section tracks what&rsquo;s worth watching on TV right now &mdash; curated picks currently airing, worth catching up on, or waiting to be found.</div>
     </div>
 
-    <h3 style="font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 700; margin-bottom: 1.5rem; color: #f59e0b; letter-spacing: 0.12em; text-transform: uppercase; font-size: 0.75rem;">Airing Now</h3>
+    <div class="tv-tier-label tv-tier-now reveal">Airing Now</div>
 
     <div class="tv-grid reveal">
       <div class="tv-card now">
@@ -542,7 +546,7 @@
       </div>
     </div>
 
-    <h3 style="font-family: 'Playfair Display', serif; font-size: 0.75rem; font-weight: 700; margin-top: 3rem; margin-bottom: 1.5rem; color: #60a5fa; letter-spacing: 0.12em; text-transform: uppercase;">On the Horizon</h3>
+    <div class="tv-tier-label tv-tier-horizon reveal">On the Horizon &mdash; Worth Tracking</div>
 
     <div class="tv-grid reveal">
       <div class="tv-card horizon">
@@ -565,7 +569,7 @@
       </div>
     </div>
 
-    <h3 style="font-family: 'Playfair Display', serif; font-size: 0.75rem; font-weight: 700; margin-top: 3rem; margin-bottom: 1.5rem; color: #34d399; letter-spacing: 0.12em; text-transform: uppercase;">Under the Radar</h3>
+    <div class="tv-tier-label tv-tier-radar reveal">Under the Radar</div>
 
     <div class="tv-grid reveal">
       <div class="tv-card radar">
