@@ -209,6 +209,12 @@
       .rewind-card { grid-template-columns: 1fr; gap: 1.5rem; }
       .flashpoint-card { grid-template-columns: 1fr; gap: 1.5rem; }
     }
+    .section-about-btn { display: inline-flex; align-items: center; justify-content: center; width: 20px; height: 20px; border-radius: 50%; border: 1px solid var(--text-dim); color: var(--text-dim); font-size: 0.65rem; font-weight: 700; cursor: pointer; background: transparent; transition: border-color 0.2s, color 0.2s, background 0.2s; flex-shrink: 0; line-height: 1; font-family: 'Inter', sans-serif; letter-spacing: 0; }
+    .section-about-btn:hover { border-color: var(--gold); color: var(--gold); }
+    .section-about-btn.open { border-color: var(--gold); color: #0a0a0f; background: var(--gold); }
+    .section-about-panel { overflow: hidden; max-height: 0; opacity: 0; transition: max-height 0.4s ease, opacity 0.3s ease, margin 0.3s ease; margin-bottom: 0; }
+    .section-about-panel.open { max-height: 200px; opacity: 1; margin-bottom: 2rem; }
+    .section-about-inner { background: rgba(245,158,11,0.06); border: 1px solid var(--gold-border); border-left: 3px solid var(--gold); padding: 1rem 1.25rem; font-size: 0.85rem; line-height: 1.7; color: rgba(232,232,237,0.72); font-style: italic; }
   </style>
 </head>
 <body>
@@ -264,7 +270,11 @@
       <span class="section-eyebrow-icon">&#9654;</span>
       <span class="section-eyebrow-label">The Rewind</span>
       <span class="section-eyebrow-pipe">|</span>
-      <span class="section-eyebrow-desc">A film from the archive that speaks to right now</span>
+      <span class="section-eyebrow-desc">A film from the archive</span>
+      <button class="section-about-btn" data-about="rewind" title="What is this section?">i</button>
+    </div>
+    <div class="section-about-panel" id="about-rewind">
+      <div class="section-about-inner">Each issue we reach back into cinema history for a film that earns its place in the conversation right now. Not a classic for a classic's sake — something that speaks to the week's theme in a way that might surprise you.</div>
     </div>
     <div class="rewind-card reveal">
       <img class="rewind-poster" src="https://image.tmdb.org/t/p/w342/blBzZaatPWVuWpXEnPscMA4Xp6m.jpg" alt="All About Eve (1950)" loading="eager" />
@@ -290,7 +300,11 @@
       <span class="section-eyebrow-icon">&#128172;</span>
       <span class="section-eyebrow-label">The Argument</span>
       <span class="section-eyebrow-pipe">|</span>
-      <span class="section-eyebrow-desc">One question. No verdict.</span>
+      <span class="section-eyebrow-desc">Two readings. One vote.</span>
+      <button class="section-about-btn" data-about="argument" title="What is this section?">i</button>
+    </div>
+    <div class="section-about-panel" id="about-argument">
+      <div class="section-about-inner">Two incompatible ways of reading the same film. Neither is wrong. The vote isn't about settling the question — it's about finding out which discomfort fits you better.</div>
     </div>
     <blockquote class="argument-question reveal">&ldquo;Is there a self beneath the performance, or is the performance all there ever was?&rdquo;</blockquote>
     <p class="argument-intro reveal">The streaming age has made performance visible in ways cinema alone never could. You can now watch someone perform their life in real-time, edit it into narrative, and monetise the edit. The person and the persona have become one product. What happens to the question of authenticity when there is no longer a backstage to retreat to?</p>
@@ -328,6 +342,10 @@
       <span class="section-eyebrow-label">Discover</span>
       <span class="section-eyebrow-pipe">|</span>
       <span class="section-eyebrow-desc">Not genre. Emotion.</span>
+      <button class="section-about-btn" data-about="discover" title="What is this section?">i</button>
+    </div>
+    <div class="section-about-panel" id="about-discover">
+      <div class="section-about-inner">Algorithms sort by genre. We sort by feeling. Pick the mood you're in and we'll find something worth watching. 21 films. 7 ways to approach performance. None of them comfortable.</div>
     </div>
     <div class="mood-chips-wrapper reveal">
       <div class="mood-chips" id="moodChips">
@@ -355,57 +373,27 @@
       <span class="section-eyebrow-icon">&#127959;</span>
       <span class="section-eyebrow-label">Flashpoint</span>
       <span class="section-eyebrow-pipe">|</span>
-      <span class="section-eyebrow-desc">What's hot now</span>
+      <span class="section-eyebrow-desc">The moment something ignited</span>
+      <button class="section-about-btn" data-about="flashpoint" title="What is this section?">i</button>
+    </div>
+    <div class="section-about-panel" id="about-flashpoint">
+      <div class="section-about-inner">Cinema has always been political. Flashpoint looks at the moment a film said something it wasn't supposed to — and what happened when it did.</div>
     </div>
 
-    <div class="flashpoint-card">
-      <img src="https://image.tmdb.org/t/p/w342/mZ7YFEOxAKfjXJKWm0sYFXQ8n8A.jpg" alt="Industry" class="flashpoint-poster" />
-      <div>
-        <div class="flashpoint-year">2020–present</div>
-        <h3 class="flashpoint-title">Industry, Season 4</h3>
-        <div class="flashpoint-body">Industry has always been a show about people performing competence they haven't yet earned — graduate recruits at a London investment bank running the character of someone who belongs. Season 4 adds Charlie Heaton and Jack Farthing as new entrants, and the show's engine — Harper Stern's self-invention, Robert Spearing's studied ruthlessness — remains the most sustained examination on television of what professional performance does to actual selfhood. The finance world is the ideal setting: every relationship is also a transaction, every sentence is also a pitch. Season 4 maintains the show's trajectory upward. This is the show that got better as it got more confident about what it was.</div>
-        <div style="margin-top: 1.25rem; padding-top: 1.25rem; border-top: 1px solid var(--border); font-size: 0.9rem; color: rgba(232,232,237,0.7); font-style: italic;">Critical temperature: Warm to hot. 87 Metacritic is the best score in the show's run.</div>
+    <div class="rewind-card" style="margin-top: 0;">
+      <img src="https://image.tmdb.org/t/p/w342/qZomlHsaALUtkFeMDwdYmwS2Pbo.jpg" alt="Network" class="rewind-poster" />
+      <div class="rewind-body">
+        <div class="rewind-year">1976</div>
+        <h2 class="rewind-film-title">Network</h2>
+        <div class="rewind-text">Paddy Chayefsky wrote Network in 1976 as a warning. It was received as satire. Fifty years on it is neither — it is documentation.</div>
+        <div class="rewind-text">Howard Beale, UBS Evening News anchor, is told on-air that he has two weeks before he's cancelled. He announces on live television that he intends to shoot himself next Tuesday. Ratings soar. The network, rather than pulling him off air, promotes the breakdown. A woman named Diana Christensen — the head of programming, played by Faye Dunaway with a terrifying clarity — sees that authentic human despair is the most compelling content available. She schedules it.</div>
+        <div class="rewind-text">What Chayefsky understood, and what makes the film still running hot, is the mechanism. The performance isn't faked — Beale's distress is real. What's faked is the frame around it: the pretence that what is being broadcast is news, that what the audience is watching is a man breaking down rather than a product being consumed. The content is real. The relationship to it is the lie.</div>
+        <div class="rewind-text">Peter Finch died before the Academy Awards and received a posthumous Oscar. Faye Dunaway won. Sidney Lumet directed with the precision of someone who knew exactly what he was describing. The film grossed $23 million on a $4 million budget. It said something it wasn't supposed to say — that the audience would watch a man perform his own destruction, that the network would let them, and that the line between the two had already been erased. Nobody argued the premise. They argued the tone.</div>
+        <div class="rewind-text">In a fortnight when an actor is auditioning to become James Bond — performing himself performing a performance — and Valerie Cherish is back on television performing her own irrelevance for a camera she controls, Network is not a parable. It is the origin document.</div>
       </div>
     </div>
-
-    <div class="flashpoint-card">
-      <img src="https://image.tmdb.org/t/p/w342/6lFI03QZgXwGZLKtzUw4L8ZnyBv.jpg" alt="How to Get to Heaven from Belfast" class="flashpoint-poster" />
-      <div>
-        <div class="flashpoint-year">2026</div>
-        <h3 class="flashpoint-title">How to Get to Heaven from Belfast</h3>
-        <div class="flashpoint-body">Lisa McGee follows Derry Girls with a murder mystery set in 1990s Belfast, where young women have to perform innocence, decorum, and class aspiration within a society that polices all three. The Guardian's five-star review called it essential viewing. The show is about women who have mastered the role they were given and are now using that mastery as cover.</div>
-        <div style="margin-top: 1.25rem; padding-top: 1.25rem; border-top: 1px solid var(--border); font-size: 0.9rem; color: rgba(232,232,237,0.7); font-style: italic;">Critical temperature: Extremely warm in UK press; US coverage catching up. 95% RT with 39 reviews is not a fluke.</div>
-      </div>
-    </div>
-
-    <div class="flashpoint-card">
-      <img src="https://image.tmdb.org/t/p/w342/1MccRnw41qQjREuZkovqP2UX1i3.jpg" alt="The Night Manager" class="flashpoint-poster" />
-      <div>
-        <div class="flashpoint-year">2016–present</div>
-        <h3 class="flashpoint-title">The Night Manager, Season 2</h3>
-        <div class="flashpoint-body">Jonathan Pine is the character as construct — a man who performs whatever role the spy world requires, who has been performing so long the original self is archaeologically inaccessible. Season 2 puts him back in the field a decade later. Hiddleston is "reliably good" — precisely calibrated. The performance theme is less interrogated here than celebrated: Pine performs beautifully and the show knows it.</div>
-        <div style="margin-top: 1.25rem; padding-top: 1.25rem; border-top: 1px solid var(--border); font-size: 0.9rem; color: rgba(232,232,237,0.7); font-style: italic;">Caveat: Without Hugh Laurie's Roper, some critics feel the show has lost its sharpest antagonist.</div>
-      </div>
-    </div>
-
-    <div class="flashpoint-card">
-      <img src="https://image.tmdb.org/t/p/w342/2NKvKYtRgBN1zLrAfInkVoRNc94.jpg" alt="Lord of the Flies" class="flashpoint-poster" />
-      <div>
-        <div class="flashpoint-year">2026</div>
-        <h3 class="flashpoint-title">Lord of the Flies</h3>
-        <div class="flashpoint-body">The Golding novel is the purest distillation of performed civility — Ralph and Jack are not different people, they are the same person in different stages of performance collapse. The BBC adaptation takes a character-by-character approach per episode, structuring the disintegration as a series of individual performance failures. Formal ambition; audience reception is split, which tracks: formal ambition rarely plays as crowd-pleasing.</div>
-        <div style="margin-top: 1.25rem; padding-top: 1.25rem; border-top: 1px solid var(--border); font-size: 0.9rem; color: rgba(232,232,237,0.7); font-style: italic;">Caveat: Not yet available in the US until May.</div>
-      </div>
-    </div>
-
-    <div class="flashpoint-card">
-      <img src="https://image.tmdb.org/t/p/w342/j8EOKHTlSaorhXOKRT25ssEie6a.jpg" alt="Gomorrah: The Origins" class="flashpoint-poster" />
-      <div>
-        <div class="flashpoint-year">2026</div>
-        <h3 class="flashpoint-title">Gomorrah: The Origins</h3>
-        <div class="flashpoint-body">Marco D'Amore (who played Ciro in the original Gomorrah) directs and appears in this prequel, following Pietro as he constructs the criminal persona that crime culture requires. The show is literally about the invention of a performance — the self that crime culture demands. Built on the tradition of the original series.</div>
-        <div style="margin-top: 1.25rem; padding-top: 1.25rem; border-top: 1px solid var(--border); font-size: 0.9rem; color: rgba(232,232,237,0.7); font-style: italic;">Caveat: Genuinely obscure in English-language markets.</div>
-      </div>
+    <div style="margin-top: 2rem; padding: 1.5rem; background: rgba(255,255,255,0.03); border: 1px solid var(--border); font-size: 0.9rem; line-height: 1.75; color: var(--text-muted); font-style: italic;">
+      Network (1976, dir. Sidney Lumet) is streaming on Max and available to rent on major platforms. Runtime 121 minutes. Four Academy Awards.
     </div>
   </section>
 
@@ -413,9 +401,14 @@
 
   <section id="signal">
     <div class="section-eyebrow">
+      <span class="section-eyebrow-icon">&#128225;</span>
       <span class="section-eyebrow-label">The Signal</span>
       <span class="section-eyebrow-pipe">|</span>
-      <span class="section-eyebrow-desc">Fortnight: April 11–25, 2026</span>
+      <span class="section-eyebrow-desc">AI in film and television — the deal, the resistance, the tool</span>
+      <button class="section-about-btn" data-about="signal" title="What is this section?">i</button>
+    </div>
+    <div class="section-about-panel" id="about-signal">
+      <div class="section-about-inner">The Signal tracks AI's intersection with the film and television industry. Three items each issue: a deal, a resistance, a tool. No hype, no panic — just what happened and what it means.</div>
     </div>
 
     <h3 style="font-family: 'Playfair Display', serif; font-size: 1.35rem; font-weight: 700; margin-top: 3rem; margin-bottom: 2rem; color: #fff;">Week of April 11, 2026</h3>
@@ -480,29 +473,36 @@
 
   <section id="pulse">
     <div class="section-eyebrow">
-      <span class="section-eyebrow-label">Weekly Pulse</span>
+      <span class="section-eyebrow-icon">&#9646;</span>
+      <span class="section-eyebrow-label">The Pulse</span>
+      <span class="section-eyebrow-pipe">|</span>
+      <span class="section-eyebrow-desc">Three works worth your time this fortnight</span>
+      <button class="section-about-btn" data-about="pulse" title="What is this section?">i</button>
+    </div>
+    <div class="section-about-panel" id="about-pulse">
+      <div class="section-about-inner">Three films and shows in cinemas and on streaming right now that reward a performance-lens. Not lectures about identity — works where the question of who you are when no one is watching sits at the centre, unresolved.</div>
     </div>
 
     <div class="pulse-grid">
       <div class="pulse-card">
-        <div class="pulse-card-type">Most Talked About</div>
-        <h3 class="pulse-card-title">BBC Culture Best of 2026 List</h3>
-        <div class="pulse-card-desc">The list landing in April gave critics and audiences a shared frame of reference mid-year. Industry S4 and The Night Manager S2 appear to be the most discussed entries — both are shows built around characters performing versions of themselves for professional or social survival. The conversation around the list is less about individual titles and more about what the list says about the current critical appetite: prestige character drama, British production, moral ambiguity without resolution.</div>
-        <div class="pulse-card-source">April 2026 drop</div>
-      </div>
-
-      <div class="pulse-card">
-        <div class="pulse-card-type">Our Call — Most Likely to Split the Room</div>
-        <h3 class="pulse-card-title">The Beauty</h3>
-        <div class="pulse-card-desc">The Beauty is asking something audiences may not be ready to give. Ryan Murphy's body-horror satire — a drug that literally remakes you, with the side effect that you might eventually explode — sits precisely at the intersection of vanity, survival, and the performance of identity that runs through this issue. Work this formally committed to its premise divides; that's not a flaw, it's the mechanism. The BBC Culture 2026 list's placement of it alongside prestige drama is itself an editorial statement about what counts as serious television right now.</div>
-        <div class="pulse-card-source">FX/Hulu</div>
-      </div>
-
-      <div class="pulse-card">
-        <div class="pulse-card-type">Our Recommendation — If It Passed You By</div>
+        <div class="pulse-card-type">In Cinemas &mdash; Prime Video</div>
         <h3 class="pulse-card-title">Bait</h3>
-        <div class="pulse-card-desc">Six sub-half-hour episodes, genuinely unclassifiable — industry satire, family comedy, psycho-drama, Bond pastiche — from a filmmaker and performer both operating at the edge of their range. The question at its centre (who does the industry decide gets to play the role, and what does the audition cost the person asking?) is the question this issue is built around. Start here if you haven't.</div>
-        <div class="pulse-card-source">Prime Video, 2026 | Metacritic 85 (Universal Acclaim, 18 critics)</div>
+        <div class="pulse-card-desc">Six episodes. Riz Ahmed as Shah Latif, a British-Pakistani actor shortlisted to audition for James Bond — auditioning to play the man who is always performing. Ahmed wrote this himself, and it shows: the question at the centre (who does the industry decide gets to play the role, and what does that cost the person asking?) is the question this entire issue is built around. Unclassifiable, uncomfortable, essential.</div>
+        <div class="pulse-card-source">Prime Video, 2026 &middot; Metacritic 85 (Universal Acclaim)</div>
+      </div>
+
+      <div class="pulse-card">
+        <div class="pulse-card-type">Streaming &mdash; Mubi / Digital</div>
+        <h3 class="pulse-card-title">The Substance</h3>
+        <div class="pulse-card-desc">Coralie Fargeat's Palme d'Or-winning body-horror film: a fading TV exercise host takes a drug that generates a younger, better version of herself. The two must share a body on alternating weeks. What starts as a film about the performance of youth and beauty collapses into something far more disturbing — a film about the self cannibalising the self to stay visible. The most visceral statement about image-performance made in years.</div>
+        <div class="pulse-card-source">Mubi / Digital rental, 2024 &middot; Palme d'Or, Cannes 2024</div>
+      </div>
+
+      <div class="pulse-card">
+        <div class="pulse-card-type">Streaming &mdash; Hulu / Digital</div>
+        <h3 class="pulse-card-title">Anora</h3>
+        <div class="pulse-card-desc">Sean Baker's Palme d'Or winner. A young sex worker from Brooklyn marries the son of a Russian oligarch. The film is a performance study at every level: Anora performs for clients, for Ivan, for his parents' fixers, and finally — most quietly — for herself. Yura Borisov's Igors is the film's conscience: the only character who sees through every performance including his own. Baker shoots intimacy and transaction as indistinguishable. The ending does not resolve. It observes.</div>
+        <div class="pulse-card-source">Hulu / Digital rental, 2024 &middot; Palme d'Or, Cannes 2024</div>
       </div>
     </div>
 
@@ -515,7 +515,14 @@
 
   <section id="onscreen">
     <div class="section-eyebrow">
-      <span class="section-eyebrow-label">On Screen: Television</span>
+      <span class="section-eyebrow-icon">&#128249;</span>
+      <span class="section-eyebrow-label">On Screen</span>
+      <span class="section-eyebrow-pipe">|</span>
+      <span class="section-eyebrow-desc">Television worth your time</span>
+      <button class="section-about-btn" data-about="onscreen" title="What is this section?">i</button>
+    </div>
+    <div class="section-about-panel" id="about-onscreen">
+      <div class="section-about-inner">Screen Share covers film and television. This section tracks what's worth watching on TV right now — curated picks currently airing, worth catching up on, or waiting to be found.</div>
     </div>
 
     <h3 style="font-family: 'Playfair Display', serif; font-size: 1.5rem; font-weight: 700; margin-bottom: 2rem; color: #fff;">Airing Now</h3>
@@ -546,18 +553,59 @@
       <p style="font-size: 1rem; line-height: 1.75; color: rgba(232,232,237,0.8); font-weight: 300;">Together: Valerie Cherish performs for a camera that has now become an AI. Shah Latif auditions for a franchise that was never designed to contain him. Both shows understand that the most exhausting audition is the one you run for yourself, every day.</p>
     </div>
 
+    <div class="flashpoint-card" style="margin-top: 2rem;">
+      <img src="https://image.tmdb.org/t/p/w342/mZ7YFEOxAKfjXJKWm0sYFXQ8n8A.jpg" alt="Industry" class="flashpoint-poster" />
+      <div>
+        <div class="flashpoint-year">2020–present &middot; BBC Two / Max</div>
+        <h3 class="flashpoint-title">Industry, Season 4</h3>
+        <div class="flashpoint-body">Industry has always been a show about people performing competence they haven't yet earned. Season 4 maintains the show's trajectory upward — Harper Stern's self-invention, Robert Spearing's studied ruthlessness, new entrants Charlie Heaton and Jack Farthing beginning the same process. The finance world is the ideal setting: every relationship is also a transaction, every sentence is also a pitch. 87 Metacritic is the best score in the show's run.</div>
+      </div>
+    </div>
+
+    <div class="flashpoint-card" style="margin-top: 2rem;">
+      <img src="https://image.tmdb.org/t/p/w342/6lFI03QZgXwGZLKtzUw4L8ZnyBv.jpg" alt="How to Get to Heaven from Belfast" class="flashpoint-poster" />
+      <div>
+        <div class="flashpoint-year">2026 &middot; Channel 4 / Streaming</div>
+        <h3 class="flashpoint-title">How to Get to Heaven from Belfast</h3>
+        <div class="flashpoint-body">Lisa McGee follows Derry Girls with a murder mystery set in 1990s Belfast, where young women have to perform innocence, decorum, and class aspiration within a society that polices all three. The show is about women who have mastered the role they were given and are now using that mastery as cover. The Guardian's five-star review called it essential viewing. 95% RT with 39 reviews.</div>
+      </div>
+    </div>
+
     <h3 style="font-family: 'Playfair Display', serif; font-size: 1.5rem; font-weight: 700; margin-top: 4rem; margin-bottom: 2rem; color: #fff;">On the Horizon</h3>
 
-    <div style="background: var(--surface); border: 1px solid var(--border); padding: 2rem; margin-bottom: 2rem;">
+    <div class="flashpoint-card">
+      <img src="https://image.tmdb.org/t/p/w342/1MccRnw41qQjREuZkovqP2UX1i3.jpg" alt="The Night Manager" class="flashpoint-poster" />
+      <div>
+        <div class="flashpoint-year">2016–present &middot; BBC One / AMC+</div>
+        <h3 class="flashpoint-title">The Night Manager, Season 2</h3>
+        <div class="flashpoint-body">Jonathan Pine is the character as construct — a man who performs whatever role the spy world requires, who has been performing so long the original self is archaeologically inaccessible. Season 2 puts him back in the field a decade later. Hiddleston is precisely calibrated. The performance theme is less interrogated here than celebrated: Pine performs beautifully and the show knows it. Caveat: without Hugh Laurie's Roper, some critics feel the show has lost its sharpest antagonist.</div>
+      </div>
+    </div>
+
+    <div style="background: var(--surface); border: 1px solid var(--border); padding: 2rem; margin-top: 2rem; margin-bottom: 2rem;">
       <h4 style="font-size: 1rem; color: #fff; margin-bottom: 1rem; font-weight: 600;">Waiting for the Out</h4>
-      <p style="font-size: 0.95rem; line-height: 1.7; color: rgba(232,232,237,0.75); margin-bottom: 0; font-weight: 300;">BBC One / iPlayer</p>
-      <p style="font-size: 1rem; line-height: 1.75; color: rgba(232,232,237,0.8); margin-top: 1rem; font-weight: 300;">Dennis Kelly (Utopia) writes a young philosophy teacher who begins teaching in a men's prison and finds that the performance he runs for his incarcerated students — the rational, liberal, educated man — is exposed by them as exactly the construction it is. The show is about who gets to claim an identity, and what happens when the people you are performing for can see through it.</p>
+      <p style="font-size: 0.95rem; line-height: 1.7; color: rgba(232,232,237,0.75); margin-bottom: 0.5rem; font-weight: 300;">BBC One / iPlayer &mdash; Forthcoming</p>
+      <p style="font-size: 1rem; line-height: 1.75; color: rgba(232,232,237,0.8); margin-top: 0.75rem; font-weight: 300;">Dennis Kelly (Utopia) writes a young philosophy teacher who begins teaching in a men's prison and finds that the performance he runs for his incarcerated students — the rational, liberal, educated man — is exposed by them as exactly the construction it is. The show is about who gets to claim an identity, and what happens when the people you are performing for can see through it.</p>
     </div>
 
     <h3 style="font-family: 'Playfair Display', serif; font-size: 1.5rem; font-weight: 700; margin-top: 4rem; margin-bottom: 2rem; color: #fff;">Under the Radar</h3>
 
-    <div style="background: var(--surface); border: 1px solid var(--border); padding: 2rem; margin-bottom: 2rem;">
-      <p style="font-size: 1rem; line-height: 1.75; color: rgba(232,232,237,0.8); margin-bottom: 0; font-weight: 300;">Prestige television production internationally is accelerating. Look for debuts and second seasons from studios outside the US major-studio orbit over May and June. The streaming wars are not decided in the US; they're decided at the margins, in the regional prestige programmes that pull audiences across territory. Screen shares beyond the AMPTP orbit.</p>
+    <div class="flashpoint-card">
+      <img src="https://image.tmdb.org/t/p/w342/2NKvKYtRgBN1zLrAfInkVoRNc94.jpg" alt="Lord of the Flies" class="flashpoint-poster" />
+      <div>
+        <div class="flashpoint-year">2026 &middot; BBC One / iPlayer</div>
+        <h3 class="flashpoint-title">Lord of the Flies</h3>
+        <div class="flashpoint-body">The Golding novel is the purest distillation of performed civility — Ralph and Jack are not different people, they are the same person in different stages of performance collapse. The BBC adaptation takes a character-by-character approach per episode, structuring the disintegration as a series of individual performance failures. Formal ambition; audience reception is split, which tracks. Not yet available in the US until May.</div>
+      </div>
+    </div>
+
+    <div class="flashpoint-card" style="margin-top: 2rem;">
+      <img src="https://image.tmdb.org/t/p/w342/j8EOKHTlSaorhXOKRT25ssEie6a.jpg" alt="Gomorrah: The Origins" class="flashpoint-poster" />
+      <div>
+        <div class="flashpoint-year">2026 &middot; Sky Atlantic / Streaming</div>
+        <h3 class="flashpoint-title">Gomorrah: The Origins</h3>
+        <div class="flashpoint-body">Marco D'Amore directs and appears in this prequel, following Pietro as he constructs the criminal persona that crime culture requires. The show is literally about the invention of a performance — the self that crime culture demands. Genuinely obscure in English-language markets; worth finding.</div>
+      </div>
     </div>
   </section>
 
@@ -569,6 +617,10 @@
       <span class="section-eyebrow-label">The Continent</span>
       <span class="section-eyebrow-pipe">|</span>
       <span class="section-eyebrow-desc">Subtitles required</span>
+      <button class="section-about-btn" data-about="continent" title="What is this section?">i</button>
+    </div>
+    <div class="section-about-panel" id="about-continent">
+      <div class="section-about-inner">The best television in the world isn't always in English. The Continent highlights international series worth crossing a language barrier for.</div>
     </div>
     <div class="tv-grid reveal">
       <div class="pulse-card continent">
@@ -603,128 +655,37 @@
   <section id="behind">
     <div class="section-eyebrow">
       <span class="section-eyebrow-label">Behind the Curtain</span>
+      <span class="section-eyebrow-pipe">|</span>
+      <span class="section-eyebrow-desc">The industry story you weren't meant to see clearly</span>
+      <button class="section-about-btn" data-about="curtain" title="What is this section?">i</button>
+    </div>
+    <div class="section-about-panel" id="about-curtain">
+      <div class="section-about-inner">Labour, money, censorship, institutional suppression — what's actually happening behind the films and shows you watch. The structural shifts the entertainment press rarely names directly.</div>
     </div>
 
     <div style="background: var(--surface); border: 1px solid var(--border); border-left: 3px solid var(--gold); padding: 2.5rem; margin-bottom: 2rem;">
+      <div style="font-size: 0.65rem; font-weight: 800; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.75rem;">The Disclosure</div>
       <h3 style="font-family: 'Playfair Display', serif; font-size: 1.25rem; font-weight: 700; color: #fff; margin-bottom: 1.5rem; line-height: 1.3;">The WGA's AI Provisions Are Being Tested in Practice — and the Gaps Are Showing</h3>
       <p style="font-size: 1rem; line-height: 1.75; color: rgba(232,232,237,0.8); margin-bottom: 1.25rem; font-weight: 300;">The 2023 WGA strike won language requiring that AI cannot be credited as a writer and cannot be used to undermine minimums — but enforcement relies on writers knowing when AI has been used in their material, which studios are not always transparent about. The SAG-AFTRA deal similarly restricted AI likeness use but left significant grey areas around "digital doubles" and background performer likenesses. In early 2026, several disputes have emerged between writers and production companies over whether AI-assisted development drafts constitute a breach of MBA minimums. The institutional story is not that the unions lost — they won more than many expected — but that the fight moved from the picket line into contract interpretation, which is slower, less visible, and harder to organise around.</p>
       <p style="font-size: 1rem; line-height: 1.75; color: rgba(232,232,237,0.8); font-weight: 300;">The more precise story is about enforcement infrastructure — the WGA won the rule but hasn't yet built the audit mechanism. That gap is where institutional power reasserts itself quietly.</p>
     </div>
 
     <div style="background: var(--surface); border: 1px solid var(--border); border-left: 3px solid var(--gold); padding: 2.5rem; margin-bottom: 2rem;">
+      <div style="font-size: 0.65rem; font-weight: 800; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.75rem;">The Suppression</div>
       <h3 style="font-family: 'Playfair Display', serif; font-size: 1.25rem; font-weight: 700; color: #fff; margin-bottom: 1.5rem; line-height: 1.3;">Colour-Conscious Casting in Prestige TV Has Stalled — and the Discourse Has Moved Backwards</h3>
       <p style="font-size: 1rem; line-height: 1.75; color: rgba(232,232,237,0.8); margin-bottom: 1.25rem; font-weight: 300;">After 2020's visibility peak, data on Black, Latino, and Asian leads in prestige drama has plateaued or declined at several major streamers. DEI programme rollbacks at Disney, Warner Bros. Discovery, and others in late 2024 and early 2025 were framed as budget decisions, but they eliminated the dedicated executives and tracking infrastructure that made inclusion commitments legible and enforceable. Without that infrastructure, casting decisions revert to informal networks — which historically reproduce existing hierarchies. The relevant question for this issue is not diversity-as-representation but diversity-as-labour: who gets to perform which roles, in which rooms, under what conditions.</p>
       <p style="font-size: 1rem; line-height: 1.75; color: rgba(232,232,237,0.8); font-weight: 300;">The more durable angle is institutional: what accountability infrastructure existed, what replaced it, and what that means for who gets cast in what.</p>
     </div>
 
     <div style="background: var(--surface); border: 1px solid var(--border); border-left: 3px solid var(--gold); padding: 2.5rem;">
+      <div style="font-size: 0.65rem; font-weight: 800; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.75rem;">The Permission</div>
       <h3 style="font-family: 'Playfair Display', serif; font-size: 1.25rem; font-weight: 700; color: #fff; margin-bottom: 1.5rem; line-height: 1.3;">The Audition Is Becoming a Screen Test — and the Screen Test May Train the Model</h3>
       <p style="font-size: 1rem; line-height: 1.75; color: rgba(232,232,237,0.8); margin-bottom: 1.25rem; font-weight: 300;">Several casting platforms have introduced AI-assisted audition tools that record, transcribe, and score self-tape submissions. The terms of service for at least two major platforms (Casting Networks, Actors Access) permit the use of submitted footage for system training — though whether this is happening in practice is not publicly confirmed. The structural question raised is real regardless: actors' unpaid audition performances have always been labour without compensation. If that performance now also generates data used to evaluate future performers, it becomes a resource extracted before any contractual relationship exists — meaning the consent and compensation frameworks the unions built do not yet apply at this stage.</p>
       <p style="font-size: 1rem; line-height: 1.75; color: rgba(232,232,237,0.8); font-weight: 300;">This is a question being raised by the architecture of these platforms. The terms permit it; whether it happens is unconfirmed. That distinction matters.</p>
     </div>
   </section>
 
-  <div class="section-divider"></div>
-
-  <section id="signal">
-    <div class="section-eyebrow">
-      <span class="section-eyebrow-label">The Signal</span>
-      <span class="section-eyebrow-pipe">|</span>
-      <span class="section-eyebrow-desc">Fortnight: April 11–25, 2026</span>
-    </div>
-
-    <h3 style="font-family: 'Playfair Display', serif; font-size: 1.35rem; font-weight: 700; margin-top: 3rem; margin-bottom: 2rem; color: #fff;">Week of April 11, 2026</h3>
-
-    <div class="signal-grid">
-      <div class="signal-card deal">
-        <span class="signal-card-label">THE DEAL</span>
-        <h4 style="font-family: 'Playfair Display', serif; font-size: 1.05rem; font-weight: 700; color: #fff; margin: 0.75rem 0; line-height: 1.3;">WGA Reaches Four-Year Deal With Studios; AI Training Payment Left on the Table</h4>
-        <div class="signal-card-body">The Writers Guild of America reached a tentative four-year agreement with the AMPTP on April 4, 2026, after less than a month of negotiations — a notably swift conclusion given the 148-day strike of 2023. The deal includes $321 million in health plan funding, improved streaming residuals, and a requirement that studios notify the WGA if they license writers' work for AI training. However, the studios did not agree to pay writers for that AI training use, which had been a union priority.</div>
-        <div style="margin-top: 1rem; font-size: 0.85rem; color: var(--text-dim); font-style: italic;">Source: Variety, Los Angeles Times, NPR (April 4–9, 2026)</div>
-        <div style="margin-top: 1rem; padding-top: 1rem; border-top: 1px solid var(--border); font-size: 0.95rem; color: rgba(232,232,237,0.8);">Why this matters: The notification-without-payment provision sets the template for how studios plan to treat writers' intellectual labour as AI feedstock — acknowledged, but not compensated.</div>
-      </div>
-
-      <div class="signal-card resistance">
-        <span class="signal-card-label">THE RESISTANCE</span>
-        <h4 style="font-family: 'Playfair Display', serif; font-size: 1.05rem; font-weight: 700; color: #fff; margin: 0.75rem 0; line-height: 1.3;">ACTRA Issues "Do Not Work" Notice Over AI Startup Velvet's Casting Practices</h4>
-        <div class="signal-card-body">On March 19, 2026, the Union of British Columbia Performers (UBCP/ACTRA) issued a Do Not Work notice against Velvet, a US-based AI startup that had used Canadian casting networks to solicit actors for a project it described as an "AI casual conversation" training exercise. The union said Velvet was unable to confirm whether the project would adhere to ACTRA's collective agreement governing AI training use and digital replication of performers.</div>
-        <div style="margin-top: 1rem; font-size: 0.85rem; color: var(--text-dim); font-style: italic;">Source: The Globe and Mail, UBCP/ACTRA official notice (March 19–20, 2026)</div>
-        <div style="margin-top: 1rem; padding-top: 1rem; border-top: 1px solid var(--border); font-size: 0.95rem; color: rgba(232,232,237,0.8);">Why this matters: This is a direct test of whether AI companies can use the casting pipeline itself — the entry point for performers — as a data-harvesting channel without union oversight.</div>
-        <div style="margin-top: 1rem; padding: 0.75rem; background: rgba(220,38,38,0.1); border-left: 2px solid #f87171; font-size: 0.85rem; color: #f87171; font-style: italic;">Note: Story broke March 19; included as prior-week context for direct relevance to the "Performance" theme.</div>
-      </div>
-
-      <div class="signal-card tool">
-        <span class="signal-card-label">THE TOOL</span>
-        <h4 style="font-family: 'Playfair Display', serif; font-size: 1.05rem; font-weight: 700; color: #fff; margin: 0.75rem 0; line-height: 1.3;">Bollywood's Collective Artists Network Deploys AI Production Pipeline With Microsoft</h4>
-        <div class="signal-card-body">Collective Artists Network, one of Bollywood's largest talent agencies, is producing AI-generated video content at its Bengaluru studio using motion-capture data fed into AI character-generation systems. Microsoft confirmed to Reuters that it is providing AI computing infrastructure to Collective to help "shape the next wave of global storytelling." The partnership represents a talent agency — not a traditional studio — taking direct control of AI-generated content production.</div>
-        <div style="margin-top: 1rem; font-size: 0.85rem; color: var(--text-dim); font-style: italic;">Source: Reuters (April 4, 2026)</div>
-        <div style="margin-top: 1rem; padding-top: 1rem; border-top: 1px solid var(--border); font-size: 0.95rem; color: rgba(232,232,237,0.8);">Why this matters: When talent agencies become AI content producers, the line between representing performers and replacing them with synthetic versions of them collapses.</div>
-      </div>
-    </div>
-
-    <h3 style="font-family: 'Playfair Display', serif; font-size: 1.35rem; font-weight: 700; margin-top: 3rem; margin-bottom: 2rem; color: #fff;">Week of April 18, 2026</h3>
-
-    <div class="signal-grid">
-      <div class="signal-card deal">
-        <span class="signal-card-label">THE DEAL</span>
-        <h4 style="font-family: 'Playfair Display', serif; font-size: 1.05rem; font-weight: 700; color: #fff; margin: 0.75rem 0; line-height: 1.3;">Paramount Skydance Secures ~$24 Billion From Gulf Sovereign Wealth Funds for Warner Bros. Discovery Takeover</h4>
-        <div class="signal-card-body">Paramount Skydance locked in equity commitments of nearly $24 billion from three Middle Eastern sovereign wealth funds — led by Saudi Arabia, with participation from Qatar and Abu Dhabi — to back its pending acquisition of Warner Bros. Discovery. A WBD shareholder vote on the merger is scheduled for April 23. Paramount has simultaneously restructured its debt financing and expanded a revolving credit facility to $5 billion to prepare for the close.</div>
-        <div style="margin-top: 1rem; font-size: 0.85rem; color: var(--text-dim); font-style: italic;">Source: Variety, Reuters (April 5–10, 2026)</div>
-        <div style="margin-top: 1rem; padding-top: 1rem; border-top: 1px solid var(--border); font-size: 0.95rem; color: rgba(232,232,237,0.8);">Why this matters: If approved April 23, this deal concentrates ownership of Warner, HBO, DC, CNN, and Max under a single entity partly capitalised by Gulf state funds — reorienting who ultimately decides what stories get told at scale.</div>
-      </div>
-
-      <div class="signal-card resistance">
-        <span class="signal-card-label">THE RESISTANCE</span>
-        <h4 style="font-family: 'Playfair Display', serif; font-size: 1.05rem; font-weight: 700; color: #fff; margin: 0.75rem 0; line-height: 1.3;">SAG-AFTRA Returns to the Table April 27 With AI Likeness Rights as the Central Fight</h4>
-        <div class="signal-card-body">SAG-AFTRA and the AMPTP will resume formal contract negotiations on April 27, 2026, under a mutual media blackout, after pausing to allow the WGA's faster-than-expected deal to conclude. National Executive Director Duncan Crabtree-Ireland is leading for the union; AMPTP President Greg Hessinger for the studios. The unresolved core issues are AI guardrails — specifically digital replication and likeness rights for performers — and streaming residuals.</div>
-        <div style="margin-top: 1rem; font-size: 0.85rem; color: var(--text-dim); font-style: italic;">Source: Variety, Deadline, Screen Daily (April 6–7, 2026)</div>
-        <div style="margin-top: 1rem; padding-top: 1rem; border-top: 1px solid var(--border); font-size: 0.95rem; color: rgba(232,232,237,0.8);">Why this matters: Unlike the WGA fight over written work, SAG-AFTRA's central demand is about ownership of a performer's physical self — what studios can scan, clone, and deploy without the actor present.</div>
-      </div>
-
-      <div class="signal-card tool">
-        <span class="signal-card-label">THE TOOL</span>
-        <h4 style="font-family: 'Playfair Display', serif; font-size: 1.05rem; font-weight: 700; color: #fff; margin: 0.75rem 0; line-height: 1.3;">Hollywood Assistants Are Routinely Using AI for Script Coverage and Development, Despite WGA Prohibitions</h4>
-        <div class="signal-card-body">A Hollywood Reporter investigation published April 8, 2026, found that studio and production company assistants — below the WGA threshold — are regularly using generative AI for first-pass script coverage, notes, and development tasks, often at their employers' tacit encouragement. One assistant quoted: "When they say, 'You should be using AI,' the first thought in your head is: 'Are you asking me to teach you how to replace me with technology?'" The practice routes creative work through AI systems ungoverned by the new WGA protections, which apply only to credited writers.</div>
-        <div style="margin-top: 1rem; font-size: 0.85rem; color: var(--text-dim); font-style: italic;">Source: The Hollywood Reporter (April 8, 2026)</div>
-        <div style="margin-top: 1rem; padding-top: 1rem; border-top: 1px solid var(--border); font-size: 0.95rem; color: rgba(232,232,237,0.8);">Why this matters: The assistant class — historically the development pipeline's memory and judgment — is being conscripted into AI normalisation at the precise moment their seniors negotiated protections that don't extend downward.</div>
-      </div>
-    </div>
-  </section>
-
-  <div class="section-divider"></div>
-
-  <section id="pulse">
-    <div class="section-eyebrow">
-      <span class="section-eyebrow-label">Weekly Pulse</span>
-    </div>
-
-    <div class="pulse-grid">
-      <div class="pulse-card">
-        <div class="pulse-card-type">Most Talked About</div>
-        <h3 class="pulse-card-title">BBC Culture Best of 2026 List</h3>
-        <div class="pulse-card-desc">The list landing in April gave critics and audiences a shared frame of reference mid-year. Industry S4 and The Night Manager S2 appear to be the most discussed entries — both are shows built around characters performing versions of themselves for professional or social survival. The conversation around the list is less about individual titles and more about what the list says about the current critical appetite: prestige character drama, British production, moral ambiguity without resolution.</div>
-        <div class="pulse-card-source">April 2026 drop</div>
-      </div>
-
-      <div class="pulse-card">
-        <div class="pulse-card-type">Our Call — Most Likely to Split the Room</div>
-        <h3 class="pulse-card-title">The Beauty</h3>
-        <div class="pulse-card-desc">The Beauty is asking something audiences may not be ready to give. Ryan Murphy's body-horror satire — a drug that literally remakes you, with the side effect that you might eventually explode — sits precisely at the intersection of vanity, survival, and the performance of identity that runs through this issue. Work this formally committed to its premise divides; that's not a flaw, it's the mechanism. The BBC Culture 2026 list's placement of it alongside prestige drama is itself an editorial statement about what counts as serious television right now.</div>
-        <div class="pulse-card-source">FX/Hulu</div>
-      </div>
-
-      <div class="pulse-card">
-        <div class="pulse-card-type">Our Recommendation — If It Passed You By</div>
-        <h3 class="pulse-card-title">Bait</h3>
-        <div class="pulse-card-desc">Six sub-half-hour episodes, genuinely unclassifiable — industry satire, family comedy, psycho-drama, Bond pastiche — from a filmmaker and performer both operating at the edge of their range. The question at its centre (who does the industry decide gets to play the role, and what does the audition cost the person asking?) is the question this issue is built around. Start here if you haven't.</div>
-        <div class="pulse-card-source">Prime Video, 2026 | Metacritic 85 (Universal Acclaim, 18 critics)</div>
-      </div>
-    </div>
-
-    <div style="text-align: center; margin-top: 4rem; padding: 2rem; color: var(--text-muted); font-size: 0.95rem;">
-      <p>Screen Share is published fortnightly. Issue 005 publishes May 9, 2026.</p>
-    </div>
-  </section>
+  
 
   <footer style="padding: 3rem 2.5rem; max-width: 1200px; margin: 0 auto; border-top: 1px solid var(--border); text-align: center;">
     <p style="color: var(--text-dim); font-size: 0.85rem; margin-bottom: 1rem;">
@@ -881,6 +842,18 @@
 
     // Initialize with first mood
     renderMoodFilms('character-study');
+
+    // Section info toggles
+    document.querySelectorAll('.section-about-btn').forEach(btn=>{
+      btn.addEventListener('click',()=>{
+        const id='about-'+btn.dataset.about,panel=document.getElementById(id);
+        if(!panel)return;
+        const isOpen=panel.classList.contains('open');
+        document.querySelectorAll('.section-about-panel.open').forEach(p=>p.classList.remove('open'));
+        document.querySelectorAll('.section-about-btn.open').forEach(b=>b.classList.remove('open'));
+        if(!isOpen){panel.classList.add('open');btn.classList.add('open');}
+      });
+    });
   </script>
 </body>
 </html>
