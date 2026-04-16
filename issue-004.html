@@ -177,6 +177,22 @@
     .flashpoint-year { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.2em; color: #f87171; text-transform: uppercase; margin-bottom: 0.5rem; }
     .flashpoint-title { font-family: 'Playfair Display', serif; font-size: 1.6rem; font-weight: 700; color: #fff; margin-bottom: 1.25rem; line-height: 1.2; }
     .flashpoint-body { font-size: 0.95rem; line-height: 1.8; color: rgba(232,232,237,0.78); font-weight: 300; margin-bottom: 1.25rem; }
+    .tv-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 2rem; }
+    .tv-card { background: var(--surface); border: 1px solid var(--border); border-top: 3px solid var(--border); padding: 0; overflow: hidden; transition: border-color 0.2s, transform 0.2s; }
+    .tv-card-img-wrap { position: relative; overflow: hidden; margin: -1px -1px 0; }
+    .tv-card-img-wrap::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 55%; background: linear-gradient(to bottom, transparent, var(--surface)); pointer-events: none; }
+    .tv-card-img { width: 100%; aspect-ratio: 16/9; object-fit: cover; display: block; filter: brightness(0.72) saturate(0.75); transition: filter 0.4s; }
+    .tv-card:hover .tv-card-img { filter: brightness(0.88) saturate(0.9); }
+    .tv-card-meta { padding: 1.25rem 1.5rem 0; font-size: 0.65rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-dim); margin-bottom: 0.75rem; }
+    .tv-card-title { font-family: 'Playfair Display', serif; font-size: 1.2rem; font-weight: 700; color: #fff; margin-bottom: 0.5rem; line-height: 1.25; padding: 0 1.5rem; }
+    .tv-card-body { font-size: 0.88rem; line-height: 1.72; color: rgba(232,232,237,0.72); font-weight: 300; padding: 0 1.5rem 1.5rem; }
+    .tv-card:hover { transform: translateY(-2px); }
+    .tv-card.now { border-top-color: #f59e0b; }
+    .tv-card.now:hover { border-color: rgba(245,158,11,0.25); border-top-color: #f59e0b; }
+    .tv-card.horizon { border-top-color: #60a5fa; }
+    .tv-card.horizon:hover { border-color: rgba(96,165,250,0.25); border-top-color: #60a5fa; }
+    .tv-card.radar { border-top-color: #34d399; }
+    .tv-card.radar:hover { border-color: rgba(52,211,153,0.25); border-top-color: #34d399; }
     .signal-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.5rem; }
     .signal-card { background: var(--surface); border: 1px solid var(--border); border-top: 2px solid var(--gold); padding: 1.75rem; transition: border-color 0.2s, transform 0.2s; }
     .signal-card:hover { border-color: var(--gold-border); transform: translateY(-2px); }
@@ -208,6 +224,7 @@
       .pulse-grid { grid-template-columns: 1fr; }
       .rewind-card { grid-template-columns: 1fr; gap: 1.5rem; }
       .flashpoint-card { grid-template-columns: 1fr; gap: 1.5rem; }
+      .tv-grid { grid-template-columns: 1fr; }
     }
     .section-about-btn { display: inline-flex; align-items: center; justify-content: center; width: 20px; height: 20px; border-radius: 50%; border: 1px solid var(--text-dim); color: var(--text-dim); font-size: 0.65rem; font-weight: 700; cursor: pointer; background: transparent; transition: border-color 0.2s, color 0.2s, background 0.2s; flex-shrink: 0; line-height: 1; font-family: 'Inter', sans-serif; letter-spacing: 0; }
     .section-about-btn:hover { border-color: var(--gold); color: var(--gold); }
@@ -496,99 +513,78 @@
       <div class="section-about-inner">Screen Share covers film and television. This section tracks what&rsquo;s worth watching on TV right now &mdash; curated picks currently airing, worth catching up on, or waiting to be found.</div>
     </div>
 
-    <h3 style="font-family: 'Playfair Display', serif; font-size: 1.5rem; font-weight: 700; margin-bottom: 2rem; color: #fff;">Airing Now</h3>
+    <h3 style="font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 700; margin-bottom: 1.5rem; color: #f59e0b; letter-spacing: 0.12em; text-transform: uppercase; font-size: 0.75rem;">Airing Now</h3>
 
-    <div class="flashpoint-card">
-      <img src="https://image.tmdb.org/t/p/w342/nFZF0ljINGUEa0wAW5d22Iqxjii.jpg" alt="The Comeback" class="flashpoint-poster" loading="eager" onerror="this.style.background='#1a1a22'; this.removeAttribute('src');" />
-      <div>
-        <div class="flashpoint-year">2005&ndash;2026 &middot; HBO / Max &middot; Weekly through May 10</div>
-        <h3 class="flashpoint-title">The Comeback, Season 3</h3>
-        <div class="flashpoint-body">Valerie Cherish &mdash; Lisa Kudrow&rsquo;s greatest creation &mdash; has signed onto a network sitcom with an AI-written script, executive produced herself, and is documenting the whole thing on camera again. Variety&rsquo;s read is correct: in 2026, everyone is Valerie Cherish. She was always performing relevance; now the machinery of the industry has caught up to her position. Kudrow makes her the sanest adult in a room full of people doing exactly what she has always done, except they can&rsquo;t see it. The show is about audition culture absorbed so completely that it becomes personality. HBO bills this as the final season.</div>
+    <div class="tv-grid reveal">
+      <div class="tv-card now">
+        <div class="tv-card-img-wrap"><img class="tv-card-img" src="https://image.tmdb.org/t/p/w780/nFZF0ljINGUEa0wAW5d22Iqxjii.jpg" alt="The Comeback" loading="eager" /></div>
+        <div class="tv-card-meta">HBO / Max &middot; Season 3 &middot; Weekly through May 10</div>
+        <div class="tv-card-title">The Comeback</div>
+        <div class="tv-card-body">Valerie Cherish &mdash; Lisa Kudrow&rsquo;s greatest creation &mdash; has signed onto a network sitcom with an AI-written script, executive produced herself, and is documenting the whole thing on camera again. In 2026, everyone is Valerie Cherish. She was always performing relevance; now the machinery of the industry has caught up to her position. The show is about audition culture absorbed so completely it becomes personality. HBO bills this as the final season.</div>
+      </div>
+      <div class="tv-card now">
+        <div class="tv-card-img-wrap"><img class="tv-card-img" src="https://image.tmdb.org/t/p/w780/gX9zWmUnrjCZEPpultvvFtSUb93.jpg" alt="Bait" loading="eager" /></div>
+        <div class="tv-card-meta">Prime Video &middot; Series &middot; All episodes streaming</div>
+        <div class="tv-card-title">Bait</div>
+        <div class="tv-card-body">Riz Ahmed plays Shah Latif, a British-Pakistani actor shortlisted to audition for the next James Bond. Shah is auditioning to play a man who is always performing &mdash; and Ahmed has written himself a vehicle that shows what a brown actor carries into the room that no one in the room will acknowledge. Not about industry machinations. About what representation costs the person carrying it. 85 on Metacritic, 97% RT.</div>
+      </div>
+      <div class="tv-card now">
+        <div class="tv-card-img-wrap"><img class="tv-card-img" src="https://image.tmdb.org/t/p/w780/ca5XiEFgyGsI38QT3wEKa1QVGX.jpg" alt="Hacks" loading="eager" /></div>
+        <div class="tv-card-meta">HBO / Max &middot; Season 5 &middot; Weekly through May 28</div>
+        <div class="tv-card-title">Hacks</div>
+        <div class="tv-card-body">The final season of Jean Smart&rsquo;s best work. Deborah Vance &mdash; ageing Vegas comedian, four Emmy wins for Smart in five years &mdash; is performing for her life, except that&rsquo;s always been the condition of the show. Hacks has always understood that stand-up is the most exposed form of performance: you are the material and the deliverer. Season 5 sends Vance toward Madison Square Garden. 100% RT on early reviews.</div>
+      </div>
+      <div class="tv-card now">
+        <div class="tv-card-img-wrap"><img class="tv-card-img" src="https://image.tmdb.org/t/p/w780/mczVoq6ms8QMI9UfWSAVIocW1L7.jpg" alt="Half Man" loading="eager" /></div>
+        <div class="tv-card-meta">HBO / BBC &middot; Limited Series &middot; Weekly from April 23</div>
+        <div class="tv-card-title">Half Man</div>
+        <div class="tv-card-body">Richard Gadd&rsquo;s follow-up to Baby Reindeer. He plays Ruben, estranged from his &ldquo;brother&rdquo; Niall (Jamie Bell) for years; when Ruben shows up at Niall&rsquo;s wedding, the explosion catapults us through nearly 40 years of their relationship. Gadd&rsquo;s project is the same one he started with Baby Reindeer: performance as self-protection, the gap between who you perform and what you are. The most anticipated British drama of the spring.</div>
       </div>
     </div>
 
-    <div class="flashpoint-card" style="margin-top: 2rem;">
-      <img src="https://image.tmdb.org/t/p/w342/gX9zWmUnrjCZEPpultvvFtSUb93.jpg" alt="Bait" class="flashpoint-poster" loading="eager" onerror="this.style.background='#1a1a22'; this.removeAttribute('src');" />
-      <div>
-        <div class="flashpoint-year">2026 &middot; Prime Video &middot; All episodes streaming</div>
-        <h3 class="flashpoint-title">Bait</h3>
-        <div class="flashpoint-body">Riz Ahmed plays Shah Latif, a British-Pakistani actor shortlisted to audition for the next James Bond. Shah is auditioning to play a man who is always performing &mdash; and Ahmed has written himself a vehicle that shows what a brown actor carries into the room that no one in the room will acknowledge. This is not a show about industry machinations. It is about what representation costs the person carrying it. Roger Ebert&rsquo;s site called it &ldquo;an engaging mix of Uncut Gems and Fleabag.&rdquo; 85 on Metacritic, 97% RT. Sundance premiere, Prime Video March 25.</div>
+    <h3 style="font-family: 'Playfair Display', serif; font-size: 0.75rem; font-weight: 700; margin-top: 3rem; margin-bottom: 1.5rem; color: #60a5fa; letter-spacing: 0.12em; text-transform: uppercase;">On the Horizon</h3>
+
+    <div class="tv-grid reveal">
+      <div class="tv-card horizon">
+        <div class="tv-card-img-wrap"><img class="tv-card-img" src="https://image.tmdb.org/t/p/w780/sS8Q0Qf5GzTI1OcswDN5Vvvmm97.jpg" alt="Amadeus" loading="eager" /></div>
+        <div class="tv-card-meta">Starz &middot; Limited Series &middot; Premieres May 8</div>
+        <div class="tv-card-title">Amadeus</div>
+        <div class="tv-card-body">Joe Barton adapts Peter Shaffer&rsquo;s play &mdash; the one that turned the Mozart&ndash;Salieri relationship into a meditation on talent, envy, and the unbearability of watching someone perform with effortless grace. Will Sharpe as Mozart; Paul Bettany as Salieri. Five episodes. The show is structurally about performance in the oldest sense: Salieri is a craftsman; Mozart is a channel. What happens to the performer who knows he will never stop performing and never be great?</div>
+      </div>
+      <div class="tv-card horizon">
+        <div class="tv-card-img-wrap"><img class="tv-card-img" src="https://image.tmdb.org/t/p/w780/2NKvKYtRgBN1zLrAfInkVoRNc94.jpg" alt="Lord of the Flies" loading="eager" /></div>
+        <div class="tv-card-meta">BBC One / Netflix US &middot; Netflix May 4</div>
+        <div class="tv-card-title">Lord of the Flies</div>
+        <div class="tv-card-body">Jack Thorne&rsquo;s four-part adaptation structures the disintegration of the boys&rsquo; society as a series of individual performance failures &mdash; one episode per boy, each title a character: Ralph, Piggy, Simon, Jack. The novel is the purest distillation of performed civility. Ralph and Jack are not different people; they are the same person at different stages of collapse. Audience reception is split, which tends to mean the formal ambition landed.</div>
+      </div>
+      <div class="tv-card horizon">
+        <div class="tv-card-img-wrap"><img class="tv-card-img" src="https://image.tmdb.org/t/p/w780/1MccRnw41qQjREuZkovqP2UX1i3.jpg" alt="The Night Manager" loading="eager" /></div>
+        <div class="tv-card-meta">BBC One / Prime Video &middot; Season 2 &middot; Now streaming complete</div>
+        <div class="tv-card-title">The Night Manager</div>
+        <div class="tv-card-body">Jonathan Pine is the character as construct &mdash; a man who performs whatever role the spy world requires, who has been performing so long the original self is archaeologically inaccessible. Season 2 puts him back in the field a decade later, with Hiddleston and Olivia Colman back. The performance theme is less interrogated here than celebrated: Pine performs beautifully and the show knows it. If you held off in January, this is the catch-up moment.</div>
       </div>
     </div>
 
-    <div class="flashpoint-card" style="margin-top: 2rem;">
-      <img src="https://image.tmdb.org/t/p/w342/ca5XiEFgyGsI38QT3wEKa1QVGX.jpg" alt="Hacks" class="flashpoint-poster" loading="eager" onerror="this.style.background='#1a1a22'; this.removeAttribute('src');" />
-      <div>
-        <div class="flashpoint-year">2021&ndash;2026 &middot; HBO / Max &middot; Weekly through May 28</div>
-        <h3 class="flashpoint-title">Hacks, Season 5</h3>
-        <div class="flashpoint-body">The final season of Jean Smart&rsquo;s best work. Deborah Vance &mdash; ageing Vegas comedian, four Emmy wins for Smart in five years &mdash; is performing for her life, except that&rsquo;s always been the condition of the show. Hacks has always understood that stand-up comedy is the most exposed form of performance: you are the material and the deliverer. Season 5 sends Vance toward Madison Square Garden, and HBO has confirmed this is the end. Arrive late at your peril; the final episodes are reportedly extraordinary. 100% RT on early reviews.</div>
+    <h3 style="font-family: 'Playfair Display', serif; font-size: 0.75rem; font-weight: 700; margin-top: 3rem; margin-bottom: 1.5rem; color: #34d399; letter-spacing: 0.12em; text-transform: uppercase;">Under the Radar</h3>
+
+    <div class="tv-grid reveal">
+      <div class="tv-card radar">
+        <div class="tv-card-img-wrap"><img class="tv-card-img" src="https://image.tmdb.org/t/p/w780/7e10bTKGK1TwHgxEl06lMCTerAI.jpg" alt="Waiting for the Out" loading="eager" /></div>
+        <div class="tv-card-meta">BBC One / iPlayer &middot; Series &middot; All episodes streaming</div>
+        <div class="tv-card-title">Waiting for the Out</div>
+        <div class="tv-card-body">Dennis Kelly (Utopia) adapts Andy West&rsquo;s memoir about a philosophy teacher who begins teaching in a men&rsquo;s prison. The performance he runs for his incarcerated students &mdash; the rational, liberal, educated man &mdash; is exposed by them as exactly the construction it is. Josh Finan leads. Six episodes, all on iPlayer since January 3. This is the least-watched Dennis Kelly project in years, and probably the most precise. Worth finding.</div>
       </div>
-    </div>
-
-    <div class="flashpoint-card" style="margin-top: 2rem;">
-      <img src="https://image.tmdb.org/t/p/w342/mczVoq6ms8QMI9UfWSAVIocW1L7.jpg" alt="Half Man" class="flashpoint-poster" loading="eager" onerror="this.style.background='#1a1a22'; this.removeAttribute('src');" />
-      <div>
-        <div class="flashpoint-year">2026 &middot; HBO / BBC &middot; Weekly from April 23</div>
-        <h3 class="flashpoint-title">Half Man</h3>
-        <div class="flashpoint-body">Richard Gadd&rsquo;s follow-up to Baby Reindeer. He plays Ruben, estranged from his &ldquo;brother&rdquo; Niall (Jamie Bell) for years; when Ruben shows up at Niall&rsquo;s wedding, the explosion catapults the audience through nearly 40 years of their relationship. Gadd&rsquo;s project is the same one he started with Baby Reindeer: performance as self-protection, the gap between who you perform and what you are. Six episodes, co-produced with the BBC. The most anticipated British drama of the spring.</div>
+      <div class="tv-card radar">
+        <div class="tv-card-img-wrap"><img class="tv-card-img" src="https://image.tmdb.org/t/p/w780/6lFI03QZgXwGZLKtzUw4L8ZnyBv.jpg" alt="How to Get to Heaven from Belfast" loading="eager" /></div>
+        <div class="tv-card-meta">Netflix &middot; Series &middot; All episodes streaming</div>
+        <div class="tv-card-title">How to Get to Heaven from Belfast</div>
+        <div class="tv-card-body">Lisa McGee follows Derry Girls with a dark comedy-thriller: three women travel to County Donegal to pay respects at the funeral of their estranged fourth friend, and find themselves in the middle of a murder mystery. The show is about women who learned very early to perform innocence and decorum within a society that polices both &mdash; and who are now using that mastery as cover. 95% RT. Arrived quietly in February. The best thing McGee has made.</div>
       </div>
-    </div>
-
-    <h3 style="font-family: 'Playfair Display', serif; font-size: 1.5rem; font-weight: 700; margin-top: 4rem; margin-bottom: 2rem; color: #fff;">On the Horizon</h3>
-
-    <div class="flashpoint-card">
-      <img src="https://image.tmdb.org/t/p/w342/sS8Q0Qf5GzTI1OcswDN5Vvvmm97.jpg" alt="Amadeus" class="flashpoint-poster" loading="eager" onerror="this.style.background='#1a1a22'; this.removeAttribute('src');" />
-      <div>
-        <div class="flashpoint-year">2026 &middot; Starz &middot; Premieres May 8</div>
-        <h3 class="flashpoint-title">Amadeus</h3>
-        <div class="flashpoint-body">Joe Barton adapts Peter Shaffer&rsquo;s play &mdash; the one that turned the Mozart&ndash;Salieri relationship into a meditation on talent, envy, and the unbearability of watching someone perform with effortless grace. Will Sharpe as Mozart; Paul Bettany as Salieri. Shot in Budapest, five episodes. The show is structurally about performance in the oldest sense: Salieri is a craftsman; Mozart is a channel. What happens to the performer who knows he will never stop performing and never be great? Premiered December 2025 on Sky Atlantic; arrives in the US in May on Starz.</div>
-      </div>
-    </div>
-
-    <div class="flashpoint-card" style="margin-top: 2rem;">
-      <img src="https://image.tmdb.org/t/p/w342/2NKvKYtRgBN1zLrAfInkVoRNc94.jpg" alt="Lord of the Flies" class="flashpoint-poster" loading="eager" onerror="this.style.background='#1a1a22'; this.removeAttribute('src');" />
-      <div>
-        <div class="flashpoint-year">2026 &middot; BBC One / Netflix US &middot; Netflix May 4</div>
-        <h3 class="flashpoint-title">Lord of the Flies</h3>
-        <div class="flashpoint-body">Jack Thorne&rsquo;s four-part adaptation of the Golding novel structures the disintegration of the boys&rsquo; society as a series of individual performance failures &mdash; one episode per boy, each title a character: Ralph, Piggy, Simon, Jack. The novel is the purest distillation of performed civility. Ralph and Jack are not different people; they are the same person at different stages of collapse. Aired on BBC iPlayer in February; arrives on Netflix US May 4. Audience reception is split, which tends to mean the formal ambition landed.</div>
-      </div>
-    </div>
-
-    <div class="flashpoint-card" style="margin-top: 2rem;">
-      <img src="https://image.tmdb.org/t/p/w342/1MccRnw41qQjREuZkovqP2UX1i3.jpg" alt="The Night Manager" class="flashpoint-poster" loading="eager" onerror="this.style.background='#1a1a22'; this.removeAttribute('src');" />
-      <div>
-        <div class="flashpoint-year">2016&ndash;2026 &middot; BBC One / Prime Video &middot; Now streaming complete</div>
-        <h3 class="flashpoint-title">The Night Manager, Season 2</h3>
-        <div class="flashpoint-body">Jonathan Pine is the character as construct &mdash; a man who performs whatever role the spy world requires, who has been performing so long the original self is archaeologically inaccessible. Season 2 puts him back in the field a decade later, with Hiddleston and Olivia Colman back. The performance theme is less interrogated here than celebrated: Pine performs beautifully and the show knows it. UK premiere January 1; now fully available on Prime Video. If you held off in January, this is the catch-up moment.</div>
-      </div>
-    </div>
-
-    <h3 style="font-family: 'Playfair Display', serif; font-size: 1.5rem; font-weight: 700; margin-top: 4rem; margin-bottom: 2rem; color: #fff;">Under the Radar</h3>
-
-    <div class="flashpoint-card">
-      <img src="https://image.tmdb.org/t/p/w342/7e10bTKGK1TwHgxEl06lMCTerAI.jpg" alt="Waiting for the Out" class="flashpoint-poster" loading="eager" onerror="this.style.background='#1a1a22'; this.removeAttribute('src');" />
-      <div>
-        <div class="flashpoint-year">2026 &middot; BBC One / iPlayer &middot; All episodes streaming</div>
-        <h3 class="flashpoint-title">Waiting for the Out</h3>
-        <div class="flashpoint-body">Dennis Kelly (Utopia) adapts Andy West&rsquo;s memoir about a philosophy teacher who begins teaching in a men&rsquo;s prison. The performance he runs for his incarcerated students &mdash; the rational, liberal, educated man &mdash; is exposed by them as exactly the construction it is. Josh Finan leads. Six episodes, all on iPlayer since January 3. This is the least-watched Dennis Kelly project in years, and probably the most precise. Worth finding.</div>
-      </div>
-    </div>
-
-    <div class="flashpoint-card" style="margin-top: 2rem;">
-      <img src="https://image.tmdb.org/t/p/w342/6lFI03QZgXwGZLKtzUw4L8ZnyBv.jpg" alt="How to Get to Heaven from Belfast" class="flashpoint-poster" loading="eager" onerror="this.style.background='#1a1a22'; this.removeAttribute('src');" />
-      <div>
-        <div class="flashpoint-year">2026 &middot; Netflix &middot; All episodes streaming</div>
-        <h3 class="flashpoint-title">How to Get to Heaven from Belfast</h3>
-        <div class="flashpoint-body">Lisa McGee follows Derry Girls with a dark comedy-thriller: three women travel to County Donegal to pay respects at the funeral of their estranged fourth friend, and find themselves in the middle of a murder mystery. The show is about women who learned very early to perform innocence and decorum and class aspiration within a society that polices all three &mdash; and who are now using that mastery as cover. 95% on Rotten Tomatoes with 39 reviews. Arrived quietly on Netflix in February; barely discussed outside the UK. The best thing McGee has made.</div>
-      </div>
-    </div>
-
-    <div class="flashpoint-card" style="margin-top: 2rem;">
-      <img src="https://image.tmdb.org/t/p/w342/j8EOKHTlSaorhXOKRT25ssEie6a.jpg" alt="Gomorrah: The Origins" class="flashpoint-poster" loading="eager" onerror="this.style.background='#1a1a22'; this.removeAttribute('src');" />
-      <div>
-        <div class="flashpoint-year">2026 &middot; Sky Atlantic / HBO Max &middot; Streaming</div>
-        <h3 class="flashpoint-title">Gomorrah: The Origins</h3>
-        <div class="flashpoint-body">A prequel to the Neapolitan crime series, set in 1970s Naples, following the teenage Pietro Savastano constructing the criminal persona that the Camorra demands. Marco D&rsquo;Amore &mdash; Ciro Di Marzio in the original series &mdash; directs. The show is literally about the invention of a performance: the self that organised crime requires doesn&rsquo;t exist until you build it. Six episodes. Acquired by HBO Max in January; genuinely obscure in English-language markets. Worth finding.</div>
+      <div class="tv-card radar">
+        <div class="tv-card-img-wrap"><img class="tv-card-img" src="https://image.tmdb.org/t/p/w780/j8EOKHTlSaorhXOKRT25ssEie6a.jpg" alt="Gomorrah: The Origins" loading="eager" /></div>
+        <div class="tv-card-meta">Sky Atlantic / HBO Max &middot; Series &middot; Streaming</div>
+        <div class="tv-card-title">Gomorrah: The Origins</div>
+        <div class="tv-card-body">A prequel to the Neapolitan crime series, set in 1970s Naples, following the teenage Pietro Savastano constructing the criminal persona that the Camorra demands. Marco D&rsquo;Amore &mdash; Ciro Di Marzio in the original &mdash; directs. The show is literally about the invention of a performance: the self that organised crime requires doesn&rsquo;t exist until you build it. Genuinely obscure in English-language markets. Worth finding.</div>
       </div>
     </div>
   </section>
