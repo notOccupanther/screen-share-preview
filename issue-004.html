@@ -236,6 +236,18 @@
     .section-about-panel { overflow: hidden; max-height: 0; opacity: 0; transition: max-height 0.4s ease, opacity 0.3s ease, margin 0.3s ease; margin-bottom: 0; }
     .section-about-panel.open { max-height: 200px; opacity: 1; margin-bottom: 2rem; }
     .section-about-inner { background: rgba(245,158,11,0.06); border: 1px solid var(--gold-border); border-left: 3px solid var(--gold); padding: 1rem 1.25rem; font-size: 0.85rem; line-height: 1.7; color: rgba(232,232,237,0.72); font-style: italic; }
+    .newsletter-section { padding: 4rem 2.5rem; }
+    .newsletter-card { background: var(--surface); border: 1px solid var(--gold-border); padding: 4rem; text-align: center; max-width: 680px; margin: 0 auto; }
+    .newsletter-eyebrow { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.25em; text-transform: uppercase; color: var(--gold); margin-bottom: 1rem; }
+    .newsletter-title { font-family: 'Playfair Display', serif; font-size: clamp(1.5rem,3vw,2rem); font-weight: 700; color: #fff; margin-bottom: 0.75rem; line-height: 1.25; }
+    .newsletter-sub { font-size: 0.9rem; color: var(--text-muted); font-style: italic; margin-bottom: 2.5rem; }
+    .newsletter-form { display: flex; gap: 0; max-width: 420px; margin: 0 auto 1.5rem; }
+    .newsletter-input { flex: 1; padding: 0.85rem 1.25rem; background: var(--bg); border: 1px solid rgba(255,255,255,0.1); border-right: none; color: var(--text); font-size: 0.88rem; font-family: 'Inter', sans-serif; outline: none; transition: border-color 0.2s; }
+    .newsletter-input::placeholder { color: var(--text-dim); }
+    .newsletter-input:focus { border-color: var(--gold-border); }
+    .newsletter-btn { padding: 0.85rem 1.5rem; background: var(--gold); color: #0a0a0f; font-size: 0.8rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; border: none; cursor: pointer; font-family: 'Inter', sans-serif; transition: background 0.2s; }
+    .newsletter-btn:hover { background: #fbbf24; }
+    .newsletter-note { font-size: 0.75rem; color: var(--text-dim); }
     .issue-footer-cta { max-width: 1200px; margin: 0 auto; padding: 0 2.5rem 5rem; display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
     .cta-block { background: var(--surface); border: 1px solid var(--border); padding: 2.25rem; display: flex; flex-direction: column; gap: 0.9rem; }
     .cta-block-label { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); }
@@ -260,7 +272,7 @@
     .footer-links { font-size: 0.72rem; }
     .footer-links a { color: var(--text-muted); text-decoration: none; }
     .footer-links a:hover { color: var(--gold); }
-    @media (max-width: 768px) { .issue-footer-cta { grid-template-columns: 1fr; padding: 0 1.25rem 4rem; } }
+    @media (max-width: 768px) { .issue-footer-cta { grid-template-columns: 1fr; padding: 0 1.25rem 4rem; } .newsletter-card { padding: 2.5rem 1.5rem; } .newsletter-form { flex-direction: column; } .newsletter-input { border-right: 1px solid rgba(255,255,255,0.1); border-bottom: none; } }
   </style>
 </head>
 <body>
@@ -724,6 +736,20 @@
   </section>
 
   
+
+  <div class="section-divider"></div>
+  <div class="newsletter-section">
+    <div class="newsletter-card reveal">
+      <div class="newsletter-eyebrow">Every Fortnight</div>
+      <h2 class="newsletter-title">The fortnightly digest &mdash;<br>one email, worth opening.</h2>
+      <p class="newsletter-sub">&ldquo;No scores. No aggregation. Just the conversation worth having.&rdquo;</p>
+      <form class="newsletter-form" action="https://buttondown.com/api/emails/embed-subscribe/screenshare" method="post" target="_blank" onsubmit="window.open('https://buttondown.com/screenshare','popupwindow')">
+        <input class="newsletter-input" type="email" name="email" placeholder="your@email.com" required />
+        <button class="newsletter-btn" type="submit">Subscribe</button>
+      </form>
+      <p class="newsletter-note">No noise. Unsubscribe whenever. We mean it.</p>
+    </div>
+  </div>
 
   <div class="section-divider"></div>
 
