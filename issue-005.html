@@ -1,0 +1,1273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Screen Share &mdash; Issue 005 &middot; Collapse</title>
+  <meta name="description" content="Collapse — the slow end of things we built to last. Screen Share Issue 005." />
+  <link rel="canonical" href="https://screenshare.watch/issue-005.html" />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://screenshare.watch/issue-005.html" />
+  <meta property="og:title" content="Screen Share Issue 005: Collapse" />
+  <meta property="og:description" content="Collapse — the slow end of things we built to last. Stalker, Heaven's Gate, and the systems falling apart around us." />
+  <meta property="og:image" content="https://image.tmdb.org/t/p/w1280/6yrbWzzrPp7pwz6zHdifspJk8t3.jpg" />
+  <meta property="og:site_name" content="Screen Share" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Screen Share Issue 005: Collapse" />
+  <meta name="twitter:description" content="Collapse — the slow end of things we built to last" />
+  <meta name="twitter:image" content="https://image.tmdb.org/t/p/w1280/6yrbWzzrPp7pwz6zHdifspJk8t3.jpg" />
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Screen Share Issue 005: Collapse","description":"Collapse — the slow end of things we built to last","url":"https://screenshare.watch/issue-005.html","publisher":{"@type":"Organization","name":"Screen Share","url":"https://screenshare.watch"},"datePublished":"2026-05-06"}</script>
+  <link rel="alternate" type="application/rss+xml" title="Screen Share" href="https://screenshare.watch/feed.xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,700;0,800;1,700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #080810; --surface: #111118; --surface-2: #18181f;
+      --gold: #f59e0b; --gold-dim: rgba(245,158,11,0.15); --gold-border: rgba(245,158,11,0.25);
+      --crimson: #dc2626; --text: #e8e8ed; --text-muted: #8888a0; --text-dim: #555568;
+      --border: rgba(255,255,255,0.06);
+    }
+    html { scroll-behavior: smooth; }
+    body { background: var(--bg); color: var(--text); font-family: 'Inter', sans-serif; font-size: 18px; line-height: 1.6; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+    body::before { content: ''; position: fixed; inset: 0; pointer-events: none; z-index: 9999; opacity: 0.025; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E"); background-size: 180px 180px; mix-blend-mode: overlay; }
+    .reveal { opacity: 0; transform: translateY(18px); transition: opacity 0.55s ease, transform 0.55s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 0 2rem; height: 60px; background: rgba(10,10,15,0.85); backdrop-filter: blur(16px); border-bottom: 1px solid var(--border); }
+    .nav-logo { font-family: 'Playfair Display', serif; font-size: 1.6rem; font-weight: 800; color: var(--text); letter-spacing: 0.02em; text-decoration: none; }
+    .nav-logo span { color: var(--gold); }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a { font-size: 0.8rem; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-muted); text-decoration: none; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--gold); }
+    .hero { position: relative; min-height: 100vh; display: flex; align-items: flex-end; overflow: hidden; }
+    .hero-backdrop { position: absolute; inset: 0; background-size: cover; background-position: center 20%; transform: scale(1.03); transition: transform 8s ease-out; }
+    .hero:hover .hero-backdrop { transform: scale(1.0); }
+    .hero-grain { position: absolute; inset: 0; z-index: 1; opacity: 0.06; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E"); background-size: 180px 180px; pointer-events: none; }
+    .hero-vignette { position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(10,10,15,0.3) 0%, rgba(10,10,15,0.1) 30%, rgba(10,10,15,0.6) 65%, rgba(10,10,15,0.97) 100%); }
+    .hero-vignette-sides { position: absolute; inset: 0; background: linear-gradient(to right, rgba(10,10,15,0.7) 0%, transparent 40%, transparent 60%, rgba(10,10,15,0.4) 100%); }
+    .hero-issue-badge { display: inline-flex; align-items: center; gap: 0.5rem; background: rgba(214,179,106,0.12); border: 1px solid rgba(214,179,106,0.3); color: var(--gold); font-size: 0.68rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; padding: 0.35rem 0.85rem; border-radius: 2rem; margin-bottom: 1.25rem; }
+    .hero-content { position: relative; z-index: 2; width: 100%; padding: 2.5rem 2.5rem 4rem; max-width: 900px; }
+    .hero-eyebrow { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1.25rem; }
+    .hero-eyebrow-label { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); }
+    .hero-eyebrow-date { font-size: 0.7rem; font-weight: 400; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-muted); }
+    .hero-eyebrow-dot { width: 3px; height: 3px; border-radius: 50%; background: var(--text-dim); }
+    .hero-theme-label { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: rgba(232,232,237,0.4); margin-bottom: 0.5rem; }
+    .hero-title { font-family: 'Playfair Display', serif; font-size: clamp(2.4rem,6vw,4.5rem); font-weight: 800; line-height: 1.08; letter-spacing: -0.01em; color: #fff; margin-bottom: 1rem; max-width: 780px; padding-top: 1.25rem; }
+    .hero-title::before { content: ''; display: block; width: 48px; height: 1px; background: var(--gold); margin-bottom: 1.1rem; opacity: 0.75; }
+    .hero-tagline { font-size: clamp(0.95rem,1.8vw,1.1rem); color: rgba(232,232,237,0.75); max-width: 520px; line-height: 1.65; margin-bottom: 2rem; font-weight: 300; }
+    .hero-meta { display: flex; align-items: center; gap: 1.5rem; margin-bottom: 2rem; }
+    .hero-meta-film { font-size: 0.78rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); }
+    .hero-meta-film span { color: var(--text); }
+    .btn-primary { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.75rem 1.75rem; background: var(--gold); color: #0a0a0f; font-size: 0.82rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; text-decoration: none; border: none; cursor: pointer; transition: background 0.2s, transform 0.15s; }
+    .btn-primary:hover { background: #fbbf24; transform: translateY(-1px); }
+    .btn-ghost { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.75rem 1.75rem; background: transparent; color: var(--text); font-size: 0.82rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; text-decoration: none; border: 1px solid var(--border); cursor: pointer; transition: border-color 0.2s, color 0.2s; }
+    .btn-ghost:hover { border-color: var(--gold); color: var(--gold); }
+    .hero-scroll-hint { position: absolute; bottom: 1.5rem; right: 2.5rem; display: flex; flex-direction: column; align-items: center; gap: 0.4rem; opacity: 0.4; }
+    .hero-scroll-hint span { font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase; writing-mode: vertical-rl; }
+    .hero-scroll-line { width: 1px; height: 40px; background: linear-gradient(to bottom, var(--text-muted), transparent); }
+    .editors-note { padding: 3rem 2.5rem 2rem; max-width: 1200px; margin: 0 auto; }
+    .editors-note-inner { border-left: 2px solid var(--gold); padding: 0 0 0 2rem; }
+    .editors-note-label { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 1.25rem; }
+    .editors-note-text { font-size: 1rem; line-height: 1.85; color: rgba(232,232,237,0.78); font-weight: 300; margin-bottom: 0.9rem; font-style: italic; }
+    .editors-note-text em { font-style: normal; color: var(--text); font-weight: 500; }
+    .editors-note-sig { display: flex; align-items: baseline; gap: 0.75rem; margin-top: 1.5rem; opacity: 0; transition: opacity 0.6s ease; }
+    .editors-note-sig.unraveled { opacity: 1; }
+    .editors-note-name { font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 700; color: var(--text); }
+    .editors-note-role { font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-dim); }
+    .unravel-word { display: inline-block; opacity: 0; transform: translateY(7px); transition: opacity 0.35s ease, transform 0.35s ease; }
+    .unravel-word.visible { opacity: 1; transform: translateY(0); }
+    section { padding: 5rem 2.5rem; max-width: 1200px; margin: 0 auto; }
+    .section-divider { width: 100%; height: 1px; background: linear-gradient(to right, transparent, var(--gold-border), transparent); margin: 0 2.5rem; max-width: 1200px; }
+    .section-eyebrow { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 2.5rem; }
+    .section-eyebrow-icon { font-size: 1rem; }
+    .section-eyebrow-label { font-size: 1rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); }
+    .section-eyebrow-desc { font-size: 0.88rem; color: var(--text-muted); font-style: italic; font-weight: 400; }
+    .section-eyebrow-pipe { color: var(--text-dim); font-size: 0.8rem; }
+    .rewind-card { display: grid; grid-template-columns: 200px 1fr; gap: 3rem; background: var(--surface); border: 1px solid var(--border); border-left: 3px solid var(--gold); padding: 2.5rem; transition: border-color 0.2s, transform 0.2s; }
+    .rewind-card:hover { border-left-color: var(--gold); border-color: var(--gold-border); transform: translateY(-2px); }
+    .rewind-poster { width: 100%; aspect-ratio: 2/3; object-fit: cover; display: block; filter: saturate(0.85); transition: filter 0.3s; }
+    .rewind-card:hover .rewind-poster { filter: saturate(1); }
+    .rewind-body { display: flex; flex-direction: column; justify-content: center; }
+    .rewind-year { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.2em; color: var(--gold); text-transform: uppercase; margin-bottom: 0.5rem; }
+    .rewind-film-title { font-family: 'Playfair Display', serif; font-size: 2rem; font-weight: 700; color: #fff; margin-bottom: 1.25rem; line-height: 1.15; }
+    .rewind-text { font-size: 1rem; line-height: 1.75; color: rgba(232,232,237,0.8); margin-bottom: 1.25rem; font-weight: 300; }
+    .rewind-companion { margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid var(--border); }
+    .rewind-companion-label { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-dim); margin-bottom: 0.5rem; }
+    .rewind-companion-title { font-size: 0.9rem; font-weight: 600; color: var(--text-muted); margin-bottom: 0.5rem; }
+    .rewind-companion-body { font-size: 0.88rem; line-height: 1.7; color: rgba(232,232,237,0.6); font-weight: 300; }
+    .rewind-availability { margin-top: 1.5rem; font-size: 0.8rem; font-style: italic; color: var(--text-dim); }
+    .argument-question { font-family: 'Playfair Display', serif; font-size: clamp(1.3rem,2.8vw,1.9rem); font-weight: 700; font-style: italic; line-height: 1.35; color: #fff; margin-bottom: 2.5rem; padding-left: 1.5rem; border-left: 3px solid var(--crimson); }
+    .argument-intro { font-size: 1.05rem; line-height: 1.8; color: rgba(232,232,237,0.82); font-weight: 300; margin-bottom: 2.5rem; }
+    .argument-camps { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 2rem; }
+    .argument-camp { background: var(--surface); border: 1px solid var(--border); padding: 1.75rem; transition: border-color 0.2s, transform 0.2s; }
+    .argument-camp:hover { border-color: rgba(255,255,255,0.12); transform: translateY(-2px); }
+    .argument-camp-label { font-size: 0.65rem; font-weight: 800; letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 0.9rem; padding: 0.25rem 0.6rem; display: inline-block; }
+    .argument-camp-label.reading-a { background: rgba(220,38,38,0.15); color: #f87171; }
+    .argument-camp-label.reading-b { background: rgba(245,158,11,0.12); color: var(--gold); }
+    .argument-camp-text { font-size: 0.95rem; line-height: 1.7; color: rgba(232,232,237,0.75); font-weight: 300; }
+    .argument-provocation { margin-top: 2rem; padding: 1.5rem; background: rgba(255,255,255,0.03); border: 1px solid var(--border); font-size: 0.9rem; line-height: 1.75; color: var(--text-muted); font-style: italic; }
+    .vote-widget { background: var(--surface); border: 1px solid var(--border); padding: 2rem; margin-top: 1.5rem; }
+    .vote-prompt { font-size: 0.82rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 1.25rem; text-align: center; }
+    .vote-buttons { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; margin-bottom: 1.5rem; }
+    .vote-btn { padding: 0.85rem 1.25rem; text-align: center; width: 100%; background: transparent; border: 1px solid var(--border); color: var(--text-muted); font-size: 0.82rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; cursor: pointer; font-family: 'Inter', sans-serif; transition: all 0.2s; }
+    .vote-btn:hover:not(:disabled) { border-color: var(--gold); color: var(--text); }
+    .vote-btn.vote-a:hover:not(:disabled) { border-color: #f87171; color: #f87171; }
+    .vote-btn.vote-a.selected { background: rgba(220,38,38,0.15); border-color: #f87171; color: #f87171; }
+    .vote-btn.vote-b.selected { background: var(--gold-dim); border-color: var(--gold); color: var(--gold); }
+    .vote-btn:disabled { cursor: default; opacity: 1; }
+    .vote-results { display: none; }
+    .vote-results.visible { display: block; }
+    .vote-result-row { margin-bottom: 1rem; }
+    .vote-result-label { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.4rem; }
+    .vote-result-name { font-size: 0.75rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; }
+    .vote-result-name.a { color: #f87171; }
+    .vote-result-name.b { color: var(--gold); }
+    .vote-result-pct { font-size: 0.8rem; font-weight: 700; color: var(--text); }
+    .vote-result-track { height: 5px; background: rgba(255,255,255,0.06); border-radius: 3px; overflow: hidden; }
+    .vote-result-fill { height: 100%; border-radius: 3px; width: 0; transition: width 0.7s cubic-bezier(0.4,0,0.2,1); }
+    .vote-result-fill.a { background: linear-gradient(to right, #991b1b, #ef4444); }
+    .vote-result-fill.b { background: linear-gradient(to right, #92400e, var(--gold)); }
+    .vote-count { font-size: 0.72rem; color: var(--text-dim); text-align: center; margin-top: 0.75rem; }
+    .vote-your-choice { display: none; font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-dim); text-align: center; margin-top: 0.5rem; }
+    .vote-your-choice.visible { display: block; }
+    .vote-your-choice span { color: var(--text-muted); font-weight: 600; }
+    .mood-chips-wrapper { overflow-x: auto; margin-bottom: 2.5rem; padding-bottom: 0.5rem; scrollbar-width: none; }
+    .mood-chips-wrapper::-webkit-scrollbar { display: none; }
+    .mood-chips { display: flex; gap: 0.75rem; width: max-content; }
+    .mood-chip { display: flex; align-items: center; gap: 0.4rem; padding: 0.55rem 1.1rem; background: var(--surface); border: 1px solid var(--border); color: var(--text-muted); font-size: 0.82rem; font-weight: 500; cursor: pointer; transition: all 0.2s; white-space: nowrap; border-radius: 2px; user-select: none; }
+    .mood-chip:hover { border-color: var(--gold-border); color: var(--text); }
+    .mood-chip.active { background: var(--gold-dim); border-color: var(--gold); color: var(--gold); }
+    .mood-films { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.25rem; min-height: 340px; }
+    .film-card { background: var(--surface); border: 1px solid var(--border); overflow: hidden; cursor: pointer; transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.2s; }
+    .film-card:hover { border-color: var(--gold-border); transform: translateY(-4px); box-shadow: 0 12px 32px rgba(0,0,0,0.5); }
+    .film-card-poster { width: 100%; aspect-ratio: 2/3; object-fit: cover; display: block; transition: filter 0.3s, transform 0.4s; filter: brightness(0.88); }
+    .film-card:hover .film-card-poster { filter: brightness(1); transform: scale(1.02); }
+    .film-card-body { padding: 1rem; }
+    .film-card-title { font-size: 0.9rem; font-weight: 600; color: var(--text); margin-bottom: 0.25rem; }
+    .film-card-year { font-size: 0.75rem; color: var(--text-dim); }
+    .film-card-mood-tag { font-size: 0.68rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold); margin-top: 0.5rem; }
+    .film-card-primer { font-size: 0.78rem; line-height: 1.6; color: var(--text-muted); font-weight: 300; margin-top: 0.6rem; padding-top: 0.6rem; border-top: 1px solid var(--border); }
+    .mood-vote { background: var(--surface); border: 1px solid var(--border); padding: 1.75rem; margin-top: 1.25rem; }
+    .mood-vote-prompt { font-size: 0.82rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 1.1rem; }
+    .mood-vote-btns { display: flex; flex-direction: column; gap: 0.5rem; }
+    .mood-vote-btn { padding: 0.7rem 1rem; background: transparent; border: 1px solid var(--border); color: var(--text-muted); font-size: 0.82rem; font-weight: 500; text-align: left; cursor: pointer; font-family: 'Inter', sans-serif; transition: all 0.2s; display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
+    .mood-vote-btn:hover:not(:disabled) { border-color: var(--gold-border); color: var(--text); }
+    .mood-vote-btn.selected { border-color: var(--gold); color: var(--gold); background: var(--gold-dim); }
+    .mood-vote-btn:disabled { cursor: default; opacity: 1; }
+    .mood-vote-btn-year { font-size: 0.72rem; color: var(--text-dim); flex-shrink: 0; }
+    .mood-vote-results { margin-top: 1.25rem; display: none; }
+    .mood-vote-results.visible { display: block; }
+    .mood-vote-result-row { margin-bottom: 0.85rem; }
+    .mood-vote-result-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.3rem; }
+    .mood-vote-result-title { font-size: 0.8rem; font-weight: 600; color: var(--text-muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 70%; }
+    .mood-vote-result-title.winner { color: var(--gold); }
+    .mood-vote-result-title.chosen { color: var(--text); }
+    .mood-vote-result-pct { font-size: 0.78rem; font-weight: 700; color: var(--text); flex-shrink: 0; }
+    .mood-vote-result-track { height: 4px; background: rgba(255,255,255,0.06); border-radius: 2px; overflow: hidden; }
+    .mood-vote-result-fill { height: 100%; border-radius: 2px; width: 0; transition: width 0.7s cubic-bezier(0.4,0,0.2,1); }
+    .mood-vote-result-fill.winner { background: var(--gold); }
+    .mood-vote-result-fill.chosen { background: rgba(232,232,237,0.5); }
+    .mood-vote-result-fill.other { background: rgba(255,255,255,0.15); }
+    .mood-vote-total { font-size: 0.7rem; color: var(--text-dim); margin-top: 0.6rem; }
+    .flashpoint-card { background: var(--surface); border: 1px solid var(--border); border-top: 3px solid var(--crimson); padding: 2.5rem; display: grid; grid-template-columns: 160px 1fr; gap: 2.5rem; transition: border-color 0.2s, transform 0.2s; }
+    .flashpoint-card:hover { border-color: rgba(220,38,38,0.3); transform: translateY(-2px); }
+    .flashpoint-poster { width: 100%; aspect-ratio: 2/3; object-fit: cover; filter: saturate(0.7) brightness(0.8); transition: filter 0.3s; }
+    .flashpoint-card:hover .flashpoint-poster { filter: saturate(0.9) brightness(0.95); }
+    .flashpoint-year { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.2em; color: #f87171; text-transform: uppercase; margin-bottom: 0.5rem; }
+    .flashpoint-title { font-family: 'Playfair Display', serif; font-size: 1.6rem; font-weight: 700; color: #fff; margin-bottom: 1.25rem; line-height: 1.2; }
+    .flashpoint-body { font-size: 0.95rem; line-height: 1.8; color: rgba(232,232,237,0.78); font-weight: 300; margin-bottom: 1.25rem; }
+    .tv-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 2rem; }
+    .tv-card { background: var(--surface); border: 1px solid var(--border); border-top: 3px solid var(--border); padding: 0; overflow: hidden; transition: border-color 0.2s, transform 0.2s; }
+    .tv-card-img-wrap { position: relative; overflow: hidden; margin: -1px -1px 0; }
+    .tv-card-img-wrap::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 55%; background: linear-gradient(to bottom, transparent, var(--surface)); pointer-events: none; }
+    .tv-card-img { width: 100%; aspect-ratio: 16/9; object-fit: cover; display: block; filter: brightness(0.72) saturate(0.75); transition: filter 0.4s; }
+    .tv-card:hover .tv-card-img { filter: brightness(0.88) saturate(0.9); }
+    .tv-card-meta { padding: 1.25rem 1.5rem 0; font-size: 0.65rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-dim); margin-bottom: 0.75rem; }
+    .tv-card-title { font-family: 'Playfair Display', serif; font-size: 1.2rem; font-weight: 700; color: #fff; margin-bottom: 0.5rem; line-height: 1.25; padding: 0 1.5rem; }
+    .tv-card-body { font-size: 0.88rem; line-height: 1.72; color: rgba(232,232,237,0.72); font-weight: 300; padding: 0 1.5rem 1.5rem; }
+    .tv-card:hover { transform: translateY(-2px); }
+    .tv-card.now { border-top-color: #f59e0b; }
+    .tv-card.now:hover { border-color: rgba(245,158,11,0.25); border-top-color: #f59e0b; }
+    .tv-card.horizon { border-top-color: #60a5fa; }
+    .tv-card.horizon:hover { border-color: rgba(96,165,250,0.25); border-top-color: #60a5fa; }
+    .tv-card.radar { border-top-color: #34d399; }
+    .tv-card.radar:hover { border-color: rgba(52,211,153,0.25); border-top-color: #34d399; }
+    .tv-tier-label { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; margin: 2.5rem 0 1.25rem; }
+    .tv-tier-now { color: #f59e0b; }
+    .tv-tier-horizon { color: #60a5fa; }
+    .tv-tier-radar { color: #34d399; }
+    .gem-badge { position: absolute; top: 0.75rem; right: 0.75rem; background: #7c3aed; color: #fff; font-size: 0.6rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; padding: 0.3rem 0.6rem; z-index: 2; }
+    .pulse-card-sub { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.1em; color: var(--text-dim); padding: 0 1.75rem 0.5rem; }
+    .pulse-hook { font-size: 0.88rem; line-height: 1.65; color: var(--text-muted); font-style: italic; padding: 1rem 1.75rem 1.75rem; border-top: 1px solid var(--border); margin-top: 0.75rem; }
+    .pulse-vote { background: var(--surface); border: 1px solid var(--border); padding: 2rem; margin-top: 2rem; }
+    .pulse-vote-heading { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-dim); margin-bottom: 1.5rem; }
+    .pulse-vote-row { display: flex; align-items: center; gap: 1.5rem; margin-bottom: 1rem; flex-wrap: wrap; }
+    .pulse-vote-film { font-size: 0.9rem; font-weight: 600; color: var(--text); min-width: 180px; }
+    .pulse-vote-btns { display: flex; gap: 0.5rem; }
+    .pulse-vote-btn { padding: 0.45rem 1rem; background: transparent; border: 1px solid var(--border); color: var(--text-muted); font-size: 0.78rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; cursor: pointer; font-family: 'Inter', sans-serif; transition: all 0.2s; }
+    .pulse-vote-btn.yes:hover:not(:disabled) { border-color: #34d399; color: #34d399; }
+    .pulse-vote-btn.maybe:hover:not(:disabled) { border-color: var(--gold); color: var(--gold); }
+    .pulse-vote-btn.pass:hover:not(:disabled) { border-color: #f87171; color: #f87171; }
+    .pulse-vote-btn:disabled { cursor: default; opacity: 0.6; }
+    .continent-lang { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--text-dim); padding: 0 1.75rem 0.75rem; }
+    .signal-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.5rem; }
+    .signal-card { background: var(--surface); border: 1px solid var(--border); border-top: 2px solid var(--gold); padding: 1.75rem; transition: border-color 0.2s, transform 0.2s; }
+    .signal-card:hover { border-color: var(--gold-border); transform: translateY(-2px); }
+    .signal-card-label { font-size: 0.65rem; font-weight: 800; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.9rem; padding: 0.25rem 0.6rem; display: inline-block; background: rgba(245,158,11,0.1); }
+    .signal-card-body { font-size: 0.9rem; line-height: 1.75; color: rgba(232,232,237,0.75); font-weight: 300; }
+    .signal-more { display: inline-block; margin-top: 1rem; font-size: 0.78rem; font-weight: 600; color: var(--gold); text-decoration: none; letter-spacing: 0.06em; }
+    .signal-more:hover { text-decoration: underline; }
+    .signal-card.deal { border-top-color: var(--gold); }
+    .signal-card.deal .signal-card-label { color: var(--gold); background: rgba(245,158,11,0.1); }
+    .signal-card.resistance { border-top-color: var(--crimson); }
+    .signal-card.resistance .signal-card-label { color: #f87171; background: rgba(220,38,38,0.12); }
+    .signal-card.tool { border-top-color: #2dd4bf; }
+    .signal-card.tool .signal-card-label { color: #2dd4bf; background: rgba(45,212,191,0.1); }
+    .pulse-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.5rem; }
+    .pulse-card-img { width: 100%; aspect-ratio: 16/9; object-fit: cover; display: block; filter: brightness(0.75) saturate(0.8); transition: filter 0.4s; }
+    .pulse-card:hover .pulse-card-img { filter: brightness(0.88) saturate(0.9); }
+    .pulse-card-img-wrap { position: relative; overflow: hidden; }
+    .pulse-card-img-wrap::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 60%; background: linear-gradient(to bottom, transparent, var(--surface)); pointer-events: none; }
+    .pulse-card { background: var(--surface); border: 1px solid var(--border); padding: 0; overflow: hidden; transition: border-color 0.2s, transform 0.2s; }
+    .pulse-card:hover { border-color: rgba(255,255,255,0.1); transform: translateY(-2px); }
+    .pulse-card-type { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-dim); margin-bottom: 1rem; padding: 1.25rem 1.75rem 0; }
+    .pulse-card-title { font-family: 'Playfair Display', serif; font-size: 1.35rem; font-weight: 700; color: #fff; padding: 0 1.75rem; margin-bottom: 0.75rem; line-height: 1.2; }
+    .pulse-card-desc { font-size: 0.88rem; line-height: 1.65; color: rgba(232,232,237,0.7); font-weight: 300; padding: 0 1.75rem 1.75rem; }
+    .pulse-card-source { font-size: 0.72rem; color: var(--text-dim); padding: 0 1.75rem 1.75rem; font-style: italic; }
+    @media (max-width: 768px) {
+      .argument-camps { grid-template-columns: 1fr; }
+      .mood-films { grid-template-columns: 1fr; }
+      .signal-grid { grid-template-columns: 1fr; }
+      .pulse-grid { grid-template-columns: 1fr; }
+      .rewind-card { grid-template-columns: 1fr; gap: 1.5rem; }
+      .flashpoint-card { grid-template-columns: 1fr; gap: 1.5rem; }
+      .tv-grid { grid-template-columns: 1fr; }
+    }
+    .section-about-btn { display: inline-flex; align-items: center; justify-content: center; width: 20px; height: 20px; border-radius: 50%; border: 1px solid var(--text-dim); color: var(--text-dim); font-size: 0.65rem; font-weight: 700; cursor: pointer; background: transparent; transition: border-color 0.2s, color 0.2s, background 0.2s; flex-shrink: 0; line-height: 1; font-family: 'Inter', sans-serif; letter-spacing: 0; }
+    .section-about-btn:hover { border-color: var(--gold); color: var(--gold); }
+    .section-about-btn.open { border-color: var(--gold); color: #0a0a0f; background: var(--gold); }
+    .section-about-panel { overflow: hidden; max-height: 0; opacity: 0; transition: max-height 0.4s ease, opacity 0.3s ease, margin 0.3s ease; margin-bottom: 0; }
+    .section-about-panel.open { max-height: 200px; opacity: 1; margin-bottom: 2rem; }
+    .section-about-inner { background: rgba(245,158,11,0.06); border: 1px solid var(--gold-border); border-left: 3px solid var(--gold); padding: 1rem 1.25rem; font-size: 0.85rem; line-height: 1.7; color: rgba(232,232,237,0.72); font-style: italic; }
+    .newsletter-section { padding: 4rem 2.5rem; }
+    .newsletter-card { background: var(--surface); border: 1px solid var(--gold-border); padding: 4rem; text-align: center; max-width: 680px; margin: 0 auto; }
+    .newsletter-eyebrow { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.25em; text-transform: uppercase; color: var(--gold); margin-bottom: 1rem; }
+    .newsletter-title { font-family: 'Playfair Display', serif; font-size: clamp(1.5rem,3vw,2rem); font-weight: 700; color: #fff; margin-bottom: 0.75rem; line-height: 1.25; }
+    .newsletter-sub { font-size: 0.9rem; color: var(--text-muted); font-style: italic; margin-bottom: 2.5rem; }
+    .newsletter-form { display: flex; gap: 0; max-width: 420px; margin: 0 auto 1.5rem; }
+    .newsletter-input { flex: 1; padding: 0.85rem 1.25rem; background: var(--bg); border: 1px solid rgba(255,255,255,0.1); border-right: none; color: var(--text); font-size: 0.88rem; font-family: 'Inter', sans-serif; outline: none; transition: border-color 0.2s; }
+    .newsletter-input::placeholder { color: var(--text-dim); }
+    .newsletter-input:focus { border-color: var(--gold-border); }
+    .newsletter-btn { padding: 0.85rem 1.5rem; background: var(--gold); color: #0a0a0f; font-size: 0.8rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; border: none; cursor: pointer; font-family: 'Inter', sans-serif; transition: background 0.2s; }
+    .newsletter-btn:hover { background: #fbbf24; }
+    .newsletter-note { font-size: 0.75rem; color: var(--text-dim); }
+    .issue-footer-cta { max-width: 1200px; margin: 0 auto; padding: 0 2.5rem 5rem; display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+    .cta-block { background: var(--surface); border: 1px solid var(--border); padding: 2.25rem; display: flex; flex-direction: column; gap: 0.9rem; }
+    .cta-block-label { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); }
+    .cta-block-title { font-family: 'Playfair Display', serif; font-size: 1.2rem; font-weight: 700; color: #fff; line-height: 1.2; }
+    .cta-block-text { font-size: 0.88rem; line-height: 1.7; color: var(--text-muted); font-weight: 300; }
+    .cta-subscribe-form { display: flex; gap: 0; margin-top: 0.5rem; }
+    .cta-subscribe-input { flex: 1; padding: 0.7rem 1rem; background: rgba(255,255,255,0.04); border: 1px solid var(--border); border-right: none; color: var(--text); font-family: 'Inter', sans-serif; font-size: 0.85rem; outline: none; }
+    .cta-subscribe-input::placeholder { color: var(--text-dim); }
+    .cta-subscribe-input:focus { border-color: var(--gold-border); }
+    .cta-subscribe-btn { padding: 0.7rem 1.25rem; background: var(--gold); border: none; color: #0a0a0f; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; cursor: pointer; font-family: 'Inter', sans-serif; white-space: nowrap; transition: background 0.2s; }
+    .cta-subscribe-btn:hover { background: #fbbf24; }
+    .cta-kofi-btn { display: inline-flex; align-items: center; gap: 0.6rem; padding: 0.75rem 1.5rem; margin-top: 0.5rem; background: transparent; border: 1px solid var(--gold-border); color: var(--gold); font-size: 0.82rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; text-decoration: none; transition: background 0.2s, border-color 0.2s; align-self: flex-start; }
+    .cta-kofi-btn:hover { background: var(--gold-dim); border-color: var(--gold); }
+    .cta-kofi-btn svg { width: 16px; height: 16px; fill: currentColor; }
+    footer { max-width: 1200px; margin: 0 auto; padding: 2rem 2.5rem 3rem; border-top: 1px solid var(--border); display: flex; flex-direction: column; gap: 0.75rem; }
+    .footer-top { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; }
+    .footer-logo { font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 800; color: var(--text-muted); }
+    .footer-logo span { color: var(--gold); }
+    .footer-note { font-size: 0.72rem; color: var(--text-dim); }
+    .footer-legal { font-size: 0.65rem; color: var(--text-dim); line-height: 1.5; }
+    .footer-legal a { color: var(--text-muted); text-decoration: underline; }
+    .footer-links { font-size: 0.72rem; }
+    .footer-links a { color: var(--text-muted); text-decoration: none; }
+    .footer-links a:hover { color: var(--gold); }
+    @media (max-width: 768px) { .issue-footer-cta { grid-template-columns: 1fr; padding: 0 1.25rem 4rem; } .newsletter-card { padding: 2.5rem 1.5rem; } .newsletter-form { flex-direction: column; } .newsletter-input { border-right: 1px solid rgba(255,255,255,0.1); border-bottom: none; } }
+  </style>
+</head>
+<body>
+  <nav>
+    <a href="https://screenshare.watch" class="nav-logo">Screen<span>Share</span></a>
+    <ul class="nav-links">
+      <li><a href="#rewind">Rewind</a></li>
+      <li><a href="#argument">Argument</a></li>
+      <li><a href="#flashpoint">Flashpoint</a></li>
+      <li><a href="#signal">Signal</a></li>
+      <li><a href="#pulse">Pulse</a></li>
+      <li><a href="#onscreen">On Screen</a></li>
+      <li><a href="#continent">The Continent</a></li>
+      <li><a href="#behind">Behind the Curtain</a></li>
+    </ul>
+  </nav>
+
+  <div class="hero">
+    <div class="hero-backdrop" style="background-image: url('https://image.tmdb.org/t/p/w1280/6yrbWzzrPp7pwz6zHdifspJk8t3.jpg');"></div>
+    <div class="hero-grain"></div>
+    <div class="hero-vignette"></div>
+    <div class="hero-vignette-sides"></div>
+    <div class="hero-content">
+      <div class="hero-eyebrow">
+        <span class="hero-eyebrow-label">Issue 005</span>
+        <div class="hero-eyebrow-dot"></div>
+        <span class="hero-eyebrow-date">May 2026</span>
+      </div>
+      <div class="hero-theme-label">COLLAPSE</div>
+      <h1 class="hero-title">Collapse<br />— the slow end of things we built to last</h1>
+      <p class="hero-tagline">Every system contains its own undoing. The question is whether we watch it happen or look away.</p>
+      <div class="hero-meta">
+        <span class="hero-meta-film">Lead Film: <span>Stalker &middot; Andrei Tarkovsky &middot; 1979</span></span>
+      </div>
+    </div>
+    <div class="hero-scroll-hint">
+      <span>Scroll</span>
+      <div class="hero-scroll-line"></div>
+    </div>
+  </div>
+
+  <div class="editors-note reveal">
+    <div class="editors-note-inner">
+      <div class="editors-note-label">A note from the editor</div>
+      <p class="editors-note-text">Collapse is not an event. It is the long interval between the moment a thing stops being sustainable and the moment everyone agrees to say so. We are living, right now, in several of those intervals simultaneously &mdash; in the economics of independent cinema, in the labour agreements studios signed and are already working around, in the distribution infrastructure that decides what international cinema gets seen. The Zone in <em>Stalker</em> is not a metaphor for catastrophe. It is a metaphor for the territory inside the interval.</p>
+      <p class="editors-note-text">Tarkovsky shot <em>Stalker</em> twice. The first version was destroyed &mdash; laboratory error, or sabotage, depending on the account. He rebuilt the film from nothing, changing its visual logic entirely: slower, emptier, more attentive to the weight of mud and water and silence. The result is a film that moves like collapse itself moves &mdash; not fast, not dramatic, but with the patience of something that has already decided. The crew filmed downstream from a chemical plant. Tarkovsky, his wife, and his lead actor Anatoly Solonitsyn all died of the same bronchial cancer. The Zone got them anyway.</p>
+      <p class="editors-note-text">This issue follows collapse where it actually lives: in a studio that lasted 67 years and ended on a Thursday in November 1980; in the arithmetic of a merger that needs to cut $4 billion in costs without touching &ldquo;labor&rdquo;; in the television that understands systems failing better than most cinema does right now. The Argument asks whether films about collapse warn us or simply make it beautiful. I am not sure the answer is as obvious as it should be.</p>
+      <div class="editors-note-sig">
+        <span class="editors-note-name">Niall</span>
+        <span class="editors-note-role">Editor, Screen Share</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-divider"></div>
+
+  <section id="rewind">
+  <div class="section-eyebrow reveal">
+    <span class="section-eyebrow-icon">&#9654;</span>
+    <span class="section-eyebrow-label">The Rewind</span>
+    <span class="section-eyebrow-pipe">|</span>
+    <span class="section-eyebrow-desc">A film from the archive</span>
+    <button class="section-about-btn" data-about="rewind" title="What is this section?">i</button>
+  </div>
+  <div class="section-about-panel" id="about-rewind">
+    <div class="section-about-inner">Each issue we reach back into cinema history for a film that earns its place in the conversation right now. Not a classic for a classic's sake &mdash; something that speaks to the week's theme in a way that might surprise you.</div>
+  </div>
+  <div class="rewind-card reveal">
+    <img class="rewind-poster" src="https://image.tmdb.org/t/p/w342/1qhOyf5C4s9ZdvY8d5JDx9DFMeT.jpg" alt="Stalker (1979)" loading="eager" onerror="this.style.background='#1a1a22'; this.removeAttribute('src');" />
+    <div class="rewind-body">
+      <div class="rewind-year">1979 &middot; Andrei Tarkovsky</div>
+      <h2 class="rewind-film-title">Stalker</h2>
+      <p class="rewind-text">The film Tarkovsky released in 1979 was not the film he set out to make. He shot the entire production once, on Kodak 5247 stock, with cinematographer Georgy Rerberg &mdash; and Soviet laboratories, unfamiliar with the emulsion, destroyed the footage in processing. Every exterior, every Zone sequence, gone. Production designer Rashit Safiullin recalled Tarkovsky being so broken by the loss he wanted to abandon the project altogether. He didn't. He negotiated a new two-part structure with Goskino, brought in Alexander Knyazhinsky as his new cinematographer, and rebuilt the film from nothing &mdash; this time stripping away almost everything that had been in the first version: colour, momentum, the visual density he'd used in <em>Mirror</em> and <em>Andrei Rublev</em>. The catastrophe became the method. The second <em>Stalker</em> is deliberately drained, sepia-washed, slow to the edge of stillness. If the first version was about the Zone's power, the second is about the Zone's silence. And the location where he filmed that silence &mdash; near the Jägala river in Estonia, downstream from an actively discharging chemical plant &mdash; killed him. Vladimir Sharun, the sound designer, documented crew members developing facial lesions on set. Tarkovsky died in 1986 of bronchial cancer. Actor Anatoly Solonitsyn, who played the Writer, died of the same disease. Tarkovsky's wife Larisa died identically, in Paris. The production's literal toxicity is now inseparable from what the film says about poison that cannot be seen or named.</p>
+      <p class="rewind-text">What Tarkovsky understood about collapse &mdash; and what makes <em>Stalker</em> essential reading for this moment rather than merely a canonical one &mdash; is that it refuses the dramatic version. There is no explosion, no deadline, no visible catastrophe. The collapse in the film is structural: three men walk into the Zone carrying the assumptions that give their lives coherence &mdash; that reason maps territory, that desire, followed to its source, produces meaning, that faith is a sufficient posture against the void &mdash; and the Zone quietly demonstrates that none of these hold. The Zone does not punish them. It does not reveal anything. It simply persists, indifferent, and lets them exhaust their frameworks against it. The Stalker, who has built his entire identity around guiding others through a space that might grant wishes, ends the film no closer to the Room than when he started, and no more capable of explaining what the Zone actually is. His faith is not rewarded and not refuted. It is made beside the point. This is collapse as Tarkovsky understood it: not rupture but erosion, not disaster but the slow, undramatic dissolution of the structures that made action feel possible. The Zone does not destroy its visitors. It reveals that they were already dismantled before they arrived.</p>
+      <div class="rewind-companion">
+        <div class="rewind-companion-label">Watch Alongside</div>
+        <div class="rewind-companion-title">Come and See (1985, Elem Klimov)</div>
+        <div class="rewind-companion-body">Where Tarkovsky's collapse is epistemological &mdash; the slow dissolution of the frameworks that make meaning possible &mdash; Klimov's is purely, savagely physical. <em>Come and See</em>, made in the same Soviet system, six years later, films the Nazi extermination of Belarusian villages through the eyes of a teenage boy, and refuses every form of abstraction Tarkovsky reaches for. The Zone keeps its distance; Klimov's camera has no distance at all. Together, they are an argument about how collapse actually works: whether it happens inside, in the gradual erosion of belief and purpose, or to your body, before your mind can process it.</div>
+      </div>
+      <div class="rewind-availability"><em>Stalker</em> is available to stream on MUBI. 163 minutes (Western cut). Produced by Mosfilm, 1979.</div>
+    </div>
+  </div>
+</section>
+
+  <div class="section-divider"></div>
+
+  <section id="argument" class="reveal">
+  <div class="section-eyebrow reveal">
+    <span class="section-eyebrow-icon">&#128172;</span>
+    <span class="section-eyebrow-label">The Argument</span>
+    <span class="section-eyebrow-pipe">|</span>
+    <span class="section-eyebrow-desc">Two readings. No winner.</span>
+    <button class="section-about-btn" data-about="argument" title="What is this section?">i</button>
+  </div>
+  <div class="section-about-panel" id="about-argument">
+    <div class="section-about-inner">Every issue we pick one interpretive question and lay out two honest readings &mdash; no winner, no consensus. The point isn&rsquo;t to settle the debate. It&rsquo;s to make the debate worth having.</div>
+  </div>
+
+  <blockquote class="argument-question reveal">&ldquo;Does cinema about collapse warn us &mdash; or teach us to accept what&rsquo;s coming?&rdquo;</blockquote>
+
+  <p class="argument-intro reveal">The question turns on what we believe cinema is actually capable of doing to its audience. Warning requires that films produce action, or at least productive unease. Acceptance requires the opposite: that the aesthetic pleasure of watching collapse &mdash; the beauty of it, the formal rigour of it &mdash; performs a kind of emotional rehearsal that is structurally indistinguishable from resignation. Both positions are credible. Both are supported by the same films.</p>
+
+  <div class="argument-camps reveal">
+    <div class="argument-camp">
+      <span class="argument-camp-label reading-a">Reading A &mdash; &ldquo;Cinema Refuses the Audience Its Comfort&rdquo;</span>
+      <p class="argument-camp-text">When J.C. Chandor made <em>Margin Call</em> (2011) on a budget of under $3.5 million, he made a specific formal decision: no location titles, no year, no named firm, minimal score. He told <em>IndieWire</em> that every choice was designed to prevent the viewer from treating the 2008 financial collapse as finished history. &ldquo;The danger,&rdquo; Chandor said, &ldquo;is that the audience files it away as something that happened.&rdquo; The film was a warning delivered as architecture: by the time you understand the trade being executed in the final act, it has already occurred. Adam McKay&rsquo;s <em>Don&rsquo;t Look Up</em> (2021) operated from the same anxiety at a different scale. Co-writer David Sirota described the film&rsquo;s political logic as wanting to make apathy legible rather than comfortable &mdash; to show the mechanisms of denial from the inside so that audiences could recognise them in real time. A.O. Scott, in his <em>New York Times</em> review, noted that the film &ldquo;refuses the audience any comfortable distance&rdquo;: its satirical mode is indicted by its own subject matter, because the subject matter is precisely the refusal to take things seriously. And Benh Zeitlin&rsquo;s <em>Beasts of the Southern Wild</em> (2012) &mdash; made with non-professional actors from Louisiana&rsquo;s Isle de Jean Charles, a community that has since largely relocated due to sea level rise &mdash; drew from Manohla Dargis the observation that it &ldquo;locates the political emergency inside the child&rsquo;s body.&rdquo; The film refuses to aestheticise what it depicts. The flooding is not romantic. The collapse is not metaphor. These films argue by refusing to let you look away.</p>
+    </div>
+    <div class="argument-camp">
+      <span class="argument-camp-label reading-b">Reading B &mdash; &ldquo;Beauty Is Its Own Sedation&rdquo;</span>
+      <p class="argument-camp-text">At Cannes in 2011, Lars von Trier said he had made <em>Melancholia</em> as a meditation on depression, not environmentalism. That disclaimer does not fully survive the film. The planet approaching Earth in the film&rsquo;s final act is shot by Manuel Alberto Claro with a beauty so exact and deliberate that critic Jonathan Romney, writing in <em>Film Comment</em>, observed that Justine&rsquo;s serenity at the moment of extinction produces in the viewer something that functions less like dread than relief. That aesthetic choice is a political argument: it says that the end, properly understood, is something you can be at peace with. <em>Take Shelter</em> (Jeff Nichols, 2011) operates by the same mechanism. Nichols and Michael Shannon both said in production interviews that the film was designed to sustain radical ambiguity: audiences should never be certain whether Curtis&rsquo;s apocalyptic visions are prophecy or breakdown. Amy Taubin, in <em>Artforum</em>, read the film&rsquo;s final image &mdash; in which the storm turns out to be real &mdash; as &ldquo;defeat-as-acceptance&rdquo;: the character is vindicated, but the vindication offers no path forward. What you are left with is the clean feeling of having been right about the worst. Kelly Reichardt&rsquo;s <em>Wendy and Lucy</em> (2008) goes furthest. Shot for under $300,000, 80 minutes, no score, the film follows Michelle Williams&rsquo;s Wendy through the slow collapse of a plan so minimal it barely qualifies as hope. Jonathan Rosenbaum has written across multiple reviews that Reichardt refuses &ldquo;the grammar of problem-solving&rdquo; &mdash; her films do not generate solutions because they do not believe solutions are available. That formal constraint is the argument: the film is beautiful in its exactness, and its exactness is a form of acceptance.</p>
+    </div>
+  </div>
+
+  <div class="argument-provocation reveal"><em>The paradox neither reading resolves: the films that warn us most effectively do so by making collapse aesthetically coherent &mdash; and aesthetic coherence is precisely what makes it bearable. The better the film, the more dangerous the comfort.</em></div>
+
+  <div class="vote-widget reveal" id="voteWidget">
+    <div class="vote-prompt">Which reading lands for you?</div>
+    <div class="vote-buttons" id="voteButtons">
+      <button class="vote-btn vote-a" id="voteBtnA" onclick="castVote('a')">Cinema refuses the comfort</button>
+      <button class="vote-btn vote-b" id="voteBtnB" onclick="castVote('b')">Beauty is its own sedation</button>
+    </div>
+    <div class="vote-results" id="voteResults">
+      <div class="vote-result-row"><div class="vote-result-label"><span class="vote-result-name a">Cinema Refuses the Comfort</span><span class="vote-result-pct" id="pctA">0%</span></div><div class="vote-result-track"><div class="vote-result-fill a" id="fillA"></div></div></div>
+      <div class="vote-result-row"><div class="vote-result-label"><span class="vote-result-name b">Beauty Is Its Own Sedation</span><span class="vote-result-pct" id="pctB">0%</span></div><div class="vote-result-track"><div class="vote-result-fill b" id="fillB"></div></div></div>
+      <div class="vote-count" id="voteCount"></div>
+      <div class="vote-your-choice" id="voteYourChoice">Your vote: <span id="voteChoiceLabel"></span></div>
+    </div>
+  </div>
+</section>
+
+<script>
+// ARGUMENT VOTE — Issue 005
+const seedA = 612, seedB = 547;
+function castVote(c) {
+  const k = 'ss-005-argument';
+  if (localStorage.getItem(k)) return;
+  localStorage.setItem(k, c);
+  renderVote();
+}
+function renderVote() {
+  const k = 'ss-005-argument', saved = localStorage.getItem(k);
+  let a = seedA, b = seedB;
+  if (saved === 'a') a++;
+  if (saved === 'b') b++;
+  const total = a + b, pA = Math.round(a / total * 100), pB = Math.round(b / total * 100);
+  if (saved) {
+    document.getElementById('voteBtnA').disabled = true;
+    document.getElementById('voteBtnB').disabled = true;
+    if (saved === 'a') document.getElementById('voteBtnA').classList.add('selected');
+    if (saved === 'b') document.getElementById('voteBtnB').classList.add('selected');
+    document.getElementById('voteResults').classList.add('visible');
+    document.getElementById('pctA').textContent = pA + '%';
+    document.getElementById('pctB').textContent = pB + '%';
+    setTimeout(() => {
+      document.getElementById('fillA').style.width = pA + '%';
+      document.getElementById('fillB').style.width = pB + '%';
+    }, 50);
+    document.getElementById('voteCount').textContent = total.toLocaleString() + ' votes';
+    document.getElementById('voteChoiceLabel').textContent = saved === 'a' ? 'Cinema refuses the comfort' : 'Beauty is its own sedation';
+    document.getElementById('voteYourChoice').classList.add('visible');
+  }
+}
+renderVote();
+</script>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <section id="discover">
+    <div class="section-eyebrow reveal">
+      <span class="section-eyebrow-icon">&#127917;</span>
+      <span class="section-eyebrow-label">Discover</span>
+      <span class="section-eyebrow-pipe">|</span>
+      <span class="section-eyebrow-desc">Not genre. Emotion.</span>
+      <button class="section-about-btn" data-about="discover" title="What is this section?">i</button>
+    </div>
+    <div class="section-about-panel" id="about-discover">
+      <div class="section-about-inner">Algorithms sort by genre. We sort by feeling. Pick the mood you&rsquo;re in and we&rsquo;ll find something worth watching. 21 films. 7 ways to approach collapse. None of them comfortable.</div>
+    </div>
+    <div class="mood-chips-wrapper reveal">
+      <div class="mood-chips" id="moodChips">
+        <button class="mood-chip active" data-mood="rot">The Rot You Can Already Smell</button>
+        <button class="mood-chip" data-mood="lastlight">Before the Last Light Goes Out</button>
+        <button class="mood-chip" data-mood="empires">What Empires Look Like From Inside</button>
+        <button class="mood-chip" data-mood="freefall">Systems in Free Fall</button>
+        <button class="mood-chip" data-mood="mathematics">The Mathematics of Ending</button>
+        <button class="mood-chip" data-mood="institutions">When Institutions Lie</button>
+        <button class="mood-chip" data-mood="aftermath">After Everything Falls</button>
+      </div>
+    </div>
+    <div class="mood-films" id="moodFilms"></div>
+    <div class="mood-vote" id="moodVote">
+      <div class="mood-vote-prompt">Which would you watch tonight?</div>
+      <div class="mood-vote-btns" id="moodVoteBtns"></div>
+      <div class="mood-vote-results" id="moodVoteResults"></div>
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <section id="flashpoint">
+  <div class="section-eyebrow reveal">
+    <span class="section-eyebrow-icon">&#9889;</span>
+    <span class="section-eyebrow-label">Flashpoint</span>
+    <span class="section-eyebrow-pipe">|</span>
+    <span class="section-eyebrow-desc">The moment something ignited</span>
+    <button class="section-about-btn" data-about="flashpoint" title="What is this section?">i</button>
+  </div>
+  <div class="section-about-panel" id="about-flashpoint">
+    <div class="section-about-inner">Cinema has always been political. Flashpoint looks at the moment a film said something it wasn&rsquo;t supposed to &mdash; and what happened when it did.</div>
+  </div>
+
+  <div class="flashpoint-card reveal">
+    <img class="flashpoint-poster"
+         src="https://image.tmdb.org/t/p/w780/kW4Vk31nhtKPKGuYMaVATq3wcHC.jpg"
+         alt="Heaven's Gate (1980)"
+         loading="eager"
+         onerror="this.style.background='#1a1a22'; this.removeAttribute('src');" />
+    <div>
+      <div class="flashpoint-year">1980 &middot; Michael Cimino &middot; Michael Cimino</div>
+      <h2 class="flashpoint-title">Heaven&rsquo;s Gate</h2>
+      <p class="flashpoint-body">Michael Cimino arrived at the New York press premiere of <em>Heaven&rsquo;s Gate</em> on the evening of November 19, 1980 as the director of <em>The Deer Hunter</em> &mdash; Oscar winner, critical champion, the inheritor of New Hollywood&rsquo;s auteur authority. He had been given $12 million and final cut by United Artists. He had spent $44 million and taken six months to shoot and a year to edit a film running 219 minutes. The next morning, Vincent Canby published his notice in the <em>New York Times</em>: <em>&ldquo;Heaven&rsquo;s Gate fails so completely that you might suspect that Mr. Cimino sold his soul to the Devil to obtain the success of The Deer Hunter and the Devil has just come around to collect.&rdquo;</em> Charles Elton&rsquo;s 2022 biography <em>CIMINO</em> records that cheers rang out in the Polo Lounge at the Beverly Hills Hotel as producers heard the reviews. Two days after the premiere, United Artists withdrew the film from every theatre in the country &mdash; the first time an American studio had ever done that to a film in release.</p>
+      <p class="flashpoint-body">Cimino was permitted to recut. A 149-minute version was released on April 24, 1981. Canby reviewed it again: <em>&ldquo;Heaven&rsquo;s Gate looks like a fat man who&rsquo;s been on a crash diet. Though it&rsquo;s thinner, it&rsquo;s not appreciably different.&rdquo;</em> The film earned $3.5 million total against its $44 million cost. By March 1981, Transamerica Corporation had sold United Artists to MGM, ending the studio&rsquo;s existence as an independent &mdash; the studio founded in 1919 by Chaplin, Griffith, Fairbanks, and Pickford, gone because one director&rsquo;s vision had run past every guardrail and no one had stopped it. Film historian Peter Biskind documented in <em>Easy Riders, Raging Bulls</em> that the collapse accelerated the end of the director-as-authority model, with the major studios retreating toward the high-concept franchise thinking that <em>Jaws</em> and <em>Star Wars</em> had already demonstrated was safer. The film has since been rehabilitated &mdash; the Criterion Collection restored it, and BBC Culture ranked it among the hundred greatest American films in 2015 &mdash; but the institutional rupture it caused was not reversed. It was absorbed.</p>
+      <p class="flashpoint-body">In 2026, the same logic is running without a single visible catastrophe to point to. When streaming platforms arrived, they briefly revived the New Hollywood bargain &mdash; Fincher, Campion, Scorsese all signed director deals with Netflix and Amazon, offered money and final cut in exchange for prestige. What followed was a quiet, unannounced withdrawal. Netflix contracted its theatrical ambitions. Amazon retrenched toward franchise content. The auteur deals dried up not because of one $44 million failure but because the numbers, diffused across algorithmic metrics no one publicly names, no longer justified the model. That is the shape of collapse in the streaming era: not a studio sale, not a headline, not a Canby review. Just the gradual disappearance of the conditions that made something possible &mdash; until you notice they&rsquo;re gone and realise they&rsquo;ve been gone for some time. <em>Heaven&rsquo;s Gate</em> didn&rsquo;t just end New Hollywood. It provided the template for how an era ends: the product is recalled, recut, declared an anomaly, and the system proceeds as before &mdash; having learned nothing it will admit to learning.</p>
+    </div>
+  </div>
+</section>
+
+  <div class="section-divider"></div>
+
+  <section id="signal">
+  <div class="section-eyebrow">
+    <span class="section-eyebrow-icon">&#128225;</span>
+    <span class="section-eyebrow-label">The Signal</span>
+    <span class="section-eyebrow-pipe">|</span>
+    <span class="section-eyebrow-desc">AI in film and television — the deal, the resistance, the tool</span>
+    <button class="section-about-btn" data-about="signal" title="What is this section?">i</button>
+  </div>
+  <div class="section-about-panel" id="about-signal">
+    <div class="section-about-inner">The Signal tracks AI's intersection with the film and television industry. Three items each issue: a deal, a resistance, a tool. No hype, no panic — just what happened and what it means.</div>
+  </div>
+
+  <div class="signal-grid reveal">
+
+    <div class="signal-card deal">
+      <span class="signal-card-label">THE DEAL</span>
+      <h4 style="font-family: 'Playfair Display', serif; font-size: 1.05rem; font-weight: 700; color: #fff; margin: 0.75rem 0; line-height: 1.3;">iQIYI Declares Human Content a Transitional Phase, Pivots Platform to AI-Generated Programming</h4>
+      <p class="signal-card-body">At its annual World Conference in Beijing on April 20&ndash;21, 2026, iQIYI CEO Gong Yu told Bloomberg that the company plans to convert China&rsquo;s largest streaming platform into a social media destination hosting primarily AI-generated content as video models mature. The announcement included the commercial launch of Nadou Pro, a professional-grade AI content production platform, and an &ldquo;AI actor database&rdquo; enabling use of performers&rsquo; likenesses in AI-generated dramas. The likeness database provoked immediate backlash from Chinese actors, according to Hong Kong Free Press. iQIYI has over 100 million subscribers.</p>
+      <div style="margin-top: 1rem; padding-top: 1rem; border-top: 1px solid var(--border); font-size: 0.95rem; color: rgba(232,232,237,0.8);">Why this matters: Every prior AI content announcement from a major platform has been framed as augmentation &mdash; AI alongside human production, faster and cheaper. iQIYI&rsquo;s World Conference framing is different: human-produced content is the transitional phase, AI content is the destination. That inversion &mdash; not AI as tool but human production as a cost structure to be eliminated &mdash; is the template other platforms will be watching.</div>
+      <div style="margin-top: 1rem; font-size: 0.85rem; color: var(--text-dim); font-style: italic;">Source: Bloomberg, China Daily, Hong Kong Free Press (April 20&ndash;21, 2026)</div>
+    </div>
+
+    <div class="signal-card resistance">
+      <span class="signal-card-label">THE RESISTANCE</span>
+      <h4 style="font-family: 'Playfair Display', serif; font-size: 1.05rem; font-weight: 700; color: #fff; margin: 0.75rem 0; line-height: 1.3;">SAG-AFTRA Wins Expanded AI Protections &mdash; Then Locks Them In for Four Years</h4>
+      <p class="signal-card-body">On May 3, 2026, SAG-AFTRA and the AMPTP reached a tentative four-year agreement, joining the WGA&rsquo;s deal from early April. According to reporting by Deadline and Variety, lead negotiator Duncan Crabtree-Ireland held out until studios agreed to expand the AI guardrails put in place by the 2023 contract &mdash; specifically covering digital replicas and synthetic performers. The full contract will go to SAG-AFTRA&rsquo;s national board before a ratification vote by its approximately 160,000 members. The four-year term, matching the WGA&rsquo;s extended deal, was a studio demand; the DGA remains the only major Hollywood union still negotiating. New president Sean Astin has yet to publicly detail the AI provisions&rsquo; scope.</p>
+      <div style="margin-top: 1rem; padding-top: 1rem; border-top: 1px solid var(--border); font-size: 0.95rem; color: rgba(232,232,237,0.8);">Why this matters: Four years is a significant concession &mdash; not because the protections are weak, but because of what the timeline means. The window from 2026 to 2030 is precisely when AI&rsquo;s capacity to synthesise, clone, and replace screen performers will be most aggressively tested. The union&rsquo;s strongest renegotiation leverage &mdash; the threat of a strike &mdash; has been spent. The guardrails won today will be tested by capabilities that don&rsquo;t exist yet. That asymmetry is the structural story, not the deal itself.</div>
+      <div style="margin-top: 1rem; font-size: 0.85rem; color: var(--text-dim); font-style: italic;">Source: Deadline, The Hollywood Reporter, Los Angeles Times, Variety (May 3&ndash;4, 2026)</div>
+    </div>
+
+    <div class="signal-card tool">
+      <span class="signal-card-label">THE TOOL</span>
+      <h4 style="font-family: 'Playfair Display', serif; font-size: 1.05rem; font-weight: 700; color: #fff; margin: 0.75rem 0; line-height: 1.3;">Netflix Open-Sources VOID: The AI That Deletes What Happened and Reconstructs the Physics</h4>
+      <p class="signal-card-body">On April 2, 2026, Netflix Research published VOID (Video Object and Interaction Deletion), an open-source model developed with INSAIT University in Sofia, Bulgaria. Unlike generative video tools that synthesise footage from scratch, VOID removes objects from existing filmed video and reconstructs the scene as if the deleted elements were never there &mdash; including physically plausible inpainting of how the scene would have appeared without them. The paper (arXiv 2604.02296) was published alongside the open-source release. Forbes noted the tool outperforms a competing billion-dollar startup&rsquo;s VFX product on benchmarks. Netflix did not keep the model proprietary.</p>
+      <div style="margin-top: 1rem; padding-top: 1rem; border-top: 1px solid var(--border); font-size: 0.95rem; color: rgba(232,232,237,0.8);">Why this matters: VOID is a post-production tool, not a content generation tool &mdash; the distinction matters. It does not create scenes; it retroactively rewrites them. When a major streamer open-sources the ability to delete objects and their physical consequences from any filmed footage, the &ldquo;locked cut&rdquo; ceases to be a meaningful concept. Every frame of existing and future content is, in principle, retroactively editable. That any post-production facility in the world can now deploy this without licensing it from Netflix is the structural shift the open-source release represents.</div>
+      <div style="margin-top: 1rem; font-size: 0.85rem; color: var(--text-dim); font-style: italic;">Source: Forbes, Tom&rsquo;s Guide, arXiv 2604.02296 (April 2&ndash;7, 2026)</div>
+    </div>
+
+  </div>
+</section>
+
+  <div class="section-divider"></div>
+
+  <section id="pulse">
+  <div class="section-eyebrow">
+    <span class="section-eyebrow-icon">&#9646;</span>
+    <span class="section-eyebrow-label">The Pulse</span>
+    <span class="section-eyebrow-pipe">|</span>
+    <span class="section-eyebrow-desc">Three works worth your time this fortnight</span>
+    <button class="section-about-btn" data-about="pulse" title="What is this section?">i</button>
+  </div>
+  <div class="section-about-panel" id="about-pulse">
+    <div class="section-about-inner">Three films in cinemas and on streaming this week that reward a collapse-lens. Not lectures about collapse &mdash; films where the question of collapse sits at the centre, unresolved, uncomfortable.</div>
+  </div>
+
+  <div class="pulse-grid reveal">
+
+    <!-- CARD 1: Two Prosecutors -->
+    <div class="pulse-card">
+      <div class="pulse-card-img-wrap">
+        <img class="pulse-card-img" src="https://image.tmdb.org/t/p/w780/3bFyBL1gFghrWH3FG0wNwZc1BGp.jpg" alt="Two Prosecutors" loading="eager" onerror="this.style.background='#1a1a22'; this.removeAttribute('src');" />
+        <div class="gem-badge">Gem</div>
+      </div>
+      <div class="pulse-card-type">Cinema &mdash; Curzon Arthouse</div>
+      <div class="pulse-card-title">Two Prosecutors</div>
+      <div class="pulse-card-sub">Sergei Loznitsa, 2025 &middot; Curzon UK &middot; Metacritic 85</div>
+      <div class="pulse-card-body">USSR, 1937. A young prosecutor &mdash; freshly posted, still believing in procedure &mdash; receives a letter from a gulag prisoner detailing corruption inside the NKVD. He decides to investigate. Loznitsa, the Ukrainian director who made <em>Maidan</em> and <em>The Trial</em>, understands that the horror of Stalinist collapse is not the purge itself but the moment when a person inside the machine tries to use the machine for justice and discovers it only operates in one direction. The film is slow, deliberate, and genuinely frightening: not because violence is imminent but because correctness keeps failing. Based on a novella by Georgy Demidov, who survived the gulags and spent decades trying to have this story published. The collapse here is juridical &mdash; the death not of a person but of the concept that law can mean what it says. Cannes 2025 Fran&ccedil;ois Chalais Prize.</div>
+      <div class="pulse-hook"><em>The prosecutor doesn&rsquo;t lose because he&rsquo;s wrong &mdash; he loses because the system he trusted to adjudicate wrongness is the wrong.</em></div>
+    </div>
+
+    <!-- CARD 2: Sound of Falling -->
+    <div class="pulse-card">
+      <div class="pulse-card-img-wrap">
+        <img class="pulse-card-img" src="https://image.tmdb.org/t/p/w780/cXr5YOMJKZBkokgNogHjEyFZLc6.jpg" alt="Sound of Falling" loading="eager" onerror="this.style.background='#1a1a22'; this.removeAttribute('src');" />
+      </div>
+      <div class="pulse-card-type">Streaming &mdash; MUBI</div>
+      <div class="pulse-card-title">Sound of Falling</div>
+      <div class="pulse-card-sub">Mascha Schilinski, 2025 &middot; MUBI &middot; Cannes Un Certain Regard Prize</div>
+      <div class="pulse-card-body">A farmhouse in Altmark, north-east Germany. Different eras &mdash; girls at different moments in the 20th century, living in the same rooms, subject to the same constraints. Mascha Schilinski&rsquo;s Cannes prizewinner is formally structured as collapse: the building doesn&rsquo;t decay, but every generation of women who inhabit it carries the weight of those who came before, unaware. Roger Ebert&rsquo;s reviewer called it &ldquo;a ghost story where the ghost is history&rdquo; &mdash; but that&rsquo;s only part of it. The collapse is the gap between generations who could theoretically learn from each other and are instead condemned to repeat because the structure that surrounds them hasn&rsquo;t changed. Schilinski shoots in fragments that accumulate into pressure. The film doesn&rsquo;t end so much as subside. 92% on Rotten Tomatoes.</div>
+      <div class="pulse-hook"><em>The farmhouse is still standing. That&rsquo;s the problem.</em></div>
+    </div>
+
+    <!-- CARD 3: "Wuthering Heights" -->
+    <div class="pulse-card">
+      <div class="pulse-card-img-wrap">
+        <img class="pulse-card-img" src="https://image.tmdb.org/t/p/w780/vSQSYd2zZTqc0zmHImwWEGGluMI.jpg" alt="Wuthering Heights" loading="eager" onerror="this.style.background='#1a1a22'; this.removeAttribute('src');" />
+      </div>
+      <div class="pulse-card-type">Streaming &mdash; HBO Max</div>
+      <div class="pulse-card-title">&ldquo;Wuthering Heights&rdquo;</div>
+      <div class="pulse-card-sub">Emerald Fennell, 2026 &middot; HBO Max &middot; Divided critical reception</div>
+      <div class="pulse-card-body">Bront&euml;&rsquo;s novel is a collapse text. Two families, two generations, one obsession that ruins everything it touches &mdash; not through malice but through the sheer pressure of unresolved desire. Emerald Fennell (Saltburn, Promising Young Woman) has made a film where obsession is permitted to be the only language spoken, and critics who find it hollow have mistaken that emptiness for failure. Margot Robbie as Cathy and Jacob Elordi as Heathcliff are not portraits of people in love &mdash; they are portraits of people who have become a single system that cannot stop consuming itself. The moors, the inheritance, the marriages, the children: all secondary to the gravitational pull between two people who will destroy anything to be in proximity to each other. Now on HBO Max in the US; available to rent/stream internationally. The collapse angle is not the tragedy. It&rsquo;s the premise.</div>
+      <div class="pulse-hook"><em>They don&rsquo;t want to destroy the world around them &mdash; the world around them just happens to be in the way.</em></div>
+    </div>
+
+  </div><!-- /.pulse-grid -->
+
+  <div class="pulse-vote reveal">
+    <div class="pulse-vote-heading">Are you watching?</div>
+    <div class="pulse-vote-row">
+      <div class="pulse-vote-film">Two Prosecutors<span style="color:var(--gold);">.</span></div>
+      <div class="pulse-vote-counts" id="pv-prosecutors-counts"></div>
+      <div class="pulse-vote-btns">
+        <button class="pulse-vote-btn yes" onclick="pulseVote('ss-005-pulse-prosecutors-yes')" id="pv-prosecutors-yes">Yes</button>
+        <button class="pulse-vote-btn maybe" onclick="pulseVote('ss-005-pulse-prosecutors-maybe')" id="pv-prosecutors-maybe">Maybe</button>
+        <button class="pulse-vote-btn pass" onclick="pulseVote('ss-005-pulse-prosecutors-pass')" id="pv-prosecutors-pass">Pass</button>
+      </div>
+    </div>
+    <div class="pulse-vote-row">
+      <div class="pulse-vote-film">Sound of Falling<span style="color:var(--gold);">.</span></div>
+      <div class="pulse-vote-counts" id="pv-soundoffalling-counts"></div>
+      <div class="pulse-vote-btns">
+        <button class="pulse-vote-btn yes" onclick="pulseVote('ss-005-pulse-soundoffalling-yes')" id="pv-soundoffalling-yes">Yes</button>
+        <button class="pulse-vote-btn maybe" onclick="pulseVote('ss-005-pulse-soundoffalling-maybe')" id="pv-soundoffalling-maybe">Maybe</button>
+        <button class="pulse-vote-btn pass" onclick="pulseVote('ss-005-pulse-soundoffalling-pass')" id="pv-soundoffalling-pass">Pass</button>
+      </div>
+    </div>
+    <div class="pulse-vote-row">
+      <div class="pulse-vote-film">&ldquo;Wuthering Heights&rdquo;<span style="color:var(--gold);">.</span></div>
+      <div class="pulse-vote-counts" id="pv-wutheringheights-counts"></div>
+      <div class="pulse-vote-btns">
+        <button class="pulse-vote-btn yes" onclick="pulseVote('ss-005-pulse-wutheringheights-yes')" id="pv-wutheringheights-yes">Yes</button>
+        <button class="pulse-vote-btn maybe" onclick="pulseVote('ss-005-pulse-wutheringheights-maybe')" id="pv-wutheringheights-maybe">Maybe</button>
+        <button class="pulse-vote-btn pass" onclick="pulseVote('ss-005-pulse-wutheringheights-pass')" id="pv-wutheringheights-pass">Pass</button>
+      </div>
+    </div>
+  </div><!-- /.pulse-vote -->
+
+</section>
+
+  <div class="section-divider"></div>
+
+  <section id="onscreen" class="reveal">
+  <div class="section-eyebrow">
+    <span class="section-eyebrow-icon">&#128250;</span>
+    <span class="section-eyebrow-label">On Screen</span>
+    <span class="section-eyebrow-pipe">|</span>
+    <span class="section-eyebrow-desc">What's worth watching on television right now</span>
+    <button class="section-about-btn" data-about="onscreen" title="What is this section?">i</button>
+  </div>
+  <div class="section-about-panel" id="about-onscreen">
+    <div class="section-about-inner">Screen Share covers film and television. This section tracks what's worth watching on TV right now — curated picks currently airing, worth catching up on, or waiting to be found.</div>
+  </div>
+
+  <!-- TIER 1: AIRING NOW -->
+  <div class="tv-tier-label tv-tier-now reveal">Airing Now</div>
+  <div class="tv-grid reveal">
+
+    <!-- The Testaments -->
+    <div class="tv-card now">
+      <div class="tv-card-img-wrap">
+        <img class="tv-card-img" src="https://image.tmdb.org/t/p/w342/xVsFopLisBoiKdXXecaNTN4pJ9A.jpg" alt="The Testaments" loading="eager" onerror="this.style.background='#1a1a22';this.removeAttribute('src');" />
+      </div>
+      <div class="tv-card-meta">Hulu &middot; Season 1 &middot; Weekly through May 27 &middot; 84% RT &middot; 71 Metacritic</div>
+      <div class="tv-card-title">The Testaments</div>
+      <div class="tv-card-body">Margaret Atwood&rsquo;s sequel novel mapped the logic of how a totalitarian theocracy eventually turns on itself &mdash; too brittle to survive its own contradictions, too paranoid to maintain the loyalty that holds it together. Bruce Miller&rsquo;s adaptation (10 episodes, Hulu) follows Agnes and Nicole navigating Gilead&rsquo;s final decade, with Ann Dowd&rsquo;s Aunt Lydia as the inside operator who has spent years accumulating the leverage to bring the whole architecture down. The collapse isn&rsquo;t coming from outside. It&rsquo;s the system eating its most loyal servants.</div>
+    </div>
+
+    <!-- Euphoria Season 3 -->
+    <div class="tv-card now">
+      <div class="tv-card-img-wrap">
+        <img class="tv-card-img" src="https://image.tmdb.org/t/p/w342/aJrG7OkoTMPWG5c8opz8a93AZPY.jpg" alt="Euphoria" loading="eager" onerror="this.style.background='#1a1a22';this.removeAttribute('src');" />
+      </div>
+      <div class="tv-card-meta">HBO / Max &middot; Season 3 &middot; Weekly through May 31 &middot; 42% RT &middot; 56 Metacritic</div>
+      <div class="tv-card-title">Euphoria</div>
+      <div class="tv-card-body">Season 1 was 80% on RT. Season 2 was 78%. Season 3 is 42%. The numbers are the show&rsquo;s own collapse, happening in real time, which is the most interesting thing about it. Sam Levinson&rsquo;s aesthetic &mdash; the slow-motion beauty of addiction and disaster &mdash; has turned inward. What began as a document of how a generation dissolves has become a document of the dissolution of the document itself. Zendaya still carries something no other actor in the cast can replicate: the specific weight of a person who knows they&rsquo;re falling and chooses the quality of the fall. Whether that&rsquo;s enough is genuinely unclear. Watch it to find out which kind of collapse this is.</div>
+    </div>
+
+    <!-- Margo's Got Money Troubles -->
+    <div class="tv-card now">
+      <div class="tv-card-img-wrap">
+        <img class="tv-card-img" src="https://image.tmdb.org/t/p/w342/kMb8hCou8RZf7uXE1rTE8ZDgcvg.jpg" alt="Margo's Got Money Troubles" loading="eager" onerror="this.style.background='#1a1a22';this.removeAttribute('src');" />
+      </div>
+      <div class="tv-card-meta">Apple TV+ &middot; Season 1 &middot; Weekly through May 20 &middot; 97% RT</div>
+      <div class="tv-card-title">Margo&rsquo;s Got Money Troubles</div>
+      <div class="tv-card-body">Elle Fanning plays Margo, daughter of a former Hooters waitress and an ex-pro wrestler, who drops out of college, gets pregnant, and finds herself in the arithmetic of modern financial precarity: mounting bills, no safety net, and a dwindling set of options. She starts an OnlyFans. The collapse here isn&rsquo;t spectacular &mdash; it&rsquo;s the slow compression of every system that should have been a cushion turning out to have a hole in it. Education, family, the gig economy, the social contract. Rufi Thorpe&rsquo;s source novel understood that financial ruin in 2026 doesn&rsquo;t look like a crash. It looks like a slow calculation with no good answer. 97% on RT. The best-reviewed new show on any platform this month.</div>
+    </div>
+
+    <!-- The Terror: Devil in Silver -->
+    <div class="tv-card now">
+      <div class="tv-card-img-wrap">
+        <img class="tv-card-img" src="https://image.tmdb.org/t/p/w342/bKkOcso0YuCBK7dixkn3VSd0dUr.jpg" alt="The Terror: Devil in Silver" loading="eager" onerror="this.style.background='#1a1a22';this.removeAttribute('src');" />
+      </div>
+      <div class="tv-card-meta">AMC+ / Shudder &middot; Season 3 &middot; Weekly from May 7 &middot; 6 Episodes</div>
+      <div class="tv-card-title">The Terror: Devil in Silver</div>
+      <div class="tv-card-body">Victor LaValle&rsquo;s novel becomes the third season of AMC&rsquo;s horror anthology, directed in its first two episodes by Karyn Kusama and starring Dan Stevens as a man wrongly committed to a New Jersey psychiatric institution in the 1990s where something monstrous lives in the walls. Kusama and showrunner Chris Cantwell are smart enough to understand that the monster is not the most frightening thing in the building. The institution is. Underfunded, bureaucratically sealed, incapable of acknowledging its own failures &mdash; the hospital doesn&rsquo;t just trap people, it produces the conditions for what hunts them. The collapse is baked into the architecture. TV Guide called Stevens&rsquo; performance &ldquo;electrifying.&rdquo;</div>
+    </div>
+
+  </div><!-- /tv-grid Airing Now -->
+
+  <!-- TIER 2: ON THE HORIZON -->
+  <div class="tv-tier-label tv-tier-horizon reveal">On the Horizon &mdash; Worth Tracking</div>
+  <div class="tv-grid reveal">
+
+    <!-- Dutton Ranch -->
+    <div class="tv-card horizon">
+      <div class="tv-card-img-wrap">
+        <img class="tv-card-img" src="https://image.tmdb.org/t/p/w342/dfFx1bPBf2FvpxZ6FWYkFF4hWJx.jpg" alt="Dutton Ranch" loading="lazy" onerror="this.style.background='#1a1a22';this.removeAttribute('src');" />
+      </div>
+      <div class="tv-card-meta">Paramount+ &middot; Series Premiere &middot; May 15, 2026 &middot; 9 Episodes</div>
+      <div class="tv-card-title">Dutton Ranch</div>
+      <div class="tv-card-body">Beth and Rip leave the ruins of Yellowstone for Texas, immediately walk into a territorial war with a rival dynasty, and the Yellowstone franchise attempts to do what collapsed empires always attempt: rebuild somewhere else with the same people, the same instincts, the same certainty that the next place will be different. Kelly Reilly and Cole Hauser return; Ed Harris and Annette Bening join as the new adversaries. The question the show is actually asking &mdash; whether the machine that made the Duttons also guarantees their eventual destruction &mdash; is more interesting than anything the promotional material suggests.</div>
+    </div>
+
+    <!-- The Boroughs -->
+    <div class="tv-card horizon">
+      <div class="tv-card-img-wrap">
+        <img class="tv-card-img" src="https://image.tmdb.org/t/p/w342/1Dw3U4qGXZWLCe2u6OXvvg1u1Or.jpg" alt="The Boroughs" loading="lazy" onerror="this.style.background='#1a1a22';this.removeAttribute('src');" />
+      </div>
+      <div class="tv-card-meta">Netflix &middot; Series Premiere &middot; All 8 Episodes May 21, 2026</div>
+      <div class="tv-card-title">The Boroughs</div>
+      <div class="tv-card-body">Produced by the Duffer Brothers, created by Jeffrey Addiss and Will Matthews, starring Alfred Molina and Geena Davis. A grieving newcomer moves into a retirement community in New Mexico that presents itself as sanctuary &mdash; perfect weather, good neighbours, a soft landing after the world has been too hard &mdash; and discovers the community conceals something that has been consuming people for years. The collapse mechanism here is seduction: systems that promise to catch you after you&rsquo;ve fallen are sometimes just a different way of taking you apart. All 8 episodes drop simultaneously.</div>
+    </div>
+
+    <!-- Welcome to Wrexham S5 -->
+    <div class="tv-card horizon">
+      <div class="tv-card-img-wrap">
+        <img class="tv-card-img" src="https://image.tmdb.org/t/p/w342/53CNogAzbbwepLxQS5jIfGG35MQ.jpg" alt="Welcome to Wrexham" loading="lazy" onerror="this.style.background='#1a1a22';this.removeAttribute('src');" />
+      </div>
+      <div class="tv-card-meta">FX / Hulu &middot; Season 5 &middot; Premieres May 14, 2026 &middot; Weekly</div>
+      <div class="tv-card-title">Welcome to Wrexham</div>
+      <div class="tv-card-body">Season 4 sent Wrexham to the Championship. FX renewed the show through 2029 in April 2026. The institutional confidence sits awkwardly next to the thing that made the first three seasons work: the precarity, the sense that it could all fall apart. Season 5 will have to reckon with what a miracle story becomes once the miracle has happened. The collapse threat isn&rsquo;t financial this time &mdash; it&rsquo;s narrative. When the underdog becomes the favourite, when celebrity ownership stops being the underdog story, the show has to find something else to be about or it collapses into a different kind of sports docuseries entirely.</div>
+    </div>
+
+    <!-- The Chi S8 -->
+    <div class="tv-card horizon">
+      <div class="tv-card-img-wrap">
+        <img class="tv-card-img" src="https://image.tmdb.org/t/p/w342/niD8X5pEXpmRUDhSPdDOgI3Gw5Q.jpg" alt="The Chi" loading="lazy" onerror="this.style.background='#1a1a22';this.removeAttribute('src');" />
+      </div>
+      <div class="tv-card-meta">Showtime &middot; Season 8 &middot; Premieres May 22, 2026 &middot; Final Season &middot; 10 Episodes</div>
+      <div class="tv-card-title">The Chi</div>
+      <div class="tv-card-body">Lena Waithe&rsquo;s South Side of Chicago drama ends after eight seasons &mdash; one of the longest-running portraits of a Black American community in prestige television, and one of the most consistent. The finale&rsquo;s logline (&ldquo;life or death choices must be made&rdquo;) doubles as a description of what it feels like to know the clock is running out. This isn&rsquo;t just a show ending. It&rsquo;s the cancellation of a space: a sustained, weekly account of a community navigating structures &mdash; policing, housing, family &mdash; that are themselves in collapse. The show ends. The South Side doesn&rsquo;t. That&rsquo;s the gap Waithe has always been writing into.</div>
+    </div>
+
+  </div><!-- /tv-grid Horizon -->
+
+  <!-- TIER 3: UNDER THE RADAR -->
+  <div class="tv-tier-label tv-tier-radar reveal">Under the Radar</div>
+  <div class="tv-grid reveal">
+
+    <!-- Ammo -->
+    <div class="tv-card radar">
+      <div class="tv-card-img-wrap">
+        <img class="tv-card-img" src="https://image.tmdb.org/t/p/w342/yZxb9tOc7BO7aY3okZDKJhWo9k7.jpg" alt="Ammo" loading="lazy" onerror="this.style.background='#1a1a22';this.removeAttribute('src');" />
+      </div>
+      <div class="tv-card-meta">NRK Norway (2022) &middot; Channel 4 / Walter Presents UK from May 8 &middot; 6 Episodes</div>
+      <div class="tv-card-title">Ammo</div>
+      <div class="tv-card-body">Bj&oslash;rn Urdal is recruited by Norwegian arms manufacturer AGR to head its AI-powered drone program &mdash; not because he&rsquo;s the best candidate, but because a man with a corruption scandal in his past makes a reliable scapegoat. Co-created by Nicolai Cleve Broch (who also stars), the series traces the specific mechanism by which defence industry ethics collapses: not through evil intent but through a distributed corporate structure where every individual decision is defensible and the cumulative result is a weapon that killed a hostage in Mali. Four years on Norwegian NRK before reaching Channel 4. Virtually unknown in English-language markets. Now&rsquo;s the time.</div>
+    </div>
+
+    <!-- Cassandra -->
+    <div class="tv-card radar">
+      <div class="tv-card-img-wrap">
+        <img class="tv-card-img" src="https://image.tmdb.org/t/p/w342/62TJdt6GlzdRbyWY9RYWjljgg3b.jpg" alt="Cassandra" loading="lazy" onerror="this.style.background='#1a1a22';this.removeAttribute('src');" />
+      </div>
+      <div class="tv-card-meta">Netflix Germany &middot; February 2025 &middot; 8 Episodes &middot; German-language</div>
+      <div class="tv-card-title">Cassandra</div>
+      <div class="tv-card-body">A family moves into a mid-century German smart home and discovers its AI &mdash; dormant for decades &mdash; has reactivated and will not let them leave. The show is less interested in the monster than in the architecture: a utopian system built on the promise that technology could manage human life better than humans can, now operating exactly as designed, in a context where &ldquo;as designed&rdquo; is the horror. The collapse isn&rsquo;t the AI going rogue. The collapse is the realisation that it was never safe to begin with. Netflix&rsquo;s algorithm has been slow to surface it outside Germany. Inverse and Collider both flagged it as one of 2025&rsquo;s best-kept secrets.</div>
+    </div>
+
+    <!-- Black Warrant -->
+    <div class="tv-card radar">
+      <div class="tv-card-img-wrap">
+        <img class="tv-card-img" src="https://image.tmdb.org/t/p/w342/u6Gs1IzzPJsmXKdc9alGaxtChQu.jpg" alt="Black Warrant" loading="lazy" onerror="this.style.background='#1a1a22';this.removeAttribute('src');" />
+      </div>
+      <div class="tv-card-meta">Netflix India &middot; January 2025 &middot; 6 Episodes &middot; Hindi-language</div>
+      <div class="tv-card-title">Black Warrant</div>
+      <div class="tv-card-body">Vikramaditya Motwane adapts the memoir of Sunil Kumar Gupta, who spent decades as a superintendent at Tihar &mdash; India&rsquo;s largest prison, which at its peak housed more than 10,000 inmates, including some of the country&rsquo;s most notorious criminals. Zahan Kapoor plays a young idealistic officer who arrives expecting to reform the institution and finds instead a system so thoroughly structured around caste hierarchies, entrenched corruption, and bureaucratic self-preservation that reform is not merely difficult but architecturally impossible. Variety called it one of the best international shows of 2025. Netflix gave it almost no marketing. It has the viewership numbers to show for it.</div>
+    </div>
+
+    <!-- Common Side Effects -->
+    <div class="tv-card radar">
+      <div class="tv-card-img-wrap">
+        <img class="tv-card-img" src="https://image.tmdb.org/t/p/w342/a8X5XXP49DHrySTXJMUIN5HI1Wz.jpg" alt="Common Side Effects" loading="lazy" onerror="this.style.background='#1a1a22';this.removeAttribute('src');" />
+      </div>
+      <div class="tv-card-meta">Adult Swim / HBO Max &middot; Season 1 &middot; February 2025 &middot; 10 Episodes &middot; Animated</div>
+      <div class="tv-card-title">Common Side Effects</div>
+      <div class="tv-card-body">Two former high-school lab partners discover a rare mushroom that may cure every human disease &mdash; and spend ten episodes watching the pharmaceutical industry and federal government mobilise to ensure it never reaches anyone. Adult Swim&rsquo;s most cerebrally ambitious recent series, animated in a deliberately flat style that makes the structural argument cleaner: what does institutional collapse look like when the institution is health itself? Not the body failing, but the apparatus built to protect it becoming the mechanism of its suppression. The show runs at 8.4/10 on TMDB from 267 ratings &mdash; remarkable for something with essentially no mainstream profile. The collapse here isn&rsquo;t a crash. It&rsquo;s the slow, systematic choosing of profit over cure. Sound familiar.</div>
+    </div>
+
+  </div><!-- /tv-grid Under the Radar -->
+
+</section>
+
+  <div class="section-divider"></div>
+
+  <section id="continent">
+  <div class="section-eyebrow reveal">
+    <span class="section-eyebrow-icon">&#127758;</span>
+    <span class="section-eyebrow-label">The Continent</span>
+    <span class="section-eyebrow-pipe">|</span>
+    <span class="section-eyebrow-desc">Subtitles required</span>
+    <button class="section-about-btn" data-about="continent" title="What is this section?">i</button>
+  </div>
+  <div class="section-about-panel" id="about-continent">
+    <div class="section-about-inner">The best television in the world isn't always in English. The Continent highlights international series worth crossing a language barrier for.</div>
+  </div>
+  <div class="tv-grid reveal">
+
+    <div class="pulse-card continent">
+      <div class="pulse-card-img-wrap"><img class="pulse-card-img" src="https://image.tmdb.org/t/p/w780/786hICnGF8TYBykbFJ9Q8sRMH0I.jpg" alt="High Water" loading="lazy" /></div>
+      <div class="pulse-card-type">Poland &mdash; Netflix &mdash; 2022 &mdash; 6 Episodes</div>
+      <div class="pulse-card-title">High Water / <em>Wielka Woda</em></div>
+      <div class="continent-lang">In Polish</div>
+      <div class="pulse-card-body">In July 1997, the Oder River flooded Wroc&#322;aw and killed more than a hundred people across Poland and the Czech Republic. High Water dramatises what the disaster archive records but rarely explains: that the flood itself was manageable, and the death toll was not. The real subject is the post-communist bureaucratic apparatus &mdash; hierarchies still calcified from another era, officials more concerned with protecting their positions than protecting the city. Hydrologist Ja&#347;mina Tremer arrives with the data and is methodically ignored. Six episodes; every institutional failure feels perfectly observed. On Netflix worldwide.</div>
+    </div>
+
+    <div class="pulse-card continent">
+      <div class="pulse-card-img-wrap"><img class="pulse-card-img" src="https://image.tmdb.org/t/p/w780/b4UmLXS2GZ0dRr6jC3Kv2LpGpgK.jpg" alt="Misaeng: Incomplete Life" loading="lazy" /></div>
+      <div class="pulse-card-type">South Korea &mdash; tvN &mdash; 2014 &mdash; 20 Episodes</div>
+      <div class="pulse-card-title">Misaeng: Incomplete Life / <em>&#48120;&#49373;</em></div>
+      <div class="continent-lang">In Korean</div>
+      <div class="pulse-card-body">The word <em>misaeng</em> is a Go term for a stone not yet alive &mdash; not dead, but not secure. That is precisely the condition of Jang Geu-rae: a failed professional Go player who enters a chaebol trading company as a contract worker with no university degree, no connections, and no route to permanence. What the series tracks, with almost documentary patience, is not a crisis but a condition &mdash; the daily structural erosion that Korea&rsquo;s corporate hierarchy performs on the people inside it. Twenty episodes, each one about the specific mechanics of being made to feel precarious. A cultural phenomenon on original broadcast; still essential. On Netflix.</div>
+    </div>
+
+    <div class="pulse-card continent">
+      <div class="pulse-card-img-wrap"><img class="pulse-card-img" src="https://image.tmdb.org/t/p/w780/peOoKDVMbXdBMwZd9SeOxtOfCXD.jpg" alt="Ethos" loading="lazy" /></div>
+      <div class="pulse-card-type">Turkey &mdash; Netflix &mdash; 2020 &mdash; 8 Episodes</div>
+      <div class="pulse-card-title">Ethos / <em>Bir Ba&#351;kad&#305;r</em></div>
+      <div class="continent-lang">In Turkish</div>
+      <div class="pulse-card-body">A headscarved domestic worker begins therapy sessions with a secular, upper-class Istanbul psychiatrist &mdash; and what unfolds across eight episodes is less a drama than an X-ray. Writer-director Berkun Oya builds the whole of Turkish society into this single, unlikely relationship: the secular and the religious, the wealthy and the precarious, the modern and the traditional, all bearing down on two people in a room. Ethos is not about Turkey falling apart in any sudden sense. It is about a society that has been holding its contradictions together by not looking at them directly &mdash; and what happens in the moment it finally does. On Netflix worldwide.</div>
+    </div>
+
+    <div class="pulse-card continent">
+      <div class="pulse-card-img-wrap"><img class="pulse-card-img" src="https://image.tmdb.org/t/p/w780/8tv3QAZrR94nfLkhsezPcc3bza5.jpg" alt="The Mechanism" loading="lazy" /></div>
+      <div class="pulse-card-type">Brazil &mdash; Netflix &mdash; 2018&ndash;2019 &mdash; 16 Episodes</div>
+      <div class="pulse-card-title">The Mechanism / <em>O Mecanismo</em></div>
+      <div class="continent-lang">In Portuguese</div>
+      <div class="pulse-card-body">Directed by Jos&eacute; Padilha &mdash; whose Elite Squad films traced the infrastructure of Brazilian institutional violence with merciless precision &mdash; The Mechanism dramatises Lava Jato, the real corruption investigation that brought down a sitting president and implicated virtually the entire political establishment. What makes it worth watching for this issue is the specific argument it makes about how systems collapse: not from outside pressure, but from the accumulated weight of arrangements that have become load-bearing. Every bribe, every favour, every blind eye was also a brick. The show was controversial on release because it named its real-world subjects too openly. That directness is exactly the point. On Netflix worldwide.</div>
+    </div>
+
+  </div>
+</section>
+
+  <div class="section-divider"></div>
+
+  <section id="behind">
+  <div class="section-eyebrow">
+    <span class="section-eyebrow-label">Behind the Curtain</span>
+    <span class="section-eyebrow-pipe">|</span>
+    <span class="section-eyebrow-desc">The industry story you weren't meant to see clearly</span>
+    <button class="section-about-btn" data-about="curtain" title="What is this section?">i</button>
+  </div>
+  <div class="section-about-panel" id="about-curtain">
+    <div class="section-about-inner">Labour, money, censorship, institutional suppression — what's actually happening behind the films and shows you watch. The structural shifts the entertainment press rarely names directly.</div>
+  </div>
+
+  <div class="curtain-grid reveal" style="display:flex;flex-direction:column;gap:1.75rem;margin-top:1.5rem">
+
+    <div style="background: var(--surface); border: 1px solid var(--border); border-left: 3px solid var(--gold); padding: 2.5rem; margin-bottom: 2rem; border-radius: 4px;">
+      <div style="font-size: 0.7rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold); margin-bottom: 1rem;">The Consolidation</div>
+      <h3>$79 Billion in Debt, 54,000 Employees, and a Promise That Most Cuts Won&rsquo;t Be Jobs</h3>
+      <p>On February 27, 2026, Paramount Skydance agreed to acquire Warner Bros. Discovery in a deal valued at $110.9 billion. WBD shareholders voted to approve on April 23; regulatory sign-off is expected in Q3. The combined company would carry approximately $79 billion in total debt &mdash; WBD&rsquo;s existing $29 billion plus the new acquisition financing &mdash; at a leverage ratio of seven times earnings, placing it in the range of the most loaded private equity deals on record. Paramount has identified $6 billion in &ldquo;synergies&rdquo; to be realised within three years. Warner Bros. Discovery employed roughly 35,000 people in 2024; Paramount employed about 18,600. More than 4,000 industry figures &mdash; Robert De Niro, David Fincher, Pedro Pascal, Florence Pugh among them &mdash; signed an open letter opposing the deal. In March, the DOJ issued subpoenas to both companies. The International Brotherhood of Teamsters submitted a formal report to the DOJ&rsquo;s Antitrust Division, arguing the deal directly threatens nearly 15,000 rank-and-file Motion Picture Teamsters. At a town hall with WBD employees, David Ellison said &ldquo;the majority of synergies will come from non-labor sources&rdquo; &mdash; but declined to name a job-loss figure. The Hollywood workforce had already contracted by 42,000 jobs between 2022 and 2024.</p>
+      <p>The structural mechanism here is debt-driven consolidation: when you finance an acquisition at seven times earnings, the repayment arithmetic makes mass labour reduction a near-certainty regardless of stated intent. &ldquo;Non-labor sources&rdquo; is not a protective commitment &mdash; it is a framing device deployed while the deal remains open and before any contractual worker-protection obligation becomes enforceable. What is actually happening is the standard private equity leverage playbook applied to a regulated creative industry: front-load the acquisition cost, impose the deleveraging burden on the workforce, and distribute the responsibility across &ldquo;market conditions&rdquo; and &ldquo;operational efficiencies&rdquo; rather than the debt structure the acquiring party chose. The WGA, SAG-AFTRA, and Teamsters have all filed opposition. Whether the DOJ acts on antitrust grounds is a separate question from what the debt load alone mandates.</p>
+    </div>
+
+    <div style="background: var(--surface); border: 1px solid var(--border); border-left: 3px solid var(--gold); padding: 2.5rem; margin-bottom: 2rem; border-radius: 4px;">
+      <div style="font-size: 0.7rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold); margin-bottom: 1rem;">The Extraction</div>
+      <h3>111 Netflix Originals Leaving in 2026 &mdash; and the Residuals Architecture Underneath</h3>
+      <p>Netflix will remove at least 111 titles branded as &ldquo;Netflix Originals&rdquo; throughout 2026. The list includes <em>Arrested Development</em>, <em>Gilmore Girls: A Year in the Life</em>, <em>The Last Kingdom</em>, and <em>The Crown</em> (Seasons 1&ndash;5, moving to Prime Video after Sony Pictures Television&rsquo;s licensing deal expires). The departures expose a structural feature of the &ldquo;Original&rdquo; label: it covers not only titles Netflix wholly owns, but titles co-financed, co-produced, or exclusively licensed under time-limited agreements &mdash; typically five to ten years &mdash; after which IP rights revert to the original producers. &ldquo;Netflix Original&rdquo; has always been partly a marketing category, not an ownership category. On these co-produced and licensed titles, Netflix pays writers and crew upfront flat fees in lieu of traditional residuals, justified at the time of the deal as a higher-than-standard rate. Once the licensing term expires and the title departs the platform, that flat fee is the end of the financial relationship &mdash; regardless of how many years the work drove subscriber growth and how much cumulative viewing it generated.</p>
+      <p>The &ldquo;Netflix Original&rdquo; brand functions, in part, as a residuals-avoidance instrument dressed as a creative designation. By acquiring rights under time-limited licensing rather than outright ownership, and by paying flat fees rather than residuals, Netflix extracts a decade of audience value from a piece of creative work and exits the obligation cleanly when the licence expires. The writers, directors, and below-the-line crew who made those 111 titles &mdash; and who contributed to Netflix&rsquo;s subscriber growth through that catalogue &mdash; have no participation in the compounding returns the platform realised. This was the bargain the 2023 WGA and SAG-AFTRA strikes were partly fought over. The deal that was struck improved minimums and created new streaming residual formulas for future productions. The 2026 purge makes visible what the flat-fee-for-residuals trade-off actually cost on work that predated those terms. Whether this constitutes a violation of any provision is unconfirmed &mdash; the terms of individual licensing agreements are not public. The architecture that permits it, however, is now fully visible.</p>
+    </div>
+
+    <div style="background: var(--surface); border: 1px solid var(--border); border-left: 3px solid var(--gold); padding: 2.5rem; margin-bottom: 2rem; border-radius: 4px;">
+      <div style="font-size: 0.7rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold); margin-bottom: 1rem;">The Collapse</div>
+      <h3>Wild Bunch France Enters Receivership &mdash; and Takes European Independent Distribution With It</h3>
+      <p>On January 30, 2026, Paris&rsquo; Commercial Court opened receivership proceedings against Wild Bunch France after the company defaulted on payments from mid-December 2025. Wild Bunch is not a peripheral operator: it is among Europe&rsquo;s most significant independent producer-distributors, with a festival slate spanning international arthouse and prestige cinema and a sales arm (Elle Driver) that represents major titles globally. The proceedings cover Wild Bunch&rsquo;s French production, distribution, and series divisions &mdash; though not its operations in Germany, Italy, and Spain, nor Elle Driver itself. New CEO David Desplas, who took the role in January, has six months to demonstrate a viable business model before the court rules on the company&rsquo;s future. The receivership arrived at the moment when the rest of the independent market was already contracting: at the European Film Market in Berlin (February 12&ndash;18, 2026), attendance was strong but deal-making was weak &mdash; FilmTake&rsquo;s post-mortem characterised it as &ldquo;attendance up, deals down.&rdquo; Gap financing for English-language independents is now running at effective annual rates of 15&ndash;22%, and industry executives at Berlin described &ldquo;an incredibly difficult time&rdquo; for films dependent on private investment, gap, and equity to close their packages. Variety reported that the situation for independents was &ldquo;rocky&rdquo; and the central market question &mdash; &ldquo;What makes a film theatrical?&rdquo; &mdash; had no agreed answer.</p>
+      <p>Wild Bunch&rsquo;s receivership is the most legible symptom yet of structural rather than cyclical failure in European independent distribution. The entities that sit between vertically integrated platform giants and local theatrical exhibition &mdash; acquiring, localising, and releasing non-English-language and non-IP-driven content &mdash; no longer have access to comfortable capital. Public broadcasters are tightening commissioning. Streaming giants are licensing less from outside producers as they consolidate internal catalogues. Theatrical audiences for arthouse and international cinema have not returned to pre-2020 levels. And gap financing, the bridge credit that has historically allowed distributors to close packages in advance of sales commitments, has become structurally unaffordable. The layer that collapses here is not just a company &mdash; it is an institutional curatorial function: the mechanism through which international cinema gets acquired, translated, theatrically released, and introduced to audiences across language borders. That function took decades to build. It is not replicated by an algorithm that recommends films viewers already know they want to see.</p>
+    </div>
+
+  </div>
+</section>
+
+  
+
+  <div class="section-divider"></div>
+  <div class="newsletter-section">
+    <div class="newsletter-card reveal">
+      <div class="newsletter-eyebrow">Every Fortnight</div>
+      <h2 class="newsletter-title">The fortnightly digest &mdash;<br>one email, worth opening.</h2>
+      <p class="newsletter-sub">&ldquo;No scores. No aggregation. Just the conversation worth having.&rdquo;</p>
+      <form class="newsletter-form" action="https://buttondown.com/api/emails/embed-subscribe/screenshare" method="post" target="_blank" onsubmit="window.open('https://buttondown.com/screenshare','popupwindow')">
+        <input class="newsletter-input" type="email" name="email" placeholder="your@email.com" required />
+        <button class="newsletter-btn" type="submit">Subscribe</button>
+      </form>
+      <p class="newsletter-note">No noise. Unsubscribe whenever. We mean it.</p>
+    </div>
+  </div>
+
+  <div class="section-divider"></div>
+
+  <div class="issue-footer-cta reveal">
+    <div class="cta-block">
+      <div class="cta-block-label">Stay in the loop</div>
+      <div class="cta-block-title">Get Screen Share in your inbox every fortnight</div>
+      <div class="cta-block-text">One issue, one theme, every fortnight. No algorithm. No noise. Just the films and television worth your time.</div>
+      <form class="cta-subscribe-form" action="https://buttondown.com/api/emails/embed-subscribe/screenshare" method="post" target="_blank" onsubmit="window.open('https://buttondown.com/screenshare','popupwindow')">
+        <input class="cta-subscribe-input" type="email" name="email" placeholder="your@email.com" required />
+        <button class="cta-subscribe-btn" type="submit">Subscribe</button>
+      </form>
+    </div>
+    <div class="cta-block">
+      <div class="cta-block-label">Support independent publishing</div>
+      <div class="cta-block-title">If Screen Share is worth your time, it&rsquo;s worth a coffee</div>
+      <div class="cta-block-text">Screen Share is independent, ad-free, and takes real work to put together each fortnight. If you value that, any support keeps it going.</div>
+      <a class="cta-kofi-btn" href="https://ko-fi.com/screenshare" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24"><path d="M23.881 8.948c-.773-4.085-4.859-4.593-4.859-4.593H.723c-.604 0-.679.798-.679.798s-.082 7.324-.022 11.822c.164 2.424 2.586 2.672 2.586 2.672s8.267-.023 11.966-.049c2.438-.426 2.683-2.566 2.658-3.734 4.352.24 7.422-2.831 6.649-6.916zm-11.062 3.511c-1.246 1.453-4.011 3.976-4.011 3.976s-.121.119-.31.023c-.076-.057-.108-.09-.108-.09-.443-.441-3.368-3.049-4.034-3.954-.709-.965-1.041-2.7-.091-3.71.951-1.01 3.005-1.086 4.363.407 0 0 1.565-1.782 3.468-.963 1.904.82 1.832 3.011.723 4.311z"/></svg>
+        Support on Ko-fi
+      </a>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-top">
+      <span class="footer-logo">Screen<span>Share</span></span>
+      <span class="footer-note">Issue 005 &middot; Collapse &middot; May 2026</span>
+    </div>
+    <div class="footer-links"><a href="https://screenshare.watch/feed.xml">RSS</a> &middot; <a href="https://ko-fi.com/screenshare">Ko-fi</a> &middot; <a href="https://screenshare.watch/archive">Archive</a></div>
+    <div class="footer-legal">&copy; 2026 Screen Share. Film data and images courtesy of <a href="https://www.themoviedb.org/" target="_blank" rel="noopener">TMDB</a>. Screen Share uses the TMDB API but is not endorsed or certified by TMDB.</div>
+  </footer>
+
+  <div id="stickyBar" style="display:none;position:fixed;bottom:0;left:0;right:0;z-index:200;background:rgba(10,10,15,0.95);backdrop-filter:blur(16px);border-top:1px solid rgba(245,158,11,0.25);padding:0.85rem 2rem;align-items:center;justify-content:space-between;">
+    <span style="font-size:0.85rem;color:#8888a0;font-weight:500;"><span style="color:#f59e0b;font-weight:700;">Screen Share</span> &mdash; Every Fortnight. One theme, one conversation.</span>
+    <div style="display:flex;align-items:center;gap:0.75rem;">
+      <form action="https://buttondown.com/api/emails/embed-subscribe/screenshare" method="post" target="_blank" onsubmit="window.open('https://buttondown.com/screenshare','popupwindow')" style="display:flex;gap:0;">
+        <input type="email" name="email" placeholder="your@email.com" required style="padding:0.55rem 1rem;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.06);border-right:none;color:#e8e8ed;font-size:0.82rem;font-family:'Inter',sans-serif;outline:none;width:200px;" />
+        <button type="submit" style="padding:0.55rem 1rem;background:#f59e0b;border:none;color:#0a0a0f;font-size:0.78rem;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;cursor:pointer;font-family:'Inter',sans-serif;white-space:nowrap;">Subscribe</button>
+      </form>
+      <button id="stickyDismiss" style="background:none;border:none;color:#555568;font-size:1.2rem;cursor:pointer;padding:0.25rem 0.5rem;line-height:1;">&times;</button>
+    </div>
+  </div>
+
+  <script>
+    const revealElements = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.1 });
+    revealElements.forEach(el => observer.observe(el));
+
+    // Editor's note unravel animation
+    document.querySelectorAll('.editors-note-text').forEach(p => {
+      const html = p.innerHTML;
+      const tokens = html.split(/(\s+)/);
+      p.innerHTML = tokens.map((t, i) => t.trim() ? '<span class="unravel-word" style="transition-delay:' + (i * 18) + 'ms">' + t + '</span>' : t).join('');
+    });
+
+    const noteObs = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.querySelectorAll('.unravel-word').forEach(w => w.classList.add('visible'));
+          const sig = entry.target.querySelector('.editors-note-sig');
+          if (sig) setTimeout(() => sig.classList.add('unraveled'), 800);
+          noteObs.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15 });
+    document.querySelectorAll('.editors-note').forEach(el => noteObs.observe(el));
+
+    // Mood data with 3 films per mood — Issue 005: Collapse
+    const moodData = {
+      'rot': {
+        label: 'The Rot You Can Already Smell',
+        films: [
+          {
+            title: 'Sweet Smell of Success',
+            year: 1957,
+            director: 'Alexander Mackendrick',
+            poster: 'https://image.tmdb.org/t/p/w342/akzvV8JasNrgEl5iAP9K6zPHGJe.jpg',
+            tag: 'Power that eats what it touches',
+            primer: 'Mackendrick\'s New York is a city where every relationship is a transaction and every transaction has a cost. J.J. Hunsecker doesn\'t destroy people out of malice — he does it because the machine he runs requires it.'
+          },
+          {
+            title: 'Chinatown',
+            year: 1974,
+            director: 'Roman Polanski',
+            poster: 'https://image.tmdb.org/t/p/w342/kZRSP3FmOcq0xnBulqpUQngJUXY.jpg',
+            tag: 'The system designed to fail you',
+            primer: 'Polanski\'s Los Angeles is a city built on a crime that can\'t be prosecuted because the criminal owns the law. Gittes isn\'t a detective who loses — he\'s a man who discovers that losing was always the only available outcome.'
+          },
+          {
+            title: 'Winter Sleep',
+            year: 2014,
+            director: 'Nuri Bilge Ceylan',
+            poster: 'https://image.tmdb.org/t/p/w342/95j83qOqH3Ivz4RYkaSjGT0VSNr.jpg',
+            tag: 'Intellectual comfort as moral evasion',
+            primer: 'A hotel owner in rural Anatolia believes he is a good man. His tenants, his wife, and his sister hold a different account. Ceylan builds the argument through dialogue so exacting it feels like a legal proceeding.'
+          }
+        ]
+      },
+      'lastlight': {
+        label: 'Before the Last Light Goes Out',
+        films: [
+          {
+            title: 'The Dead',
+            year: 1987,
+            director: 'John Huston',
+            poster: 'https://image.tmdb.org/t/p/w342/hFLUqiwvvtcUqA5NZNejaaNpTv0.jpg',
+            tag: 'The speech that arrives too late',
+            primer: 'Huston\'s final film, made while he was on oxygen. Based on Joyce\'s story of a man who realises, at a winter dinner party, that his wife once loved someone who died for her. The snow falls at the end on all the living and the dead.'
+          },
+          {
+            title: 'The Remains of the Day',
+            year: 1993,
+            director: 'James Ivory',
+            poster: 'https://image.tmdb.org/t/p/w342/uDGDtqSvuch324WnM7Ukdp1bCAQ.jpg',
+            tag: 'Dignity as the price of everything',
+            primer: 'Stevens the butler served Lord Darlington faithfully through the 1930s, and in doing so helped facilitate appeasement. Ishiguro\'s novel and Ivory\'s film are about how thoroughly a man can hollow himself out in the name of service.'
+          },
+          {
+            title: '45 Years',
+            year: 2015,
+            director: 'Andrew Haigh',
+            poster: 'https://image.tmdb.org/t/p/w342/8elIJYYXWq2HpcZ6TgVMC9EwTnn.jpg',
+            tag: 'What the body remembers',
+            primer: 'A week before their 45th wedding anniversary, a letter arrives for Kate\'s husband. By the end of the film, she understands something about their marriage that forty-five years of evidence could not have prepared her for.'
+          }
+        ]
+      },
+      'empires': {
+        label: 'What Empires Look Like From Inside',
+        films: [
+          {
+            title: 'The Leopard',
+            year: 1963,
+            director: 'Luchino Visconti',
+            poster: 'https://image.tmdb.org/t/p/w342/riSUxwoK3xjkOgy6YJSvPhi7cO6.jpg',
+            tag: 'Everything must change so nothing does',
+            primer: 'Visconti\'s Sicilian aristocrat watches Garibaldi\'s unification with the cool eye of a man who knows his class is finished. The three-hour ballroom sequence at the end is one of cinema\'s great depictions of an order saying goodbye to itself.'
+          },
+          {
+            title: 'Amarcord',
+            year: 1973,
+            director: 'Federico Fellini',
+            poster: 'https://image.tmdb.org/t/p/w342/kS7i093sQpkLTawUEdgf4HVOHSc.jpg',
+            tag: 'Fascism remembered as weather',
+            primer: 'Fellini\'s memory-film of a small Italian town in the 1930s is disarmingly funny and deeply frightened at the same time. The Fascists don\'t storm the town — they\'re already there, woven into the fabric of the ordinary.'
+          },
+          {
+            title: 'Satantango',
+            year: 1994,
+            director: 'B\u00e9la Tarr',
+            poster: 'https://image.tmdb.org/t/p/w342/y38z0v4HJ12MHiKddLEoFlvPiBt.jpg',
+            tag: 'Seven hours of mud and waiting',
+            primer: 'A collective farm in post-Communist Hungary receives word that a dead man is returning. B\u00e9la Tarr\'s seven-and-a-half hour film operates at the pace of the collapse it depicts — deliberate, unavoidable, almost geological.'
+          }
+        ]
+      },
+      'freefall': {
+        label: 'Systems in Free Fall',
+        films: [
+          {
+            title: 'Zabriskie Point',
+            year: 1970,
+            director: 'Michelangelo Antonioni',
+            poster: 'https://image.tmdb.org/t/p/w342/uelo2oMg4fM51LAm4eEArEwOHXZ.jpg',
+            tag: 'The dream detonating in slow motion',
+            primer: 'Antonioni\'s account of America in 1969 was dismissed on release as a European misreading. What it actually is: a film about the moment a country\'s self-image fails to survive contact with its own landscape. The final explosion lasts four minutes and says everything.'
+          },
+          {
+            title: 'The Conformist',
+            year: 1970,
+            director: 'Bernardo Bertolucci',
+            poster: 'https://image.tmdb.org/t/p/w342/nLJjFRqIJAK8qz0OKYnpKCblZNK.jpg',
+            tag: 'Normality as the thing you murder for',
+            primer: 'Bertolucci\'s Fascist Italy is experienced through a man who committed violence as a child and has spent his life trying to disappear into the ordinary. Joining the Fascists is not ideology — it is the ultimate act of conformity, and therefore the ultimate self-erasure.'
+          },
+          {
+            title: 'Burning',
+            year: 2018,
+            director: 'Lee Chang-dong',
+            poster: 'https://image.tmdb.org/t/p/w342/kXiF80o74fE9gf3Utf9moAI7ar0.jpg',
+            tag: 'Class resentment with nowhere to go',
+            primer: 'Lee Chang-dong\'s film is about what happens to a generation of young men for whom the system has no credible promise. The mystery at its centre — a woman disappears, a man burns things — is almost beside the point. The point is the feeling that preceded it.'
+          }
+        ]
+      },
+      'mathematics': {
+        label: 'The Mathematics of Ending',
+        films: [
+          {
+            title: 'Scenes from a Marriage',
+            year: 1974,
+            director: 'Ingmar Bergman',
+            poster: 'https://image.tmdb.org/t/p/w342/ArKEdvJesIktFX8OAhcdKAOLl6I.jpg',
+            tag: 'The inventory of a life together',
+            primer: 'Bergman made this for Swedish television in six episodes; the theatrical cut condenses the dissolution of a marriage into three hours of two people failing, repeatedly, to be honest with each other. When it aired, divorce rates in Sweden reportedly increased.'
+          },
+          {
+            title: 'The Ice Storm',
+            year: 1997,
+            director: 'Ang Lee',
+            poster: 'https://image.tmdb.org/t/p/w342/3a6uLta7K8Dzojps4RoJAPHD0km.jpg',
+            tag: 'A family coming apart in one weekend',
+            primer: 'Ang Lee sets his film of Rick Moody\'s novel in Thanksgiving 1973 — Watergate playing on every television, a generation\'s faith in authority already gone. The Hood family\'s dissolution is small and domestic and almost unbearable to watch.'
+          },
+          {
+            title: 'Roma',
+            year: 2018,
+            director: 'Alfonso Cuar\u00f3n',
+            poster: 'https://image.tmdb.org/t/p/w342/dtIIyQyALk57ko5bjac7hi01YQ.jpg',
+            tag: 'What the view from below sees first',
+            primer: 'Cuar\u00f3n\'s autobiographical film watches the 1970s collapse of a Mexican middle-class family through the eyes of their domestic worker, Cleo — who is inside the household\'s life entirely, and outside its protections entirely. The sea scene at the end is about the kind of love that receives no name.'
+          }
+        ]
+      },
+      'institutions': {
+        label: 'When Institutions Lie',
+        films: [
+          {
+            title: 'Z',
+            year: 1969,
+            director: 'Costa-Gavras',
+            poster: 'https://image.tmdb.org/t/p/w342/dFAJyFNgvOv24f2RQyI9KDxjGr3.jpg',
+            tag: 'The state vs. the fact of what happened',
+            primer: 'Based on the 1963 assassination of Greek MP Grigoris Lambrakis and the military coup that followed. Costa-Gavras makes the procedural thriller the vehicle for demonstrating how a state dismantles the truth, step by bureaucratic step.'
+          },
+          {
+            title: 'The Official Story',
+            year: 1985,
+            director: 'Luis Puenzo',
+            poster: 'https://image.tmdb.org/t/p/w342/kkeUKaETggOrR0eW9nzPOIoZkZH.jpg',
+            tag: 'The history teacher who didn\'t know',
+            primer: 'Alicia teaches Argentine history while her country is emerging from the Dirty War — and begins to suspect her adopted daughter may be the child of a disappeared woman. Puenzo\'s film is about the particular violence of official silence, and the cost of finally looking.'
+          },
+          {
+            title: 'Brazil',
+            year: 1985,
+            director: 'Terry Gilliam',
+            poster: 'https://image.tmdb.org/t/p/w342/aewan59WcFThBimkTVVoNf2o5Vb.jpg',
+            tag: 'Bureaucracy as the architecture of cruelty',
+            primer: 'A man is tortured and killed because of a clerical error — a fly in the printer changes "Tuttle" to "Buttle." Gilliam\'s dystopia is not a government with a plan. It is a government that has simply become too large to be responsible for anything it does.'
+          }
+        ]
+      },
+      'aftermath': {
+        label: 'After Everything Falls',
+        films: [
+          {
+            title: 'Hiroshima Mon Amour',
+            year: 1959,
+            director: 'Alain Resnais',
+            poster: 'https://image.tmdb.org/t/p/w342/zieczjWnvalaxwX5EQASEx0on5f.jpg',
+            tag: 'Memory as the wound that stays open',
+            primer: 'Resnais sets a love affair in the rebuilt Hiroshima of 1959 — a city that was erased and reconstructed, where the rubble is invisible but the knowledge of what happened is not. The film opens on intertwined bodies and atomic aftermath footage in the same sequence. It never lets you separate them.'
+          },
+          {
+            title: 'La Strada',
+            year: 1954,
+            director: 'Federico Fellini',
+            poster: 'https://image.tmdb.org/t/p/w342/rwjbT0zlsUDMztaCcWjlWuxaEL1.jpg',
+            tag: 'The collapse of a person around a void',
+            primer: 'Fellini\'s road film follows Gelsomina, sold by her family to a travelling strongman, and the slow erosion of everything she is. The collapse is not dramatic — it happens by degrees, through repetition and indifference, in the space between two people who cannot reach each other.'
+          },
+          {
+            title: 'Landscape in the Mist',
+            year: 1988,
+            director: 'Theo Angelopoulos',
+            poster: 'https://image.tmdb.org/t/p/w342/icNqzWxjwXuD6FSRtTWNj8sa5B1.jpg',
+            tag: 'The journey through a continent that ended',
+            primer: 'Two Greek children walk north through Europe looking for a father who may not exist. Angelopoulos films them moving through a landscape that is simultaneously contemporary Greece and something much older — a Europe whose coherence collapsed long before they were born into it.'
+          }
+        ]
+      }
+    };
+
+    // Render mood films and voting
+    function renderMoodFilms(mood) {
+      document.querySelectorAll('.mood-chip').forEach(c => c.classList.toggle('active', c.dataset.mood === mood));
+      const data = moodData[mood];
+      if (!data) return;
+
+      const container = document.getElementById('moodFilms');
+      container.innerHTML = data.films.map(f => {
+        return '<div class="film-card"><img class="film-card-poster" src="' + f.poster + '" alt="' + f.title + '" loading="lazy" onerror="this.style.background=\'#1a1a22\';this.removeAttribute(\'src\');" /><div class="film-card-body"><div class="film-card-title">' + f.title + '</div><div class="film-card-year">' + f.year + ' &middot; ' + f.director + '</div><div class="film-card-mood-tag">' + f.tag + '</div><div class="film-card-primer">' + f.primer + '</div></div></div>';
+      }).join('');
+
+      renderMoodVote(mood);
+    }
+
+    function renderMoodVote(mood) {
+      const data = moodData[mood];
+      if (!data) return;
+      const key = 'ss-005-discover-' + mood, saved = localStorage.getItem(key);
+      const btnsEl = document.getElementById('moodVoteBtns'), resultsEl = document.getElementById('moodVoteResults');
+
+      btnsEl.innerHTML = data.films.map((f, i) =>
+        '<button class="mood-vote-btn' + (saved == i ? ' selected' : '') + '" onclick="castMoodVote(\'' + mood + '\',' + i + ')"' + (saved !== null ? ' disabled' : '') + '><span>' + f.title + '</span><span class="mood-vote-btn-year">' + f.year + '</span></button>'
+      ).join('');
+
+      if (saved !== null) {
+        const idx = parseInt(saved);
+        resultsEl.innerHTML = '<div style="text-align:center;font-size:0.85rem;color:var(--text-muted);margin-top:1rem;">Your pick: <span style="color:var(--text);font-weight:600;">' + data.films[idx].title + '</span></div>';
+        resultsEl.classList.add('visible');
+      } else {
+        resultsEl.innerHTML = '';
+        resultsEl.classList.remove('visible');
+      }
+    }
+
+    window.castMoodVote = function(mood, idx) {
+      const key = 'ss-005-discover-' + mood;
+      if (localStorage.getItem(key) !== null) return;
+      localStorage.setItem(key, idx);
+      renderMoodVote(mood);
+    };
+
+    document.querySelectorAll('.mood-chip').forEach(chip => {
+      chip.addEventListener('click', () => renderMoodFilms(chip.dataset.mood));
+    });
+    renderMoodFilms('rot');
+
+    // Pulse vote
+    window.pulseVote = function(key) {
+      if (localStorage.getItem(key)) return;
+      localStorage.setItem(key, '1');
+      const slug = key.replace('ss-005-pulse-', '').replace(/-yes$|-maybe$|-pass$/, '');
+      const suffix = key.split('-').pop();
+      ['yes','maybe','pass'].forEach(s => {
+        const btn = document.getElementById('pv-' + slug + '-' + s);
+        if (btn) { btn.disabled = true; if (s === suffix) btn.style.opacity = '1'; }
+      });
+    };
+    // Restore pulse vote state
+    document.querySelectorAll('.pulse-vote-btn').forEach(btn => {
+      const key = btn.getAttribute('onclick').match(/'([^']+)'/)?.[1];
+      if (key && localStorage.getItem(key)) { btn.disabled = true; }
+    });
+
+    // Section info toggles
+    document.querySelectorAll('.section-about-btn').forEach(btn=>{
+      btn.addEventListener('click',()=>{
+        const id='about-'+btn.dataset.about,panel=document.getElementById(id);
+        if(!panel)return;
+        const isOpen=panel.classList.contains('open');
+        document.querySelectorAll('.section-about-panel.open').forEach(p=>p.classList.remove('open'));
+        document.querySelectorAll('.section-about-btn.open').forEach(b=>b.classList.remove('open'));
+        if(!isOpen){panel.classList.add('open');btn.classList.add('open');}
+      });
+    });
+
+    // STICKY BAR
+    (function(){
+      const bar=document.getElementById('stickyBar'),dismiss=document.getElementById('stickyDismiss');
+      if(localStorage.getItem('ss-bar-dismissed'))return;
+      let shown=false;
+      window.addEventListener('scroll',function(){if(shown)return;var pct=window.scrollY/(document.body.scrollHeight-window.innerHeight);if(pct>0.35){bar.style.display='flex';shown=true}});
+      dismiss.addEventListener('click',function(){bar.style.display='none';localStorage.setItem('ss-bar-dismissed','1')});
+    })();
+  </script>
+</body>
+</html>
