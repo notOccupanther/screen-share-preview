@@ -4,24 +4,79 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Screen Share — Archive</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
   <style>
-    :root{--bg:#0b0c10;--panel:#12141a;--text:#ece7dc;--dim:#a9acb6;--line:rgba(255,255,255,.1);--accent:#d6b36a}
-    *{box-sizing:border-box} body{margin:0;background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,sans-serif} .wrap{max-width:1100px;margin:0 auto;padding:32px 20px 72px} a{color:inherit;text-decoration:none} .nav{display:flex;justify-content:space-between;align-items:center;margin-bottom:32px}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:18px}.card{background:var(--panel);border:1px solid var(--line);border-radius:20px;padding:22px}.eyebrow{letter-spacing:.18em;text-transform:uppercase;color:var(--accent);font-size:.74rem}.meta{color:var(--dim);font-size:.92rem} h1,h3{margin:0 0 10px}
+    :root{--bg:#080810;--surface:#111118;--gold:#f59e0b;--gold-dim:rgba(245,158,11,0.15);--gold-border:rgba(245,158,11,0.25);--text:#e8e8ed;--text-muted:#8888a0;--border:rgba(255,255,255,0.06);}
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;font-size:16px;line-height:1.6}
+    a{color:inherit;text-decoration:none}
+    nav{display:flex;justify-content:space-between;align-items:center;padding:1.25rem 2.5rem;border-bottom:1px solid var(--border);position:sticky;top:0;background:rgba(8,8,16,0.92);backdrop-filter:blur(12px);z-index:100}
+    .nav-logo{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:700;color:#fff}
+    .nav-logo span{color:var(--gold)}
+    .nav-links{list-style:none;display:flex;gap:2rem}
+    .nav-links a{font-size:0.8rem;font-weight:600;letter-spacing:0.05em;color:var(--text-muted);transition:color 0.2s}
+    .nav-links a:hover{color:#fff}
+    .wrap{max-width:900px;margin:0 auto;padding:4rem 2.5rem 6rem}
+    .eyebrow{font-size:0.65rem;font-weight:700;letter-spacing:0.25em;text-transform:uppercase;color:var(--gold);margin-bottom:1rem}
+    h1{font-family:'Playfair Display',serif;font-size:clamp(2rem,4vw,2.8rem);font-weight:800;color:#fff;margin-bottom:0.75rem;line-height:1.15}
+    .sub{color:var(--text-muted);font-size:0.95rem;margin-bottom:3rem}
+    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1.25rem}
+    .card{background:var(--surface);border:1px solid var(--border);border-radius:6px;padding:2rem;transition:border-color 0.2s}
+    .card:hover{border-color:var(--gold-border)}
+    .card-issue{font-size:0.65rem;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);margin-bottom:0.75rem}
+    .card-theme{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:700;color:#fff;margin-bottom:0.5rem}
+    .card-date{font-size:0.78rem;color:var(--text-muted);margin-bottom:1rem}
+    .card-link{font-size:0.78rem;font-weight:600;letter-spacing:0.05em;color:var(--gold)}
   </style>
 </head>
 <body>
+  <nav>
+    <a href="/" class="nav-logo">Screen<span>Share</span></a>
+    <ul class="nav-links">
+      <li><a href="issue-005.html">Issue 005</a></li>
+      <li><a href="issue-004.html">Issue 004</a></li>
+      <li><a href="issue-003.html">Issue 003</a></li>
+      <li><a href="about.html">About</a></li>
+    </ul>
+  </nav>
   <div class="wrap">
-    <div class="nav"><a href="index.html">Screen Share</a><a href="essay.html">This Week's Essay</a></div>
     <div class="eyebrow">Archive</div>
-    <h1>Issues and sections</h1>
-    <p class="meta">A first-pass archive so the homepage has somewhere real to go.</p>
+    <h1>All Issues</h1>
+    <p class="sub">Every issue of Screen Share, from the beginning.</p>
     <div class="grid">
-      <a class="card" href="essay.html"><div class="eyebrow">Issue 001</div><h3>The conversation worth having begins after the credits</h3><div class="meta">Lead essay</div></a>
-      <a class="card" href="rewind.html"><div class="eyebrow">The Rewind</div><h3>Why this film, why now</h3><div class="meta">Context over hype</div></a>
-      <a class="card" href="argument.html"><div class="eyebrow">The Argument</div><h3>What the discourse gets wrong</h3><div class="meta">A sharper take</div></a>
-      <a class="card" href="craft.html"><div class="eyebrow">Behind the Frame</div><h3>The craft, up close</h3><div class="meta">Form, rhythm, pressure</div></a>
+      <a class="card" href="issue-005.html">
+        <div class="card-issue">Issue 005</div>
+        <div class="card-theme">Collapse</div>
+        <div class="card-date">May 2026</div>
+        <div class="card-link">Read &rarr;</div>
+      </a>
+      <a class="card" href="issue-004.html">
+        <div class="card-issue">Issue 004</div>
+        <div class="card-theme">Performance</div>
+        <div class="card-date">April 2026</div>
+        <div class="card-link">Read &rarr;</div>
+      </a>
+      <a class="card" href="issue-003.html">
+        <div class="card-issue">Issue 003</div>
+        <div class="card-theme">Truth</div>
+        <div class="card-date">April 2026</div>
+        <div class="card-link">Read &rarr;</div>
+      </a>
+      <a class="card" href="issue-002.html">
+        <div class="card-issue">Issue 002</div>
+        <div class="card-theme">Power</div>
+        <div class="card-date">March 2026</div>
+        <div class="card-link">Read &rarr;</div>
+      </a>
+      <a class="card" href="issue-001.html">
+        <div class="card-issue">Issue 001</div>
+        <div class="card-theme">Hello</div>
+        <div class="card-date">March 2026</div>
+        <div class="card-link">Read &rarr;</div>
+      </a>
     </div>
   </div>
-<script data-goatcounter="https://screenshare.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+  <script data-goatcounter="https://screenshare.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 </body>
 </html>
